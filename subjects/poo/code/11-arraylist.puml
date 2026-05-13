@@ -1,0 +1,43 @@
+@startuml
+title Hierarquia de java.util.ArrayList - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface SequencedCollection<E>
+interface List<E>
+interface RandomAccess
+interface Cloneable
+interface Serializable
+
+abstract class AbstractCollection<E>
+abstract class AbstractList<E>
+class ArrayList<E>
+
+Iterable <|-- Collection
+Collection <|-- SequencedCollection
+SequencedCollection <|-- List
+
+Collection <|.. AbstractCollection
+AbstractCollection <|-- AbstractList
+List <|.. AbstractList
+
+AbstractList <|-- ArrayList
+List <|.. ArrayList
+RandomAccess <|.. ArrayList
+Cloneable <|.. ArrayList
+Serializable <|.. ArrayList
+
+note right of SequencedCollection
+Introduzida no Java 21.
+Representa coleções com ordem
+de encontro bem definida.
+end note
+
+note right of ArrayList
+Implementação baseada em array
+redimensionável.
+end note
+
+@enduml
