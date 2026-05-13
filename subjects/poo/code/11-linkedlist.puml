@@ -1,0 +1,49 @@
+@startuml
+title Hierarquia de java.util.LinkedList - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface SequencedCollection<E>
+interface List<E>
+interface Queue<E>
+interface Deque<E>
+interface Cloneable
+interface Serializable
+
+abstract class AbstractCollection<E>
+abstract class AbstractList<E>
+abstract class AbstractSequentialList<E>
+class LinkedList<E>
+
+Iterable <|-- Collection
+Collection <|-- SequencedCollection
+SequencedCollection <|-- List
+Collection <|-- Queue
+Queue <|-- Deque
+SequencedCollection <|-- Deque
+
+Collection <|.. AbstractCollection
+AbstractCollection <|-- AbstractList
+List <|.. AbstractList
+AbstractList <|-- AbstractSequentialList
+
+AbstractSequentialList <|-- LinkedList
+List <|.. LinkedList
+Deque <|.. LinkedList
+Cloneable <|.. LinkedList
+Serializable <|.. LinkedList
+
+note right of SequencedCollection
+Introduzida no Java 21.
+Representa coleções com ordem
+definida e operações nas extremidades.
+end note
+
+note right of LinkedList
+Implementação baseada em nós ligados.
+Pode ser usada como lista, fila ou pilha.
+end note
+
+@enduml

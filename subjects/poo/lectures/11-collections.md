@@ -224,8 +224,6 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 # java.util.ArrayList: hierarquia
 
-**Hierarquia de classes e interfaces**
-
 <div class="columns small">
 <div>
 
@@ -244,8 +242,6 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 ---
 
 # java.util.ArrayList: hierarquia principal
-
-**Hierarquia principal**
 
 <div class="columns small" style="--columns: 2;">
 
@@ -273,8 +269,6 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 # java.util.ArrayList: principais métodos
 
-**Métodos principais**
-
 - `add(E e)`: adiciona um elemento ao final da lista.
 - `get(int i)`: retorna o elemento armazenado em uma posição.
 - `set(int i, E e)`: substitui o elemento de uma posição.
@@ -291,8 +285,6 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 ---
 
 # java.util.ArrayList: exemplo
-
-**Métodos principais**
 
 <div class="columns">
 
@@ -321,6 +313,107 @@ System.out.println(alunos); //[Maria, João]
 
 alunos.remove(1);
 System.out.println(alunos); //[Maria]
+```
+
+</div>
+
+</div>
+
+---
+
+# java.util.LinkedList: hierarquia
+
+<div class="columns small">
+<div>
+
+<img src="../images/11-linkedlist.png">
+
+</div>
+<div>
+
+- Estrutura de dados baseada em nós ligados.
+- Implementa `List` e `Deque`, podendo ser usada como lista, fila ou pilha.
+- Preserva a ordem dos elementos e permite elementos repetidos.
+- É útil quando há muitas inserções e remoções nas extremidades da coleção.
+
+</div>
+</div>
+
+---
+
+# java.util.LinkedList: hierarquia principal
+
+<div class="columns small" style="--columns: 2;">
+
+<div>
+
+<img src="../images/11-linkedlist-main.png" width="70%">
+
+</div>
+
+<div>
+
+- `Iterable`: permite percorrer elementos com <code>for-each</code>.
+- `Collection`: contrato básico para grupos de objetos.
+- `SequencedCollection`: representa coleções com ordem definida e operações nas duas extremidades.
+- `List`: coleção ordenada por posição, com elementos repetidos.
+- `Queue`: coleção usada para processamento em fila.
+- `Deque`: fila de duas pontas, útil como fila ou pilha.
+- `LinkedList`: lista concreta baseada em nós ligados.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.LinkedList: principais métodos
+
+- `add(E e)`: adiciona um elemento ao final da lista.
+- `addFirst(E e)`: adiciona um elemento no início.
+- `addLast(E e)`: adiciona um elemento no fim.
+- `get(int i)`: retorna o elemento armazenado em uma posição.
+- `getFirst()` / `getLast()`: acessa o primeiro ou o último elemento.
+- `remove(int i)`: remove o elemento localizado em uma posição.
+- `removeFirst()` / `removeLast()`: remove o primeiro ou o último elemento.
+- `peek()`: consulta o primeiro elemento sem removê-lo.
+- `poll()`: remove e retorna o primeiro elemento, ou `null` se estiver vazia.
+- `push(E e)` / `pop()`: usa a lista como pilha.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html">Oracle Java SE 21 - LinkedList</a></div>
+
+---
+
+# java.util.LinkedList: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-linkedlist-methods.png">
+
+</div>
+
+<div>
+
+```java
+LinkedList<String> nomes = new LinkedList<>();
+
+nomes.add("Ana");
+nomes.addLast("Bruno");
+nomes.addFirst("Carla");
+
+System.out.println(nomes); //[Carla, Ana, Bruno]
+
+System.out.println(nomes.getFirst()); //Carla
+
+nomes.removeLast();
+System.out.println(nomes); //[Carla, Ana]
+
+nomes.push("Diego");
+System.out.println(nomes.pop()); //Diego
 ```
 
 </div>
