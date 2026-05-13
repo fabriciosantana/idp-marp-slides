@@ -97,6 +97,12 @@ O uso do _collections framework_:
 
 ---
 
+# Principais interfaces do collections framework
+
+<img src="../images/11-interfaces.png">
+
+---
+
 <!-- _class: compact -->
 
 # Principais interfaces do _collections framework_
@@ -120,6 +126,10 @@ As interfaces estão disponíveis no pacote `java.util`
       <td>Coleção que não permite elementos duplicados.</td>
     </tr>
     <tr>
+      <td><code>SortedSet</code></td>
+      <td>Coleção ordenada que não permite elementos duplicados.</td>
+    </tr>
+    <tr>
       <td><code>List</code></td>
       <td>Coleção ordenada por posição que pode conter elementos duplicados.</td>
     </tr>
@@ -128,8 +138,8 @@ As interfaces estão disponíveis no pacote `java.util`
       <td>Coleção normalmente usada como fila, em geral com política primeiro a entrar, primeiro a sair.</td>
     </tr>
     <tr>
-      <td><code>Dequeue</code></td>
-      <td>Fila duplamente encadeada, pode funcionar como fila e pillha.</td>
+      <td><code>Deque</code></td>
+      <td>Fila de duas pontas; pode funcionar como fila ou pilha.</td>
     </tr>
     <tr>
       <td><code>Map</code></td>
@@ -137,7 +147,7 @@ As interfaces estão disponíveis no pacote `java.util`
     </tr>
     <tr>
       <td><code>SortedMap</code></td>
-      <td>Um <Map> com ordenação natural pela chave ou por um comparador.</td>
+      <td>Um <code>Map</code> com ordenação natural pela chave ou por um comparador.</td>
     </tr>    
   </tbody>
 </table>
@@ -212,7 +222,7 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 ---
 
-# java.util.ArrayList
+# java.util.ArrayList: hierarquia
 
 **Hierarquia de classes e interfaces**
 
@@ -233,7 +243,7 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 ---
 
-# java.util.ArrayList
+# java.util.ArrayList: hierarquia principal
 
 **Hierarquia principal**
 
@@ -249,7 +259,7 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 - `Iterable`: permite percorrer elementos com <code>for-each</code>.
 - `Collection`: contrato básico para grupos de objetos.
-- `SequencedCollection`: define ordem de encontro e acesso às extremidades.
+- `SequencedCollection`: representa coleções com ordem definida e operações nas duas extremidades.
 - `List`: coleção ordenada por posição, com elementos repetidos.
 - `ArrayList`: lista concreta baseada em array redimensionável.
 
@@ -261,9 +271,9 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 <!-- _class: compact -->
 
-# java.util.ArrayList
+# java.util.ArrayList: principais métodos
 
-## Métodos principais
+**Métodos principais**
 
 - `add(E e)`: adiciona um elemento ao final da lista.
 - `get(int i)`: retorna o elemento armazenado em uma posição.
@@ -280,9 +290,9 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 ---
 
-# java.util.ArrayList
+# java.util.ArrayList: exemplo
 
-## Métodos principais
+**Métodos principais**
 
 <div class="columns">
 
@@ -298,6 +308,7 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 import java.util.ArrayList;
 //...
 ArrayList alunos = new ArrayList();
+
 alunos.add(new Aluno("Fabricio"));
 alunos.add(new Aluno("João"));
 
@@ -311,6 +322,8 @@ System.out.println(alunos); //[Maria, João]
 alunos.remove(1);
 System.out.println(alunos); //[Maria]
 ```
+
+</div>
 
 </div>
 
@@ -335,25 +348,6 @@ Map<String, Aluno> alunosPorCpf = new HashMap<>();
 ```
 
 O tipo à esquerda comunica intenção. O tipo à direita escolhe a estrutura concreta.
-
----
-
-<!-- _class: compact -->
-
-# Collection e seus descendentes
-
-A interface mais básica é `java.util.Collection`.
-
-Principais descendentes:
-
-- `Set`: conjunto sem elementos duplicados.
-- `SortedSet`: conjunto ordenado.
-- `NavigableSet`: conjunto ordenado com operações de navegação.
-- `Queue`: fila.
-- `Deque`: fila de duas pontas.
-- `BlockingQueue`, `TransferQueue` e `BlockingDeque`: variações para concorrência.
-
-<div class="source">Fonte: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">Oracle Java SE 8 - Collections Framework Overview</a></div>
 
 ---
 
@@ -463,6 +457,127 @@ Mesmo não sendo uma coleção, `Map` oferece visões manipuláveis como coleç�
 </table>
 
 <div class="source">Fonte: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">Oracle Java SE 8 - Collections Framework Overview</a></div>
+
+---
+
+<!-- _class: compact -->
+
+# Comportamento das implementações: List e Queue
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Implementação</th>
+      <th>Ordem</th>
+      <th>Duplicados</th>
+      <th><code>null</code></th>
+      <th>Quando usar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ArrayList</code></td>
+      <td>inserção</td>
+      <td>sim</td>
+      <td>sim</td>
+      <td>boa escolha padrão para consultas e acesso por índice.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedList</code></td>
+      <td>inserção</td>
+      <td>sim</td>
+      <td>sim</td>
+      <td>útil quando há muitas operações nas extremidades.</td>
+    </tr>
+    <tr>
+      <td><code>Vector</code></td>
+      <td>inserção</td>
+      <td>sim</td>
+      <td>sim</td>
+      <td>classe legada sincronizada; em geral, prefira alternativas modernas.</td>
+    </tr>
+    <tr>
+      <td><code>PriorityQueue</code></td>
+      <td>prioridade</td>
+      <td>sim</td>
+      <td>não</td>
+      <td>quando os elementos precisam sair por prioridade, não por chegada.</td>
+    </tr>
+    <tr>
+      <td><code>ArrayDeque</code></td>
+      <td>fila/pilha</td>
+      <td>sim</td>
+      <td>não</td>
+      <td>boa opção para fila ou pilha sem sincronização.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="source">Fonte: adaptado do arquivo de referência <code>collections.jpeg</code>.</div>
+
+---
+
+<!-- _class: compact -->
+
+# Comportamento das implementações: Set e Map
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Implementação</th>
+      <th>Ordem</th>
+      <th>Duplicidade</th>
+      <th><code>null</code></th>
+      <th>Quando usar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HashSet</code></td>
+      <td>não garante</td>
+      <td>não permite elementos repetidos</td>
+      <td>até um elemento</td>
+      <td>conjunto único sem preocupação com ordem.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashSet</code></td>
+      <td>inserção</td>
+      <td>não permite elementos repetidos</td>
+      <td>até um elemento</td>
+      <td>conjunto único preservando ordem de inserção.</td>
+    </tr>
+    <tr>
+      <td><code>TreeSet</code></td>
+      <td>ordenada</td>
+      <td>não permite elementos repetidos</td>
+      <td>não, no uso comum</td>
+      <td>conjunto único sempre ordenado.</td>
+    </tr>
+    <tr>
+      <td><code>HashMap</code></td>
+      <td>não garante</td>
+      <td>chaves únicas; valores podem repetir</td>
+      <td>uma chave; vários valores</td>
+      <td>associação chave-valor eficiente sem ordem.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashMap</code></td>
+      <td>inserção</td>
+      <td>chaves únicas; valores podem repetir</td>
+      <td>uma chave; vários valores</td>
+      <td>mapa preservando ordem de inserção.</td>
+    </tr>
+    <tr>
+      <td><code>TreeMap</code></td>
+      <td>por chave</td>
+      <td>chaves únicas; valores podem repetir</td>
+      <td>sem chave nula; valores nulos possíveis</td>
+      <td>mapa ordenado por chave.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="source">Fonte: adaptado do arquivo de referência <code>collections.jpeg</code>.</div>
 
 ---
 
