@@ -1,0 +1,12 @@
+{
+  "cSpell.language": "pt,pt_BR,en",
+  "cSpell.words": [
+    "Beamer",
+    "IDP",
+    "Marp",
+    "Marpit"
+  ],
+  "markdown.marp.themes": [
+    "./themes/idp.css"
+  ]
+}
