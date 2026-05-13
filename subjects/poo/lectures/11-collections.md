@@ -214,14 +214,6 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 # java.util.ArrayList
 
-- Estrutura de dados semelhante a um array que pode ser redimensionado dinamicamente
-- armazena referências a objetos de um tipo
-- o tipo pode ser definido na declaração (_generics_), viabilizando a verificação de tipo em tempo de compilação
-
----
-
-# java.util.ArrayList
-
 **Hierarquia de classes e interfaces**
 
 <div class="columns small">
@@ -232,14 +224,9 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 </div>
 <div>
 
-```java
-import java.util.ArrayList;
-//...
-ArrayList turma = new ArrayList();
-turma.add(new Aluno("Fabricio"));
-turma.add(new Aluno("João"));
-System.out.println(alunos); //[Fabricio, João]
-```
+- Estrutura de dados semelhante a um array que pode ser redimensionado dinamicamente
+- armazena referências a objetos de um tipo
+- o tipo pode ser definido na declaração (_generics_), viabilizando a verificação de tipo em tempo de compilação
 
 </div>
 </div>
@@ -274,10 +261,11 @@ System.out.println(alunos); //[Fabricio, João]
 
 <!-- _class: compact -->
 
-# Métodos principais de java.util.ArrayList
+# java.util.ArrayList
+
+## Métodos principais
 
 - `add(E e)`: adiciona um elemento ao final da lista.
-- `add(int i, E e)`: insere um elemento em uma posição específica.
 - `get(int i)`: retorna o elemento armazenado em uma posição.
 - `set(int i, E e)`: substitui o elemento de uma posição.
 - `remove(int i)`: remove o elemento localizado em uma posição.
@@ -286,10 +274,45 @@ System.out.println(alunos); //[Fabricio, João]
 - `size()`: retorna a quantidade de elementos na lista.
 - `isEmpty()`: indica se a lista está vazia.
 - `clear()`: remove todos os elementos da lista.
-- `toArray()`: converte a lista para um array.
 - `getFirst()` / `getLast()`: acessa o primeiro ou o último elemento da lista.
 
 <div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html">Oracle Java SE 21 - ArrayList</a></div>
+
+---
+
+# java.util.ArrayList
+
+## Métodos principais
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-arraylist-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.ArrayList;
+//...
+ArrayList alunos = new ArrayList();
+alunos.add(new Aluno("Fabricio"));
+alunos.add(new Aluno("João"));
+
+System.out.println(alunos); //[Fabricio, João]
+
+System.out.println(alunos.get(1)); //João
+
+alunos.set(0, "Maria");
+System.out.println(alunos); //[Maria, João]
+
+alunos.remove(1);
+System.out.println(alunos); //[Maria]
+```
+
+</div>
 
 ---
 
