@@ -919,10 +919,12 @@ Algumas coleções precisam comparar elementos para decidir prioridade ou posiç
 - Exemplo: `String`, `Integer`, `LocalDate`.
 
 ```java
-record Aluno(String nome, double nota)
-        implements Comparable<Aluno> {
+class Aluno implements Comparable<Aluno> {
+    private String nome;
+    private double nota;
+
     public int compareTo(Aluno outro) {
-        return Double.compare(nota, outro.nota);
+        return Double.compare(this.nota, outro.nota);
     }
 }
 ```
@@ -1197,7 +1199,12 @@ Coleções baseadas em hash dependem de `equals()` e `hashCode()` para identific
 <div>
 
 ```java
-record Aluno(String matricula, String nome) {}
+class Aluno {
+    private String matricula;
+    private String nome;
+
+    // construtor, getters, equals e hashCode
+}
 
 Set<Aluno> alunos = new HashSet<>();
 
@@ -1207,8 +1214,8 @@ alunos.add(new Aluno("001", "Ana"));
 System.out.println(alunos.size()); //1
 ```
 
-- Em `record`, `equals()` e `hashCode()` são gerados automaticamente.
-- Em classes comuns, implemente os dois de forma consistente.
+- Em classes comuns, implemente `equals()` e `hashCode()` de forma consistente.
+- Se a igualdade é pela matrícula, use esse atributo nos dois métodos.
 
 </div>
 
@@ -2507,43 +2514,15 @@ Interfaces e classes específicas ajudam nesse cenário:
 
 **Implementação**
 
-1. Crie um `record Aluno(String nome, String matricula)`.
-2. Declare a variável pela interface: `List<Aluno> alunos`.
-3. Instancie com `new ArrayList<>()`.
-4. Cadastre alunos com `add()`.
-5. Liste em ordem de cadastro com `for-each`.
-6. Conte o total com `size()`.
+1. Crie uma classe `Aluno` com atributos `nome` e `matricula`.
+2. Implemente construtor e métodos de acesso.
+3. Declare a variável pela interface: `List<Aluno> alunos`.
+4. Instancie com `new ArrayList<>()`.
+5. Cadastre alunos com `add()`.
+6. Liste em ordem de cadastro com `for-each`.
+7. Conte o total com `size()`.
 
 **Verifique:** alunos com o mesmo nome são permitidos; a ordem de inserção é preservada.
-
----
-
-<!-- _class: compact -->
-
-# Estudo de caso 1: implementação
-
-```java
-import java.util.ArrayList;
-import java.util.List;
-
-record Aluno(String nome, String matricula) {}
-
-// 1. Declare pela interface e escolha a implementação.
-List<Aluno> alunos = new ArrayList<>();
-
-// 2. Cadastre os alunos na ordem de chegada.
-alunos.add(new Aluno("Ana", "001"));
-alunos.add(new Aluno("Bruno", "002"));
-alunos.add(new Aluno("Ana", "003"));
-
-// 3. Percorra preservando a ordem de inserção.
-for (Aluno aluno : alunos) {
-    System.out.println(aluno.matricula() + " - " + aluno.nome());
-}
-
-// 4. Consulte o tamanho da coleção.
-System.out.println("Total: " + alunos.size());
-```
 
 ---
 
@@ -2570,36 +2549,6 @@ System.out.println("Total: " + alunos.size());
 
 <!-- _class: compact -->
 
-# Estudo de caso 2: implementação
-
-```java
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-// 1. Comece com HashSet: sem duplicidade, sem garantia de ordem.
-Set<String> matriculas = new HashSet<>();
-
-// 2. Use o retorno de add() para saber se inseriu.
-System.out.println(matriculas.add("2024001")); // true
-System.out.println(matriculas.add("2024002")); // true
-System.out.println(matriculas.add("2024001")); // false
-
-// 3. Confira a quantidade final.
-System.out.println("Total: " + matriculas.size()); // 2
-
-// 4. Troque para LinkedHashSet quando a ordem de inserção importa.
-Set<String> emOrdem = new LinkedHashSet<>();
-emOrdem.add("2024001");
-emOrdem.add("2024002");
-emOrdem.add("2024003");
-System.out.println(emOrdem);
-```
-
----
-
-<!-- _class: compact -->
-
 # Estudo de caso 3: índice por matrícula
 
 **Cenário:** a secretaria precisa localizar rapidamente um aluno pela matrícula.
@@ -2608,48 +2557,16 @@ System.out.println(emOrdem);
 
 **Implementação**
 
-1. Crie o `record Aluno(String nome, String matricula)`.
-2. Declare `Map<String, Aluno> alunosPorMatricula`.
-3. Instancie com `new HashMap<>()`.
-4. Cadastre usando `put(matricula, aluno)`.
-5. Busque com `get(matricula)`.
-6. Percorra pares com `entrySet()`.
-7. Teste uma matrícula repetida e observe a substituição do valor.
+1. Crie uma classe `Aluno` com atributos `nome` e `matricula`.
+2. Implemente construtor e métodos de acesso.
+3. Declare `Map<String, Aluno> alunosPorMatricula`.
+4. Instancie com `new HashMap<>()`.
+5. Cadastre usando `put(matricula, aluno)`.
+6. Busque com `get(matricula)`.
+7. Percorra pares com `entrySet()`.
+8. Teste uma matrícula repetida e observe a substituição do valor.
 
 **Verifique:** a chave é única; o acesso deixa de depender da posição do aluno.
-
----
-
-<!-- _class: compact -->
-
-# Estudo de caso 3: implementação
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-record Aluno(String nome, String matricula) {}
-
-// 1. A chave será a matrícula.
-Map<String, Aluno> alunosPorMatricula = new HashMap<>();
-
-// 2. Cadastre usando put(chave, valor).
-alunosPorMatricula.put("001", new Aluno("Ana", "001"));
-alunosPorMatricula.put("002", new Aluno("Bruno", "002"));
-alunosPorMatricula.put("003", new Aluno("Carla", "003"));
-
-// 3. Busque diretamente pela chave.
-Aluno aluno = alunosPorMatricula.get("002");
-System.out.println(aluno.nome()); // Bruno
-
-// 4. Percorra quando precisar de chave e valor.
-for (Map.Entry<String, Aluno> entrada : alunosPorMatricula.entrySet()) {
-    System.out.println(entrada.getKey() + " -> " + entrada.getValue().nome());
-}
-
-// 5. Chave repetida substitui o valor anterior.
-alunosPorMatricula.put("002", new Aluno("Beatriz", "002"));
-```
 
 ---
 
