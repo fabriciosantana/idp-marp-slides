@@ -225,6 +225,8 @@ Map<String, Aluno> alunosPorCpf = new HashMap<>();
 
 O tipo à esquerda comunica intenção. O tipo à direita escolhe a estrutura concreta.
 
+`Map` também faz parte do _Collections Framework_, mas não herda de `Collection`: ele representa associação chave-valor.
+
 ---
 
 # _Java Collections Framework_: critérios de escolha
@@ -590,7 +592,6 @@ Deque<Professor> filaProfessores = new LinkedList<>();
 - `poll()`: remove e retorna o primeiro elemento, ou `null` se estiver vazia.
 - `push(E e)` / `pop()`: usa a lista como pilha.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html">Oracle Java SE 21 - LinkedList</a></div>
 
 ---
 
@@ -755,7 +756,6 @@ Deque<String> pilha = new ArrayDeque<>();
 - `push(E e)` / `pop()`: usa o deque como pilha.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa a coleção.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayDeque.html">Oracle Java SE 21 - ArrayDeque</a></div>
 
 ---
 
@@ -924,7 +924,6 @@ PriorityQueue<Aluno> porNota =
 - `contains(Object o)`: verifica se a fila contém determinado elemento.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa a coleção.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/PriorityQueue.html">Oracle Java SE 21 - PriorityQueue</a></div>
 
 ---
 
@@ -1070,7 +1069,6 @@ Saída pela prioridade:
   </tbody>
 </table>
 
-<div class="source">Fonte: documentação Oracle Java SE 21 para <code>ArrayList</code>, <code>LinkedList</code>, <code>ArrayDeque</code> e <code>PriorityQueue</code>.</div>
 
 ---
 
@@ -1142,7 +1140,6 @@ Set<String> matriculas = new HashSet<>();
 - `clear()`: remove todos os elementos.
 - `toArray()`: converte o conjunto para um array.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashSet.html">Oracle Java SE 21 - HashSet</a></div>
 
 ---
 
@@ -1306,7 +1303,6 @@ SequencedSet<String> sequenciado =
 - `contains(Object o)`: verifica se o elemento pertence ao conjunto.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa o conjunto.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedHashSet.html">Oracle Java SE 21 - LinkedHashSet</a></div>
 
 ---
 
@@ -1478,7 +1474,6 @@ NavigableSet<String> navegavel = new TreeSet<>();
 - `descendingSet()`: retorna uma visão em ordem decrescente.
 - `comparator()`: retorna o comparador, ou `null` se usa ordem natural.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeSet.html">Oracle Java SE 21 - TreeSet</a></div>
 
 ---
 
@@ -1614,7 +1609,6 @@ SortedSet<String> trecho =
   </tbody>
 </table>
 
-<div class="source">Fonte: documentação Oracle Java SE 21 para <code>HashSet</code>, <code>LinkedHashSet</code> e <code>TreeSet</code>.</div>
 
 ---
 
@@ -1693,7 +1687,6 @@ Map<String, Aluno> alunos =
 - `entrySet()`: retorna uma visão dos pares chave-valor.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa o mapa.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html">Oracle Java SE 21 - HashMap</a></div>
 
 ---
 
@@ -1861,7 +1854,6 @@ SequencedMap<String, Aluno> sequenciado =
 - `keySet()` / `values()` / `entrySet()`: visões do mapa.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa o mapa.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedHashMap.html">Oracle Java SE 21 - LinkedHashMap</a></div>
 
 ---
 
@@ -2025,7 +2017,6 @@ SortedMap<String, Aluno> ordenado =
 - `descendingMap()`: retorna uma visão em ordem decrescente.
 - `keySet()` / `values()` / `entrySet()`: visões do mapa.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html">Oracle Java SE 21 - TreeMap</a></div>
 
 ---
 
@@ -2156,7 +2147,6 @@ for (String nome : notas.keySet()) {
   </tbody>
 </table>
 
-<div class="source">Fonte: documentação Oracle Java SE 21 para <code>HashMap</code>, <code>LinkedHashMap</code> e <code>TreeMap</code>.</div>
 
 ---
 
@@ -2182,13 +2172,12 @@ Exemplos de uso:
 - criar coleções vazias, imutáveis ou com cópias repetidas;
 - criar _views_ sincronizadas, não modificáveis ou com checagem dinâmica de tipo.
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collections.html">Oracle Java SE 21 - Collections</a></div>
 
 ---
 
 <!-- _class: compact -->
 
-# Collections: principais algoritmos
+# java.util.Collections: principais algoritmos
 
 <table class="tiny">
   <thead>
@@ -2239,7 +2228,7 @@ Exemplos de uso:
 
 ---
 
-# Collections: exemplo
+# java.util.Collections: exemplo
 
 ```java
 import java.util.ArrayList;
@@ -2265,7 +2254,7 @@ System.out.println(notas); //[10, 10, 8, 6]
 
 <!-- _class: compact -->
 
-# Collections: wrappers e fábricas
+# java.util.Collections: wrappers e fábricas
 
 <table class="tiny">
   <thead>
@@ -2309,541 +2298,12 @@ System.out.println(notas); //[10, 10, 8, 6]
   </tbody>
 </table>
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collections.html">Oracle Java SE 21 - Collections</a></div>
-
----
-
-# Map é diferente
-
-`Map` não é uma `Collection` no sentido estrito.
-
-Um mapa associa **chaves** a **valores**:
-
-```java
-Map<String, Integer> frequencia = new HashMap<>();
-frequencia.put("Java", 3);
-frequencia.put("POO", 2);
-
-Integer ocorrencias = frequencia.get("Java");
-```
-
-Mesmo não sendo uma coleção, `Map` oferece visões manipuláveis como coleções: `keySet()`, `values()` e `entrySet()`.
-
----
-
-# Escolha por intenção
-
-<table class="small">
-  <thead>
-    <tr>
-      <th>Quando você precisa...</th>
-      <th>Use</th>
-      <th>Exemplo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>manter ordem por posição</td>
-      <td><code>List</code></td>
-      <td>notas de um aluno</td>
-    </tr>
-    <tr>
-      <td>evitar duplicidade</td>
-      <td><code>Set</code></td>
-      <td>matrículas inscritas</td>
-    </tr>
-    <tr>
-      <td>processar por ordem de chegada</td>
-      <td><code>Queue</code></td>
-      <td>fila de atendimento</td>
-    </tr>
-    <tr>
-      <td>associar chave e valor</td>
-      <td><code>Map</code></td>
-      <td>CPF → aluno</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-<!-- _class: compact -->
-
-# Implementações gerais
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Interface</th>
-      <th>Tabela hash</th>
-      <th>Array redimensionável</th>
-      <th>Árvore balanceada</th>
-      <th>Lista encadeada</th>
-      <th>Hash + lista encadeada</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Set</code></td>
-      <td><code>HashSet</code></td>
-      <td></td>
-      <td><code>TreeSet</code></td>
-      <td></td>
-      <td><code>LinkedHashSet</code></td>
-    </tr>
-    <tr>
-      <td><code>List</code></td>
-      <td></td>
-      <td><code>ArrayList</code></td>
-      <td></td>
-      <td><code>LinkedList</code></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><code>Deque</code></td>
-      <td></td>
-      <td><code>ArrayDeque</code></td>
-      <td></td>
-      <td><code>LinkedList</code></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><code>Map</code></td>
-      <td><code>HashMap</code></td>
-      <td></td>
-      <td><code>TreeMap</code></td>
-      <td></td>
-      <td><code>LinkedHashMap</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="source">Fonte: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">Oracle Java SE 8 - Collections Framework Overview</a></div>
-
----
-
-<!-- _class: compact -->
-
-# Comportamento das implementações: List e Queue
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Implementação</th>
-      <th>Ordem</th>
-      <th>Duplicados</th>
-      <th><code>null</code></th>
-      <th>Quando usar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>ArrayList</code></td>
-      <td>inserção</td>
-      <td>sim</td>
-      <td>sim</td>
-      <td>boa escolha padrão para consultas e acesso por índice.</td>
-    </tr>
-    <tr>
-      <td><code>LinkedList</code></td>
-      <td>inserção</td>
-      <td>sim</td>
-      <td>sim</td>
-      <td>útil quando há muitas operações nas extremidades.</td>
-    </tr>
-    <tr>
-      <td><code>PriorityQueue</code></td>
-      <td>prioridade</td>
-      <td>sim</td>
-      <td>não</td>
-      <td>quando os elementos precisam sair por prioridade, não por chegada.</td>
-    </tr>
-    <tr>
-      <td><code>ArrayDeque</code></td>
-      <td>fila/pilha</td>
-      <td>sim</td>
-      <td>não</td>
-      <td>boa opção para fila ou pilha sem sincronização.</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="source">Fonte: adaptado do arquivo de referência <code>collections.jpeg</code>.</div>
-
----
-
-<!-- _class: compact -->
-
-# Comportamento das implementações: Set e Map
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Implementação</th>
-      <th>Ordem</th>
-      <th>Duplicidade</th>
-      <th><code>null</code></th>
-      <th>Quando usar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>HashSet</code></td>
-      <td>não garante</td>
-      <td>não permite elementos repetidos</td>
-      <td>até um elemento</td>
-      <td>conjunto único sem preocupação com ordem.</td>
-    </tr>
-    <tr>
-      <td><code>LinkedHashSet</code></td>
-      <td>inserção</td>
-      <td>não permite elementos repetidos</td>
-      <td>até um elemento</td>
-      <td>conjunto único preservando ordem de inserção.</td>
-    </tr>
-    <tr>
-      <td><code>TreeSet</code></td>
-      <td>ordenada</td>
-      <td>não permite elementos repetidos</td>
-      <td>não, no uso comum</td>
-      <td>conjunto único sempre ordenado.</td>
-    </tr>
-    <tr>
-      <td><code>HashMap</code></td>
-      <td>não garante</td>
-      <td>chaves únicas; valores podem repetir</td>
-      <td>uma chave; vários valores</td>
-      <td>associação chave-valor eficiente sem ordem.</td>
-    </tr>
-    <tr>
-      <td><code>LinkedHashMap</code></td>
-      <td>inserção</td>
-      <td>chaves únicas; valores podem repetir</td>
-      <td>uma chave; vários valores</td>
-      <td>mapa preservando ordem de inserção.</td>
-    </tr>
-    <tr>
-      <td><code>TreeMap</code></td>
-      <td>por chave</td>
-      <td>chaves únicas; valores podem repetir</td>
-      <td>sem chave nula; valores nulos possíveis</td>
-      <td>mapa ordenado por chave.</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="source">Fonte: adaptado do arquivo de referência <code>collections.jpeg</code>.</div>
-
----
-
-# List
-
-Use `List` quando:
-
-- a posição importa;
-- elementos repetidos são permitidos;
-- você precisa acessar por índice;
-- a ordem de inserção deve ser preservada.
-
-```java
-List<String> disciplinas = new ArrayList<>();
-disciplinas.add("Algoritmos");
-disciplinas.add("POO");
-disciplinas.add("Banco de Dados");
-
-System.out.println(disciplinas.get(1)); // POO
-```
-
----
-
-# ArrayList ou LinkedList?
-
-<div class="columns small">
-
 <div class="callout">
 
-**ArrayList**
-
-- boa escolha padrão;
-- acesso por índice rápido;
-- bom para percorrer e consultar;
-- inserções no meio podem custar caro.
+Operações como `add`, `remove` e `clear` podem lançar `UnsupportedOperationException` em coleções não modificáveis ou de tamanho fixo.
 
 </div>
 
-<div class="callout">
-
-**LinkedList**
-
-- implementa `List` e `Deque`;
-- pode ajudar em inserções/remoções nas extremidades;
-- acesso por índice tende a ser mais caro.
-
-</div>
-
-</div>
-
----
-
-# Set
-
-Use `Set` quando duplicidade não faz sentido.
-
-```java
-Set<String> linguagens = new HashSet<>();
-linguagens.add("Java");
-linguagens.add("Python");
-linguagens.add("Java");
-
-System.out.println(linguagens.size()); // 2
-```
-
-<div class="callout">
-
-**Atenção**
-
-Para objetos próprios, `Set` depende de `equals()` e `hashCode()` para decidir se dois elementos são iguais.
-
-</div>
-
----
-
-# Escolhendo um Set
-
-<table class="small">
-  <thead>
-    <tr>
-      <th>Implementação</th>
-      <th>Característica principal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>HashSet</code></td>
-      <td>não garante ordem; costuma ser eficiente para busca.</td>
-    </tr>
-    <tr>
-      <td><code>LinkedHashSet</code></td>
-      <td>mantém ordem de inserção.</td>
-    </tr>
-    <tr>
-      <td><code>TreeSet</code></td>
-      <td>mantém elementos ordenados.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-# Map
-
-Use `Map` quando o acesso natural é por chave.
-
-```java
-Map<String, Aluno> alunos = new HashMap<>();
-
-alunos.put("123.456.789-00", new Aluno("Ana"));
-alunos.put("987.654.321-00", new Aluno("Bruno"));
-
-Aluno aluno = alunos.get("123.456.789-00");
-```
-
-Chaves são únicas. Se uma chave for inserida novamente, o valor anterior será substituído.
-
----
-
-# Percorrendo um Map
-
-```java
-for (String cpf : alunos.keySet()) {
-    System.out.println(cpf);
-}
-
-for (Aluno aluno : alunos.values()) {
-    System.out.println(aluno.nome());
-}
-
-for (Map.Entry<String, Aluno> entrada : alunos.entrySet()) {
-    System.out.println(entrada.getKey() + ": " + entrada.getValue());
-}
-```
-
-`entrySet()` costuma ser a melhor opção quando você precisa de chave e valor.
-
----
-
-# Queue e Deque
-
-`Queue` representa uma fila.
-
-```java
-Queue<String> fila = new ArrayDeque<>();
-fila.add("Ana");
-fila.add("Bruno");
-
-System.out.println(fila.remove()); // Ana
-```
-
-`Deque` permite inserir e remover nas duas pontas.
-
-```java
-Deque<String> historico = new ArrayDeque<>();
-historico.push("Tela inicial");
-historico.push("Cadastro");
-System.out.println(historico.pop()); // Cadastro
-```
-
----
-
-<!-- _class: compact -->
-
-# Generics
-
-Generics tornam o tipo dos elementos explícito.
-
-```java
-List<String> nomes = new ArrayList<>();
-nomes.add("Ana");
-// nomes.add(10); // erro de compilação
-```
-
-Sem generics, erros aparecem tarde:
-
-```java
-List nomes = new ArrayList();
-nomes.add("Ana");
-nomes.add(10);
-```
-
-<div class="callout">
-
-**Regra prática**
-
-Prefira coleções parametrizadas: `List<Aluno>`, `Set<String>`, `Map<Long, Pedido>`.
-
-</div>
-
----
-
-# Iteração
-
-Formas comuns de percorrer coleções:
-
-```java
-for (String nome : nomes) {
-    System.out.println(nome);
-}
-
-nomes.forEach(System.out::println);
-```
-
-Quando for remover durante a iteração, use `Iterator`:
-
-```java
-Iterator<String> it = nomes.iterator();
-while (it.hasNext()) {
-    if (it.next().isBlank()) {
-        it.remove();
-    }
-}
-```
-
----
-
-# Operações opcionais
-
-Algumas operações de modificação podem ser opcionais.
-
-Uma implementação pode lançar:
-
-```java
-UnsupportedOperationException
-```
-
-Exemplo comum:
-
-```java
-List<String> nomes = Arrays.asList("Ana", "Bruno");
-nomes.add("Carla"); // pode lançar UnsupportedOperationException
-```
-
-<div class="source">Fonte: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">Oracle Java SE 8 - Collections Framework Overview</a></div>
-
----
-
-<!-- _class: compact -->
-
-# Termos importantes
-
-<table class="small">
-  <thead>
-    <tr>
-      <th>Termo</th>
-      <th>Ideia</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>unmodifiable</td>
-      <td>não permite operações como <code>add</code>, <code>remove</code> ou <code>clear</code>.</td>
-    </tr>
-    <tr>
-      <td>immutable</td>
-      <td>garante que nenhuma alteração visível ocorrerá na coleção.</td>
-    </tr>
-    <tr>
-      <td>fixed-size</td>
-      <td>mantém tamanho constante, ainda que elementos possam mudar.</td>
-    </tr>
-    <tr>
-      <td>random access</td>
-      <td>acesso indexado rápido, geralmente em tempo constante.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-# Algoritmos
-
-A classe `Collections` oferece métodos estáticos para operações comuns.
-
-```java
-List<Integer> notas = new ArrayList<>(List.of(8, 10, 6));
-
-Collections.sort(notas);
-Collections.reverse(notas);
-Collections.shuffle(notas);
-
-Integer maior = Collections.max(notas);
-Integer menor = Collections.min(notas);
-```
-
-<div class="callout">
-
-**Reuso**
-
-Você usa algoritmos prontos sem acoplar o código a uma implementação específica.
-
-</div>
-
----
-
-# Wrappers
-
-Wrappers adicionam comportamento a coleções existentes.
-
-```java
-List<String> nomes = new ArrayList<>();
-
-List<String> sincronizada =
-    Collections.synchronizedList(nomes);
-
-List<String> somenteLeitura =
-    Collections.unmodifiableList(nomes);
-```
-
-Segundo a Oracle, os wrappers podem acrescentar funcionalidades como sincronização a implementações não sincronizadas.
 
 ---
 
@@ -2867,6 +2327,8 @@ for (String nome : nomes) {
 }
 ```
 
+Para remover durante o percurso, use um `Iterator` e chame `remove()` no próprio iterador.
+
 ---
 
 # Concorrência
@@ -2882,7 +2344,6 @@ Interfaces e classes específicas ajudam nesse cenário:
 - `ConcurrentHashMap`
 - `ConcurrentSkipListMap`
 
-<div class="source">Fonte: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">Oracle Java SE 8 - Collections Framework Overview</a></div>
 
 ---
 
@@ -2997,4 +2458,3 @@ Para escolher bem:
 - pense em duplicidade, ordem, busca e concorrência;
 - só então escolha a implementação.
 
-<div class="source">Fonte principal: <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">Oracle Java SE 8 - Collections Framework Overview</a></div>
