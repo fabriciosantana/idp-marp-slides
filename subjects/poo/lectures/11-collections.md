@@ -554,6 +554,120 @@ System.out.println(nomes.pop()); //Diego
 
 ---
 
+<!-- _class: compact -->
+
+# java.util.ArrayDeque: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-arraydeque-hierarchy.png">
+
+</div>
+<div>
+
+- Fila de duas pontas baseada em array redimensionável
+- Implementa `Deque`
+- Pode ser usada como fila FIFO ou pilha LIFO
+- Não permite valores `null`
+- Costuma ser preferível a `Stack` para pilhas
+- Complexidade das operações
+  - inserção/remoção nas extremidades: O(1) amortizado
+  - busca por elemento: O(n)
+
+</div>
+</div>
+
+---
+
+# java.util.ArrayDeque: hierarquia principal
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-arraydeque-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.Deque;
+//...
+
+ArrayDeque<String> historico = new ArrayDeque<>();
+
+Queue<String> atendimentos = new ArrayDeque<>();
+
+Deque<String> pilha = new ArrayDeque<>();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.ArrayDeque: principais métodos
+
+- `add(E e)`: adiciona um elemento ao final.
+- `addFirst(E e)`: adiciona um elemento no início.
+- `addLast(E e)`: adiciona um elemento no fim.
+- `offer(E e)`: tenta adicionar um elemento ao final.
+- `getFirst()` / `getLast()`: acessa o primeiro ou o último elemento.
+- `peek()` / `peekFirst()` / `peekLast()`: consulta elementos sem remover.
+- `remove()` / `removeFirst()` / `removeLast()`: remove elementos.
+- `poll()` / `pollFirst()` / `pollLast()`: remove ou retorna `null` se vazia.
+- `push(E e)` / `pop()`: usa o deque como pilha.
+- `size()` / `isEmpty()` / `clear()`: consulta ou limpa a coleção.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayDeque.html">Oracle Java SE 21 - ArrayDeque</a></div>
+
+---
+
+# java.util.ArrayDeque: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-arraydeque-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.ArrayDeque;
+//...
+
+ArrayDeque<String> tarefas = new ArrayDeque<>();
+
+tarefas.addLast("A");
+tarefas.addLast("B");
+tarefas.addFirst("Urgente");
+
+System.out.println(tarefas); //[Urgente, A, B]
+
+System.out.println(tarefas.removeFirst()); //Urgente
+
+tarefas.push("Topo");
+System.out.println(tarefas.pop()); //Topo
+
+System.out.println(tarefas.peek()); //A
+```
+
+</div>
+
+</div>
+
+---
+
 # Interfaces: visão geral
 
 <div class="callout">

@@ -1,0 +1,30 @@
+@startuml
+title Hierarquia de java.util.ArrayDeque - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface SequencedCollection<E>
+interface Queue<E>
+interface Deque<E>
+interface Cloneable
+interface Serializable
+
+abstract class AbstractCollection<E>
+class ArrayDeque<E>
+
+Iterable <|-- Collection
+Collection <|-- SequencedCollection
+Collection <|-- Queue
+Queue <|-- Deque
+SequencedCollection <|-- Deque
+
+Collection <|.. AbstractCollection
+
+AbstractCollection <|-- ArrayDeque
+Deque <|.. ArrayDeque
+Cloneable <|.. ArrayDeque
+Serializable <|.. ArrayDeque
+
+@enduml

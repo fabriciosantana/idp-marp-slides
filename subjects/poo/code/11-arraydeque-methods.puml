@@ -1,0 +1,41 @@
+@startuml
+title java.util.ArrayDeque - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "ArrayDeque<E>" as ArrayDeque {
+  + ArrayDeque()
+  + ArrayDeque(numElements: int)
+  + ArrayDeque(c: Collection<? extends E>)
+
+  + add(e: E): boolean
+  + addFirst(e: E): void
+  + addLast(e: E): void
+
+  + offer(e: E): boolean
+  + offerFirst(e: E): boolean
+  + offerLast(e: E): boolean
+
+  + getFirst(): E
+  + getLast(): E
+  + peek(): E
+  + peekFirst(): E
+  + peekLast(): E
+
+  + remove(): E
+  + removeFirst(): E
+  + removeLast(): E
+  + poll(): E
+  + pollFirst(): E
+  + pollLast(): E
+
+  + push(e: E): void
+  + pop(): E
+
+  + contains(o: Object): boolean
+  + size(): int
+  + isEmpty(): boolean
+  + clear(): void
+}
+
+@enduml

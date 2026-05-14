@@ -1,0 +1,16 @@
+@startuml
+title Hierarquia de java.util.ArrayDeque - Java 21
+
+interface Iterable<E>
+interface Collection<E>
+interface Queue<E>
+interface Deque<E>
+
+class ArrayDeque<E>
+
+Iterable <|-- Collection
+Collection <|-- Queue
+Queue <|-- Deque
+Deque <|.. ArrayDeque
+
+@enduml
