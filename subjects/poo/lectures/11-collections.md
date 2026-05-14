@@ -838,7 +838,7 @@ PriorityQueue<String> nomes =
       <td>prioridade</td>
       <td>não permite</td>
       <td>remove primeiro o elemento prioritário</td>
-      <td>iteração não garante ordem ordenada</td>
+      <td><code>for-each</code> não percorre em ordem de prioridade</td>
     </tr>
   </tbody>
 </table>
