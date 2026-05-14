@@ -150,28 +150,6 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# Interfaces: visão geral
-
-<div class="callout">
-
-**Separar contrato de implementação**
-
-Uma interface define o que uma coleção deve fazer; uma classe concreta define como isso será feito.
-
-</div>
-
-Exemplo:
-
-```java
-List<String> nomes = new ArrayList<>();
-Set<Integer> matriculas = new HashSet<>();
-Map<String, Aluno> alunosPorCpf = new HashMap<>();
-```
-
-O tipo à esquerda comunica intenção. O tipo à direita escolhe a estrutura concreta.
-
----
-
 <!-- _class: compact -->
 
 # _Java Collections Framework_: principais classes
@@ -224,6 +202,28 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
     </tr>
   </tbody>
 </table>
+
+---
+
+# Coleção: interfaces vs. classes
+
+<div class="callout">
+
+**Separar contrato de implementação**
+
+Uma interface define o que uma coleção deve fazer; uma classe concreta define como isso será feito.
+
+</div>
+
+Exemplo:
+
+```java
+List<String> nomes = new ArrayList<>();
+Set<Integer> matriculas = new HashSet<>();
+Map<String, Aluno> alunosPorCpf = new HashMap<>();
+```
+
+O tipo à esquerda comunica intenção. O tipo à direita escolhe a estrutura concreta.
 
 ---
 
