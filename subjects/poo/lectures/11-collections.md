@@ -302,7 +302,8 @@ Considere os seguintes critérios:
 - não é _thread-safe_
 - complexidade das operações
   - acesso por índice: O(1)
-  - inserção/remoção no final: O(1)
+  - adição no final: O(1) amortizado
+  - remoção no final: O(1)
   - inserção/remoção no meio: O(n)
 
 </div>
@@ -310,7 +311,7 @@ Considere os seguintes critérios:
 
 ---
 
-# java.util.ArrayList: hierarquia principal
+# java.util.ArrayList: hierarquia simplificada
 
 <div class="columns">
 
@@ -455,13 +456,14 @@ As demais coleções serão apresentadas apenas com _generics_
   - cada elemento aponta para o próximo e para o anterior
 - Complexidade das operações
   - acesso por índice: O(n)
-  - inserção/remoção - nas extremidades: O(1) - no meio: O(n)
+  - inserção/remoção nas extremidades: O(1)
+  - busca até uma posição no meio: O(n)
   </div>
   </div>
 
 ---
 
-# java.util.LinkedList: hierarquia principal
+# java.util.LinkedList: hierarquia simplificada
 
 <div class="columns">
 
@@ -486,7 +488,7 @@ List<Professor> professores = new LinkedList<>();
 
 Queue<Registro> registro = new LinkedList<>();
 
-Deque<Professor> professores = new LinkedList<>();
+Deque<Professor> filaProfessores = new LinkedList<>();
 
 ```
 
@@ -570,6 +572,7 @@ System.out.println(nomes.pop()); //Diego
 - Implementa `Deque`
 - Pode ser usada como fila ou pilha
 - Não permite valores `null`
+- Não é _thread-safe_
 - Costuma ser preferível a `Stack` para pilhas
 - Complexidade das operações
   - inserção/remoção nas extremidades: O(1) amortizado
@@ -580,7 +583,7 @@ System.out.println(nomes.pop()); //Diego
 
 ---
 
-# java.util.ArrayDeque: hierarquia principal
+# java.util.ArrayDeque: hierarquia simplificada
 
 <div class="columns">
 
