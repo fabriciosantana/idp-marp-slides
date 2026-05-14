@@ -30,9 +30,6 @@ class "ArrayDeque<E>" as ArrayDeque {
   + push(e: E): void
   + pop(): E
 
-  + contains(o: Object): boolean
-  + size(): int
-  + isEmpty(): boolean
   + clear(): void
 }
 

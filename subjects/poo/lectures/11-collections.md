@@ -635,6 +635,56 @@ System.out.println(nomes.pop()); //Diego
 
 <!-- _class: compact -->
 
+# java.util.LinkedList: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+LinkedList<String> nomes =
+    new LinkedList<>();
+
+nomes.add("Ana");
+nomes.add("Bruno");
+nomes.add("Carla");
+
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+
+nomes.forEach(System.out::println);
+```
+
+</div>
+
+<div>
+
+```java
+Iterator<String> it = nomes.iterator();
+
+while (it.hasNext()) {
+    if (it.next().startsWith("B")) {
+        it.remove();
+    }
+}
+
+Iterator<String> inverso =
+    nomes.descendingIterator();
+```
+
+- Percorre em ordem de inserção.
+- Use `descendingIterator()` para ordem inversa.
+- Use `Iterator` para remover durante a iteração.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.ArrayDeque: hierarquia
 
 <div class="columns">
@@ -740,6 +790,56 @@ System.out.println(tarefas.pop()); //Topo
 
 System.out.println(tarefas.peek()); //A
 ```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.ArrayDeque: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+ArrayDeque<String> tarefas =
+    new ArrayDeque<>();
+
+tarefas.addLast("A");
+tarefas.addLast("B");
+tarefas.addFirst("Urgente");
+
+for (String tarefa : tarefas) {
+    System.out.println(tarefa);
+}
+
+tarefas.forEach(System.out::println);
+```
+
+</div>
+
+<div>
+
+```java
+Iterator<String> inverso =
+    tarefas.descendingIterator();
+
+while (inverso.hasNext()) {
+    System.out.println(inverso.next());
+}
+
+while (!tarefas.isEmpty()) {
+    System.out.println(tarefas.poll());
+}
+```
+
+- `for-each` percorre do início para o fim.
+- `descendingIterator()` percorre do fim para o início.
+- `poll()` consome a fila removendo elementos.
 
 </div>
 
@@ -862,6 +962,56 @@ PriorityQueue<String> nomes =
         Comparator.reverseOrder()
     );
 ```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.PriorityQueue: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+PriorityQueue<Integer> senhas =
+    new PriorityQueue<>();
+
+senhas.offer(30);
+senhas.offer(10);
+senhas.offer(20);
+
+for (Integer senha : senhas) {
+    System.out.println(senha);
+}
+```
+
+`for-each` não garante ordem de prioridade.
+
+</div>
+
+<div>
+
+```java
+while (!senhas.isEmpty()) {
+    System.out.println(senhas.poll());
+}
+```
+
+Saída pela prioridade:
+
+```text
+10
+20
+30
+```
+
+- Use `peek()` para consultar a próxima prioridade.
+- Use `poll()` para processar em ordem de prioridade.
 
 </div>
 
@@ -1035,6 +1185,56 @@ linguagens.remove("Python");
 
 <!-- _class: compact -->
 
+# java.util.HashSet: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+HashSet<String> linguagens =
+    new HashSet<>();
+
+linguagens.add("Java");
+linguagens.add("Python");
+linguagens.add("JavaScript");
+
+for (String linguagem : linguagens) {
+    System.out.println(linguagem);
+}
+
+linguagens.forEach(System.out::println);
+```
+
+</div>
+
+<div>
+
+```java
+Iterator<String> it =
+    linguagens.iterator();
+
+while (it.hasNext()) {
+    String linguagem = it.next();
+
+    if (linguagem.startsWith("J")) {
+        it.remove();
+    }
+}
+```
+
+- A ordem de iteração não é garantida.
+- Use `Iterator` para remover com segurança.
+- Não use `HashSet` quando a ordem importar.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.LinkedHashSet: hierarquia
 
 <div class="columns">
@@ -1140,6 +1340,62 @@ System.out.println(nomes);
 nomes.addFirst("Diego");
 System.out.println(nomes.getFirst()); //Diego
 ```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.LinkedHashSet: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+LinkedHashSet<String> nomes =
+    new LinkedHashSet<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+```
+
+Percorre em ordem de inserção:
+
+```text
+Bruno
+Ana
+Carla
+```
+
+</div>
+
+<div>
+
+```java
+for (String nome : nomes.reversed()) {
+    System.out.println(nome);
+}
+
+Iterator<String> it = nomes.iterator();
+
+while (it.hasNext()) {
+    if (it.next().startsWith("A")) {
+        it.remove();
+    }
+}
+```
+
+- `reversed()` oferece visão inversa.
+- A ordem é previsível.
 
 </div>
 
@@ -1256,6 +1512,58 @@ System.out.println(nomes.first()); //Ana
 System.out.println(nomes.higher("Ana")); //Bruno
 System.out.println(nomes.pollLast()); //Carla
 ```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeSet: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+TreeSet<String> nomes =
+    new TreeSet<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+```
+
+Percorre em ordem natural:
+
+```text
+Ana
+Bruno
+Carla
+```
+
+</div>
+
+<div>
+
+```java
+for (String nome : nomes.descendingSet()) {
+    System.out.println(nome);
+}
+
+SortedSet<String> trecho =
+    nomes.subSet("Ana", "Carla");
+```
+
+- A iteração segue a ordenação do conjunto.
+- `descendingSet()` percorre em ordem inversa.
+- `subSet()` permite iterar por intervalo.
 
 </div>
 
@@ -1429,6 +1737,56 @@ for (var entrada : alunos.entrySet()) {
 
 <!-- _class: compact -->
 
+# java.util.HashMap: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+HashMap<String, Aluno> alunos =
+    new HashMap<>();
+
+alunos.put("001", new Aluno("Ana"));
+alunos.put("002", new Aluno("Bruno"));
+
+for (String matricula : alunos.keySet()) {
+    System.out.println(matricula);
+}
+
+for (Aluno aluno : alunos.values()) {
+    System.out.println(aluno);
+}
+```
+
+</div>
+
+<div>
+
+```java
+for (Map.Entry<String, Aluno> entrada
+        : alunos.entrySet()) {
+    System.out.println(
+        entrada.getKey()
+        + ": "
+        + entrada.getValue()
+    );
+}
+```
+
+- `keySet()` percorre chaves.
+- `values()` percorre valores.
+- `entrySet()` é melhor quando precisa de chave e valor.
+- `HashMap` não garante ordem.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.LinkedHashMap: hierarquia
 
 <div class="columns">
@@ -1545,6 +1903,54 @@ System.out.println(capitais.firstEntry());
 
 <!-- _class: compact -->
 
+# java.util.LinkedHashMap: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+LinkedHashMap<String, String> capitais =
+    new LinkedHashMap<>();
+
+capitais.put("DF", "Brasília");
+capitais.put("BA", "Salvador");
+capitais.put("SP", "São Paulo");
+
+for (var entrada : capitais.entrySet()) {
+    System.out.println(entrada);
+}
+```
+
+Percorre em ordem de inserção.
+
+</div>
+
+<div>
+
+```java
+for (var entrada
+        : capitais.reversed().entrySet()) {
+    System.out.println(entrada);
+}
+
+for (String uf : capitais.keySet()) {
+    System.out.println(uf);
+}
+```
+
+- `entrySet()` mantém a ordem previsível do mapa.
+- `reversed()` permite percorrer na ordem inversa.
+- A ordem pode ser de inserção ou de acesso, conforme o construtor.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.TreeMap: hierarquia
 
 <div class="columns">
@@ -1652,6 +2058,54 @@ System.out.println(notas.keySet());
 System.out.println(notas.firstKey()); //Ana
 System.out.println(notas.higherKey("Ana")); //Bruno
 ```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeMap: iteração
+
+<div class="columns small">
+
+<div>
+
+```java
+TreeMap<String, Integer> notas =
+    new TreeMap<>();
+
+notas.put("Bruno", 8);
+notas.put("Ana", 10);
+notas.put("Carla", 9);
+
+for (var entrada : notas.entrySet()) {
+    System.out.println(entrada);
+}
+```
+
+Percorre em ordem crescente das chaves.
+
+</div>
+
+<div>
+
+```java
+for (var entrada
+        : notas.descendingMap().entrySet()) {
+    System.out.println(entrada);
+}
+
+for (String nome : notas.keySet()) {
+    System.out.println(nome);
+}
+```
+
+- A iteração segue a ordenação das chaves.
+- `descendingMap()` percorre em ordem inversa.
+- Útil quando a ordem das chaves faz parte do problema.
 
 </div>
 
