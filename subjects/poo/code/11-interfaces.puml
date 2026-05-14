@@ -1,0 +1,41 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface SequencedCollection<E>
+
+interface List<E>
+interface Set<E>
+interface SequencedSet<E>
+interface SortedSet<E>
+interface NavigableSet<E>
+
+interface Queue<E>
+interface Deque<E>
+
+interface Map<K, V>
+interface SequencedMap<K, V>
+interface SortedMap<K, V>
+interface NavigableMap<K, V>
+
+Iterable <|-- Collection
+
+Collection <|-- SequencedCollection
+SequencedCollection <|-- List
+SequencedCollection <|-- SequencedSet
+SequencedCollection <|-- Deque
+
+Collection <|-- Set
+Set <|-- SequencedSet
+Set <|-- SortedSet
+SortedSet <|-- NavigableSet
+
+Collection <|-- Queue
+Queue <|-- Deque
+
+Map <|-- SequencedMap
+Map <|-- SortedMap
+SortedMap <|-- NavigableMap
+
+@enduml

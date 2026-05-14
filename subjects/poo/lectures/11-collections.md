@@ -33,71 +33,63 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# Por que coleções?
+# Por que coleções se já existe Array?
 
-- Resolve as limitações dos Arrays:
-  - tamanho fixo
-  - pouca expressividade sobre intenção
-  - operações comuns precisam ser implementadas manualmente
-  - remoção, busca, ordenação e agrupamento viram código repetitivo
+- **Array**: estrutura de dados de tamanho fixo que armazena dados do mesmo tipo de maneira contínua
+  - **Limitações**
+    - pouca expressividade sobre intenção
+    - operações comuns precisam ser implementadas manualmente
+    - remoção, busca, ordenação e agrupamento viram código repetitivo
+  - **Quando usar?**
+    - tamanho é conhecido e fixo
+    - precisa de acesso rápido por índice (performance)
+  - **Quando evitar?**
+    - necessidade de redimensionamento dinâmico
 
-<div class="callout">
+---
+
+# Coleção: o que é?
 
 **Ideia central**
 
-Coleções oferecem estruturas padronizadas para representar grupos de objetos e manipular esses grupos de forma uniforme
+> Coleções são `estruturas de dados` para organizar e manipular grupos de objetos, permitindo, de forma padronizada, `adicionar`, `remover` , `pesquisar` e `percorrer`.
 
-</div>
-
----
-
-<!-- _class: compact -->
-
-# O que é uma coleção?
-
-- Estrutura de dados que pode conter referências a outros objetos
-- Pode conter referências a objetos de qualquer tipo que tenha o relacionamento "é-um" (herança) com o tipo de elemento da coleção
-- Uma coleção é um objeto que representa um grupo de objetos
-- Exemplos
-  - uma turma com vários alunos;
-  - uma fila de atendimento;
-  - um conjunto de matrículas sem repetição;
-  - um dicionário que associa CPF a pessoa;
-  - um histórico ordenado de eventos.
+<img src="../images/11-intuition.png">
 
 ---
 
-# O que é _Java Collections Framework_?
+# Coleção: principais benefícios
 
-<div class="callout">
+- **Organização:** mantém vários elementos juntos de forma estruturada
+- **Eficiência:** oferece operações prontas para manipular dados
+- **Segurança:** reduz erros e facilita o gerenciamento dos dados
+- **Flexibilidade:** existem diferentes tipos de coleções para diferentes necessidades
+
+---
+
+# _Java Collections Framework_: arquitetura
 
 **Arquitetura unificada**
 
-O _Java Collections Framework_ é uma arquitetura para representar e manipular coleções independentemente dos detalhes de implementação.
+> O _Java Collections Framework_ é uma arquitetura formada que oferece estrutura de dados para organizar e manipular grupos de objetos independentemente dos detalhes de implementação.
 
-</div>
+**Organização**
 
-Na prática:
-
-- o código é programado orientado para interfaces;
-- as implementações podem ser trocadas;
-- algoritmos comuns ficam disponíveis em APIs padronizadas.
+> O _Java Collections Framework_ está organizado no pacote `java.util` por meio de uma série de classes e interfaces
 
 ---
 
-# Benefícios principais
+# _Java Collections Framework_: estrutura de dados
 
-O uso do _collections framework_:
+**Principais estruturas de dados**
 
-- reduz esforço de programação;
-- melhora desempenho com implementações eficientes;
-- permite interoperabilidade entre APIs;
-- reduz o esforço de aprender e projetar APIs;
-- favorece reuso por meio de interfaces e algoritmos comuns.
+<img src="../images/11-data-structure.png">
 
 ---
 
-# Principais interfaces do collections framework
+# _Java Collections Framework_: principais interfaces
+
+As interfaces são elementos centrais no uso do _collections framework_
 
 <img src="../images/11-interfaces.png">
 
