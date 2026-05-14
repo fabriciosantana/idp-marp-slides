@@ -2345,65 +2345,161 @@ Interfaces e classes específicas ajudam nesse cenário:
 
 <!-- _class: compact -->
 
-# Exercício 1
+# Estudo de caso 1: cadastro de alunos
 
-Modele um cadastro simples de alunos.
+**Cenário:** uma coordenação precisa registrar alunos na ordem em que foram cadastrados.
 
-Requisitos:
+**Coleção escolhida:** `List<Aluno>` com `ArrayList`.
 
-- Crie uma classe ou `record` `Aluno`.
-- Armazene alunos em uma `List<Aluno>`.
-- Permita alunos com o mesmo nome.
-- Liste todos os alunos em ordem de cadastro.
-- Conte quantos alunos existem.
+**Implementação**
 
-Depois responda:
+1. Crie um `record Aluno(String nome, String matricula)`.
+2. Declare a variável pela interface: `List<Aluno> alunos`.
+3. Instancie com `new ArrayList<>()`.
+4. Cadastre alunos com `add()`.
+5. Liste em ordem de cadastro com `for-each`.
+6. Conte o total com `size()`.
 
-- `ArrayList` é uma boa escolha aqui? Por quê?
-
----
-
-<!-- _class: compact -->
-
-# Exercício 2
-
-Agora controle matrículas inscritas em uma atividade.
-
-Requisitos:
-
-- Use `Set<String>` para armazenar matrículas.
-- Tente inserir a mesma matrícula duas vezes.
-- Exiba a quantidade final de inscrições.
-- Troque `HashSet` por `LinkedHashSet`.
-
-Depois responda:
-
-- O que mudou?
-- O que permaneceu igual?
+**Verifique:** alunos com o mesmo nome são permitidos; a ordem de inserção é preservada.
 
 ---
 
 <!-- _class: compact -->
 
-# Exercício 3
+# Estudo de caso 1: implementação
 
-Crie um índice de alunos por matrícula.
+```java
+import java.util.ArrayList;
+import java.util.List;
 
-Requisitos:
+record Aluno(String nome, String matricula) {}
 
-- Use `Map<String, Aluno>`.
-- Cadastre pelo menos três alunos.
-- Busque um aluno pela matrícula.
-- Percorra o mapa usando `entrySet()`.
-- Teste o que acontece ao inserir uma matrícula repetida.
+// 1. Declare pela interface e escolha a implementação.
+List<Aluno> alunos = new ArrayList<>();
 
-Depois responda:
+// 2. Cadastre os alunos na ordem de chegada.
+alunos.add(new Aluno("Ana", "001"));
+alunos.add(new Aluno("Bruno", "002"));
+alunos.add(new Aluno("Ana", "003"));
 
-- Por que `Map` não é simplesmente uma lista?
+// 3. Percorra preservando a ordem de inserção.
+for (Aluno aluno : alunos) {
+    System.out.println(aluno.matricula() + " - " + aluno.nome());
+}
+
+// 4. Consulte o tamanho da coleção.
+System.out.println("Total: " + alunos.size());
+```
 
 ---
 
-# Fechamento
+<!-- _class: compact -->
+
+# Estudo de caso 2: inscrições únicas
+
+**Cenário:** uma atividade complementar não pode receber a mesma matrícula duas vezes.
+
+**Coleção escolhida:** `Set<String>`, primeiro com `HashSet`, depois com `LinkedHashSet`.
+
+**Implementação**
+
+1. Declare `Set<String> matriculas`.
+2. Instancie com `new HashSet<>()`.
+3. Insira matrículas com `add()`.
+4. Insira uma matrícula repetida e observe o retorno de `add()`.
+5. Exiba o total com `size()`.
+6. Troque para `new LinkedHashSet<>()` e compare a ordem de iteração.
+
+**Verifique:** a duplicidade continua bloqueada; a diferença está na previsibilidade da ordem.
+
+---
+
+<!-- _class: compact -->
+
+# Estudo de caso 2: implementação
+
+```java
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+// 1. Comece com HashSet: sem duplicidade, sem garantia de ordem.
+Set<String> matriculas = new HashSet<>();
+
+// 2. Use o retorno de add() para saber se inseriu.
+System.out.println(matriculas.add("2024001")); // true
+System.out.println(matriculas.add("2024002")); // true
+System.out.println(matriculas.add("2024001")); // false
+
+// 3. Confira a quantidade final.
+System.out.println("Total: " + matriculas.size()); // 2
+
+// 4. Troque para LinkedHashSet quando a ordem de inserção importa.
+Set<String> emOrdem = new LinkedHashSet<>();
+emOrdem.add("2024001");
+emOrdem.add("2024002");
+emOrdem.add("2024003");
+System.out.println(emOrdem);
+```
+
+---
+
+<!-- _class: compact -->
+
+# Estudo de caso 3: índice por matrícula
+
+**Cenário:** a secretaria precisa localizar rapidamente um aluno pela matrícula.
+
+**Coleção escolhida:** `Map<String, Aluno>` com `HashMap`.
+
+**Implementação**
+
+1. Crie o `record Aluno(String nome, String matricula)`.
+2. Declare `Map<String, Aluno> alunosPorMatricula`.
+3. Instancie com `new HashMap<>()`.
+4. Cadastre usando `put(matricula, aluno)`.
+5. Busque com `get(matricula)`.
+6. Percorra pares com `entrySet()`.
+7. Teste uma matrícula repetida e observe a substituição do valor.
+
+**Verifique:** a chave é única; o acesso deixa de depender da posição do aluno.
+
+---
+
+<!-- _class: compact -->
+
+# Estudo de caso 3: implementação
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+record Aluno(String nome, String matricula) {}
+
+// 1. A chave será a matrícula.
+Map<String, Aluno> alunosPorMatricula = new HashMap<>();
+
+// 2. Cadastre usando put(chave, valor).
+alunosPorMatricula.put("001", new Aluno("Ana", "001"));
+alunosPorMatricula.put("002", new Aluno("Bruno", "002"));
+alunosPorMatricula.put("003", new Aluno("Carla", "003"));
+
+// 3. Busque diretamente pela chave.
+Aluno aluno = alunosPorMatricula.get("002");
+System.out.println(aluno.nome()); // Bruno
+
+// 4. Percorra quando precisar de chave e valor.
+for (Map.Entry<String, Aluno> entrada : alunosPorMatricula.entrySet()) {
+    System.out.println(entrada.getKey() + " -> " + entrada.getValue().nome());
+}
+
+// 5. Chave repetida substitui o valor anterior.
+alunosPorMatricula.put("002", new Aluno("Beatriz", "002"));
+```
+
+---
+
+# Conclusão
 
 <div class="callout">
 
