@@ -1,0 +1,14 @@
+@startuml
+title Hierarquia de java.util.PriorityQueue - Java 21
+
+interface Iterable<E>
+interface Collection<E>
+interface Queue<E>
+
+class PriorityQueue<E>
+
+Iterable <|-- Collection
+Collection <|-- Queue
+Queue <|.. PriorityQueue
+
+@enduml

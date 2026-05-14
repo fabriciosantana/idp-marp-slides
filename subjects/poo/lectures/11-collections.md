@@ -573,7 +573,6 @@ System.out.println(nomes.pop()); //Diego
 - Pode ser usada como fila ou pilha
 - Não permite valores `null`
 - Não é _thread-safe_
-- Costuma ser preferível a `Stack` para pilhas
 - Complexidade das operações
   - inserção/remoção nas extremidades: O(1) amortizado
   - busca por elemento: O(n)
@@ -663,6 +662,128 @@ tarefas.push("Topo");
 System.out.println(tarefas.pop()); //Topo
 
 System.out.println(tarefas.peek()); //A
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.PriorityQueue: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-priorityqueue-hierarchy.png">
+
+</div>
+<div>
+
+- Fila baseada em prioridade
+- Implementa `Queue`
+- Ordena elementos pela ordem natural ou por um `Comparator`
+- A cabeça da fila é o elemento de maior prioridade
+  - na ordem natural, é o menor elemento
+- Não permite valores `null`
+- Não é _thread-safe_
+- Complexidade das operações
+  - inserção e remoção da cabeça: O(log n)
+  - consulta da cabeça: O(1)
+  - busca por elemento: O(n)
+
+</div>
+</div>
+
+---
+
+# java.util.PriorityQueue: hierarquia simplificada
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-priorityqueue-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.PriorityQueue;
+import java.util.Queue;
+//...
+
+PriorityQueue<Integer> prioridades =
+    new PriorityQueue<>();
+
+Queue<Integer> fila =
+    new PriorityQueue<>();
+
+PriorityQueue<Aluno> porNota =
+    new PriorityQueue<>(comparador);
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.PriorityQueue: principais métodos
+
+- `add(E e)`: insere um elemento na fila de prioridade.
+- `offer(E e)`: insere um elemento na fila de prioridade.
+- `peek()`: consulta a cabeça da fila sem remover.
+- `element()`: consulta a cabeça; lança exceção se estiver vazia.
+- `poll()`: remove e retorna a cabeça, ou `null` se estiver vazia.
+- `remove()`: remove e retorna a cabeça; lança exceção se estiver vazia.
+- `remove(Object o)`: remove uma ocorrência específica, se existir.
+- `comparator()`: retorna o comparador usado, ou `null` se usa ordem natural.
+- `contains(Object o)`: verifica se a fila contém determinado elemento.
+- `size()` / `isEmpty()` / `clear()`: consulta ou limpa a coleção.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/PriorityQueue.html">Oracle Java SE 21 - PriorityQueue</a></div>
+
+---
+
+# java.util.PriorityQueue: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-priorityqueue-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.PriorityQueue;
+import java.util.Comparator;
+//...
+
+PriorityQueue<Integer> senhas =
+    new PriorityQueue<>();
+
+senhas.offer(30);
+senhas.offer(10);
+senhas.offer(20);
+
+System.out.println(senhas.peek()); //10
+
+System.out.println(senhas.poll()); //10
+System.out.println(senhas.poll()); //20
+
+PriorityQueue<String> nomes =
+    new PriorityQueue<>(
+        Comparator.reverseOrder()
+    );
 ```
 
 </div>
@@ -830,13 +951,6 @@ Mesmo não sendo uma coleção, `Map` oferece visões manipuláveis como coleç�
       <td>sim</td>
       <td>sim</td>
       <td>útil quando há muitas operações nas extremidades.</td>
-    </tr>
-    <tr>
-      <td><code>Vector</code></td>
-      <td>inserção</td>
-      <td>sim</td>
-      <td>sim</td>
-      <td>classe legada sincronizada; em geral, prefira alternativas modernas.</td>
     </tr>
     <tr>
       <td><code>PriorityQueue</code></td>

@@ -1,0 +1,32 @@
+@startuml
+title java.util.PriorityQueue - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "PriorityQueue<E>" as PriorityQueue {
+  + PriorityQueue()
+  + PriorityQueue(initialCapacity: int)
+  + PriorityQueue(comparator: Comparator<? super E>)
+  + PriorityQueue(initialCapacity: int, comparator: Comparator<? super E>)
+  + PriorityQueue(c: Collection<? extends E>)
+
+  + add(e: E): boolean
+  + offer(e: E): boolean
+
+  + peek(): E
+  + element(): E
+
+  + poll(): E
+  + remove(): E
+  + remove(o: Object): boolean
+
+  + comparator(): Comparator<? super E>
+
+  + contains(o: Object): boolean
+  + size(): int
+  + isEmpty(): boolean
+  + clear(): void
+  + toArray(): Object[]
+}
+
+@enduml

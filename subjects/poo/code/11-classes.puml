@@ -24,8 +24,6 @@ interface NavigableMap<K, V>
 
 class ArrayList<E>
 class LinkedList<E>
-class Vector<E>
-class Stack<E>
 
 class HashSet<E>
 class LinkedHashSet<E>
@@ -60,8 +58,6 @@ SortedMap <|-- NavigableMap
 List <|.. ArrayList
 List <|.. LinkedList
 Deque <|.. LinkedList
-List <|.. Vector
-Vector <|-- Stack
 
 Set <|.. HashSet
 SequencedSet <|.. LinkedHashSet

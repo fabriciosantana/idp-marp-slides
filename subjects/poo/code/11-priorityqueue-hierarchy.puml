@@ -1,0 +1,26 @@
+@startuml
+title Hierarquia de java.util.PriorityQueue - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface Queue<E>
+interface Serializable
+
+abstract class AbstractCollection<E>
+abstract class AbstractQueue<E>
+class PriorityQueue<E>
+
+Iterable <|-- Collection
+Collection <|-- Queue
+
+Collection <|.. AbstractCollection
+AbstractCollection <|-- AbstractQueue
+Queue <|.. AbstractQueue
+
+AbstractQueue <|-- PriorityQueue
+Queue <|.. PriorityQueue
+Serializable <|.. PriorityQueue
+
+@enduml
