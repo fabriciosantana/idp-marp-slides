@@ -2160,6 +2160,159 @@ for (String nome : notas.keySet()) {
 
 ---
 
+<!-- _class: compact -->
+
+# java.util.Collections
+
+A classe `Collections` reúne métodos estáticos que operam sobre coleções ou retornam coleções especializadas.
+
+<div class="callout">
+
+**Ideia central**
+
+Ela oferece algoritmos reutilizáveis, wrappers e fábricas utilitárias sem depender de uma implementação específica.
+
+</div>
+
+Exemplos de uso:
+
+- ordenar, embaralhar, inverter e buscar em listas;
+- encontrar mínimo e máximo;
+- contar frequência de elementos;
+- criar coleções vazias, imutáveis ou com cópias repetidas;
+- criar _views_ sincronizadas, não modificáveis ou com checagem dinâmica de tipo.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collections.html">Oracle Java SE 21 - Collections</a></div>
+
+---
+
+<!-- _class: compact -->
+
+# Collections: principais algoritmos
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Método</th>
+      <th>Uso</th>
+      <th>Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>sort(list)</code></td>
+      <td>ordena uma lista</td>
+      <td>usa ordem natural ou comparador.</td>
+    </tr>
+    <tr>
+      <td><code>binarySearch(list, key)</code></td>
+      <td>busca em lista ordenada</td>
+      <td>a lista precisa estar previamente ordenada.</td>
+    </tr>
+    <tr>
+      <td><code>reverse(list)</code></td>
+      <td>inverte a ordem</td>
+      <td>modifica a lista recebida.</td>
+    </tr>
+    <tr>
+      <td><code>shuffle(list)</code></td>
+      <td>embaralha elementos</td>
+      <td>útil para simulações e sorteios.</td>
+    </tr>
+    <tr>
+      <td><code>min(coll)</code> / <code>max(coll)</code></td>
+      <td>menor ou maior elemento</td>
+      <td>usa ordem natural ou comparador.</td>
+    </tr>
+    <tr>
+      <td><code>frequency(coll, obj)</code></td>
+      <td>conta ocorrências</td>
+      <td>usa <code>equals()</code> para comparação.</td>
+    </tr>
+    <tr>
+      <td><code>disjoint(c1, c2)</code></td>
+      <td>verifica se não há interseção</td>
+      <td>retorna <code>true</code> se não compartilham elementos.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+# Collections: exemplo
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+//...
+
+List<Integer> notas = new ArrayList<>();
+
+Collections.addAll(notas, 8, 10, 6, 10);
+
+Collections.sort(notas);
+System.out.println(notas); //[6, 8, 10, 10]
+
+System.out.println(Collections.max(notas)); //10
+System.out.println(Collections.frequency(notas, 10)); //2
+
+Collections.reverse(notas);
+System.out.println(notas); //[10, 10, 8, 6]
+```
+
+---
+
+<!-- _class: compact -->
+
+# Collections: wrappers e fábricas
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Método</th>
+      <th>Uso</th>
+      <th>Cuidado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>unmodifiableList(list)</code></td>
+      <td>cria uma visão não modificável</td>
+      <td>alterações na lista original podem aparecer na visão.</td>
+    </tr>
+    <tr>
+      <td><code>synchronizedList(list)</code></td>
+      <td>cria uma visão sincronizada</td>
+      <td>iteração ainda exige cuidado externo.</td>
+    </tr>
+    <tr>
+      <td><code>checkedList(list, type)</code></td>
+      <td>verifica tipo em tempo de execução</td>
+      <td>útil ao interoperar com código legado.</td>
+    </tr>
+    <tr>
+      <td><code>emptyList()</code></td>
+      <td>retorna lista vazia imutável</td>
+      <td>não permite adicionar elementos.</td>
+    </tr>
+    <tr>
+      <td><code>singletonList(obj)</code></td>
+      <td>lista imutável com um elemento</td>
+      <td>boa para retornar resultado único.</td>
+    </tr>
+    <tr>
+      <td><code>nCopies(n, obj)</code></td>
+      <td>lista imutável com cópias repetidas</td>
+      <td>não cria cópias independentes do objeto.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collections.html">Oracle Java SE 21 - Collections</a></div>
+
+---
+
 # Map é diferente
 
 `Map` não é uma `Collection` no sentido estrito.
