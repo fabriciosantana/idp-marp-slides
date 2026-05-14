@@ -990,7 +990,7 @@ linguagens.remove("Python");
 </div>
 <div>
 
-- Conjunto baseado em hash e lista ligada
+- Conjunto baseado em hash e lista encadeada
 - Implementa `SequencedSet`
 - Não permite elementos duplicados
 - Mantém ordem de inserção
@@ -1264,6 +1264,8 @@ System.out.println(nomes.pollLast()); //Carla
 
 <img src="../images/11-hashmap-hierarchy.png">
 
+`Map` faz parte do _Java Collections Framework_, mas não é uma subinterface de `Collection`.
+
 </div>
 <div>
 
@@ -1382,7 +1384,7 @@ for (var entrada : alunos.entrySet()) {
 </div>
 <div>
 
-- Mapa baseado em hash e lista ligada
+- Mapa baseado em hash e lista encadeada
 - Implementa `SequencedMap`
 - Mantém ordem de inserção por padrão
 - Pode ser criado com ordem de acesso
@@ -1714,8 +1716,8 @@ Mesmo não sendo uma coleção, `Map` oferece visões manipuláveis como coleç�
       <th>Tabela hash</th>
       <th>Array redimensionável</th>
       <th>Árvore balanceada</th>
-      <th>Lista ligada</th>
-      <th>Hash + lista ligada</th>
+      <th>Lista encadeada</th>
+      <th>Hash + lista encadeada</th>
     </tr>
   </thead>
   <tbody>
