@@ -306,7 +306,7 @@ Considere os seguintes critérios:
 
 # java.util.ArrayList: hierarquia principal
 
-<div class="columns small" style="--columns: 2;">
+<div class="columns">
 
 <div>
 
@@ -387,7 +387,7 @@ System.out.println(alunos.size()); // 1
 
 # java.util.LinkedList: hierarquia
 
-<div class="columns small">
+<div class="columns">
 <div>
 
 <img src="../images/11-linkedlist-hierarchy.png">
@@ -407,11 +407,11 @@ System.out.println(alunos.size()); // 1
 
 # java.util.LinkedList: hierarquia principal
 
-<div class="columns small" style="--columns: 2;">
+<div class="columns">
 
 <div>
 
-<img src="../images/11-linkedlist-main.png" width="70%">
+<img src="../images/11-linkedlist-main.png">
 
 </div>
 
