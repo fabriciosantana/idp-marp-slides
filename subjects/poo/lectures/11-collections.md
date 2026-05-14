@@ -223,7 +223,7 @@ Set<Integer> matriculas = new HashSet<>();
 Map<String, Aluno> alunosPorCpf = new HashMap<>();
 ```
 
-O tipo à esquerda comunica intenção. O tipo à direita escolhe a estrutura concreta.
+A interface comunica intenção. A classe implementa a estrutura concreta.
 
 `Map` também faz parte do _Collections Framework_, mas não herda de `Collection`: ele representa associação chave-valor.
 
@@ -592,7 +592,6 @@ Deque<Professor> filaProfessores = new LinkedList<>();
 - `poll()`: remove e retorna o primeiro elemento, ou `null` se estiver vazia.
 - `push(E e)` / `pop()`: usa a lista como pilha.
 
-
 ---
 
 # java.util.LinkedList: exemplo
@@ -755,7 +754,6 @@ Deque<String> pilha = new ArrayDeque<>();
 - `poll()` / `pollFirst()` / `pollLast()`: remove ou retorna `null` se vazia.
 - `push(E e)` / `pop()`: usa o deque como pilha.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa a coleção.
-
 
 ---
 
@@ -924,7 +922,6 @@ PriorityQueue<Aluno> porNota =
 - `contains(Object o)`: verifica se a fila contém determinado elemento.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa a coleção.
 
-
 ---
 
 # java.util.PriorityQueue: exemplo
@@ -1069,7 +1066,6 @@ Saída pela prioridade:
   </tbody>
 </table>
 
-
 ---
 
 <!-- _class: compact -->
@@ -1139,7 +1135,6 @@ Set<String> matriculas = new HashSet<>();
 - `isEmpty()`: indica se o conjunto está vazio.
 - `clear()`: remove todos os elementos.
 - `toArray()`: converte o conjunto para um array.
-
 
 ---
 
@@ -1302,7 +1297,6 @@ SequencedSet<String> sequenciado =
 - `reversed()`: retorna uma visão na ordem inversa.
 - `contains(Object o)`: verifica se o elemento pertence ao conjunto.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa o conjunto.
-
 
 ---
 
@@ -1474,7 +1468,6 @@ NavigableSet<String> navegavel = new TreeSet<>();
 - `descendingSet()`: retorna uma visão em ordem decrescente.
 - `comparator()`: retorna o comparador, ou `null` se usa ordem natural.
 
-
 ---
 
 # java.util.TreeSet: exemplo
@@ -1609,7 +1602,6 @@ SortedSet<String> trecho =
   </tbody>
 </table>
 
-
 ---
 
 <!-- _class: compact -->
@@ -1686,7 +1678,6 @@ Map<String, Aluno> alunos =
 - `values()`: retorna uma visão dos valores.
 - `entrySet()`: retorna uma visão dos pares chave-valor.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa o mapa.
-
 
 ---
 
@@ -1854,7 +1845,6 @@ SequencedMap<String, Aluno> sequenciado =
 - `keySet()` / `values()` / `entrySet()`: visões do mapa.
 - `size()` / `isEmpty()` / `clear()`: consulta ou limpa o mapa.
 
-
 ---
 
 # java.util.LinkedHashMap: exemplo
@@ -2017,7 +2007,6 @@ SortedMap<String, Aluno> ordenado =
 - `descendingMap()`: retorna uma visão em ordem decrescente.
 - `keySet()` / `values()` / `entrySet()`: visões do mapa.
 
-
 ---
 
 # java.util.TreeMap: exemplo
@@ -2147,7 +2136,6 @@ for (String nome : notas.keySet()) {
   </tbody>
 </table>
 
-
 ---
 
 <!-- _class: compact -->
@@ -2171,7 +2159,6 @@ Exemplos de uso:
 - contar frequência de elementos;
 - criar coleções vazias, imutáveis ou com cópias repetidas;
 - criar _views_ sincronizadas, não modificáveis ou com checagem dinâmica de tipo.
-
 
 ---
 
@@ -2304,7 +2291,6 @@ Operações como `add`, `remove` e `clear` podem lançar `UnsupportedOperationEx
 
 </div>
 
-
 ---
 
 # Iteradores fail-fast
@@ -2343,7 +2329,6 @@ Interfaces e classes específicas ajudam nesse cenário:
 - `CopyOnWriteArrayList`
 - `ConcurrentHashMap`
 - `ConcurrentSkipListMap`
-
 
 ---
 
@@ -2457,4 +2442,3 @@ Para escolher bem:
 - comece pela interface;
 - pense em duplicidade, ordem, busca e concorrência;
 - só então escolha a implementação.
-
