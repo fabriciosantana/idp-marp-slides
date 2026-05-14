@@ -293,11 +293,17 @@ Considere os seguintes critérios:
 </div>
 <div>
 
-- Estrutura de dados semelhante a um array que pode ser redimensionado dinamicamente
-- Armazena referências a objetos de um tipo
-- Coleção genérica (_generics_)
-  - o tipo pode ser definido na declaração
-  - viabiliza a verificação de tipo em tempo de compilação
+- array redimensionável
+- mantém a ordem de inserção
+- permite elementos duplicados
+- permite valor nulo (`null`)
+- suporta _generics_
+  - verifica tipo na compilação
+- não é _thread-safe_
+- complexidade das operações
+  - acesso por índice: O(1)
+  - inserção/remoção no final: O(1)
+  - inserção/remoção no meio: O(n)
 
 </div>
 </div>
@@ -310,16 +316,31 @@ Considere os seguintes critérios:
 
 <div>
 
-<img src="../images/11-arraylist-main.png" width="60%">
+<img src="../images/11-arraylist-main.png">
 
 </div>
 
 <div>
 
-- `Iterable`: permite percorrer elementos com <code>for-each</code>.
-- `Collection`: contrato básico para grupos de objetos.
-- `List`: coleção ordenada por posição, com elementos repetidos.
-- `ArrayList`: lista concreta baseada em array redimensionável.
+```java
+import java.util.ArrayList;
+import java.util.List;
+//...
+ArrayList alunos = new ArrayList();
+
+List professores = new ArrayList();
+```
+
+**_Generics_**
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+//...
+ArrayList<String> alunos = new ArrayList<>();
+
+List<Professor> professores = new ArrayList<>();
+```
 
 </div>
 
@@ -359,7 +380,7 @@ Considere os seguintes critérios:
 ```java
 import java.util.ArrayList;
 //...
-ArrayList alunos = new ArrayList();
+ArrayList alunos = new ArrayList<>();
 
 alunos.add(new Aluno("Fabricio"));
 alunos.add(new Aluno("João"));
@@ -377,11 +398,36 @@ alunos.remove(1);
 System.out.println(alunos); //[Maria]
 
 System.out.println(alunos.size()); // 1
+
+alunos.add("Paulo"); // elemento com tipo diferente
 ```
 
 </div>
 
 </div>
+
+---
+
+# java.util.ArrayList: exemplo com _generics_
+
+<div class="callout">
+
+**Recomendação**
+
+Sempre definir o tipo de uma coleção
+
+</div>
+
+```java
+import java.util.ArrayList;
+//...
+ArrayList<Aluno> alunos = new ArrayList<>();
+
+alunos.add(new Aluno("Fabricio"));
+alunos.add(new Aluno("João"));
+
+alunos.add("Paulo"); // Erro na compilação
+```
 
 ---
 
