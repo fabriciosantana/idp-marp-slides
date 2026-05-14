@@ -22,6 +22,7 @@ footer: <span>Programação Orientada a Objetos</span><span>Java Collections Fra
 - Conhecer `List`, `Set`, `Queue`, `Deque` e `Map`
 - Realizar operações comuns em coleções
 - Reconhecer diferenças de desempenho das coleções
+- Considerar os recursos disponíveis no Java 21
 
 </div>
 
@@ -95,7 +96,9 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# _Java Collections Framework_: principais interfaces
+<!-- _class: compact -->
+
+# _Java Collections Framework_: interfaces de coleção
 
 **As interfaces garantem a flexibilidade do _collections framework_**
 
@@ -112,12 +115,24 @@ www.linkedin.com/in/fabriciofsantana/
       <td>Interface raiz da hierarquia de coleções. Dela derivam interfaces como <code>Set</code>, <code>Queue</code> e <code>List</code>.</td>
     </tr>
     <tr>
+      <td><code>SequencedCollection</code></td>
+      <td>Coleção com ordem de encontro definida, acesso às extremidades e visão reversa.</td>
+    </tr>
+    <tr>
       <td><code>Set</code></td>
       <td>Coleção que não permite elementos duplicados.</td>
     </tr>
     <tr>
+      <td><code>SequencedSet</code></td>
+      <td>Conjunto com ordem de encontro previsível e operações nas extremidades.</td>
+    </tr>
+    <tr>
       <td><code>SortedSet</code></td>
       <td>Coleção ordenada que não permite elementos duplicados.</td>
+    </tr>
+    <tr>
+      <td><code>NavigableSet</code></td>
+      <td>Conjunto ordenado com operações de navegação para vizinhos, extremos e ordem inversa.</td>
     </tr>
     <tr>
       <td><code>List</code></td>
@@ -131,14 +146,41 @@ www.linkedin.com/in/fabriciofsantana/
       <td><code>Deque</code></td>
       <td>Fila de duas pontas; pode funcionar como fila ou pilha.</td>
     </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# _Java Collections Framework_: interfaces de mapa
+
+`Map` faz parte do _Collections Framework_, mas não herda de `Collection`.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Interface</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
       <td><code>Map</code></td>
       <td>Estrutura que associa chaves a valores e não permite chaves duplicadas. Não deriva de <code>Collection</code>.</td>
     </tr>
     <tr>
+      <td><code>SequencedMap</code></td>
+      <td>Mapa com ordem de encontro definida, acesso à primeira/última entrada e visão reversa.</td>
+    </tr>
+    <tr>
       <td><code>SortedMap</code></td>
       <td>Um <code>Map</code> com ordenação natural pela chave ou por um comparador.</td>
-    </tr>    
+    </tr>
+    <tr>
+      <td><code>NavigableMap</code></td>
+      <td>Mapa ordenado com operações de navegação pelas chaves e visões em ordem inversa.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -181,6 +223,11 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
       <td>Conjunto baseado em tabela hash. Não garante ordem dos elementos.</td>
     </tr>
     <tr>
+      <td><code>LinkedHashSet</code></td>
+      <td><code>SequencedSet</code></td>
+      <td>Conjunto baseado em hash que preserva ordem de inserção.</td>
+    </tr>
+    <tr>
       <td><code>TreeSet</code></td>
       <td><code>SortedSet</code></td>
       <td>Conjunto ordenado, normalmente pela ordem natural dos elementos ou por um comparador.</td>
@@ -191,9 +238,19 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
       <td>Fila de duas pontas baseada em array redimensionável. Útil para filas e pilhas.</td>
     </tr>
     <tr>
+      <td><code>PriorityQueue</code></td>
+      <td><code>Queue</code></td>
+      <td>Fila em que a cabeça é definida por prioridade, ordem natural ou comparador.</td>
+    </tr>
+    <tr>
       <td><code>HashMap</code></td>
       <td><code>Map</code></td>
       <td>Mapa baseado em tabela hash. Associa chaves a valores e não garante ordem.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashMap</code></td>
+      <td><code>SequencedMap</code></td>
+      <td>Mapa baseado em hash que preserva ordem de inserção ou de acesso.</td>
     </tr>
     <tr>
       <td><code>TreeMap</code></td>
@@ -236,7 +293,7 @@ Considere os seguintes critérios:
 - **Ordenação**: precisa manter a ordem dos elementos?
 - **Duplicidade**: pode haver elementos duplicados?
 - **Eficiência**: necessidade de acesso rápido por índice?
-- **Alteração**: muitas inserções e remoções no meio da coleção?
+- **Alteração**: muitas inserções e remoções?
 - **Modelo**: modelo de fila (FIFO) ou pilha (LIFO)?
 - **Estrutura**: precisa associar chave-valor?
 
@@ -264,7 +321,7 @@ Considere os seguintes critérios:
       <td>Lista com operações nas extremidades</td>
       <td><code>List</code> / <code>Deque</code></td>
       <td><code>LinkedList</code></td>
-      <td>útil para inserir/remover no início ou no fim.</td>
+      <td>útil nas extremidades; no meio, só compensa quando já há um iterador posicionado.</td>
     </tr>
     <tr>
       <td>Conjunto sem repetição</td>
@@ -847,6 +904,55 @@ while (!tarefas.isEmpty()) {
 
 <!-- _class: compact -->
 
+# Ordenação: Comparable e Comparator
+
+Algumas coleções precisam comparar elementos para decidir prioridade ou posição.
+
+<div class="columns small">
+
+<div>
+
+**`Comparable<T>`**
+
+- Define a ordem natural da própria classe.
+- Usa o método `compareTo`.
+- Exemplo: `String`, `Integer`, `LocalDate`.
+
+```java
+record Aluno(String nome, double nota)
+        implements Comparable<Aluno> {
+    public int compareTo(Aluno outro) {
+        return Double.compare(nota, outro.nota);
+    }
+}
+```
+
+</div>
+
+<div>
+
+**`Comparator<T>`**
+
+- Define uma ordem externa à classe.
+- Permite múltiplas regras de ordenação.
+- Muito usado em `PriorityQueue`, `TreeSet` e `TreeMap`.
+
+```java
+Comparator<Aluno> porNome =
+    Comparator.comparing(Aluno::nome);
+
+Comparator<Aluno> porNotaDesc =
+    Comparator.comparing(Aluno::nota).reversed();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.PriorityQueue: hierarquia
 
 <div class="columns">
@@ -859,9 +965,10 @@ while (!tarefas.isEmpty()) {
 
 - Fila baseada em prioridade
 - Implementa `Queue`
-- Ordena elementos pela ordem natural ou por um `Comparator`
+- Mantém a cabeça da fila conforme ordem natural ou `Comparator`
 - A cabeça da fila é o elemento de maior prioridade
   - na ordem natural, é o menor elemento
+- A iteração não garante percorrer em ordem de prioridade
 - Não permite valores `null`
 - Não é _thread-safe_
 - Complexidade das operações
@@ -1065,6 +1172,47 @@ Saída pela prioridade:
     </tr>
   </tbody>
 </table>
+
+---
+
+<!-- _class: compact -->
+
+# Igualdade e hash
+
+Coleções baseadas em hash dependem de `equals()` e `hashCode()` para identificar elementos ou chaves.
+
+<div class="columns small">
+
+<div>
+
+**Onde isso aparece**
+
+- `HashSet`: decide se um elemento já existe.
+- `LinkedHashSet`: combina unicidade com ordem previsível.
+- `HashMap`: localiza valores pela chave.
+- `LinkedHashMap`: localiza chaves e preserva ordem.
+
+</div>
+
+<div>
+
+```java
+record Aluno(String matricula, String nome) {}
+
+Set<Aluno> alunos = new HashSet<>();
+
+alunos.add(new Aluno("001", "Ana"));
+alunos.add(new Aluno("001", "Ana"));
+
+System.out.println(alunos.size()); //1
+```
+
+- Em `record`, `equals()` e `hashCode()` são gerados automaticamente.
+- Em classes comuns, implemente os dois de forma consistente.
+
+</div>
+
+</div>
 
 ---
 
@@ -1409,6 +1557,8 @@ while (it.hasNext()) {
 - Implementa `NavigableSet`
 - Não permite elementos duplicados
 - Ordena por ordem natural ou `Comparator`
+- Com ordem natural, não aceita `null`
+- Com `Comparator`, `null` só funciona se o comparador tratar esse caso
 - Não é _thread-safe_
 - Complexidade das operações
   - `add`, `remove` e `contains`: O(log n)
@@ -1595,7 +1745,7 @@ SortedSet<String> trecho =
       <td><code>TreeSet</code></td>
       <td>ordenada</td>
       <td>não permite</td>
-      <td>não, no uso comum</td>
+      <td>não com ordem natural</td>
       <td>mantém elementos sempre ordenados</td>
       <td>operações básicas custam O(log n)</td>
     </tr>
@@ -1948,6 +2098,8 @@ for (String uf : capitais.keySet()) {
 - Baseado em árvore rubro-negra
 - Ordena por ordem natural ou `Comparator`
 - Não permite chaves duplicadas
+- Com ordem natural, não aceita chave `null`
+- Valores `null` são permitidos
 - Não é _thread-safe_
 - Complexidade das operações
   - `containsKey`, `get`, `put` e `remove`: O(log n)
@@ -2129,7 +2281,7 @@ for (String nome : notas.keySet()) {
       <td><code>TreeMap</code></td>
       <td>ordenada por chave</td>
       <td>únicas</td>
-      <td>sem chave nula no uso comum</td>
+      <td>sem chave nula com ordem natural; valores nulos possíveis</td>
       <td>mantém chaves sempre ordenadas</td>
       <td>operações principais custam O(log n)</td>
     </tr>
@@ -2287,15 +2439,15 @@ System.out.println(notas); //[10, 10, 8, 6]
 
 <div class="callout">
 
-Operações como `add`, `remove` e `clear` podem lançar `UnsupportedOperationException` em coleções não modificáveis ou de tamanho fixo.
+Operações como `add`, `remove`, `clear` ou algoritmos que alteram a lista (`sort`, `reverse`, `shuffle`) podem lançar `UnsupportedOperationException` em coleções não modificáveis ou de tamanho fixo.
 
 </div>
 
 ---
 
-# Iteradores fail-fast
+# Fail-fast: detecção de erro
 
-As implementações novas possuem iteradores _fail-fast_.
+Muitas implementações possuem iteradores _fail-fast_.
 
 <div class="callout">
 
@@ -2304,6 +2456,8 @@ As implementações novas possuem iteradores _fail-fast_.
 Se a coleção for modificada de forma indevida enquanto está sendo percorrida, o iterador tenta detectar o problema rapidamente.
 
 </div>
+
+Esse comportamento é uma ajuda para encontrar bugs, não um mecanismo de controle de fluxo.
 
 Exemplo do erro comum:
 
