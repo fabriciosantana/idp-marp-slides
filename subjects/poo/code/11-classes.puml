@@ -1,0 +1,79 @@
+@startuml
+title Java Collections Framework - interfaces e classes principais
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+interface Iterable<E>
+interface Collection<E>
+interface SequencedCollection<E>
+
+interface List<E>
+interface Set<E>
+interface SequencedSet<E>
+interface SortedSet<E>
+interface NavigableSet<E>
+
+interface Queue<E>
+interface Deque<E>
+
+interface Map<K, V>
+interface SequencedMap<K, V>
+interface SortedMap<K, V>
+interface NavigableMap<K, V>
+
+class ArrayList<E>
+class LinkedList<E>
+class Vector<E>
+class Stack<E>
+
+class HashSet<E>
+class LinkedHashSet<E>
+class TreeSet<E>
+
+class PriorityQueue<E>
+class ArrayDeque<E>
+
+class HashMap<K, V>
+class LinkedHashMap<K, V>
+class TreeMap<K, V>
+
+Iterable <|-- Collection
+
+Collection <|-- SequencedCollection
+SequencedCollection <|-- List
+SequencedCollection <|-- SequencedSet
+SequencedCollection <|-- Deque
+
+Collection <|-- Set
+Set <|-- SequencedSet
+Set <|-- SortedSet
+SortedSet <|-- NavigableSet
+
+Collection <|-- Queue
+Queue <|-- Deque
+
+Map <|-- SequencedMap
+Map <|-- SortedMap
+SortedMap <|-- NavigableMap
+
+List <|.. ArrayList
+List <|.. LinkedList
+Deque <|.. LinkedList
+List <|.. Vector
+Vector <|-- Stack
+
+Set <|.. HashSet
+SequencedSet <|.. LinkedHashSet
+HashSet <|-- LinkedHashSet
+NavigableSet <|.. TreeSet
+
+Queue <|.. PriorityQueue
+Deque <|.. ArrayDeque
+
+Map <|.. HashMap
+SequencedMap <|.. LinkedHashMap
+HashMap <|-- LinkedHashMap
+NavigableMap <|.. TreeMap
+
+@enduml

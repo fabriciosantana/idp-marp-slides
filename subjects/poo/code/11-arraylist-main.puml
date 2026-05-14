@@ -3,14 +3,12 @@ title Hierarquia de java.util.ArrayList - Java 21
 
 interface Iterable<E>
 interface Collection<E>
-interface SequencedCollection<E>
 interface List<E>
 
 class ArrayList<E>
 
 Iterable <|-- Collection
-Collection <|-- SequencedCollection
-SequencedCollection <|-- List
+Collection <|-- List
 List <|.. ArrayList
 
 @enduml

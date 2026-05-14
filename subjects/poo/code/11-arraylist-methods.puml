@@ -1,0 +1,37 @@
+@startuml
+title java.util.ArrayList - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "ArrayList<E>" as ArrayList {
+  + ArrayList()
+  + ArrayList(initialCapacity: int)
+  + ArrayList(c: Collection<? extends E>)
+
+  + add(e: E): boolean
+  + add(index: int, element: E): void
+  + addAll(c: Collection<? extends E>): boolean
+  + addAll(index: int, c: Collection<? extends E>): boolean
+
+  + get(index: int): E
+  + set(index: int, element: E): E
+  + remove(index: int): E
+  + remove(o: Object): boolean
+  + clear(): void
+
+  + contains(o: Object): boolean
+  + indexOf(o: Object): int
+  + lastIndexOf(o: Object): int
+
+  + size(): int
+  + isEmpty(): boolean
+  + toArray(): Object[]
+  + toArray(a: T[]): T[]
+
+  + getFirst(): E
+  + getLast(): E
+  + removeFirst(): E
+  + removeLast(): E
+}
+
+@enduml

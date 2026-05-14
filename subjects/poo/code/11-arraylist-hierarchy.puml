@@ -29,15 +29,4 @@ RandomAccess <|.. ArrayList
 Cloneable <|.. ArrayList
 Serializable <|.. ArrayList
 
-note right of SequencedCollection
-Introduzida no Java 21.
-Representa coleções com ordem
-de encontro bem definida.
-end note
-
-note right of ArrayList
-Implementação baseada em array
-redimensionável.
-end note
-
 @enduml

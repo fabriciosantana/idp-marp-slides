@@ -1,9 +1,9 @@
 ---
 marp: true
 theme: idp
-paginate: true
+paginate: false
 html: true
-footer: <span>Programação Orientada a Objetos</span><span>Collections Framework</span><span>Prof. Fabricio Santana</span>
+footer: <span>Programação Orientada a Objetos</span><span>Java Collections Framework</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
@@ -89,17 +89,15 @@ www.linkedin.com/in/fabriciofsantana/
 
 # _Java Collections Framework_: principais interfaces
 
-As interfaces são elementos centrais no uso do _collections framework_
+**As interfaces estão disponíveis no pacote `java.util`.**
 
 <img src="../images/11-interfaces.png">
 
 ---
 
-<!-- _class: compact -->
+# _Java Collections Framework_: principais interfaces
 
-# Principais interfaces do _collections framework_
-
-As interfaces estão disponíveis no pacote `java.util`
+**As interfaces garantem a flexibilidade do _collections framework_**
 
 <table class="tiny">
   <thead>
@@ -146,9 +144,15 @@ As interfaces estão disponíveis no pacote `java.util`
 
 ---
 
+# _Java Collections Framework_: principais classes
+
+<img src="../images/11-classes.png">
+
+---
+
 <!-- _class: compact -->
 
-# Principais classes do _collections framework_
+# _Java Collections Framework_: principais classes
 
 As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
@@ -182,6 +186,11 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
       <td>Conjunto ordenado, normalmente pela ordem natural dos elementos ou por um comparador.</td>
     </tr>
     <tr>
+      <td><code>ArrayDeque</code></td>
+      <td><code>Deque</code></td>
+      <td>Fila de duas pontas baseada em array redimensionável. Útil para filas e pilhas.</td>
+    </tr>
+    <tr>
       <td><code>HashMap</code></td>
       <td><code>Map</code></td>
       <td>Mapa baseado em tabela hash. Associa chaves a valores e não garante ordem.</td>
@@ -191,42 +200,104 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
       <td><code>SortedMap</code></td>
       <td>Mapa ordenado pelas chaves, usando ordem natural ou um comparador.</td>
     </tr>
+  </tbody>
+</table>
+
+---
+
+# _Java Collections Framework_: critérios de escolha
+
+Considere os seguintes critérios:
+
+- **Ordenação**: precisa manter a ordem dos elementos?
+- **Duplicidade**: pode haver elementos duplicados?
+- **Eficiência**: necessidade de acesso rápido por índice?
+- **Alteração**: muitas inserções e remoções no meio da coleção?
+- **Modelo**: modelo de fila (FIFO) ou pilha (LIFO)?
+- **Estrutura**: precisa associar chave-valor?
+
+---
+
+# _Java Collections Framework_: qual escolher?
+
+<table class="tiny">
+  <thead>
     <tr>
-      <td><code>ArrayDeque</code></td>
+      <th>Necessidade</th>
+      <th>Interface</th>
+      <th>Implementação</th>
+      <th>Critério de escolha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lista ordenada por posição</td>
+      <td><code>List</code></td>
+      <td><code>ArrayList</code></td>
+      <td>boa escolha padrão; acesso por índice eficiente.</td>
+    </tr>
+    <tr>
+      <td>Lista com operações nas extremidades</td>
+      <td><code>List</code> / <code>Deque</code></td>
+      <td><code>LinkedList</code></td>
+      <td>útil para inserir/remover no início ou no fim.</td>
+    </tr>
+    <tr>
+      <td>Conjunto sem repetição</td>
+      <td><code>Set</code></td>
+      <td><code>HashSet</code></td>
+      <td>não garante ordem; busca e inserção tendem a ser eficientes.</td>
+    </tr>
+    <tr>
+      <td>Conjunto sem repetição em ordem de inserção</td>
+      <td><code>SequencedSet</code></td>
+      <td><code>LinkedHashSet</code></td>
+      <td>preserva a ordem em que os elementos foram adicionados.</td>
+    </tr>
+    <tr>
+      <td>Conjunto sem repetição ordenado</td>
+      <td><code>SortedSet</code></td>
+      <td><code>TreeSet</code></td>
+      <td>mantém elementos ordenados por ordem natural ou comparador.</td>
+    </tr>
+    <tr>
+      <td>Fila ou pilha</td>
       <td><code>Deque</code></td>
-      <td>Fila de duas pontas baseada em array redimensionável. Útil para filas e pilhas.</td>
+      <td><code>ArrayDeque</code></td>
+      <td>boa opção para FIFO, LIFO e operações nas duas pontas.</td>
+    </tr>
+    <tr>
+      <td>Associação chave-valor</td>
+      <td><code>Map</code></td>
+      <td><code>HashMap</code></td>
+      <td>acesso por chave sem garantia de ordem.</td>
+    </tr>
+    <tr>
+      <td>Mapa ordenado por chave</td>
+      <td><code>SortedMap</code></td>
+      <td><code>TreeMap</code></td>
+      <td>mantém chaves em ordem natural ou por comparador.</td>
     </tr>
   </tbody>
 </table>
 
 ---
 
-# Qual coleção escolher?
-
-<div class="callout">
-
-**Critérios**
-
-- Requisitos de memória
-- Desempenho em operações de adicionar, remover, ordenar e procurar elementos
-
-</div>
-
----
-
 # java.util.ArrayList: hierarquia
 
-<div class="columns small">
+<div class="columns">
 <div>
 
-<img src="../images/11-arraylist.png" >
+<img src="../images/11-arraylist-hierarchy.png" >
 
 </div>
 <div>
 
 - Estrutura de dados semelhante a um array que pode ser redimensionado dinamicamente
-- armazena referências a objetos de um tipo
-- o tipo pode ser definido na declaração (_generics_), viabilizando a verificação de tipo em tempo de compilação
+- Armazena referências a objetos de um tipo
+- Coleção genérica (_generics_)
+  - o tipo pode ser definido na declaração
+  - viabiliza a verificação de tipo em tempo de compilação
 
 </div>
 </div>
@@ -247,7 +318,6 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
 - `Iterable`: permite percorrer elementos com <code>for-each</code>.
 - `Collection`: contrato básico para grupos de objetos.
-- `SequencedCollection`: representa coleções com ordem definida e operações nas duas extremidades.
 - `List`: coleção ordenada por posição, com elementos repetidos.
 - `ArrayList`: lista concreta baseada em array redimensionável.
 
@@ -271,8 +341,6 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 - `isEmpty()`: indica se a lista está vazia.
 - `clear()`: remove todos os elementos da lista.
 - `getFirst()` / `getLast()`: acessa o primeiro ou o último elemento da lista.
-
-<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html">Oracle Java SE 21 - ArrayList</a></div>
 
 ---
 
@@ -303,8 +371,12 @@ System.out.println(alunos.get(1)); //João
 alunos.set(0, "Maria");
 System.out.println(alunos); //[Maria, João]
 
+System.out.println(alunos.size()); // 2
+
 alunos.remove(1);
 System.out.println(alunos); //[Maria]
+
+System.out.println(alunos.size()); // 1
 ```
 
 </div>
