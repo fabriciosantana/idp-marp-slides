@@ -35,15 +35,4 @@ Deque <|.. LinkedList
 Cloneable <|.. LinkedList
 Serializable <|.. LinkedList
 
-note right of SequencedCollection
-Introduzida no Java 21.
-Representa coleções com ordem
-definida e operações nas extremidades.
-end note
-
-note right of LinkedList
-Implementação baseada em nós ligados.
-Pode ser usada como lista, fila ou pilha.
-end note
-
 @enduml

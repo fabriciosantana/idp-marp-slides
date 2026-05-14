@@ -3,7 +3,6 @@ title Hierarquia de java.util.LinkedList - Java 21
 
 interface Iterable<E>
 interface Collection<E>
-interface SequencedCollection<E>
 interface List<E>
 interface Queue<E>
 interface Deque<E>
@@ -11,11 +10,9 @@ interface Deque<E>
 class LinkedList<E>
 
 Iterable <|-- Collection
-Collection <|-- SequencedCollection
-SequencedCollection <|-- List
+Collection <|-- List
 Collection <|-- Queue
 Queue <|-- Deque
-SequencedCollection <|-- Deque
 
 List <|.. LinkedList
 Deque <|.. LinkedList

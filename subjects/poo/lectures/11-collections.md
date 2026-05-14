@@ -390,7 +390,7 @@ System.out.println(alunos.size()); // 1
 <div class="columns small">
 <div>
 
-<img src="../images/11-linkedlist.png">
+<img src="../images/11-linkedlist-hierarchy.png">
 
 </div>
 <div>
@@ -419,7 +419,6 @@ System.out.println(alunos.size()); // 1
 
 - `Iterable`: permite percorrer elementos com <code>for-each</code>.
 - `Collection`: contrato básico para grupos de objetos.
-- `SequencedCollection`: representa coleções com ordem definida e operações nas duas extremidades.
 - `List`: coleção ordenada por posição, com elementos repetidos.
 - `Queue`: coleção usada para processamento em fila.
 - `Deque`: fila de duas pontas, útil como fila ou pilha.
@@ -463,6 +462,9 @@ System.out.println(alunos.size()); // 1
 <div>
 
 ```java
+import java.util.LinkedList;
+//...
+
 LinkedList<String> nomes = new LinkedList<>();
 
 nomes.add("Ana");

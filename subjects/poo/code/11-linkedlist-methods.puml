@@ -1,0 +1,37 @@
+@startuml
+title java.util.LinkedList - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "LinkedList<E>" as LinkedList {
+  + LinkedList()
+  + LinkedList(c: Collection<? extends E>)
+
+  + add(e: E): boolean
+  + add(index: int, element: E): void
+  + addFirst(e: E): void
+  + addLast(e: E): void
+
+  + get(index: int): E
+  + getFirst(): E
+  + getLast(): E
+  + set(index: int, element: E): E
+
+  + remove(index: int): E
+  + remove(o: Object): boolean
+  + removeFirst(): E
+  + removeLast(): E
+  + clear(): void
+
+  + peek(): E
+  + poll(): E
+  + push(e: E): void
+  + pop(): E
+
+  + contains(o: Object): boolean
+  + indexOf(o: Object): int
+  + size(): int
+  + isEmpty(): boolean
+}
+
+@enduml
