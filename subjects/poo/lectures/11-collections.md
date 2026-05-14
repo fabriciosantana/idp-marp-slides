@@ -792,6 +792,61 @@ PriorityQueue<String> nomes =
 
 ---
 
+<!-- _class: compact -->
+
+# Comparando listas e filas
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Uso típico</th>
+      <th>Ordem</th>
+      <th>null</th>
+      <th>Ponto forte</th>
+      <th>Cuidado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ArrayList</code></td>
+      <td>lista geral</td>
+      <td>inserção/índice</td>
+      <td>permite</td>
+      <td>acesso por índice O(1)</td>
+      <td>inserção/remoção no meio custa O(n)</td>
+    </tr>
+    <tr>
+      <td><code>LinkedList</code></td>
+      <td>lista, fila ou pilha</td>
+      <td>inserção</td>
+      <td>permite</td>
+      <td>operações nas extremidades O(1)</td>
+      <td>acesso por índice custa O(n)</td>
+    </tr>
+    <tr>
+      <td><code>ArrayDeque</code></td>
+      <td>fila ou pilha</td>
+      <td>extremidades</td>
+      <td>não permite</td>
+      <td>fila/pilha eficiente sem classes legadas</td>
+      <td>não oferece acesso por índice</td>
+    </tr>
+    <tr>
+      <td><code>PriorityQueue</code></td>
+      <td>fila por prioridade</td>
+      <td>prioridade</td>
+      <td>não permite</td>
+      <td>remove primeiro o elemento prioritário</td>
+      <td>iteração não garante ordem ordenada</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="source">Fonte: documentação Oracle Java SE 21 para <code>ArrayList</code>, <code>LinkedList</code>, <code>ArrayDeque</code> e <code>PriorityQueue</code>.</div>
+
+---
+
 # Interfaces: visão geral
 
 <div class="callout">

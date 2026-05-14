@@ -5,8 +5,6 @@ skinparam classAttributeIconSize 0
 
 class "ArrayDeque<E>" as ArrayDeque {
   + ArrayDeque()
-  + ArrayDeque(numElements: int)
-  + ArrayDeque(c: Collection<? extends E>)
 
   + add(e: E): boolean
   + addFirst(e: E): void
