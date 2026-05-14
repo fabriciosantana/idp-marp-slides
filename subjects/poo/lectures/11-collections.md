@@ -150,6 +150,28 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
+# Interfaces: visão geral
+
+<div class="callout">
+
+**Separar contrato de implementação**
+
+Uma interface define o que uma coleção deve fazer; uma classe concreta define como isso será feito.
+
+</div>
+
+Exemplo:
+
+```java
+List<String> nomes = new ArrayList<>();
+Set<Integer> matriculas = new HashSet<>();
+Map<String, Aluno> alunosPorCpf = new HashMap<>();
+```
+
+O tipo à esquerda comunica intenção. O tipo à direita escolhe a estrutura concreta.
+
+---
+
 <!-- _class: compact -->
 
 # _Java Collections Framework_: principais classes
@@ -794,7 +816,7 @@ PriorityQueue<String> nomes =
 
 <!-- _class: compact -->
 
-# Comparando listas e filas
+# ArrayList, LinkedList, ArrayDeque e PriorityQueue
 
 <table class="tiny">
   <thead>
@@ -844,28 +866,6 @@ PriorityQueue<String> nomes =
 </table>
 
 <div class="source">Fonte: documentação Oracle Java SE 21 para <code>ArrayList</code>, <code>LinkedList</code>, <code>ArrayDeque</code> e <code>PriorityQueue</code>.</div>
-
----
-
-# Interfaces: visão geral
-
-<div class="callout">
-
-**Separar contrato de implementação**
-
-Uma interface define o que uma coleção deve fazer; uma classe concreta define como isso será feito.
-
-</div>
-
-Exemplo:
-
-```java
-List<String> nomes = new ArrayList<>();
-Set<Integer> matriculas = new HashSet<>();
-Map<String, Aluno> alunosPorCpf = new HashMap<>();
-```
-
-O tipo à esquerda comunica intenção. O tipo à direita escolhe a estrutura concreta.
 
 ---
 
