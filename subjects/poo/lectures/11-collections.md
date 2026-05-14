@@ -429,7 +429,11 @@ alunos.add(new Aluno("João"));
 alunos.add("Paulo"); // Erro na compilação
 ```
 
+As demais coleções serão apresentadas apenas com _generics_
+
 ---
+
+<!-- _class: compact -->
 
 # java.util.LinkedList: hierarquia
 
@@ -441,13 +445,19 @@ alunos.add("Paulo"); // Erro na compilação
 </div>
 <div>
 
-- Estrutura de dados baseada em nós ligados.
-- Implementa `List` e `Deque`, podendo ser usada como lista, fila ou pilha.
-- Preserva a ordem dos elementos e permite elementos repetidos.
-- É útil quando há muitas inserções e remoções nas extremidades da coleção.
-
-</div>
-</div>
+- Lista duplamente encadeada
+- Usada como lista, fila ou pilha
+  - `List`, `Queue` e `Deque`
+- Mantém a ordem de inserção
+- Permite elementos duplicados
+- Permite valores `null`
+- Consome mais memória
+  - cada elemento aponta para o próximo e para o anterior
+- Complexidade das operações
+  - acesso por índice: O(n)
+  - inserção/remoção - nas extremidades: O(1) - no meio: O(n)
+  </div>
+  </div>
 
 ---
 
@@ -463,12 +473,22 @@ alunos.add("Paulo"); // Erro na compilação
 
 <div>
 
-- `Iterable`: permite percorrer elementos com <code>for-each</code>.
-- `Collection`: contrato básico para grupos de objetos.
-- `List`: coleção ordenada por posição, com elementos repetidos.
-- `Queue`: coleção usada para processamento em fila.
-- `Deque`: fila de duas pontas, útil como fila ou pilha.
-- `LinkedList`: lista concreta baseada em nós ligados.
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Deque;
+import java.util.List;
+//...
+
+LinkedList<String> alunos = new LinkedList<>();
+
+List<Professor> professores = new LinkedList<>();
+
+Queue<Registro> registro = new LinkedList<>();
+
+Deque<Professor> professores = new LinkedList<>();
+
+```
 
 </div>
 
