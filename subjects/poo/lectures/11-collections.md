@@ -568,7 +568,7 @@ System.out.println(nomes.pop()); //Diego
 
 - Fila de duas pontas baseada em array redimensionável
 - Implementa `Deque`
-- Pode ser usada como fila FIFO ou pilha LIFO
+- Pode ser usada como fila ou pilha
 - Não permite valores `null`
 - Costuma ser preferível a `Stack` para pilhas
 - Complexidade das operações
