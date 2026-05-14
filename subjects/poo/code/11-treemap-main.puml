@@ -1,0 +1,12 @@
+@startuml
+title Hierarquia de java.util.TreeMap - Java 21
+
+interface Map<K, V>
+interface SortedMap<K, V>
+
+class TreeMap<K, V>
+
+Map <|-- SortedMap
+SortedMap <|.. TreeMap
+
+@enduml

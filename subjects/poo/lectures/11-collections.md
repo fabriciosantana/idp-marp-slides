@@ -1255,6 +1255,400 @@ System.out.println(nomes.pollLast()); //Carla
 
 ---
 
+<!-- _class: compact -->
+
+# java.util.HashMap: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-hashmap-hierarchy.png">
+
+</div>
+<div>
+
+- Mapa baseado em tabela hash
+- Implementa `Map`
+- Associa chaves a valores
+- Não permite chaves duplicadas
+- Não garante ordem de iteração
+- Permite uma chave `null` e múltiplos valores `null`
+- Não é _thread-safe_
+- Complexidade das operações
+  - `get` e `put`: O(1), em média
+  - iteração depende do tamanho e da capacidade interna
+
+</div>
+</div>
+
+---
+
+# java.util.HashMap: hierarquia simplificada
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-hashmap-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+//...
+
+HashMap<String, Aluno> porCpf =
+    new HashMap<>();
+
+Map<String, Aluno> alunos =
+    new HashMap<>();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.HashMap: principais métodos
+
+- `put(K k, V v)`: associa uma chave a um valor.
+- `get(Object k)`: retorna o valor associado à chave.
+- `getOrDefault(Object k, V padrao)`: retorna valor ou padrão.
+- `remove(Object k)`: remove o par associado à chave.
+- `containsKey(Object k)`: verifica se a chave existe.
+- `containsValue(Object v)`: verifica se algum valor existe.
+- `keySet()`: retorna uma visão das chaves.
+- `values()`: retorna uma visão dos valores.
+- `entrySet()`: retorna uma visão dos pares chave-valor.
+- `size()` / `isEmpty()` / `clear()`: consulta ou limpa o mapa.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html">Oracle Java SE 21 - HashMap</a></div>
+
+---
+
+# java.util.HashMap: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-hashmap-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.HashMap;
+//...
+
+HashMap<String, Aluno> alunos =
+    new HashMap<>();
+
+alunos.put("001", new Aluno("Ana"));
+alunos.put("002", new Aluno("Bruno"));
+
+System.out.println(alunos.get("001"));
+
+alunos.put("001", new Aluno("Carla"));
+System.out.println(alunos.size()); //2
+
+for (var entrada : alunos.entrySet()) {
+    System.out.println(entrada.getKey());
+}
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.LinkedHashMap: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-linkedhashmap-hierarchy.png">
+
+</div>
+<div>
+
+- Mapa baseado em hash e lista ligada
+- Implementa `SequencedMap`
+- Mantém ordem de inserção por padrão
+- Pode ser criado com ordem de acesso
+  - útil em estratégias do tipo LRU
+- Permite uma chave `null` e múltiplos valores `null`
+- Não é _thread-safe_
+- Complexidade das operações
+  - `get` e `put`: O(1), em média
+  - iteração segue a ordem definida
+
+</div>
+</div>
+
+---
+
+# java.util.LinkedHashMap: hierarquia simplificada
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-linkedhashmap-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.SequencedMap;
+//...
+
+LinkedHashMap<String, Aluno> alunos =
+    new LinkedHashMap<>();
+
+Map<String, Aluno> mapa =
+    new LinkedHashMap<>();
+
+SequencedMap<String, Aluno> sequenciado =
+    new LinkedHashMap<>();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.LinkedHashMap: principais métodos
+
+- `put(K k, V v)`: associa uma chave a um valor.
+- `putFirst(K k, V v)`: posiciona a entrada no início.
+- `putLast(K k, V v)`: posiciona a entrada no fim.
+- `get(Object k)`: retorna o valor associado à chave.
+- `firstEntry()` / `lastEntry()`: acessa primeira ou última entrada.
+- `pollFirstEntry()` / `pollLastEntry()`: remove primeira ou última entrada.
+- `reversed()`: retorna uma visão na ordem inversa.
+- `keySet()` / `values()` / `entrySet()`: visões do mapa.
+- `size()` / `isEmpty()` / `clear()`: consulta ou limpa o mapa.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedHashMap.html">Oracle Java SE 21 - LinkedHashMap</a></div>
+
+---
+
+# java.util.LinkedHashMap: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-linkedhashmap-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.LinkedHashMap;
+//...
+
+LinkedHashMap<String, String> capitais =
+    new LinkedHashMap<>();
+
+capitais.put("DF", "Brasília");
+capitais.put("BA", "Salvador");
+capitais.put("SP", "São Paulo");
+
+System.out.println(capitais.keySet());
+//[DF, BA, SP]
+
+capitais.putFirst("RJ", "Rio");
+System.out.println(capitais.firstEntry());
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeMap: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-treemap-hierarchy.png">
+
+</div>
+<div>
+
+- Mapa ordenado por chave
+- Implementa `NavigableMap`
+- Baseado em árvore rubro-negra
+- Ordena por ordem natural ou `Comparator`
+- Não permite chaves duplicadas
+- Não é _thread-safe_
+- Complexidade das operações
+  - `containsKey`, `get`, `put` e `remove`: O(log n)
+- A ordenação deve ser consistente com `equals`
+
+</div>
+</div>
+
+---
+
+# java.util.TreeMap: hierarquia simplificada
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-treemap-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.TreeMap;
+import java.util.Map;
+import java.util.SortedMap;
+//...
+
+TreeMap<String, Aluno> alunos =
+    new TreeMap<>();
+
+Map<String, Aluno> mapa =
+    new TreeMap<>();
+
+SortedMap<String, Aluno> ordenado =
+    new TreeMap<>();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeMap: principais métodos
+
+- `put(K k, V v)`: associa uma chave a um valor.
+- `get(Object k)`: retorna o valor associado à chave.
+- `remove(Object k)`: remove o par associado à chave.
+- `containsKey(Object k)`: verifica se a chave existe.
+- `firstKey()` / `lastKey()`: acessa menor ou maior chave.
+- `lowerKey(K k)` / `higherKey(K k)`: navega para chaves vizinhas.
+- `floorKey(K k)` / `ceilingKey(K k)`: navega com inclusão.
+- `firstEntry()` / `lastEntry()`: acessa menor ou maior entrada.
+- `descendingMap()`: retorna uma visão em ordem decrescente.
+- `keySet()` / `values()` / `entrySet()`: visões do mapa.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html">Oracle Java SE 21 - TreeMap</a></div>
+
+---
+
+# java.util.TreeMap: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-treemap-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.TreeMap;
+//...
+
+TreeMap<String, Integer> notas =
+    new TreeMap<>();
+
+notas.put("Bruno", 8);
+notas.put("Ana", 10);
+notas.put("Carla", 9);
+
+System.out.println(notas.keySet());
+//[Ana, Bruno, Carla]
+
+System.out.println(notas.firstKey()); //Ana
+System.out.println(notas.higherKey("Ana")); //Bruno
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# HashMap, LinkedHashMap e TreeMap
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Ordem</th>
+      <th>Chaves</th>
+      <th>null</th>
+      <th>Ponto forte</th>
+      <th>Cuidado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HashMap</code></td>
+      <td>não garante</td>
+      <td>únicas</td>
+      <td>uma chave; vários valores</td>
+      <td><code>get</code> e <code>put</code> O(1), em média</td>
+      <td>não use quando a ordem importa</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashMap</code></td>
+      <td>inserção ou acesso</td>
+      <td>únicas</td>
+      <td>uma chave; vários valores</td>
+      <td>preserva ordem previsível</td>
+      <td>custo extra para manter encadeamento</td>
+    </tr>
+    <tr>
+      <td><code>TreeMap</code></td>
+      <td>ordenada por chave</td>
+      <td>únicas</td>
+      <td>sem chave nula no uso comum</td>
+      <td>mantém chaves sempre ordenadas</td>
+      <td>operações principais custam O(log n)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="source">Fonte: documentação Oracle Java SE 21 para <code>HashMap</code>, <code>LinkedHashMap</code> e <code>TreeMap</code>.</div>
+
+---
+
 # Map é diferente
 
 `Map` não é uma `Collection` no sentido estrito.

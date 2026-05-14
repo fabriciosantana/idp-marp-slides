@@ -1,0 +1,12 @@
+@startuml
+title Hierarquia de java.util.LinkedHashMap - Java 21
+
+interface Map<K, V>
+interface SequencedMap<K, V>
+
+class LinkedHashMap<K, V>
+
+Map <|-- SequencedMap
+SequencedMap <|.. LinkedHashMap
+
+@enduml

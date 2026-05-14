@@ -1,0 +1,26 @@
+@startuml
+title Hierarquia de java.util.TreeMap - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Map<K, V>
+interface SequencedMap<K, V>
+interface SortedMap<K, V>
+interface NavigableMap<K, V>
+interface Cloneable
+interface Serializable
+
+abstract class AbstractMap<K, V>
+class TreeMap<K, V>
+
+Map <|-- SequencedMap
+Map <|-- SortedMap
+SortedMap <|-- NavigableMap
+
+Map <|.. AbstractMap
+AbstractMap <|-- TreeMap
+NavigableMap <|.. TreeMap
+Cloneable <|.. TreeMap
+Serializable <|.. TreeMap
+
+@enduml

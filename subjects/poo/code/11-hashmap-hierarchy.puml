@@ -1,0 +1,20 @@
+@startuml
+title Hierarquia de java.util.HashMap - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Map<K, V>
+interface Cloneable
+interface Serializable
+
+abstract class AbstractMap<K, V>
+class HashMap<K, V>
+
+Map <|.. AbstractMap
+
+AbstractMap <|-- HashMap
+Map <|.. HashMap
+Cloneable <|.. HashMap
+Serializable <|.. HashMap
+
+@enduml

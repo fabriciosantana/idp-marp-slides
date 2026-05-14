@@ -1,0 +1,29 @@
+@startuml
+title java.util.HashMap - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "HashMap<K, V>" as HashMap {
+  + HashMap()
+
+  + put(key: K, value: V): V
+  + putAll(m: Map<? extends K, ? extends V>): void
+  + putIfAbsent(key: K, value: V): V
+
+  + get(key: Object): V
+  + getOrDefault(key: Object, defaultValue: V): V
+
+  + remove(key: Object): V
+  + containsKey(key: Object): boolean
+  + containsValue(value: Object): boolean
+
+  + keySet(): Set<K>
+  + values(): Collection<V>
+  + entrySet(): Set<Map.Entry<K, V>>
+
+  + size(): int
+  + isEmpty(): boolean
+  + clear(): void
+}
+
+@enduml

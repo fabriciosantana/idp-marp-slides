@@ -1,0 +1,34 @@
+@startuml
+title java.util.LinkedHashMap - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "LinkedHashMap<K, V>" as LinkedHashMap {
+  + LinkedHashMap()
+
+  + put(key: K, value: V): V
+  + putFirst(key: K, value: V): V
+  + putLast(key: K, value: V): V
+
+  + get(key: Object): V
+  + getOrDefault(key: Object, defaultValue: V): V
+
+  + firstEntry(): Map.Entry<K, V>
+  + lastEntry(): Map.Entry<K, V>
+  + pollFirstEntry(): Map.Entry<K, V>
+  + pollLastEntry(): Map.Entry<K, V>
+  + reversed(): SequencedMap<K, V>
+
+  + remove(key: Object): V
+  + containsKey(key: Object): boolean
+
+  + keySet(): Set<K>
+  + values(): Collection<V>
+  + entrySet(): Set<Map.Entry<K, V>>
+
+  + size(): int
+  + isEmpty(): boolean
+  + clear(): void
+}
+
+@enduml

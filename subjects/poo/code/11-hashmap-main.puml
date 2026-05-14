@@ -1,0 +1,10 @@
+@startuml
+title Hierarquia de java.util.HashMap - Java 21
+
+interface Map<K, V>
+
+class HashMap<K, V>
+
+Map <|.. HashMap
+
+@enduml

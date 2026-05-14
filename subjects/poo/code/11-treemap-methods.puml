@@ -1,0 +1,37 @@
+@startuml
+title java.util.TreeMap - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "TreeMap<K, V>" as TreeMap {
+  + TreeMap()
+  + TreeMap(comparator: Comparator<? super K>)
+
+  + put(key: K, value: V): V
+  + get(key: Object): V
+  + remove(key: Object): V
+  + containsKey(key: Object): boolean
+
+  + firstKey(): K
+  + lastKey(): K
+  + lowerKey(key: K): K
+  + floorKey(key: K): K
+  + ceilingKey(key: K): K
+  + higherKey(key: K): K
+
+  + firstEntry(): Map.Entry<K, V>
+  + lastEntry(): Map.Entry<K, V>
+  + pollFirstEntry(): Map.Entry<K, V>
+  + pollLastEntry(): Map.Entry<K, V>
+  + descendingMap(): NavigableMap<K, V>
+
+  + keySet(): Set<K>
+  + values(): Collection<V>
+  + entrySet(): Set<Map.Entry<K, V>>
+
+  + comparator(): Comparator<? super K>
+  + size(): int
+  + clear(): void
+}
+
+@enduml
