@@ -2332,30 +2332,6 @@ Interfaces e classes específicas ajudam nesse cenário:
 
 ---
 
-# Exemplo completo
-
-```java
-record Aluno(String nome, String matricula) {}
-
-List<Aluno> alunos = List.of(
-    new Aluno("Ana", "001"),
-    new Aluno("Bruno", "002"),
-    new Aluno("Ana", "003")
-);
-
-Map<String, Long> porNome = alunos.stream()
-    .collect(Collectors.groupingBy(
-        Aluno::nome,
-        Collectors.counting()
-    ));
-
-System.out.println(porNome);
-```
-
-Coleções se integram naturalmente com APIs modernas como Streams.
-
----
-
 # Boas práticas
 
 - Programe para interfaces: `List`, `Set`, `Map`.
