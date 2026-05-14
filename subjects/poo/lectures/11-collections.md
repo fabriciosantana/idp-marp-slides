@@ -458,6 +458,61 @@ As demais coleções serão apresentadas apenas com _generics_
 
 <!-- _class: compact -->
 
+# java.util.ArrayList: iteração
+
+Formas comuns de percorrer uma `ArrayList`:
+
+<div class="columns small">
+
+<div>
+
+```java
+ArrayList<String> nomes =
+    new ArrayList<>();
+
+nomes.add("Ana");
+nomes.add("Bruno");
+nomes.add("Carla");
+
+for (int i = 0; i < nomes.size(); i++) {
+    System.out.println(nomes.get(i));
+}
+
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+```
+
+</div>
+
+<div>
+
+```java
+nomes.forEach(System.out::println);
+
+Iterator<String> it = nomes.iterator();
+
+while (it.hasNext()) {
+    String nome = it.next();
+
+    if (nome.startsWith("B")) {
+        it.remove();
+    }
+}
+```
+
+- Use `for` com índice quando a posição importa.
+- Use `for-each` ou `forEach` para leitura simples.
+- Use `Iterator` para remover durante a iteração.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.LinkedList: hierarquia
 
 <div class="columns">
