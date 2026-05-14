@@ -1,0 +1,36 @@
+@startuml
+title Hierarquia de java.util.LinkedHashSet - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface SequencedCollection<E>
+interface Set<E>
+interface SequencedSet<E>
+interface Cloneable
+interface Serializable
+
+abstract class AbstractCollection<E>
+abstract class AbstractSet<E>
+class HashSet<E>
+class LinkedHashSet<E>
+
+Iterable <|-- Collection
+Collection <|-- SequencedCollection
+Collection <|-- Set
+SequencedCollection <|-- SequencedSet
+Set <|-- SequencedSet
+
+Collection <|.. AbstractCollection
+AbstractCollection <|-- AbstractSet
+Set <|.. AbstractSet
+
+AbstractSet <|-- HashSet
+Set <|.. HashSet
+HashSet <|-- LinkedHashSet
+SequencedSet <|.. LinkedHashSet
+Cloneable <|.. LinkedHashSet
+Serializable <|.. LinkedHashSet
+
+@enduml

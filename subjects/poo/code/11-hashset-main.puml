@@ -1,0 +1,14 @@
+@startuml
+title Hierarquia de java.util.HashSet - Java 21
+
+interface Iterable<E>
+interface Collection<E>
+interface Set<E>
+
+class HashSet<E>
+
+Iterable <|-- Collection
+Collection <|-- Set
+Set <|.. HashSet
+
+@enduml

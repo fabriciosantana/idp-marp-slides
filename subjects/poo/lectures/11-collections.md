@@ -869,6 +869,392 @@ PriorityQueue<String> nomes =
 
 ---
 
+<!-- _class: compact -->
+
+# java.util.HashSet: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-hashset-hierarchy.png">
+
+</div>
+<div>
+
+- Conjunto baseado em tabela hash
+- Implementa `Set`
+- Não permite elementos duplicados
+- Não garante ordem de iteração
+- Permite um valor `null`
+- Não é _thread-safe_
+- Complexidade das operações
+  - `add`, `remove`, `contains` e `size`: O(1), em média
+  - iteração depende do tamanho e da capacidade interna
+
+</div>
+</div>
+
+---
+
+# java.util.HashSet: hierarquia simplificada
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-hashset-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.HashSet;
+import java.util.Set;
+//...
+
+HashSet<String> linguagens = new HashSet<>();
+
+Set<String> matriculas = new HashSet<>();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.HashSet: principais métodos
+
+- `add(E e)`: adiciona o elemento se ele ainda não existir.
+- `remove(Object o)`: remove o elemento, se estiver presente.
+- `contains(Object o)`: verifica se o elemento pertence ao conjunto.
+- `iterator()`: percorre os elementos, sem ordem garantida.
+- `size()`: retorna a quantidade de elementos.
+- `isEmpty()`: indica se o conjunto está vazio.
+- `clear()`: remove todos os elementos.
+- `toArray()`: converte o conjunto para um array.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashSet.html">Oracle Java SE 21 - HashSet</a></div>
+
+---
+
+# java.util.HashSet: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-hashset-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.HashSet;
+//...
+
+HashSet<String> linguagens = new HashSet<>();
+
+linguagens.add("Java");
+linguagens.add("Python");
+linguagens.add("Java");
+
+System.out.println(linguagens.size()); //2
+
+System.out.println(
+    linguagens.contains("Java")
+); //true
+
+linguagens.remove("Python");
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.LinkedHashSet: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-linkedhashset-hierarchy.png">
+
+</div>
+<div>
+
+- Conjunto baseado em hash e lista ligada
+- Implementa `SequencedSet`
+- Não permite elementos duplicados
+- Mantém ordem de inserção
+- Permite um valor `null`
+- Não é _thread-safe_
+- Complexidade das operações
+  - `add`, `remove` e `contains`: O(1), em média
+  - iteração segue a ordem de inserção
+
+</div>
+</div>
+
+---
+
+# java.util.LinkedHashSet: hierarquia simplificada
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-linkedhashset-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.SequencedSet;
+//...
+
+LinkedHashSet<String> nomes =
+    new LinkedHashSet<>();
+
+Set<String> conjunto = new LinkedHashSet<>();
+
+SequencedSet<String> sequenciado =
+    new LinkedHashSet<>();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.LinkedHashSet: principais métodos
+
+- `add(E e)`: adiciona o elemento se ele ainda não existir.
+- `addFirst(E e)`: adiciona ou move o elemento para o início.
+- `addLast(E e)`: adiciona ou move o elemento para o fim.
+- `getFirst()` / `getLast()`: acessa o primeiro ou o último elemento.
+- `removeFirst()` / `removeLast()`: remove o primeiro ou o último elemento.
+- `reversed()`: retorna uma visão na ordem inversa.
+- `contains(Object o)`: verifica se o elemento pertence ao conjunto.
+- `size()` / `isEmpty()` / `clear()`: consulta ou limpa o conjunto.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedHashSet.html">Oracle Java SE 21 - LinkedHashSet</a></div>
+
+---
+
+# java.util.LinkedHashSet: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-linkedhashset-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.LinkedHashSet;
+//...
+
+LinkedHashSet<String> nomes =
+    new LinkedHashSet<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+nomes.add("Ana");
+
+System.out.println(nomes);
+//[Bruno, Ana, Carla]
+
+nomes.addFirst("Diego");
+System.out.println(nomes.getFirst()); //Diego
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeSet: hierarquia
+
+<div class="columns">
+<div>
+
+<img src="../images/11-treeset-hierarchy.png">
+
+</div>
+<div>
+
+- Conjunto ordenado baseado em árvore
+- Implementa `NavigableSet`
+- Não permite elementos duplicados
+- Ordena por ordem natural ou `Comparator`
+- Não é _thread-safe_
+- Complexidade das operações
+  - `add`, `remove` e `contains`: O(log n)
+  - navegação por menor/maior elemento: O(log n)
+- A ordenação deve ser consistente com `equals`
+
+</div>
+</div>
+
+---
+
+# java.util.TreeSet: hierarquia simplificada
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-treeset-main.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.TreeSet;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.NavigableSet;
+//...
+
+TreeSet<String> nomes = new TreeSet<>();
+
+Set<String> conjunto = new TreeSet<>();
+
+SortedSet<String> ordenado = new TreeSet<>();
+
+NavigableSet<String> navegavel = new TreeSet<>();
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeSet: principais métodos
+
+- `add(E e)`: adiciona o elemento se ele ainda não existir.
+- `remove(Object o)`: remove o elemento, se estiver presente.
+- `contains(Object o)`: verifica se o elemento pertence ao conjunto.
+- `first()` / `last()`: acessa o menor ou o maior elemento.
+- `lower(E e)` / `higher(E e)`: navega para vizinhos estritos.
+- `floor(E e)` / `ceiling(E e)`: navega para vizinhos inclusivos.
+- `pollFirst()` / `pollLast()`: remove o menor ou o maior elemento.
+- `descendingSet()`: retorna uma visão em ordem decrescente.
+- `comparator()`: retorna o comparador, ou `null` se usa ordem natural.
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeSet.html">Oracle Java SE 21 - TreeSet</a></div>
+
+---
+
+# java.util.TreeSet: exemplo
+
+<div class="columns">
+
+<div>
+
+<img src="../images/11-treeset-methods.png">
+
+</div>
+
+<div>
+
+```java
+import java.util.TreeSet;
+//...
+
+TreeSet<String> nomes = new TreeSet<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+nomes.add("Ana");
+
+System.out.println(nomes);
+//[Ana, Bruno, Carla]
+
+System.out.println(nomes.first()); //Ana
+System.out.println(nomes.higher("Ana")); //Bruno
+System.out.println(nomes.pollLast()); //Carla
+```
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# HashSet, LinkedHashSet e TreeSet
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Ordem</th>
+      <th>Duplicados</th>
+      <th>null</th>
+      <th>Ponto forte</th>
+      <th>Cuidado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HashSet</code></td>
+      <td>não garante</td>
+      <td>não permite</td>
+      <td>permite um</td>
+      <td>operações básicas O(1), em média</td>
+      <td>não use quando a ordem importa</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashSet</code></td>
+      <td>inserção</td>
+      <td>não permite</td>
+      <td>permite um</td>
+      <td>preserva a ordem de inserção</td>
+      <td>custo extra para manter encadeamento</td>
+    </tr>
+    <tr>
+      <td><code>TreeSet</code></td>
+      <td>ordenada</td>
+      <td>não permite</td>
+      <td>não, no uso comum</td>
+      <td>mantém elementos sempre ordenados</td>
+      <td>operações básicas custam O(log n)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="source">Fonte: documentação Oracle Java SE 21 para <code>HashSet</code>, <code>LinkedHashSet</code> e <code>TreeSet</code>.</div>
+
+---
+
 # Map é diferente
 
 `Map` não é uma `Collection` no sentido estrito.

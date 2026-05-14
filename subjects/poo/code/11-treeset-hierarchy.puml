@@ -1,0 +1,37 @@
+@startuml
+title Hierarquia de java.util.TreeSet - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface SequencedCollection<E>
+interface Set<E>
+interface SequencedSet<E>
+interface SortedSet<E>
+interface NavigableSet<E>
+interface Cloneable
+interface Serializable
+
+abstract class AbstractCollection<E>
+abstract class AbstractSet<E>
+class TreeSet<E>
+
+Iterable <|-- Collection
+Collection <|-- SequencedCollection
+Collection <|-- Set
+SequencedCollection <|-- SequencedSet
+Set <|-- SequencedSet
+Set <|-- SortedSet
+SortedSet <|-- NavigableSet
+
+Collection <|.. AbstractCollection
+AbstractCollection <|-- AbstractSet
+Set <|.. AbstractSet
+
+AbstractSet <|-- TreeSet
+NavigableSet <|.. TreeSet
+Cloneable <|.. TreeSet
+Serializable <|.. TreeSet
+
+@enduml

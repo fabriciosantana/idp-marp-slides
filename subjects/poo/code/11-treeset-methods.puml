@@ -1,0 +1,32 @@
+@startuml
+title java.util.TreeSet - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "TreeSet<E>" as TreeSet {
+  + TreeSet()
+  + TreeSet(comparator: Comparator<? super E>)
+
+  + add(e: E): boolean
+  + remove(o: Object): boolean
+  + contains(o: Object): boolean
+
+  + first(): E
+  + last(): E
+  + lower(e: E): E
+  + floor(e: E): E
+  + ceiling(e: E): E
+  + higher(e: E): E
+
+  + pollFirst(): E
+  + pollLast(): E
+  + descendingSet(): NavigableSet<E>
+  + subSet(from: E, to: E): SortedSet<E>
+
+  + comparator(): Comparator<? super E>
+  + size(): int
+  + isEmpty(): boolean
+  + clear(): void
+}
+
+@enduml

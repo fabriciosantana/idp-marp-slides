@@ -1,0 +1,20 @@
+@startuml
+title java.util.HashSet - principais métodos
+
+skinparam classAttributeIconSize 0
+
+class "HashSet<E>" as HashSet {
+  + HashSet()
+
+  + add(e: E): boolean
+  + remove(o: Object): boolean
+  + contains(o: Object): boolean
+
+  + iterator(): Iterator<E>
+  + size(): int
+  + isEmpty(): boolean
+  + clear(): void
+  + toArray(): Object[]
+}
+
+@enduml

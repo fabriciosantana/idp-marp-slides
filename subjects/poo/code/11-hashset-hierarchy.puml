@@ -1,0 +1,28 @@
+@startuml
+title Hierarquia de java.util.HashSet - Java 21
+
+skinparam classAttributeIconSize 0
+
+interface Iterable<E>
+interface Collection<E>
+interface Set<E>
+interface Cloneable
+interface Serializable
+
+abstract class AbstractCollection<E>
+abstract class AbstractSet<E>
+class HashSet<E>
+
+Iterable <|-- Collection
+Collection <|-- Set
+
+Collection <|.. AbstractCollection
+AbstractCollection <|-- AbstractSet
+Set <|.. AbstractSet
+
+AbstractSet <|-- HashSet
+Set <|.. HashSet
+Cloneable <|.. HashSet
+Serializable <|.. HashSet
+
+@enduml

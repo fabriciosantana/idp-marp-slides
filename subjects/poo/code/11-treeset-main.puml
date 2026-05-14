@@ -1,0 +1,16 @@
+@startuml
+title Hierarquia de java.util.TreeSet - Java 21
+
+interface Iterable<E>
+interface Collection<E>
+interface Set<E>
+interface SortedSet<E>
+
+class TreeSet<E>
+
+Iterable <|-- Collection
+Collection <|-- Set
+Set <|-- SortedSet
+SortedSet <|.. TreeSet
+
+@enduml

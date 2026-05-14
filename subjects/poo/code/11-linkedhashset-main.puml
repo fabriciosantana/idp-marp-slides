@@ -1,0 +1,16 @@
+@startuml
+title Hierarquia de java.util.LinkedHashSet - Java 21
+
+interface Iterable<E>
+interface Collection<E>
+interface Set<E>
+interface SequencedSet<E>
+
+class LinkedHashSet<E>
+
+Iterable <|-- Collection
+Collection <|-- Set
+Set <|-- SequencedSet
+SequencedSet <|.. LinkedHashSet
+
+@enduml
