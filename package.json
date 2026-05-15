@@ -7,7 +7,7 @@
     "pdf:poo": "marp subjects/poo/poo.md --pdf --allow-local-files --output dist/pdf/poo.pdf",
     "html:poo:01": "npm run assets && marp subjects/poo/lectures/01-introduction.md --html --output dist/html/poo-01-introduction.html",
     "pdf:poo:01": "marp subjects/poo/lectures/01-introduction.md --pdf --allow-local-files --output dist/pdf/poo-01-introduction.pdf",
-    "html:poo:11": "npm run assets && marp subjects/poo/lectures/11-collections.md --html --output dist/html/poo-11-collection.html",
+    "html:poo:11": "npm run assets && marp subjects/poo/lectures/11-collections.md --html --output dist/html/poo-11-collections.html",
     "pdf:poo:11": "marp subjects/poo/lectures/11-collections.md --pdf --allow-local-files --output dist/pdf/poo-11-collections.pdf"
   },
   "devDependencies": {
