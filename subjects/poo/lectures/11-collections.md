@@ -22,7 +22,6 @@ footer: <span>Programação Orientada a Objetos</span><span>Java Collections Fra
 - Conhecer `List`, `Set`, `Queue`, `Deque` e `Map`
 - Realizar operações comuns em coleções
 - Reconhecer diferenças de desempenho das coleções
-- Considerar os recursos disponíveis no Java 21
 
 </div>
 
