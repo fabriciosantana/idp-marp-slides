@@ -288,3 +288,29 @@ section.center {
   padding: 144px 140px 72px;
   text-align: center;
 }
+
+section.practice {
+  padding: 132px 132px 108px;
+}
+
+section.practice::after {
+  display: none;
+}
+
+section.practice h1 {
+  left: 63px;
+  top: 27px;
+  width: 973px;
+}
+
+section.practice .compiler-frame {
+  position: absolute;
+  left: 132px;
+  right: 132px;
+  top: 136px;
+  bottom: 108px;
+  width: calc(100% - 264px);
+  height: calc(100% - 244px);
+  border: 2px solid var(--idp-blue);
+  background: #fff;
+}

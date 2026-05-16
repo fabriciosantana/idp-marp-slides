@@ -2584,3 +2584,34 @@ Para escolher bem:
 - comece pela interface;
 - pense em duplicidade, ordem, busca e concorrência;
 - só então escolha a implementação.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# Prática
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44paj6nnv?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=dark&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# Challenge
+
+<iframe
+  class="compiler-frame"
+  frameBorder="0"
+  allowFullScreen
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true"
+  src="https://onecompiler.com/challenges/44pdhzrte/prova?theme=dark?hideLanguageSelection=true?hideNew=true
+  title="OneCompiler Challenge"
+></iframe>
