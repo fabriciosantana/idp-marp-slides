@@ -2606,12 +2606,36 @@ Para escolher bem:
 
 # Challenge
 
+<div class="challenge-login">
+  <input id="onecompiler-user-token" type="password" placeholder="Token do usuário">
+  <button type="button" onclick="loadOneCompilerChallenge()">Carregar challenge</button>
+</div>
+
 <iframe
-  class="compiler-frame"
-  frameBorder="0"
-  allowFullScreen
-  mozallowfullscreen="true"
-  webkitallowfullscreen="true"
-  src="https://onecompiler.com/challenges/44pdhzrte/prova?theme=dark?hideLanguageSelection=true?hideNew=true
+  id="onecompiler-challenge"
+  class="compiler-frame challenge-frame"
+  frameborder="0"
+  allowfullscreen
+  src="https://onecompiler.com/embed/challenges/44pdhzrte/prova?theme=light&hideLanguageSelection=true&hideNew=true"
   title="OneCompiler Challenge"
 ></iframe>
+
+<script>
+function loadOneCompilerChallenge() {
+  const apiKey = 'oc_44pg5vds2_44pg5vdsh_76371a8954165f68cbadb9d6309590ce9eec5eb1195eac75';
+  const userToken = document.getElementById('onecompiler-user-token').value.trim();
+  const frame = document.getElementById('onecompiler-challenge');
+  const base = 'https://onecompiler.com/embed/challenges/44pdhzrte/prova';
+
+  const params = new URLSearchParams({
+    theme: 'light',
+    hideLanguageSelection: 'true',
+    hideNew: 'true'
+  });
+
+  if (apiKey) params.set('apiKey', apiKey);
+  if (userToken) params.set('userApiToken', userToken);
+
+  frame.src = `${base}?${params.toString()}`;
+}
+</script>

@@ -314,3 +314,41 @@ section.practice .compiler-frame {
   border: 2px solid var(--idp-blue);
   background: #fff;
 }
+
+section.practice .challenge-login {
+  position: absolute;
+  left: 132px;
+  right: 132px;
+  top: 108px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+section.practice .challenge-login input,
+section.practice .challenge-login button {
+  height: 36px;
+  border: 2px solid var(--idp-blue);
+  border-radius: 0;
+  font-family: var(--idp-font);
+  font-size: 16px;
+}
+
+section.practice .challenge-login input {
+  padding: 0 10px;
+  color: var(--idp-blue);
+  background: #fff;
+}
+
+section.practice .challenge-login button {
+  padding: 0 16px;
+  color: var(--idp-white);
+  background: var(--idp-blue);
+  cursor: pointer;
+}
+
+section.practice .challenge-frame {
+  top: 154px;
+  height: calc(100% - 262px);
+}
