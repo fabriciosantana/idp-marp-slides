@@ -319,7 +319,7 @@ section.practice .challenge-login {
   position: absolute;
   left: 132px;
   right: 132px;
-  top: 108px;
+  top: 132px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
@@ -349,6 +349,6 @@ section.practice .challenge-login button {
 }
 
 section.practice .challenge-frame {
-  top: 154px;
-  height: calc(100% - 262px);
+  top: 188px;
+  height: calc(100% - 296px);
 }

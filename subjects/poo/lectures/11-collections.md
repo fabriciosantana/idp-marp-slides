@@ -2594,7 +2594,7 @@ Para escolher bem:
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java/44paj6nnv?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=dark&fontSize=20"
+  src="https://onecompiler.com/embed/java/44paj6nnv?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
   title="OneCompiler Java"
   allow="clipboard-read; clipboard-write"
 ></iframe>
@@ -2616,16 +2616,23 @@ Para escolher bem:
   class="compiler-frame challenge-frame"
   frameborder="0"
   allowfullscreen
-  src="https://onecompiler.com/embed/challenges/44pdhzrte/prova?theme=light&hideLanguageSelection=true&hideNew=true"
+  allowFullScreen
+  mozallowfullscreen="true"
+  webkitallowfullscreen="true"
+  src="https://onecompiler.com/embed/challenges/44png67sv/arraylist?theme=light&hideLanguageSelection=true&hideNew=true"
   title="OneCompiler Challenge"
 ></iframe>
+
+<div class="source">
+  Desafio: <a href="https://onecompiler.com/challenges/44png67sv/arraylist">https://onecompiler.com/challenges/44png67sv/arraylist</a>
+</div>
 
 <script>
 function loadOneCompilerChallenge() {
   const apiKey = 'oc_44pg5vds2_44pg5vdsh_76371a8954165f68cbadb9d6309590ce9eec5eb1195eac75';
   const userToken = document.getElementById('onecompiler-user-token').value.trim();
   const frame = document.getElementById('onecompiler-challenge');
-  const base = 'https://onecompiler.com/embed/challenges/44pdhzrte/prova';
+  const base = 'https://onecompiler.com/embed/challenges/44png67sv/arraylist';
 
   const params = new URLSearchParams({
     theme: 'light',
