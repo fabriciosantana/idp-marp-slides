@@ -649,6 +649,53 @@ Diego
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.ArrayList: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.ArrayList: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="arraylist"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+---
+
 <!-- _class: compact -->
 
 # java.util.LinkedList: hierarquia
@@ -876,6 +923,53 @@ Eva
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.LinkedList: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.LinkedList: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="linkedlist"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+---
+
 <!-- _class: compact -->
 
 # java.util.ArrayDeque: hierarquia
@@ -1090,6 +1184,53 @@ B
 
 </div>
 
+</div>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.ArrayDeque: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.ArrayDeque: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="arraydeque"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
 </div>
 
 ---
@@ -1491,6 +1632,53 @@ Saída pela prioridade:
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.PriorityQueue: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.PriorityQueue: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="priorityqueue"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+---
+
 <!-- _class: compact -->
 
 # ArrayList, LinkedList, ArrayDeque e PriorityQueue
@@ -1794,6 +1982,53 @@ A ordem pode variar.
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.HashSet: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.HashSet: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="hashset"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+---
+
 <!-- _class: compact -->
 
 # java.util.LinkedHashSet: hierarquia
@@ -2011,6 +2246,53 @@ Saída:
 
 </div>
 
+</div>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.LinkedHashSet: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.LinkedHashSet: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="linkedhashset"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
 </div>
 
 ---
@@ -2304,6 +2586,53 @@ Saída:
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.TreeSet: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.TreeSet: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="treeset"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+---
+
 <!-- _class: compact -->
 
 # HashSet, LinkedHashSet e TreeSet
@@ -2514,6 +2843,53 @@ for (Map.Entry<String, Aluno> entrada
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.HashMap: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.HashMap: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="hashmap"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+---
+
 <!-- _class: compact -->
 
 # java.util.LinkedHashMap: hierarquia
@@ -2672,6 +3048,53 @@ for (String uf : capitais.keySet()) {
 
 </div>
 
+</div>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.LinkedHashMap: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.LinkedHashMap: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="linkedhashmap"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
 </div>
 
 ---
@@ -2837,6 +3260,55 @@ for (String nome : notas.keySet()) {
 </div>
 
 </div>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.TreeMap: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.TreeMap: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44png67sv"
+  data-challenge-slug="treemap"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+<script src="../scripts/onecompiler-challenge.js"></script>
 
 ---
 
@@ -3173,47 +3645,3 @@ Para escolher bem:
 - comece pela interface;
 - pense em duplicidade, ordem, busca e concorrência;
 - só então escolha a implementação.
-
----
-
-<!-- _class: practice -->
-<!-- _paginate: false -->
-
-# Prática
-
-<iframe
-  class="compiler-frame"
-  src="https://onecompiler.com/embed/java/44paj6nnv?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
-  title="OneCompiler Java"
-  allow="clipboard-read; clipboard-write"
-></iframe>
-
----
-
-<!-- _class: practice -->
-<!-- _paginate: false -->
-
-# Challenge
-
-<div class="challenge-login">
-  <input id="onecompiler-user-token" type="password" placeholder="Token do usuário">
-  <button type="button" onclick="loadOneCompilerChallenge()">Carregar challenge</button>
-</div>
-
-<iframe
-  id="onecompiler-challenge"
-  class="compiler-frame challenge-frame"
-  frameborder="0"
-  allowfullscreen
-  allowFullScreen
-  mozallowfullscreen="true"
-  webkitallowfullscreen="true"
-  src="https://onecompiler.com/embed/challenges/44png67sv/arraylist?theme=light&hideLanguageSelection=true&hideNew=true"
-  title="OneCompiler Challenge"
-></iframe>
-
-<div class="source">
-  Desafio: <a href="https://onecompiler.com/challenges/44png67sv/arraylist">https://onecompiler.com/challenges/44png67sv/arraylist</a>
-</div>
-
-<script src="../scripts/11-collections-challenge.js"></script>
