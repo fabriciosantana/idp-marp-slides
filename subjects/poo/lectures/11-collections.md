@@ -595,6 +595,62 @@ while (it.hasNext()) {
 
 <!-- _class: compact -->
 
+# java.util.ArrayList: ordem dos elementos
+
+<div class="columns small">
+
+<div>
+
+```java
+ArrayList<String> nomes =
+    new ArrayList<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+
+System.out.println(nomes);
+```
+
+Saída:
+
+```text
+[Bruno, Ana, Carla]
+```
+
+</div>
+
+<div>
+
+```java
+nomes.add(1, "Diego");
+
+System.out.println(nomes);
+
+System.out.println(nomes.get(0));
+System.out.println(nomes.get(1));
+```
+
+Saída:
+
+```text
+[Bruno, Diego, Ana, Carla]
+Bruno
+Diego
+```
+
+- Mantém a ordem por posição.
+- Não ordena alfabeticamente de forma automática.
+- Inserir em uma posição desloca os elementos seguintes.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.LinkedList: hierarquia
 
 <div class="columns">
@@ -765,6 +821,63 @@ Iterator<String> inverso =
 
 <!-- _class: compact -->
 
+# java.util.LinkedList: ordem dos elementos
+
+<div class="columns small">
+
+<div>
+
+```java
+LinkedList<String> nomes =
+    new LinkedList<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+
+System.out.println(nomes);
+```
+
+Saída:
+
+```text
+[Bruno, Ana, Carla]
+```
+
+</div>
+
+<div>
+
+```java
+nomes.addFirst("Diego");
+nomes.addLast("Eva");
+
+System.out.println(nomes);
+
+System.out.println(nomes.getFirst());
+System.out.println(nomes.getLast());
+```
+
+Saída:
+
+```text
+[Diego, Bruno, Ana, Carla, Eva]
+Diego
+Eva
+```
+
+- Mantém a ordem dos nós na lista.
+- `addFirst` altera o início da ordem.
+- `addLast` preserva a lógica de inserção no fim.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.ArrayDeque: hierarquia
 
 <div class="columns">
@@ -918,6 +1031,62 @@ while (!tarefas.isEmpty()) {
 - `for-each` percorre do início para o fim.
 - `descendingIterator()` percorre do fim para o início.
 - `poll()` consome a fila removendo elementos.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.ArrayDeque: ordem dos elementos
+
+<div class="columns small">
+
+<div>
+
+```java
+ArrayDeque<String> tarefas =
+    new ArrayDeque<>();
+
+tarefas.addLast("A");
+tarefas.addLast("B");
+tarefas.addFirst("Urgente");
+
+System.out.println(tarefas);
+```
+
+Saída:
+
+```text
+[Urgente, A, B]
+```
+
+</div>
+
+<div>
+
+```java
+System.out.println(tarefas.pollFirst());
+System.out.println(tarefas.pollLast());
+
+tarefas.push("Topo");
+
+System.out.println(tarefas);
+```
+
+Saída:
+
+```text
+Urgente
+B
+[Topo, A]
+```
+
+- A ordem depende da extremidade usada.
+- `addFirst` e `push` colocam no início.
+- `addLast` e `offer` colocam no fim.
 
 </div>
 
@@ -1140,6 +1309,59 @@ Saída pela prioridade:
 
 - Use `peek()` para consultar a próxima prioridade.
 - Use `poll()` para processar em ordem de prioridade.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.PriorityQueue: ordem dos elementos
+
+<div class="columns small">
+
+<div>
+
+```java
+PriorityQueue<Integer> senhas =
+    new PriorityQueue<>();
+
+senhas.offer(30);
+senhas.offer(10);
+senhas.offer(20);
+
+System.out.println(senhas.peek());
+```
+
+Saída:
+
+```text
+10
+```
+
+</div>
+
+<div>
+
+```java
+while (!senhas.isEmpty()) {
+    System.out.println(senhas.poll());
+}
+```
+
+Saída pela prioridade:
+
+```text
+10
+20
+30
+```
+
+- A cabeça segue a prioridade.
+- Na ordem natural, o menor elemento sai primeiro.
+- A iteração não garante a ordem de prioridade.
 
 </div>
 
