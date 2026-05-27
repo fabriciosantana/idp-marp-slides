@@ -197,6 +197,8 @@ www.linkedin.com/in/fabriciofsantana/
 
 As classes do _collections framework_ estão disponíveis no pacote `java.util`.
 
+Implementações concretas de `List`, `Queue`, `Deque` e `Set`
+
 <table class="tiny">
   <thead>
     <tr>
@@ -216,6 +218,16 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
       <td><code>List</code> / <code>Deque</code></td>
       <td>Lista encadeada. Pode ser usada como lista, fila ou pilha.</td>
     </tr>
+        <tr>
+      <td><code>ArrayDeque</code></td>
+      <td><code>Deque</code></td>
+      <td>Fila de duas pontas baseada em array redimensionável. Útil para filas e pilhas.</td>
+    </tr>
+    <tr>
+      <td><code>PriorityQueue</code></td>
+      <td><code>Queue</code></td>
+      <td>Fila em que a cabeça é definida por prioridade, ordem natural ou comparador.</td>
+    </tr>
     <tr>
       <td><code>HashSet</code></td>
       <td><code>Set</code></td>
@@ -231,16 +243,28 @@ As classes do _collections framework_ estão disponíveis no pacote `java.util`.
       <td><code>SortedSet</code></td>
       <td>Conjunto ordenado, normalmente pela ordem natural dos elementos ou por um comparador.</td>
     </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# _Java Collections Framework_: principais classes
+
+As classes do _collections framework_ estão disponíveis no pacote `java.util`.
+
+Implementações concretas de `Map`
+
+<table class="tiny">
+  <thead>
     <tr>
-      <td><code>ArrayDeque</code></td>
-      <td><code>Deque</code></td>
-      <td>Fila de duas pontas baseada em array redimensionável. Útil para filas e pilhas.</td>
+      <th>Implementação</th>
+      <th>Interface principal</th>
+      <th>Descrição</th>
     </tr>
-    <tr>
-      <td><code>PriorityQueue</code></td>
-      <td><code>Queue</code></td>
-      <td>Fila em que a cabeça é definida por prioridade, ordem natural ou comparador.</td>
-    </tr>
+  </thead>
+  <tbody>
     <tr>
       <td><code>HashMap</code></td>
       <td><code>Map</code></td>
