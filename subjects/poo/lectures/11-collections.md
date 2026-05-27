@@ -1371,6 +1371,128 @@ Saída pela prioridade:
 
 <!-- _class: compact -->
 
+# java.util.PriorityQueue: ordem com Comparable
+
+<div class="columns small">
+
+<div>
+
+```java
+public interface Comparable<T> {
+    int compareTo(T outro);
+}
+
+class Atendimento
+    implements Comparable<Atendimento> {
+
+    String nome;
+    int prioridade;
+
+    Atendimento(String nome, int prioridade) {
+        this.nome = nome;
+        this.prioridade = prioridade;
+    }
+
+    public int compareTo(Atendimento outro) {
+        return Integer.compare(
+            this.prioridade,
+            outro.prioridade
+        );
+    }
+}
+```
+
+</div>
+
+<div>
+
+```java
+PriorityQueue<Atendimento> fila =
+    new PriorityQueue<>();
+
+fila.offer(new Atendimento("Ana", 2));
+fila.offer(new Atendimento("Bruno", 1));
+fila.offer(new Atendimento("Carla", 3));
+
+while (!fila.isEmpty()) {
+    System.out.println(fila.poll().nome);
+}
+```
+
+Saída pela prioridade natural:
+
+```text
+Bruno
+Ana
+Carla
+```
+
+- `compareTo` define a ordem natural.
+- Menor prioridade numérica sai primeiro.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.PriorityQueue: ordem com Comparator
+
+<div class="columns small">
+
+<div>
+
+```java
+PriorityQueue<Integer> senhas =
+    new PriorityQueue<>(
+        Comparator.reverseOrder()
+    );
+
+senhas.offer(30);
+senhas.offer(10);
+senhas.offer(20);
+
+System.out.println(senhas.peek());
+```
+
+Saída:
+
+```text
+30
+```
+
+</div>
+
+<div>
+
+```java
+while (!senhas.isEmpty()) {
+    System.out.println(senhas.poll());
+}
+```
+
+Saída pela prioridade:
+
+```text
+30
+20
+10
+```
+
+- O `Comparator` troca a regra de prioridade.
+- Aqui, a ordem natural dos inteiros foi invertida.
+- A maior senha passa a ser processada primeiro.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # ArrayList, LinkedList, ArrayDeque e PriorityQueue
 
 <table class="tiny">
