@@ -656,7 +656,7 @@ Diego
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
   title="OneCompiler Java"
   allow="clipboard-read; clipboard-write"
 ></iframe>
