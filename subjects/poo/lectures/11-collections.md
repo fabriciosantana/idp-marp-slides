@@ -1749,6 +1749,53 @@ while (it.hasNext()) {
 
 <!-- _class: compact -->
 
+# java.util.HashSet: ordem dos elementos
+
+<div class="columns small">
+
+<div>
+
+```java
+HashSet<String> linguagens =
+    new HashSet<>();
+
+linguagens.add("Java");
+linguagens.add("Python");
+linguagens.add("JavaScript");
+
+System.out.println(linguagens);
+```
+
+Saída possível:
+
+```text
+[Java, JavaScript, Python]
+```
+
+</div>
+
+<div>
+
+```java
+for (String linguagem : linguagens) {
+    System.out.println(linguagem);
+}
+```
+
+A ordem pode variar.
+
+- Não preserva ordem de inserção.
+- Não ordena por ordem natural.
+- Use quando unicidade importa mais que ordem.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.LinkedHashSet: hierarquia
 
 <div class="columns">
@@ -1917,6 +1964,59 @@ while (it.hasNext()) {
 
 <!-- _class: compact -->
 
+# java.util.LinkedHashSet: ordem dos elementos
+
+<div class="columns small">
+
+<div>
+
+```java
+LinkedHashSet<String> nomes =
+    new LinkedHashSet<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+nomes.add("Ana");
+
+System.out.println(nomes);
+```
+
+Saída:
+
+```text
+[Bruno, Ana, Carla]
+```
+
+</div>
+
+<div>
+
+```java
+nomes.addFirst("Diego");
+nomes.addLast("Eva");
+
+System.out.println(nomes);
+```
+
+Saída:
+
+```text
+[Diego, Bruno, Ana, Carla, Eva]
+```
+
+- Mantém ordem de inserção.
+- Elementos repetidos não são adicionados.
+- `addFirst` e `addLast` ajustam as extremidades.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.util.TreeSet: hierarquia
 
 <div class="columns">
@@ -2076,6 +2176,127 @@ SortedSet<String> trecho =
 - A iteração segue a ordenação do conjunto.
 - `descendingSet()` percorre em ordem inversa.
 - `subSet()` permite iterar por intervalo.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeSet: ordem com Comparable
+
+<div class="columns small">
+
+<div>
+
+```java
+class Aluno implements Comparable<Aluno> {
+    String nome;
+    int matricula;
+
+    Aluno(String nome, int matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+
+    public int compareTo(Aluno outro) {
+        return Integer.compare(
+            this.matricula,
+            outro.matricula
+        );
+    }
+}
+```
+
+</div>
+
+<div>
+
+```java
+TreeSet<Aluno> alunos =
+    new TreeSet<>();
+
+alunos.add(new Aluno("Ana", 30));
+alunos.add(new Aluno("Bruno", 10));
+alunos.add(new Aluno("Carla", 20));
+
+for (Aluno aluno : alunos) {
+    System.out.println(aluno.nome);
+}
+```
+
+Saída pela ordem natural:
+
+```text
+Bruno
+Carla
+Ana
+```
+
+- `compareTo` define a ordem natural.
+- O `TreeSet` reorganiza os elementos ao inserir.
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.TreeSet: ordem por comparação
+
+<div class="columns small">
+
+<div>
+
+```java
+TreeSet<String> nomes =
+    new TreeSet<>();
+
+nomes.add("Bruno");
+nomes.add("Ana");
+nomes.add("Carla");
+
+System.out.println(nomes);
+```
+
+Ordem natural:
+
+```text
+[Ana, Bruno, Carla]
+```
+
+</div>
+
+<div>
+
+```java
+TreeSet<String> porTamanho =
+    new TreeSet<>(
+        Comparator
+            .comparingInt(String::length)
+            .thenComparing(Comparator.naturalOrder())
+    );
+
+porTamanho.add("Bruno");
+porTamanho.add("Ana");
+porTamanho.add("Eva");
+
+System.out.println(porTamanho);
+```
+
+Saída:
+
+```text
+[Ana, Eva, Bruno]
+```
+
+- `TreeSet` mantém os elementos ordenados.
+- O `Comparator` define a regra de ordenação.
+- A comparação também participa da ideia de duplicidade.
 
 </div>
 
