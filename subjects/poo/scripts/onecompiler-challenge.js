@@ -1,4 +1,4 @@
-const ONECOMPILER_API_KEY = 'oc_44pg5vds2_44pg5vdsh_76371a8954165f68cbadb9d6309590ce9eec5eb1195eac75';
+const ONECOMPILER_API_KEY = 'oc_44pg5vds2_44pg5vdsh_77ec94cc0e6230424ca06bc026f4a479d8c316d768d7247a';
 
 function buildOneCompilerChallengeUrl(challengeId, challengeSlug, options = {}) {
   const base = `https://onecompiler.com/embed/challenges/${challengeId}/${challengeSlug}`;
