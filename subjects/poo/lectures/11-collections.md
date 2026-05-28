@@ -3406,8 +3406,6 @@ for (String nome : notas.keySet()) {
   </div>
 </div>
 
-<script src="../scripts/onecompiler-challenge.js"></script>
-
 ---
 
 <!-- _class: compact -->
@@ -3607,6 +3605,69 @@ System.out.println(notas); //[10, 10, 8, 6]
 Operações como `add`, `remove`, `clear` ou algoritmos que alteram a lista (`sort`, `reverse`, `shuffle`) podem lançar `UnsupportedOperationException` em coleções não modificáveis ou de tamanho fixo.
 
 </div>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.Collections: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44qnp9uy3?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.Collections: demo com tipo complexo
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44qnpcas4?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.Collections: exercício
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44qnpdq7n"
+  data-challenge-slug="collections"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
+</div>
+
+<script src="../scripts/onecompiler-challenge.js"></script>
 
 ---
 
