@@ -2967,7 +2967,21 @@ for (Map.Entry<String, Aluno> entrada
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/44qnrkhbz?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.HashMap: demo com tipo complexo
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44qnrr785?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java"
   allow="clipboard-read; clipboard-write"
 ></iframe>
@@ -2981,7 +2995,7 @@ for (Map.Entry<String, Aluno> entrada
 
 <div
   data-onecompiler-challenge
-  data-challenge-id="44png67sv"
+  data-challenge-id="44qnrsbbk"
   data-challenge-slug="hashmap"
 >
   <div class="challenge-login">
