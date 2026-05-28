@@ -4,13 +4,17 @@ title Hierarquia de java.util.TreeSet - Java 21
 interface Iterable<E>
 interface Collection<E>
 interface Set<E>
+interface SequencedSet<E>
 interface SortedSet<E>
+interface NavigableSet<E>
 
 class TreeSet<E>
 
 Iterable <|-- Collection
 Collection <|-- Set
-Set <|-- SortedSet
-SortedSet <|.. TreeSet
+Set <|-- SequencedSet
+SequencedSet <|-- SortedSet
+SortedSet <|-- NavigableSet
+NavigableSet <|.. TreeSet
 
 @enduml

@@ -22,7 +22,7 @@ Collection <|-- SequencedCollection
 Collection <|-- Set
 SequencedCollection <|-- SequencedSet
 Set <|-- SequencedSet
-Set <|-- SortedSet
+SequencedSet <|-- SortedSet
 SortedSet <|-- NavigableSet
 
 Collection <|.. AbstractCollection

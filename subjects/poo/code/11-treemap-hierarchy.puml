@@ -14,7 +14,7 @@ abstract class AbstractMap<K, V>
 class TreeMap<K, V>
 
 Map <|-- SequencedMap
-Map <|-- SortedMap
+SequencedMap <|-- SortedMap
 SortedMap <|-- NavigableMap
 
 Map <|.. AbstractMap

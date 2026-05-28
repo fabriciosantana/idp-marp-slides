@@ -23,19 +23,19 @@ Iterable <|-- Collection
 
 Collection <|-- SequencedCollection
 SequencedCollection <|-- List
-SequencedCollection <|-- SequencedSet
-SequencedCollection <|-- Deque
 
 Collection <|-- Set
 Set <|-- SequencedSet
-Set <|-- SortedSet
+SequencedCollection <|-- SequencedSet
+SequencedSet <|-- SortedSet
 SortedSet <|-- NavigableSet
 
 Collection <|-- Queue
 Queue <|-- Deque
+SequencedCollection <|-- Deque
 
 Map <|-- SequencedMap
-Map <|-- SortedMap
+SequencedMap <|-- SortedMap
 SortedMap <|-- NavigableMap
 
 @enduml

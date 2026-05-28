@@ -2,11 +2,15 @@
 title Hierarquia de java.util.TreeMap - Java 21
 
 interface Map<K, V>
+interface SequencedMap<K, V>
 interface SortedMap<K, V>
+interface NavigableMap<K, V>
 
 class TreeMap<K, V>
 
-Map <|-- SortedMap
-SortedMap <|.. TreeMap
+Map <|-- SequencedMap
+SequencedMap <|-- SortedMap
+SortedMap <|-- NavigableMap
+NavigableMap <|.. TreeMap
 
 @enduml

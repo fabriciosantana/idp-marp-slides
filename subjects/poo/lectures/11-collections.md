@@ -71,7 +71,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 **Arquitetura unificada**
 
-> O _Java Collections Framework_ é uma arquitetura formada que oferece estrutura de dados para organizar e manipular grupos de objetos independentemente dos detalhes de implementação.
+> O _Java Collections Framework_ é uma arquitetura unificada que oferece estruturas de dados e algoritmos para organizar e manipular grupos de objetos independentemente dos detalhes de implementação.
 
 **Organização**
 
@@ -240,7 +240,7 @@ Implementações concretas de `List`, `Queue`, `Deque` e `Set`
     </tr>
     <tr>
       <td><code>TreeSet</code></td>
-      <td><code>SortedSet</code></td>
+      <td><code>NavigableSet</code></td>
       <td>Conjunto ordenado, normalmente pela ordem natural dos elementos ou por um comparador.</td>
     </tr>
   </tbody>
@@ -277,11 +277,30 @@ Implementações concretas de `Map`
     </tr>
     <tr>
       <td><code>TreeMap</code></td>
-      <td><code>SortedMap</code></td>
+      <td><code>NavigableMap</code></td>
       <td>Mapa ordenado pelas chaves, usando ordem natural ou um comparador.</td>
     </tr>
   </tbody>
 </table>
+
+---
+
+<!-- _class: compact -->
+
+# _Java Collections Framework_: fora do escopo
+
+Esta aula cobre as interfaces centrais, implementações de uso geral e algoritmos de `Collections`.
+
+Também existem outras implementações importantes:
+
+- **Legadas:** `Vector` e `Hashtable`
+  - foram adaptadas para as interfaces do framework;
+  - aparecem em bases antigas, mas não são a escolha padrão para código novo.
+- **Especializadas:** `EnumSet`, `EnumMap`, `WeakHashMap` e `IdentityHashMap`
+  - resolvem problemas específicos;
+  - ficam fora do escopo desta aula introdutória.
+- **Concorrentes:** coleções do pacote `java.util.concurrent`
+  - serão apenas contextualizadas.
 
 ---
 
@@ -1343,8 +1362,8 @@ Comparator<Aluno> porNotaDesc =
 - Fila baseada em prioridade
 - Implementa `Queue`
 - Mantém a cabeça da fila conforme ordem natural ou `Comparator`
-- A cabeça da fila é o elemento de maior prioridade
-  - na ordem natural, é o menor elemento
+- A cabeça da fila é o menor elemento segundo a ordenação definida
+  - essa ordenação pode representar a prioridade do problema
 - A iteração não garante percorrer em ordem de prioridade
 - Não permite valores `null`
 - Não é _thread-safe_
@@ -3704,6 +3723,8 @@ Coleções usadas por várias threads exigem cuidado.
 Interfaces e classes específicas ajudam nesse cenário:
 
 - `BlockingQueue`
+- `TransferQueue`
+- `BlockingDeque`
 - `ConcurrentMap`
 - `ConcurrentNavigableMap`
 - `CopyOnWriteArrayList`
