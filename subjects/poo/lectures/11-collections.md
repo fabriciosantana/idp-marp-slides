@@ -954,7 +954,7 @@ Eva
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.LinkedList: demostração com tipo complexo
+# java.util.LinkedList: demo com tipo complexo
 
 <iframe
   class="compiler-frame"
