@@ -1223,7 +1223,21 @@ B
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/44qn9rh26?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.ArrayDeque: demo com tipo complexo
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44qn9ukhb?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java"
   allow="clipboard-read; clipboard-write"
 ></iframe>
@@ -1237,7 +1251,7 @@ B
 
 <div
   data-onecompiler-challenge
-  data-challenge-id="44png67sv"
+  data-challenge-id="44qn9w7us"
   data-challenge-slug="arraydeque"
 >
   <div class="challenge-login">
