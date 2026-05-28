@@ -1357,7 +1357,7 @@ B
 
 <!-- _class: compact -->
 
-# Ordenação: Comparable e Comparator
+# Ordenação por comparação: Comparable e Comparator
 
 Algumas coleções precisam comparar elementos para decidir prioridade ou posição.
 
@@ -1369,6 +1369,7 @@ Algumas coleções precisam comparar elementos para decidir prioridade ou posiç
 
 - Define a ordem natural da própria classe.
 - Usa o método `compareTo`.
+- Quando retorna `0`, os objetos são equivalentes para a ordenação.
 - Exemplo: `String`, `Integer`, `LocalDate`.
 
 ```java
@@ -1391,6 +1392,7 @@ class Aluno implements Comparable<Aluno> {
 - Define uma ordem externa à classe.
 - Permite múltiplas regras de ordenação.
 - Muito usado em `PriorityQueue`, `TreeSet` e `TreeMap`.
+- Em `TreeSet` e `TreeMap`, também participa da noção de duplicidade.
 
 ```java
 Comparator<Aluno> porNome =
@@ -1905,6 +1907,7 @@ System.out.println(alunos.size()); //1
 
 - Em classes comuns, implemente `equals()` e `hashCode()` de forma consistente.
 - Se a igualdade é pela matrícula, use esse atributo nos dois métodos.
+- Não altere atributos usados em `equals()` ou `hashCode()` depois de inserir o objeto em `HashSet` ou como chave de `HashMap`.
 
 </div>
 
@@ -2481,7 +2484,9 @@ Saída:
 - Complexidade das operações
   - `add`, `remove` e `contains`: O(log n)
   - navegação por menor/maior elemento: O(log n)
+- A comparação define equivalência e duplicidade
 - A ordenação deve ser consistente com `equals`
+- Evite alterar atributos usados na comparação após inserir o elemento
 
 </div>
 </div>
@@ -2680,6 +2685,7 @@ Ana
 ```
 
 - `compareTo` define a ordem natural.
+- Se `compareTo` retorna `0`, o `TreeSet` trata os objetos como equivalentes.
 - O `TreeSet` reorganiza os elementos ao inserir.
 
 </div>
@@ -2740,7 +2746,7 @@ Saída:
 
 - `TreeSet` mantém os elementos ordenados.
 - O `Comparator` define a regra de ordenação.
-- A comparação também participa da ideia de duplicidade.
+- Se o `Comparator` retorna `0`, o conjunto trata os objetos como duplicados.
 
 </div>
 
@@ -3325,7 +3331,9 @@ for (String uf : capitais.keySet()) {
 - Não é _thread-safe_
 - Complexidade das operações
   - `containsKey`, `get`, `put` e `remove`: O(log n)
+- A comparação das chaves define equivalência e duplicidade
 - A ordenação deve ser consistente com `equals`
+- Evite alterar atributos usados na comparação de uma chave
 
 </div>
 </div>
