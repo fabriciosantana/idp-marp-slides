@@ -332,12 +332,71 @@ A interface comunica intenção. A classe implementa a estrutura concreta.
 
 Considere os seguintes critérios:
 
-- **Ordenação**: precisa manter a ordem dos elementos?
+- **Ordem/ordenação**: precisa preservar posição, inserção, prioridade ou ordenar por comparação?
 - **Duplicidade**: pode haver elementos duplicados?
 - **Eficiência**: necessidade de acesso rápido por índice?
 - **Alteração**: muitas inserções e remoções?
 - **Modelo**: modelo de fila (FIFO) ou pilha (LIFO)?
 - **Estrutura**: precisa associar chave-valor?
+
+<div class="callout">
+
+Nem toda coleção que mantém uma ordem está ordenada. “Ordem” é como os elementos aparecem; “ordenação” é uma regra de comparação que organiza os elementos.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# Ordem e ordenação nas coleções
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Comportamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ArrayList</code></td>
+      <td>tem ordem por posição.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedList</code></td>
+      <td>tem ordem por encadeamento/posição.</td>
+    </tr>
+    <tr>
+      <td><code>ArrayDeque</code></td>
+      <td>tem ordem operacional pelas extremidades.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashSet</code></td>
+      <td>tem ordem de inserção.</td>
+    </tr>
+    <tr>
+      <td><code>HashSet</code></td>
+      <td>não garante ordem.</td>
+    </tr>
+    <tr>
+      <td><code>TreeSet</code></td>
+      <td>tem ordenação por comparação.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashMap</code></td>
+      <td>tem ordem de inserção ou acesso.</td>
+    </tr>
+    <tr>
+      <td><code>TreeMap</code></td>
+      <td>tem ordenação por chave.</td>
+    </tr>
+    <tr>
+      <td><code>PriorityQueue</code></td>
+      <td>tem prioridade na cabeça, mas não garante iteração ordenada.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -354,7 +413,7 @@ Considere os seguintes critérios:
   </thead>
   <tbody>
     <tr>
-      <td>Lista ordenada por posição</td>
+      <td>Lista com ordem por posição</td>
       <td><code>List</code></td>
       <td><code>ArrayList</code></td>
       <td>boa escolha padrão; acesso por índice eficiente.</td>
@@ -378,7 +437,7 @@ Considere os seguintes critérios:
       <td>preserva a ordem em que os elementos foram adicionados.</td>
     </tr>
     <tr>
-      <td>Conjunto sem repetição ordenado</td>
+      <td>Conjunto sem repetição com ordenação</td>
       <td><code>SortedSet</code></td>
       <td><code>TreeSet</code></td>
       <td>mantém elementos ordenados por ordem natural ou comparador.</td>
@@ -396,7 +455,7 @@ Considere os seguintes critérios:
       <td>acesso por chave sem garantia de ordem.</td>
     </tr>
     <tr>
-      <td>Mapa ordenado por chave</td>
+      <td>Mapa com ordenação por chave</td>
       <td><code>SortedMap</code></td>
       <td><code>TreeMap</code></td>
       <td>mantém chaves em ordem natural ou por comparador.</td>
