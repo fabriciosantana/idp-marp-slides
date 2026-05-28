@@ -671,7 +671,7 @@ Diego
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.ArrayList: demostração
+# java.util.ArrayList: demonstração
 
 <iframe
   class="compiler-frame"
@@ -959,7 +959,7 @@ Eva
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.LinkedList: demostração
+# java.util.LinkedList: demonstração
 
 <iframe
   class="compiler-frame"
@@ -1238,7 +1238,7 @@ B
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.ArrayDeque: demostração
+# java.util.ArrayDeque: demonstração
 
 <iframe
   class="compiler-frame"
@@ -1696,7 +1696,7 @@ Saída pela prioridade:
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.PriorityQueue: demostração
+# java.util.PriorityQueue: demonstração
 
 <iframe
   class="compiler-frame"
@@ -2060,7 +2060,7 @@ A ordem pode variar.
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.HashSet: demostração
+# java.util.HashSet: demonstração
 
 <iframe
   class="compiler-frame"
@@ -2342,7 +2342,7 @@ Saída:
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.LinkedHashSet: demostração
+# java.util.LinkedHashSet: demonstração
 
 <iframe
   class="compiler-frame"
@@ -2692,7 +2692,7 @@ Saída:
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.TreeSet: demostração
+# java.util.TreeSet: demonstração
 
 <iframe
   class="compiler-frame"
@@ -2963,7 +2963,7 @@ for (Map.Entry<String, Aluno> entrada
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.HashMap: demostração
+# java.util.HashMap: demonstração
 
 <iframe
   class="compiler-frame"
@@ -3186,7 +3186,7 @@ for (String uf : capitais.keySet()) {
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.LinkedHashMap: demostração
+# java.util.LinkedHashMap: demonstração
 
 <iframe
   class="compiler-frame"
@@ -3411,7 +3411,7 @@ for (String nome : notas.keySet()) {
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.TreeMap: demostração
+# java.util.TreeMap: demonstração
 
 <iframe
   class="compiler-frame"
@@ -3672,7 +3672,7 @@ Operações como `add`, `remove`, `clear` ou algoritmos que alteram a lista (`so
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.util.Collections: demostração
+# java.util.Collections: demonstração
 
 <iframe
   class="compiler-frame"
