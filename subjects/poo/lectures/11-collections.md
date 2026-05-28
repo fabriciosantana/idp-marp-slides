@@ -2327,7 +2327,21 @@ Saída:
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?hideTitle=true&hideLanguageSelection=true&hideNew=false&hideNewFileOption=false&hideStdin=true&hideResult=true&hideEditorOptions=false&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/44qnn49rm?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.LinkedHashSet: demo com tipo complexo
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44qnn6yzq?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java"
   allow="clipboard-read; clipboard-write"
 ></iframe>
@@ -2341,7 +2355,7 @@ Saída:
 
 <div
   data-onecompiler-challenge
-  data-challenge-id="44png67sv"
+  data-challenge-id="44qnn9dgn"
   data-challenge-slug="linkedhashset"
 >
   <div class="challenge-login">
