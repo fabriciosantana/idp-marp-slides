@@ -361,39 +361,43 @@ Nem toda coleção que mantém uma ordem está ordenada. “Ordem” é como os 
   <tbody>
     <tr>
       <td><code>ArrayList</code></td>
-      <td>tem ordem por posição.</td>
+      <td>Preserva a sequência por índice: o elemento na posição <code>0</code> vem antes do elemento na posição <code>1</code>.</td>
     </tr>
     <tr>
       <td><code>LinkedList</code></td>
-      <td>tem ordem por encadeamento/posição.</td>
+      <td>Preserva a sequência dos nós e também permite acesso por posição, mas não ordena automaticamente.</td>
     </tr>
     <tr>
       <td><code>ArrayDeque</code></td>
-      <td>tem ordem operacional pelas extremidades.</td>
-    </tr>
-    <tr>
-      <td><code>LinkedHashSet</code></td>
-      <td>tem ordem de inserção.</td>
-    </tr>
-    <tr>
-      <td><code>HashSet</code></td>
-      <td>não garante ordem.</td>
-    </tr>
-    <tr>
-      <td><code>TreeSet</code></td>
-      <td>tem ordenação por comparação.</td>
-    </tr>
-    <tr>
-      <td><code>LinkedHashMap</code></td>
-      <td>tem ordem de inserção ou acesso.</td>
-    </tr>
-    <tr>
-      <td><code>TreeMap</code></td>
-      <td>tem ordenação por chave.</td>
+      <td>Organiza os elementos pela entrada e saída nas extremidades: início e fim da fila.</td>
     </tr>
     <tr>
       <td><code>PriorityQueue</code></td>
-      <td>tem prioridade na cabeça, mas não garante iteração ordenada.</td>
+      <td>Garante que a cabeça tenha a próxima prioridade; a iteração não sai em ordem de prioridade.</td>
+    </tr>
+    <tr>
+      <td><code>HashSet</code></td>
+      <td>Não garante ordem de iteração; a sequência observada não deve fazer parte da lógica.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashSet</code></td>
+      <td>Preserva a ordem em que os elementos únicos foram inseridos.</td>
+    </tr>
+    <tr>
+      <td><code>TreeSet</code></td>
+      <td>Mantém os elementos ordenados por ordem natural ou por um <code>Comparator</code>.</td>
+    </tr>
+    <tr>
+      <td><code>HashMap</code></td>
+      <td>Não garante ordem de iteração das entradas, chaves ou valores.</td>
+    </tr>
+    <tr>
+      <td><code>LinkedHashMap</code></td>
+      <td>Preserva a ordem das entradas por inserção ou, quando configurado, por acesso.</td>
+    </tr>
+    <tr>
+      <td><code>TreeMap</code></td>
+      <td>Mantém as entradas ordenadas pelas chaves, usando ordem natural ou <code>Comparator</code>.</td>
     </tr>
   </tbody>
 </table>
