@@ -425,6 +425,18 @@ Nem toda coleção que mantém uma ordem está ordenada. “Ordem” é como os 
       <td>útil nas extremidades; no meio, só compensa quando já há um iterador posicionado.</td>
     </tr>
     <tr>
+      <td>Fila ou pilha</td>
+      <td><code>Deque</code></td>
+      <td><code>ArrayDeque</code></td>
+      <td>boa opção para FIFO, LIFO e operações nas duas pontas.</td>
+    </tr>
+    <tr>
+      <td>Fila por prioridade</td>
+      <td><code>Queue</code></td>
+      <td><code>PriorityQueue</code></td>
+      <td>processa primeiro o elemento definido pela ordem natural ou por um comparador.</td>
+    </tr>
+    <tr>
       <td>Conjunto sem repetição</td>
       <td><code>Set</code></td>
       <td><code>HashSet</code></td>
@@ -442,17 +454,34 @@ Nem toda coleção que mantém uma ordem está ordenada. “Ordem” é como os 
       <td><code>TreeSet</code></td>
       <td>mantém elementos ordenados por ordem natural ou comparador.</td>
     </tr>
+  </tbody>
+</table>
+
+---
+
+# _Java Collections Framework_: qual escolher?
+
+<table class="tiny">
+  <thead>
     <tr>
-      <td>Fila ou pilha</td>
-      <td><code>Deque</code></td>
-      <td><code>ArrayDeque</code></td>
-      <td>boa opção para FIFO, LIFO e operações nas duas pontas.</td>
+      <th>Necessidade</th>
+      <th>Interface</th>
+      <th>Implementação</th>
+      <th>Critério de escolha</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
       <td>Associação chave-valor</td>
       <td><code>Map</code></td>
       <td><code>HashMap</code></td>
       <td>acesso por chave sem garantia de ordem.</td>
+    </tr>
+    <tr>
+      <td>Mapa com ordem previsível</td>
+      <td><code>SequencedMap</code></td>
+      <td><code>LinkedHashMap</code></td>
+      <td>preserva ordem de inserção ou ordem de acesso, conforme o construtor.</td>
     </tr>
     <tr>
       <td>Mapa com ordenação por chave</td>
