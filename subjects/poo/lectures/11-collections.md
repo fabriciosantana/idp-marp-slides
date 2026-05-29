@@ -3624,7 +3624,7 @@ A classe `Collections` reúne métodos estáticos que operam sobre coleções ou
 
 **Ideia central**
 
-Ela oferece algoritmos reutilizáveis, wrappers e fábricas utilitárias sem depender de uma implementação específica.
+Ela oferece algoritmos reutilizáveis, wrappers e coleções utilitárias sem depender de uma implementação específica.
 
 </div>
 
@@ -3634,6 +3634,7 @@ Exemplos de uso:
 - encontrar mínimo e máximo;
 - contar frequência de elementos;
 - criar coleções vazias, imutáveis ou com cópias repetidas;
+- usar fábricas modernas como `List.of`, `Set.of` e `Map.of`;
 - criar _views_ sincronizadas, não modificáveis ou com checagem dinâmica de tipo.
 
 ---
@@ -3787,6 +3788,51 @@ System.out.println(
 <div class="callout">
 
 Operações como `add`, `remove`, `clear` ou algoritmos que alteram a lista (`sort`, `reverse`, `shuffle`) podem lançar `UnsupportedOperationException` em coleções não modificáveis ou de tamanho fixo.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# Fábricas modernas: List.of, Set.of e Map.of
+
+Além da classe `Collections`, as interfaces `List`, `Set` e `Map` oferecem métodos de fábrica para criar coleções pequenas e imutáveis.
+
+<div class="columns small">
+
+<div>
+
+```java
+List<String> nomes =
+    List.of("Ana", "Bruno", "Carla");
+
+Set<String> linguagens =
+    Set.of("Java", "Python", "C");
+
+Map<String, Integer> notas =
+    Map.of(
+        "Ana", 10,
+        "Bruno", 8
+    );
+```
+
+</div>
+
+<div>
+
+- São úteis para dados fixos, testes e retornos simples.
+- Não permitem adicionar, remover ou limpar elementos.
+- Não aceitam `null`.
+- `Set.of` e `Map.of` não permitem elementos ou chaves duplicadas.
+- Para alterar depois, crie uma coleção modificável a partir delas.
+
+```java
+List<String> mutavel =
+    new ArrayList<>(nomes);
+```
+
+</div>
 
 </div>
 
