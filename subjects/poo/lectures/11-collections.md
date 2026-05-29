@@ -115,7 +115,7 @@ www.linkedin.com/in/fabriciofsantana/
     </tr>
     <tr>
       <td><code>SequencedCollection</code></td>
-      <td>Coleção com ordem de encontro definida, acesso às extremidades e visão reversa.</td>
+      <td>Coleção com ordem de iteração definida, acesso às extremidades e visão reversa.</td>
     </tr>
     <tr>
       <td><code>Set</code></td>
@@ -123,7 +123,7 @@ www.linkedin.com/in/fabriciofsantana/
     </tr>
     <tr>
       <td><code>SequencedSet</code></td>
-      <td>Conjunto com ordem de encontro previsível e operações nas extremidades.</td>
+      <td>Conjunto com ordem de iteração previsível e operações nas extremidades.</td>
     </tr>
     <tr>
       <td><code>SortedSet</code></td>
@@ -139,7 +139,7 @@ www.linkedin.com/in/fabriciofsantana/
     </tr>
     <tr>
       <td><code>Queue</code></td>
-      <td>Coleção normalmente usada como fila, em geral com política primeiro a entrar, primeiro a sair.</td>
+      <td>Fila: elementos entram, aguardam e o próximo a sair fica na cabeça; em geral segue FIFO.</td>
     </tr>
     <tr>
       <td><code>Deque</code></td>
@@ -170,7 +170,7 @@ www.linkedin.com/in/fabriciofsantana/
     </tr>
     <tr>
       <td><code>SequencedMap</code></td>
-      <td>Mapa com ordem de encontro definida, acesso à primeira/última entrada e visão reversa.</td>
+      <td>Mapa com ordem de iteração definida, acesso à primeira/última entrada e visão reversa.</td>
     </tr>
     <tr>
       <td><code>SortedMap</code></td>

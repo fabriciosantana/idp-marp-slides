@@ -1,0 +1,223 @@
+@startmindmap
+* Java Collections Framework
+
+left side
+
+** Conceitos essenciais
+*** Ideia central
+****_ arquitetura unificada para armazenar e manipular grupos de objetos
+****_ interfaces definem contratos; classes concretas definem implementações
+****_ principais operações: adicionar, remover, buscar, iterar, ordenar e agrupar
+****_ pacote principal: java.util
+*** Ordem e ordenação
+**** Ordem
+*****_ sequência em que os elementos aparecem
+*****_ exemplos: posição, inserção, acesso ou extremidades
+**** Ordenação
+*****_ regra de comparação que organiza elementos
+*****_ exemplos: ordem natural, Comparator ou chave ordenada
+**** Cuidados
+*****_ HashSet e HashMap não garantem ordem de iteração
+*****_ PriorityQueue garante prioridade na cabeça, mas não na iteração
+*** Contratos importantes
+**** equals e hashCode
+*****_ decisivos em HashSet, HashMap, LinkedHashSet e LinkedHashMap
+*****_ devem usar os mesmos atributos lógicos
+*****_ não mude atributos usados no hash após inserir na coleção
+**** Comparable
+*****_ define a ordem natural da própria classe
+*****_ compareTo retorna zero quando objetos são equivalentes para ordenação
+**** Comparator
+*****_ define uma regra externa de comparação
+*****_ permite múltiplas ordenações para o mesmo tipo
+*****_ em TreeSet e TreeMap também define duplicidade
+
+** Collections e fábricas
+*** Algoritmos
+**** sort
+*****_ ordena listas por ordem natural ou Comparator
+**** binarySearch
+*****_ busca em lista previamente ordenada
+**** reverse
+*****_ inverte a ordem da lista recebida
+**** shuffle
+*****_ embaralha elementos de uma lista
+**** min e max
+*****_ encontra menor ou maior elemento por comparação
+**** frequency
+*****_ conta ocorrências usando equals
+**** disjoint
+*****_ verifica se duas coleções não compartilham elementos
+*** Wrappers e utilitários
+**** unmodifiableList
+*****_ cria uma visão não modificável
+**** synchronizedList
+*****_ cria uma visão sincronizada
+**** checkedList
+*****_ valida tipos em tempo de execução
+**** emptyList
+*****_ retorna lista vazia imutável
+**** singletonList
+*****_ retorna lista imutável com um elemento
+**** nCopies
+*****_ retorna lista imutável com repetições da mesma referência
+*** Fábricas modernas
+**** List.of
+*****_ cria lista pequena e imutável
+**** Set.of
+*****_ cria conjunto pequeno, imutável e sem duplicados
+**** Map.of
+*****_ cria mapa pequeno, imutável e sem chaves duplicadas
+**** Cuidados
+*****_ não aceitam null
+*****_ não permitem add, remove ou clear
+
+** Escolha rápida
+*** Precisa de lista geral?
+**** ArrayList
+*****_ boa escolha padrão para sequências por índice
+*** Precisa de fila ou pilha?
+**** ArrayDeque
+*****_ eficiente para FIFO, LIFO e extremidades
+*** Precisa de fila por prioridade?
+**** PriorityQueue
+*****_ processa primeiro o elemento prioritário
+*** Precisa remover duplicados sem ordem?
+**** HashSet
+*****_ unicidade com operações O(1) em média
+*** Precisa remover duplicados preservando inserção?
+**** LinkedHashSet
+*****_ unicidade com ordem previsível
+*** Precisa remover duplicados e ordenar?
+**** TreeSet
+*****_ unicidade com ordenação por comparação
+*** Precisa associar chave e valor?
+**** HashMap
+*****_ acesso rápido por chave sem ordem garantida
+*** Precisa de mapa com ordem previsível?
+**** LinkedHashMap
+*****_ entradas em ordem de inserção ou acesso
+*** Precisa de mapa ordenado por chave?
+**** TreeMap
+*****_ chaves sempre ordenadas
+
+** Fora do escopo da aula
+*** Legadas
+**** Vector
+*****_ lista sincronizada antiga; evitar como escolha padrão
+**** Hashtable
+*****_ mapa sincronizado antigo; evitar como escolha padrão
+*** Especializadas
+**** EnumSet
+*****_ conjunto eficiente para valores de enum
+**** EnumMap
+*****_ mapa eficiente com chaves enum
+**** WeakHashMap
+*****_ usa chaves fracas, útil em cenários de cache
+**** IdentityHashMap
+*****_ compara chaves por identidade, não por equals
+*** Concorrentes
+**** ConcurrentHashMap
+*****_ mapa concorrente de uso geral
+**** ConcurrentSkipListMap
+*****_ mapa concorrente ordenado por chave
+**** BlockingQueue
+*****_ fila bloqueante para comunicação entre threads
+**** TransferQueue
+*****_ fila concorrente com transferência direta
+**** BlockingDeque
+*****_ deque bloqueante para duas extremidades
+
+right side
+
+** Interfaces principais
+*** Collection
+**** List
+*****_ sequência por posição e permite duplicados
+**** Set
+*****_ não permite duplicados
+*****_ usa igualdade ou comparação conforme a implementação
+**** Queue
+*****_ fila: elementos entram, aguardam e o próximo a sair fica na cabeça
+**** Deque
+*****_ fila de duas pontas; pode funcionar como fila ou pilha
+*** Map
+****_ associa chave e valor
+****_ não herda de Collection
+****_ não permite chaves duplicadas
+*** Java 21
+**** SequencedCollection
+*****_ coleção com ordem de iteração definida
+**** SequencedSet
+*****_ conjunto com ordem de iteração previsível e operações nas extremidades
+**** SequencedMap
+*****_ mapa com ordem de iteração definida e acesso à primeira/última entrada
+
+** List
+*** ArrayList
+****_ array redimensionável
+****_ acesso por índice: O(1)
+****_ inserção no fim: O(1) amortizado
+****_ inserção/remoção no meio: O(n)
+****_ permite null e duplicados
+*** LinkedList
+****_ lista duplamente encadeada
+****_ também implementa Deque
+****_ acesso por índice: O(n)
+****_ operações nas extremidades: O(1)
+****_ permite null e duplicados
+
+** Queue e Deque
+*** ArrayDeque
+****_ array redimensionável para duas extremidades
+****_ boa opção para fila FIFO e pilha LIFO
+****_ não permite null
+****_ não oferece acesso por índice
+****_ geralmente preferível a Stack para pilhas
+*** PriorityQueue
+****_ cabeça definida por ordem natural ou Comparator
+****_ poll processa em ordem de prioridade
+****_ iteração não garante ordem de prioridade
+****_ não permite null
+****_ inserção/remoção da cabeça: O(log n)
+
+** Set
+*** HashSet
+****_ baseado em tabela hash
+****_ não garante ordem
+****_ permite um null
+****_ add, remove e contains: O(1) em média
+****_ depende de equals e hashCode
+*** LinkedHashSet
+****_ hash com ordem de inserção
+****_ implementa SequencedSet
+****_ permite um null
+****_ add, remove e contains: O(1) em média
+****_ bom para unicidade com ordem previsível
+*** TreeSet
+****_ conjunto ordenado
+****_ implementa NavigableSet
+****_ usa Comparable ou Comparator
+****_ comparação define equivalência e duplicidade
+****_ add, remove e contains: O(log n)
+
+** Map
+*** HashMap
+****_ baseado em tabela hash
+****_ não garante ordem
+****_ permite uma chave null e vários valores null
+****_ get e put: O(1) em média
+****_ depende de equals e hashCode da chave
+*** LinkedHashMap
+****_ HashMap com ordem previsível
+****_ implementa SequencedMap
+****_ ordem de inserção ou de acesso
+****_ útil para histórico, cache simples e LRU
+****_ get e put: O(1) em média
+*** TreeMap
+****_ mapa ordenado por chave
+****_ implementa NavigableMap
+****_ usa ordem natural ou Comparator das chaves
+****_ comparação da chave define equivalência e duplicidade
+****_ get, put e remove: O(log n)
+@endmindmap
