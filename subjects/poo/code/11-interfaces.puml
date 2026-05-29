@@ -28,7 +28,7 @@ Collection <|-- Set
 Set <|-- SequencedSet
 SequencedCollection <|-- SequencedSet
 SequencedSet <|-- SortedSet
-SortedSet <|-- NavigableSet
+SortedSet <|-right- NavigableSet
 
 Collection <|-- Queue
 Queue <|-- Deque
