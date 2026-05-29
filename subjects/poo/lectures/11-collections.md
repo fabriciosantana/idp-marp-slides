@@ -3693,25 +3693,48 @@ Exemplos de uso:
 
 # java.util.Collections: exemplo
 
+<div class="columns">
+
+<div>
+
+<img src="../images/11-collections-methods.png">
+
+</div>
+
+<div>
+
 ```java
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-//...
 
-List<Integer> notas = new ArrayList<>();
+List<Integer> notas =
+    new ArrayList<>();
 
-Collections.addAll(notas, 8, 10, 6, 10);
+Collections.addAll(
+    notas, 8, 10, 6, 10
+);
 
 Collections.sort(notas);
-System.out.println(notas); //[6, 8, 10, 10]
-
-System.out.println(Collections.max(notas)); //10
-System.out.println(Collections.frequency(notas, 10)); //2
+System.out.println(notas);
+// [6, 8, 10, 10]
 
 Collections.reverse(notas);
-System.out.println(notas); //[10, 10, 8, 6]
+System.out.println(notas);
+// [10, 10, 8, 6]
+
+System.out.println(
+    Collections.max(notas)
+); // 10
+
+System.out.println(
+    Collections.frequency(notas, 10)
+); // 2
 ```
+
+</div>
+
+</div>
 
 ---
 

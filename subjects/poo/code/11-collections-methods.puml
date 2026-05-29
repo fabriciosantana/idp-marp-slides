@@ -1,0 +1,24 @@
+@startuml
+title Métodos principais de java.util.Collections
+
+skinparam classAttributeIconSize 0
+
+class Collections <<utility>> {
+  {static} sort(List<T> list)
+  {static} binarySearch(List<T> list, T key)
+  {static} reverse(List<?> list)
+  {static} shuffle(List<?> list)
+  {static} min(Collection<T> coll)
+  {static} max(Collection<T> coll)
+  {static} frequency(Collection<?> c, Object o)
+  {static} disjoint(Collection<?> c1, Collection<?> c2)
+  {static} addAll(Collection<? super T> c, T... elements)
+  {static} unmodifiableList(List<? extends T> list)
+  {static} synchronizedList(List<T> list)
+  {static} checkedList(List<E> list, Class<E> type)
+  {static} emptyList()
+  {static} singletonList(T obj)
+  {static} nCopies(int n, T obj)
+}
+
+@enduml
