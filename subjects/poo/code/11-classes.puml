@@ -62,7 +62,7 @@ Deque <|.. LinkedList
 Set <|.. HashSet
 SequencedSet <|.. LinkedHashSet
 HashSet <|-- LinkedHashSet
-NavigableSet <|.. TreeSet
+NavigableSet <|.right. TreeSet
 
 Queue <|.. PriorityQueue
 Deque <|.. ArrayDeque
