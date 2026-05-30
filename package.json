@@ -1,7 +1,8 @@
 {
   "scripts": {
     "assets": "mkdir -p dist/assets dist/images dist/scripts && cp assets/IDP.png dist/assets/IDP.png && cp subjects/poo/images/* dist/images/ && cp subjects/poo/scripts/* dist/scripts/",
-    "html": "npm run html:poo",
+    "html": "npm run html:all",
+    "html:all": "npm run html:poo && npm run html:poo:01 && npm run html:poo:11 && npm run html:poo:12",
     "pdf": "npm run pdf:poo",
     "html:poo": "npm run assets && marp subjects/poo/poo.md --html --output dist/html/poo.html",
     "pdf:poo": "marp subjects/poo/poo.md --pdf --allow-local-files --output dist/pdf/poo.pdf",
