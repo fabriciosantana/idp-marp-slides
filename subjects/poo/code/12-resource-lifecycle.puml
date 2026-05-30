@@ -1,0 +1,25 @@
+@startuml
+title Ciclo de vida de um recurso de I/O
+
+skinparam linetype ortho
+skinparam shadowing false
+
+[*] --> Fechado
+Fechado --> Aberto : criar stream/reader/writer
+Aberto --> Lendo : read()
+Aberto --> Escrevendo : write()
+Lendo --> Aberto : proxima operacao
+Escrevendo --> Aberto : flush() opcional
+Aberto --> Fechado : close()
+Lendo --> Erro : IOException
+Escrevendo --> Erro : IOException
+Erro --> Fechado : try-with-resources chama close()
+Fechado --> [*]
+
+note right of Aberto
+  O recurso deve ser fechado
+  para liberar descritores
+  do sistema operacional.
+end note
+
+@enduml

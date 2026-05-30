@@ -19,6 +19,7 @@ footer: <span>Programação Orientada a Objetos</span><span>Disciplina</span><sp
 
 - Aula 01: Introdução e contextualização
 - Aula 11: Framework Collections
+- Aula 12: Manipulação de arquivos em Java
 
 </div>
 
@@ -34,6 +35,7 @@ linkedin.com/in/seu-perfil
 
 - Aula 01: Introdução e contextualização
 - Aula 11: Framework Collections
+- Aula 12: Manipulação de arquivos em Java
 
 ---
 

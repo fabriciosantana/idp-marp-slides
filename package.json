@@ -8,7 +8,9 @@
     "html:poo:01": "npm run assets && marp subjects/poo/lectures/01-introduction.md --html --output dist/html/poo-01-introduction.html",
     "pdf:poo:01": "marp subjects/poo/lectures/01-introduction.md --pdf --allow-local-files --output dist/pdf/poo-01-introduction.pdf",
     "html:poo:11": "npm run assets && marp subjects/poo/lectures/11-collections.md --html --output dist/html/poo-11-collections.html",
-    "pdf:poo:11": "marp subjects/poo/lectures/11-collections.md --pdf --allow-local-files --output dist/pdf/poo-11-collections.pdf"
+    "pdf:poo:11": "marp subjects/poo/lectures/11-collections.md --pdf --allow-local-files --output dist/pdf/poo-11-collections.pdf",
+    "html:poo:12": "npm run assets && marp subjects/poo/lectures/12-file.md --html --output dist/html/poo-12-file.html",
+    "pdf:poo:12": "marp subjects/poo/lectures/12-file.md --pdf --allow-local-files --output dist/pdf/poo-12-file.pdf"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.1.2"

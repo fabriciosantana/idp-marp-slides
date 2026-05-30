@@ -1,0 +1,86 @@
+@startuml
+title Manipulacao de arquivos em Java - classes principais
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+package "java.io" {
+  interface Closeable
+  interface Serializable
+
+  abstract class InputStream
+  abstract class OutputStream
+  abstract class Reader
+  abstract class Writer
+
+  class File
+  class FileInputStream
+  class FileOutputStream
+  class BufferedInputStream
+  class BufferedOutputStream
+  class InputStreamReader
+  class OutputStreamWriter
+  class FileReader
+  class FileWriter
+  class BufferedReader
+  class BufferedWriter
+  class PrintWriter
+  class PrintStream
+  class ObjectInputStream
+  class ObjectOutputStream
+  class IOException
+}
+
+package "java.nio.file" {
+  interface Path
+  class Files
+  class Paths
+  interface DirectoryStream
+  enum StandardOpenOption
+  enum StandardCopyOption
+  class FileSystems
+  interface WatchService
+}
+
+package "java.nio.channels" {
+  class FileChannel
+}
+
+package "java.util" {
+  class Scanner
+  class Formatter
+}
+
+Closeable <|.. InputStream
+Closeable <|.. OutputStream
+Closeable <|.. Reader
+Closeable <|.. Writer
+
+InputStream <|-- FileInputStream
+InputStream <|-- BufferedInputStream
+InputStream <|-- ObjectInputStream
+OutputStream <|-- FileOutputStream
+OutputStream <|-- BufferedOutputStream
+OutputStream <|-- ObjectOutputStream
+OutputStream <|-- PrintStream
+
+Reader <|-- InputStreamReader
+Reader <|-- FileReader
+Reader <|-- BufferedReader
+Writer <|-- OutputStreamWriter
+Writer <|-- FileWriter
+Writer <|-- BufferedWriter
+Writer <|-- PrintWriter
+
+Serializable <|.. File
+
+File ..> Path : toPath()
+Paths ..> Path : get(...)
+Files ..> Path : usa
+Files ..> FileChannel : newByteChannel(...)
+DirectoryStream ..> Path : itera
+Scanner ..> File : le
+Formatter ..> File : escreve
+WatchService ..> Path : observa
+
+@enduml

@@ -1,0 +1,106 @@
+@startmindmap
+* Manipulacao de arquivos em Java
+
+left side
+
+** Conceitos essenciais
+*** Persistencia
+****_ variaveis e objetos somem ao final do programa
+****_ arquivos mantem dados entre execucoes
+****_ programas leem, escrevem, atualizam e removem dados
+*** Stream de dados
+****_ fluxo sequencial de bytes ou caracteres
+****_ entrada: programa recebe dados
+****_ saida: programa envia dados
+****_ System.in, System.out e System.err sao streams padrao
+*** Tipos de conteudo
+**** Texto
+*****_ Reader e Writer
+*****_ BufferedReader e BufferedWriter
+*****_ Scanner, Formatter e PrintWriter
+**** Binario
+*****_ InputStream e OutputStream
+*****_ FileInputStream e FileOutputStream
+*****_ Files.readAllBytes e Files.write
+*** Fechamento de recursos
+**** try-with-resources
+*****_ fecha objetos AutoCloseable
+*****_ reduz vazamento de descritores de arquivo
+**** IOException
+*****_ erro esperado em operacoes de I/O
+*****_ deve ser tratado ou declarado
+
+** java.io
+*** Papel
+****_ API classica baseada em streams
+****_ leitura e escrita sequencial
+****_ suporte a serializacao de objetos
+*** Classes principais
+**** File
+*****_ representa nomes de arquivos e diretorios
+*****_ API legada para metadados e navegacao
+**** InputStream e OutputStream
+*****_ leitura e escrita de bytes
+**** Reader e Writer
+*****_ leitura e escrita de caracteres
+**** BufferedReader e BufferedWriter
+*****_ leitura e escrita eficiente de texto
+**** ObjectInputStream e ObjectOutputStream
+*****_ serializacao binaria de objetos
+*** Cuidados
+****_ definir charset ao transformar bytes em texto
+****_ preferir try-with-resources
+****_ evitar serializacao Java para troca publica de dados
+
+right side
+
+** java.nio.file
+*** Papel
+****_ API moderna de arquivos desde Java 7
+****_ modelo centrado em Path e Files
+****_ suporte a atributos, links, diretorios e sistemas de arquivos
+*** Classes e interfaces
+**** Path
+*****_ caminho para arquivo ou diretorio
+*****_ resolve, normalize, getFileName, toAbsolutePath
+**** Files
+*****_ metodos estaticos para ler, escrever, copiar, mover e apagar
+*****_ exists, isRegularFile, createDirectories
+**** DirectoryStream
+*****_ iteracao preguiçosa por diretorio
+**** StandardOpenOption
+*****_ CREATE, APPEND, TRUNCATE_EXISTING
+**** FileChannel
+*****_ canal para I/O com buffers
+*** Operacoes comuns
+**** Ler texto
+*****_ readString, readAllLines, lines, newBufferedReader
+**** Escrever texto
+*****_ writeString, write, newBufferedWriter
+**** Copiar e mover
+*****_ copy, move, REPLACE_EXISTING
+**** Caminhar em diretorios
+*****_ list, walk, find
+**** Observar diretorios
+*****_ WatchService
+
+** Escolha rapida
+*** Codigo novo geral
+**** Path + Files
+*****_ API mais expressiva para arquivos e diretorios
+*** Processar arquivo grande
+**** BufferedReader ou Files.lines
+*****_ nao carrega tudo de uma vez
+*** Arquivo pequeno
+**** readString ou readAllLines
+*****_ simples e legivel
+*** Dados binarios
+**** InputStream/OutputStream ou Files bytes
+*****_ imagens, PDFs e arquivos nao textuais
+*** Dados estruturados
+**** CSV, JSON ou banco de dados
+*****_ melhor interoperabilidade que serializacao Java
+*** Codigo legado
+**** File.toPath
+*****_ ponte entre java.io.File e java.nio.file.Path
+@endmindmap

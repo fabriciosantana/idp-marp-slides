@@ -1,0 +1,76 @@
+@startuml
+title java.io - familias de streams
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+interface Closeable
+
+abstract class InputStream {
+  +read(): int
+  +read(byte[]): int
+  +close(): void
+}
+
+abstract class OutputStream {
+  +write(int): void
+  +write(byte[]): void
+  +flush(): void
+  +close(): void
+}
+
+abstract class Reader {
+  +read(): int
+  +read(char[]): int
+  +close(): void
+}
+
+abstract class Writer {
+  +write(String): void
+  +flush(): void
+  +close(): void
+}
+
+class FileInputStream
+class BufferedInputStream
+class ObjectInputStream
+class FileOutputStream
+class BufferedOutputStream
+class ObjectOutputStream
+class PrintStream
+
+class FileReader
+class BufferedReader
+class InputStreamReader
+class FileWriter
+class BufferedWriter
+class OutputStreamWriter
+class PrintWriter
+
+Closeable <|.. InputStream
+Closeable <|.. OutputStream
+Closeable <|.. Reader
+Closeable <|.. Writer
+
+InputStream <|-- FileInputStream
+InputStream <|-- BufferedInputStream
+InputStream <|-- ObjectInputStream
+
+OutputStream <|-- FileOutputStream
+OutputStream <|-- BufferedOutputStream
+OutputStream <|-- ObjectOutputStream
+OutputStream <|-- PrintStream
+
+Reader <|-- FileReader
+Reader <|-- BufferedReader
+Reader <|-- InputStreamReader
+
+Writer <|-- FileWriter
+Writer <|-- BufferedWriter
+Writer <|-- OutputStreamWriter
+Writer <|-- PrintWriter
+
+InputStreamReader ..> InputStream : adapta bytes para caracteres
+OutputStreamWriter ..> OutputStream : adapta caracteres para bytes
+
+@enduml

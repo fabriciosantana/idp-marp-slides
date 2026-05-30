@@ -1,0 +1,25 @@
+@startuml
+title java.nio.file - fluxo de trabalho
+
+skinparam linetype ortho
+skinparam shadowing false
+
+start
+:Criar ou receber um Path;
+:Resolver caminho relativo ou absoluto;
+if (Operacao?) then (Ler)
+  :Files.exists(path);
+  :Files.readString / readAllLines / lines;
+elseif (Escrever)
+  :Files.createDirectories(path.getParent());
+  :Files.writeString / newBufferedWriter;
+elseif (Diretorio)
+  :Files.list / walk / DirectoryStream;
+else (Mover/copiar/apagar)
+  :Files.copy / move / delete;
+endif
+:Tratar IOException;
+:Fechar recursos com try-with-resources quando houver stream aberto;
+stop
+
+@enduml
