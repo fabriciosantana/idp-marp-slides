@@ -15,31 +15,17 @@ abstract class Reader {
 }
 
 class BufferedReader
-class CharArrayReader
-class FilterReader
 class InputStreamReader
 class FileReader
-class PipedReader
-class StringReader
-class PushbackReader
-class LineNumberReader
 
 Readable <|.. Reader
 Closeable <|.. Reader
 
 Reader <|-- BufferedReader
-Reader <|-- CharArrayReader
-Reader <|-- FilterReader
 Reader <|-- InputStreamReader
-Reader <|-- PipedReader
-Reader <|-- StringReader
 
-InputStreamReader <|-- FileReader
-FilterReader <|-- PushbackReader
-BufferedReader <|-- LineNumberReader
+InputStreamReader <|.right. FileReader
 
-BufferedReader ..> Reader : envolve
-InputStreamReader ..> InputStream : bytes para caracteres
-FileReader ..> FileInputStream : atalho para arquivo
+BufferedReader ..> Reader
 
 @enduml

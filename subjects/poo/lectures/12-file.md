@@ -387,7 +387,23 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 # java.io: Reader
 
+`Reader` é a base para ler texto em Java: suas subclasses leem caracteres, podem usar buffers para eficiência e adaptam entradas de arquivo para leitura textual.
+
 <img src="../images/12-file-classes-java.io-Reader.png">
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.io: Reader e Writer
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44r5h796b?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
 
 ---
 
