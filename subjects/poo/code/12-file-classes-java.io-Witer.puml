@@ -16,31 +16,17 @@ abstract class Writer {
 }
 
 class BufferedWriter
-class CharArrayWriter
-class FilterWriter
 class OutputStreamWriter
 class FileWriter
-class PipedWriter
-class PrintWriter
-class StringWriter
 
 Appendable <|.. Writer
 Closeable <|.. Writer
 Flushable <|.. Writer
 
 Writer <|-- BufferedWriter
-Writer <|-- CharArrayWriter
-Writer <|-- FilterWriter
 Writer <|-- OutputStreamWriter
-Writer <|-- PipedWriter
-Writer <|-- PrintWriter
-Writer <|-- StringWriter
 
-OutputStreamWriter <|-- FileWriter
+OutputStreamWriter <|.right. FileWriter
 
-BufferedWriter ..> Writer : envolve
-PrintWriter ..> Writer : escrita formatada
-OutputStreamWriter ..> OutputStream : caracteres para bytes
-FileWriter ..> FileOutputStream : atalho para arquivo
-
+BufferedWriter ..> Writer
 @enduml

@@ -154,6 +154,47 @@ Antes de escolher uma classe de I/O, precisamos entender como o conteúdo do arq
 
 ---
 
+# Bytes vs. caracteres
+
+Todo arquivo é armazenado como bytes; a diferença é se o programa trata esses bytes diretamente ou se os converte para caracteres usando uma codificação de texto.
+
+<div class="columns">
+<div>
+
+**Bytes**
+
+```java
+try (InputStream in =
+         new FileInputStream("foto.png")) {
+    byte[] dados = in.readAllBytes();
+    System.out.println(dados.length);
+}
+```
+
+- Adequado para conteúdo binário
+- Não interpreta codificação de texto
+
+</div>
+<div>
+
+**Caracteres**
+
+```java
+try (BufferedReader reader =
+         new BufferedReader(
+             new FileReader("nomes.txt"))) {
+    System.out.println(reader.readLine());
+}
+```
+
+- Adequado para texto
+- Depende de charset
+
+</div>
+</div>
+
+---
+
 # Pacotes fundamentais
 
 A manipulação de arquivos em Java envolve mais de um pacote: alguns representam fluxos de dados, outros representam caminhos, operações no sistema de arquivos e utilitários para processar o conteúdo lido.
@@ -227,12 +268,6 @@ Além dos pacotes centrais, algumas tarefas exigem apoio de APIs especializadas 
     </tr>
   </tbody>
 </table>
-
----
-
-# Arquitetura geral de I/O
-
-<img src="../images/12-file-classes.png">
 
 ---
 
@@ -324,90 +359,47 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 ---
 
-# `java.io`: `OutputStream`
-
-<img src="../images/12-file-classes-java.io-outputstream.png">
-
----
-
-# `java.io`: `InputStream`
-
-<img src="../images/12-file-classes-java.io-InputStream.png">
-
----
-
-# `java.io`: `Reader`
-
-<img src="../images/12-file-classes-java.io-Reader.png">
-
----
-
-# `java.io`: `Writer`
-
-<img src="../images/12-file-classes-java.io-Witer.png">
-
----
-
 <!-- _class: compact -->
 
-# `java.io`: visão geral
+# java.io: visão geral
 
 `java.io` é a API clássica de I/O do Java.
 
 **Famílias principais**
 
 - `File`: representa um caminho abstrato de arquivo ou diretório
-- `InputStream` / `OutputStream`: leitura e escrita de bytes
 - `Reader` / `Writer`: leitura e escrita de caracteres
+- `InputStream` / `OutputStream`: leitura e escrita de bytes
 - `BufferedReader` / `BufferedWriter`: leitura e escrita textual com buffer
-- `PrintWriter` / `PrintStream`: escrita formatada e conveniente
 - `ObjectInputStream` / `ObjectOutputStream`: serialização binária de objetos
+- `PrintWriter` / `PrintStream`: escrita formatada e conveniente
 - `IOException`: erro comum em operações de entrada e saída
 
 ---
 
-# `java.io`: famílias de streams
+# java.io: Writer
 
-<img src="../images/12-io-hierarchy.png">
+`Writer` é a base para escrever texto em Java: suas subclasses gravam caracteres, podem usar buffers para melhorar desempenho e fazem a ponte entre texto e bytes quando necessário.
+
+<img src="../images/12-file-classes-java.io-Witer.png">
 
 ---
 
-# Bytes vs. caracteres
+# java.io: Reader
 
-<div class="columns">
-<div>
+<img src="../images/12-file-classes-java.io-Reader.png">
 
-**Bytes**
+---
 
-```java
-try (InputStream in =
-         new FileInputStream("foto.png")) {
-    byte[] dados = in.readAllBytes();
-    System.out.println(dados.length);
-}
-```
+# java.io: OutputStream
 
-- Adequado para conteúdo binário
-- Não interpreta codificação de texto
+<img src="../images/12-file-classes-java.io-outputstream.png">
 
-</div>
-<div>
+---
 
-**Caracteres**
+# java.io: InputStream
 
-```java
-try (BufferedReader reader =
-         new BufferedReader(
-             new FileReader("nomes.txt"))) {
-    System.out.println(reader.readLine());
-}
-```
-
-- Adequado para texto
-- Depende de charset
-
-</div>
-</div>
+<img src="../images/12-file-classes-java.io-InputStream.png">
 
 ---
 
@@ -434,7 +426,7 @@ Charset utf8 = StandardCharsets.UTF_8;
 
 ---
 
-# `try-with-resources`
+# try-with-resources
 
 Recursos de I/O precisam ser fechados.
 
@@ -459,26 +451,21 @@ O `try-with-resources` fecha automaticamente objetos que implementam `AutoClosea
 
 <!-- _class: compact -->
 
-# `java.nio.file`: visão geral
+# java.nio.file: antes dos exemplos
 
-`java.nio.file` é a API moderna para arquivos e diretórios.
+Antes de entrar nos exemplos, guarde a ideia central da API:
 
-**Conceito central**
+- o caminho fica em `Path`;
+- as operações ficam em `Files`;
+- as opções dizem como abrir, copiar, mover ou consultar;
+- diretórios podem ser percorridos por `DirectoryStream`, `Files.list` ou `Files.walk`;
+- quase toda operação real de arquivo pode lançar `IOException`.
 
 > Em código Java atual, normalmente começamos por um `Path` e executamos operações por meio da classe utilitária `Files`.
 
-**Classes e interfaces principais**
-
-- `Path`: representa o caminho de um arquivo ou diretório
-- `Files`: métodos estáticos para ler, escrever, copiar, mover, apagar e consultar
-- `DirectoryStream`: iteração por diretório
-- `StandardOpenOption`: opções de abertura e escrita
-- `StandardCopyOption`: opções de cópia e movimentação
-- `WatchService`: monitoramento de alterações em diretórios
-
 ---
 
-# `Path`: caminho para arquivo ou diretório
+# Path: caminho para arquivo ou diretório
 
 ```java
 Path relativo = Path.of("data", "entrada.txt");
@@ -497,7 +484,7 @@ Ele representa a localização; as operações geralmente ficam em `Files`.
 
 ---
 
-# `Files`: operações comuns
+# Files: operações comuns
 
 ```java
 Path path = Path.of("data", "entrada.txt");
@@ -518,7 +505,7 @@ System.out.println(Files.getLastModifiedTime(path));
 
 ---
 
-# `java.nio.file`: fluxo de trabalho
+# java.nio.file: fluxo de trabalho
 
 <img src="../images/12-nio-workflow.png">
 
@@ -526,7 +513,7 @@ System.out.println(Files.getLastModifiedTime(path));
 
 <!-- _class: compact -->
 
-# Ler arquivo pequeno com `Files.readString`
+# Ler arquivo pequeno com Files.readString
 
 ```java
 import java.io.IOException;
@@ -554,7 +541,7 @@ Boa opção para arquivos pequenos.
 
 <!-- _class: compact -->
 
-# Ler linhas com `Files.readAllLines`
+# Ler linhas com Files.readAllLines
 
 ```java
 Path path = Path.of("data", "alunos.csv");
@@ -578,7 +565,7 @@ Use quando o arquivo cabe confortavelmente na memória.
 
 <!-- _class: compact -->
 
-# Processar arquivo grande com `Files.lines`
+# Processar arquivo grande com Files.lines
 
 ```java
 Path path = Path.of("data", "acessos.log");
@@ -600,7 +587,7 @@ try (Stream<String> linhas = Files.lines(path, StandardCharsets.UTF_8)) {
 
 <!-- _class: compact -->
 
-# Escrever texto com `Files.writeString`
+# Escrever texto com Files.writeString
 
 ```java
 Path path = Path.of("data", "saida.txt");
@@ -624,7 +611,7 @@ Por padrão, a escrita cria o arquivo se ele não existir e substitui o conteúd
 
 <!-- _class: compact -->
 
-# Acrescentar conteúdo com `StandardOpenOption`
+# Acrescentar conteúdo com StandardOpenOption
 
 ```java
 Path path = Path.of("data", "eventos.log");
@@ -710,7 +697,7 @@ try {
 
 <!-- _class: compact -->
 
-# Diretórios com `Files`
+# Diretórios com Files
 
 ```java
 Path dir = Path.of("data");
@@ -734,7 +721,7 @@ try {
 
 <!-- _class: compact -->
 
-# Percorrer árvore com `Files.walk`
+# Percorrer árvore com Files.walk
 
 ```java
 Path raiz = Path.of("data");
@@ -753,7 +740,7 @@ try (Stream<Path> caminhos = Files.walk(raiz)) {
 
 ---
 
-# `DirectoryStream`
+# DirectoryStream
 
 `DirectoryStream` permite iterar por diretórios com filtro simples.
 
@@ -777,7 +764,7 @@ try (DirectoryStream<Path> stream =
 
 <!-- _class: compact -->
 
-# `Scanner`: leitura orientada a tokens
+# Scanner: leitura orientada a tokens
 
 ```java
 Path path = Path.of("data", "notas.csv");
@@ -800,7 +787,7 @@ try (Scanner scanner = new Scanner(path, StandardCharsets.UTF_8)) {
 
 ---
 
-# `Formatter`: escrita formatada
+# Formatter: escrita formatada
 
 ```java
 Path path = Path.of("data", "boletim.txt");
@@ -822,7 +809,7 @@ try (Formatter out =
 
 <!-- _class: compact -->
 
-# `BufferedReader` e `BufferedWriter`
+# BufferedReader e BufferedWriter
 
 ```java
 Path entrada = Path.of("data", "entrada.txt");
@@ -849,7 +836,7 @@ Boa escolha para processamento linha a linha.
 
 ---
 
-# `File`: API legada
+# File: API legada
 
 `java.io.File` representa um caminho abstrato.
 
@@ -871,7 +858,7 @@ Em código novo, prefira `Path` e `Files`. Quando encontrar `File` em código le
 
 ---
 
-# `Path` vs. `File`
+# Path vs. File
 
 <table class="tiny">
   <thead>
@@ -1266,6 +1253,18 @@ Antes de escrever código de arquivo, pergunte:
 - A escrita deve substituir ou acrescentar?
 - Qual exceção deve ser tratada de forma específica?
 - O recurso será fechado automaticamente?
+
+---
+
+# Arquitetura geral de I/O
+
+<img src="../images/12-file-classes.png">
+
+---
+
+# java.io: famílias de streams
+
+<img src="../images/12-io-hierarchy.png">
 
 ---
 
