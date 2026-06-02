@@ -52,21 +52,15 @@ www.linkedin.com/in/fabriciofsantana/
 
 # Arquivo: o que é?
 
-**Ideia central**
-
-> Para um programa Java, arquivo é um recurso externo que pode ser acessado por um caminho e processado como fluxo de bytes, caracteres ou registros estruturados.
+> Para um programa Java, arquivo é um recurso externo que pode ser acessado por um caminho e processado como fluxo (_stream_) de bytes, caracteres ou registros estruturados.
 
 <div class="callout">
+
+**Ideia central**
 
 Arquivos não são objetos comuns em memória. Eles dependem do sistema operacional, permissões, caminhos, codificação de texto e fechamento de recursos.
 
 </div>
-
----
-
-# Manipulação de arquivos: mapa da aula
-
-<img src="../images/12-file-mindmap.png">
 
 ---
 
@@ -115,7 +109,11 @@ Quando um programa Java inicia, ele já possui três fluxos padrão:
   </tbody>
 </table>
 
-Esses fluxos podem ser redirecionados com `System.setIn`, `System.setOut` e `System.setErr`.
+Esses fluxos podem ser redirecionados com:
+
+- `System.setIn`
+- `System.setOut`
+- `System.setErr`.
 
 ---
 
@@ -1150,6 +1148,12 @@ Antes de escrever código de arquivo, pergunte:
 - A escrita deve substituir ou acrescentar?
 - Qual exceção deve ser tratada de forma específica?
 - O recurso será fechado automaticamente?
+
+---
+
+# Manipulação de arquivos: mapa da aula
+
+<img src="../images/12-file-mindmap.png">
 
 ---
 
