@@ -230,6 +230,103 @@ Esses fluxos podem ser redirecionados com:
 
 ---
 
+# java.nio.file: classes principais
+
+<img src="../images/12-file-classes-java.nio.png">
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: métodos principais
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Classe/interface</th>
+      <th>Métodos e usos principais</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Path</code></td>
+      <td><code>of</code>, <code>resolve</code>, <code>normalize</code>, <code>toAbsolutePath</code>, <code>getFileName</code>, <code>getParent</code>.</td>
+    </tr>
+    <tr>
+      <td><code>Paths</code></td>
+      <td><code>get</code>. Fábrica legada/conveniente para criar <code>Path</code>; aparece muito em código anterior a <code>Path.of</code>.</td>
+    </tr>
+    <tr>
+      <td><code>Files</code></td>
+      <td><code>exists</code>, <code>isRegularFile</code>, <code>createDirectories</code>, <code>readString</code>, <code>readAllLines</code>, <code>writeString</code>, <code>copy</code>, <code>move</code>, <code>deleteIfExists</code>, <code>list</code>, <code>walk</code>.</td>
+    </tr>
+    <tr>
+      <td><code>FileSystems</code></td>
+      <td><code>getDefault</code>, <code>getFileSystem</code>, <code>newFileSystem</code>. Acesso a sistemas de arquivos locais ou especiais.</td>
+    </tr>
+    <tr>
+      <td><code>FileSystem</code></td>
+      <td><code>getPath</code>, <code>getSeparator</code>, <code>getRootDirectories</code>, <code>isReadOnly</code>, <code>provider</code>.</td>
+    </tr>
+    <tr>
+      <td><code>DirectoryStream</code></td>
+      <td><code>iterator</code>, <code>close</code>. Usado com <code>Files.newDirectoryStream</code> para percorrer diretórios.</td>
+    </tr>
+    <tr>
+      <td><code>StandardOpenOption</code></td>
+      <td><code>CREATE</code>, <code>CREATE_NEW</code>, <code>APPEND</code>, <code>TRUNCATE_EXISTING</code>, <code>READ</code>, <code>WRITE</code>.</td>
+    </tr>
+    <tr>
+      <td><code>StandardCopyOption</code></td>
+      <td><code>REPLACE_EXISTING</code>, <code>COPY_ATTRIBUTES</code>, <code>ATOMIC_MOVE</code>.</td>
+    </tr>
+    <tr>
+      <td><code>LinkOption</code></td>
+      <td><code>NOFOLLOW_LINKS</code>. Evita seguir links simbólicos em consultas de metadados.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.nio.file: demonstração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44qtqw3s9?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+# `java.io`: `OutputStream`
+
+<img src="../images/12-file-classes-java.io-outputstream.png">
+
+---
+
+# `java.io`: `InputStream`
+
+<img src="../images/12-file-classes-java.io-InputStream.png">
+
+---
+
+# `java.io`: `Reader`
+
+<img src="../images/12-file-classes-java.io-Reader.png">
+
+---
+
+# `java.io`: `Writer`
+
+<img src="../images/12-file-classes-java.io-Witer.png">
+
+---
+
 <!-- _class: compact -->
 
 # `java.io`: visão geral
