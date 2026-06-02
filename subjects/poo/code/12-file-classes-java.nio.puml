@@ -5,17 +5,15 @@ skinparam classAttributeIconSize 0
 skinparam linetype ortho
 set separator none
 
-package "java.nio.file" {
-  interface Path
-  class Files
-  class Paths
-  class FileSystems
-  interface FileSystem
-  interface DirectoryStream<T>
-  enum StandardOpenOption
-  enum StandardCopyOption
-  enum LinkOption
-}
+interface Path
+class Files
+class Paths
+class FileSystems
+interface FileSystem
+interface DirectoryStream<T>
+enum StandardOpenOption
+enum StandardCopyOption
+enum LinkOption
 
 Paths ..> Path
 Files ..> Path

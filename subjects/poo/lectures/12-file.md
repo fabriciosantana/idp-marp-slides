@@ -119,6 +119,8 @@ Esses fluxos podem ser redirecionados com:
 
 # Tipos de arquivos
 
+Antes de escolher uma classe de I/O, precisamos entender como o conteúdo do arquivo será interpretado pelo programa: como texto, como bytes ou como representação de objetos.
+
 <table class="tiny">
   <thead>
     <tr>
@@ -153,6 +155,8 @@ Esses fluxos podem ser redirecionados com:
 ---
 
 # Pacotes fundamentais
+
+A manipulação de arquivos em Java envolve mais de um pacote: alguns representam fluxos de dados, outros representam caminhos, operações no sistema de arquivos e utilitários para processar o conteúdo lido.
 
 <table class="tiny">
   <thead>
@@ -190,6 +194,8 @@ Esses fluxos podem ser redirecionados com:
 <!-- _class: compact -->
 
 # Pacotes auxiliares importantes
+
+Além dos pacotes centrais, algumas tarefas exigem apoio de APIs especializadas para tratar codificação de texto, metadados do sistema de arquivos, compactação e integração com URIs.
 
 <table class="tiny">
   <thead>
@@ -232,6 +238,8 @@ Esses fluxos podem ser redirecionados com:
 
 # java.nio.file: classes principais
 
+O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno de caminhos (`Path`), operações utilitárias (`Files`) e opções padronizadas para abrir, copiar e consultar arquivos.
+
 <img src="../images/12-file-classes-java.nio.png">
 
 ---
@@ -239,6 +247,8 @@ Esses fluxos podem ser redirecionados com:
 <!-- _class: compact -->
 
 # java.nio.file: métodos principais
+
+Esta tabela resume quais operações procurar em cada classe: criação de caminhos, leitura e escrita, navegação por diretórios, opções de abertura e comportamento em cópias ou links simbólicos.
 
 <table class="tiny">
   <thead>
