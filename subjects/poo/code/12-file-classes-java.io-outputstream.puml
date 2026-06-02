@@ -14,31 +14,20 @@ abstract class OutputStream {
   +close(): void
 }
 
-class ByteArrayOutputStream
 class FileOutputStream
 class FilterOutputStream
 class BufferedOutputStream
 class DataOutputStream
-class PrintStream
 class ObjectOutputStream
-class PipedOutputStream
 
 Closeable <|.. OutputStream
 Flushable <|.. OutputStream
 
-OutputStream <|-- ByteArrayOutputStream
 OutputStream <|-- FileOutputStream
 OutputStream <|-- FilterOutputStream
 OutputStream <|-- ObjectOutputStream
-OutputStream <|-- PipedOutputStream
 
 FilterOutputStream <|-- BufferedOutputStream
 FilterOutputStream <|-- DataOutputStream
-FilterOutputStream <|-- PrintStream
-
-BufferedOutputStream ..> OutputStream : envolve
-DataOutputStream ..> OutputStream : escreve tipos primitivos
-PrintStream ..> OutputStream : escrita formatada
-ObjectOutputStream ..> OutputStream : serializa objetos
 
 @enduml
