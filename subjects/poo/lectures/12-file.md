@@ -236,6 +236,17 @@ Além dos pacotes centrais, algumas tarefas exigem apoio de APIs especializadas 
 
 ---
 
+# java.nio.file: visão geral
+
+- `java.nio.file` é a API moderna do Java para trabalhar com arquivos e diretórios.
+- `Path` representa o caminho de um arquivo ou diretório no sistema de arquivos.
+- `Files` concentra métodos estáticos para criar, ler, escrever, copiar, mover, apagar e consultar arquivos.
+- `DirectoryStream` permite percorrer o conteúdo de diretórios de forma controlada.
+- `StandardOpenOption`, `StandardCopyOption` e `LinkOption` padronizam decisões comuns de abertura, cópia e tratamento de links.
+- `FileSystem` e `FileSystems` representam o sistema de arquivos usado pela aplicação.
+
+---
+
 # java.nio.file: classes principais
 
 O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno de caminhos (`Path`), operações utilitárias (`Files`) e opções padronizadas para abrir, copiar e consultar arquivos.
