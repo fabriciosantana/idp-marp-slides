@@ -400,6 +400,90 @@ Principais subclasses para saída de texto:
 
 ---
 
+<!-- _class: compact -->
+
+# java.io: FileWriter
+
+<div class="columns">
+<div>
+
+> `FileWriter` escreve caracteres diretamente em um arquivo.
+
+Principais métodos herdados de `Writer`:
+
+- `write(String)`: escreve texto
+- `write(char[])`: escreve caracteres
+- `append(CharSequence)`: acrescenta texto
+- `flush()`: força a saída pendente
+- `close()`: fecha o recurso
+
+Use quando a escrita é simples e não exige controle fino de charset.
+
+</div>
+<div>
+
+```java
+try (FileWriter writer =
+         new FileWriter("mensagem.txt")) {
+
+    writer.write("Primeira linha\n");
+    writer.write("Segunda linha\n");
+    writer.append("Fim\n");
+} catch (IOException e) {
+    System.err.println(
+        "Erro: " + e.getMessage()
+    );
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.io: BufferedWriter
+
+<div class="columns">
+<div>
+
+> `BufferedWriter` envolve outro `Writer` e usa buffer para tornar a escrita textual mais eficiente.
+
+Principais métodos:
+
+- `write(String)`: escreve texto
+- `newLine()`: escreve quebra de linha
+- `flush()`: descarrega o buffer
+- `close()`: fecha o recurso
+
+Use quando houver muitas escritas pequenas ou escrita linha a linha.
+
+</div>
+<div>
+
+```java
+try (BufferedWriter writer =
+         new BufferedWriter(
+             new FileWriter("log.txt"))) {
+
+    writer.write("Aplicacao iniciada");
+    writer.newLine();
+
+    writer.write("Usuario: Ana");
+    writer.newLine();
+} catch (IOException e) {
+    System.err.println(
+        "Erro: " + e.getMessage()
+    );
+}
+```
+
+</div>
+</div>
+
+---
+
 # java.io: Reader
 
 <div class="columns">
@@ -417,6 +501,91 @@ Principais subclasses para entrada de texto:
 <div>
 
 <img src="../images/12-file-classes-java.io-Reader.png">
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.io: FileReader
+
+<div class="columns">
+<div>
+
+> `FileReader` lê caracteres diretamente de um arquivo.
+
+Principais métodos herdados de `Reader`:
+
+- `read()`: lê um caractere
+- `read(char[])`: lê vários caracteres
+- `skip(long)`: pula caracteres
+- `close()`: fecha o recurso
+
+Use quando a leitura é simples e não precisa ser linha a linha.
+
+</div>
+<div>
+
+```java
+try (FileReader reader =
+         new FileReader("mensagem.txt")) {
+
+    int caractere;
+
+    while ((caractere = reader.read()) != -1) {
+        System.out.print((char) caractere);
+    }
+} catch (IOException e) {
+    System.err.println(
+        "Erro: " + e.getMessage()
+    );
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.io: BufferedReader
+
+<div class="columns">
+<div>
+
+> `BufferedReader` envolve outro `Reader` e usa buffer para tornar a leitura textual mais eficiente.
+
+Principais métodos:
+
+- `readLine()`: lê uma linha
+- `read()`: lê um caractere
+- `lines()`: retorna um `Stream<String>`
+- `close()`: fecha o recurso
+
+Use quando quiser ler texto linha a linha.
+
+</div>
+<div>
+
+```java
+try (BufferedReader reader =
+         new BufferedReader(
+             new FileReader("mensagem.txt"))) {
+
+    String linha;
+
+    while ((linha = reader.readLine()) != null) {
+        System.out.println(linha);
+    }
+} catch (IOException e) {
+    System.err.println(
+        "Erro: " + e.getMessage()
+    );
+}
+```
 
 </div>
 </div>
