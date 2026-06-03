@@ -363,33 +363,63 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 # java.io: visão geral
 
-`java.io` é a API clássica de I/O do Java.
+> `java.io` é a API clássica do Java para entrada e saída de dados, organizada em classes que leem e escrevem bytes, caracteres, arquivos e objetos serializados.
 
 **Famílias principais**
 
 - `File`: representa um caminho abstrato de arquivo ou diretório
 - `Reader` / `Writer`: leitura e escrita de caracteres
-- `InputStream` / `OutputStream`: leitura e escrita de bytes
+- `FileReader` / `FileWriter`: leitura e escrita de caracteres em arquivos
 - `BufferedReader` / `BufferedWriter`: leitura e escrita textual com buffer
+- `InputStream` / `OutputStream`: leitura e escrita de bytes
 - `ObjectInputStream` / `ObjectOutputStream`: serialização binária de objetos
-- `PrintWriter` / `PrintStream`: escrita formatada e conveniente
 - `IOException`: erro comum em operações de entrada e saída
 
 ---
 
 # java.io: Writer
 
-`Writer` é a base para escrever texto em Java: suas subclasses gravam caracteres, podem usar buffers para melhorar desempenho e fazem a ponte entre texto e bytes quando necessário.
+<div class="columns">
+<div>
+
+> `Writer` é a base para escrever caracteres em Java.
+
+Principais subclasses para saída de texto:
+
+- em arquivos: `FileWriter`
+- com buffer: `BufferedWriter`
+- adaptando caracteres para bytes: `OutputStreamWriter`
+
+</div>
+<div>
 
 <img src="../images/12-file-classes-java.io-Witer.png">
+
+</div>
+</div>
 
 ---
 
 # java.io: Reader
 
-`Reader` é a base para ler texto em Java: suas subclasses leem caracteres, podem usar buffers para eficiência e adaptam entradas de arquivo para leitura textual.
+<div class="columns">
+<div>
+
+> `Reader` é a base para ler caracteres em Java.
+
+Principais subclasses para entrada de texto:
+
+- de arquivos: `FileReader`
+- com buffer: `BufferedReader`
+- adaptando bytes para caracteres: `InputStreamReader`
+
+</div>
+<div>
 
 <img src="../images/12-file-classes-java.io-Reader.png">
+
+</div>
+</div>
 
 ---
 
