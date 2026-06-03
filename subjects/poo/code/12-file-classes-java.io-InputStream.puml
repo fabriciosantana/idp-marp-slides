@@ -13,30 +13,19 @@ abstract class InputStream {
   +close(): void
 }
 
-class ByteArrayInputStream
 class FileInputStream
 class FilterInputStream
 class BufferedInputStream
 class DataInputStream
 class ObjectInputStream
-class PipedInputStream
-class SequenceInputStream
 
 Closeable <|.. InputStream
 
-InputStream <|-- ByteArrayInputStream
 InputStream <|-- FileInputStream
 InputStream <|-- FilterInputStream
 InputStream <|-- ObjectInputStream
-InputStream <|-- PipedInputStream
-InputStream <|-- SequenceInputStream
 
 FilterInputStream <|-- BufferedInputStream
 FilterInputStream <|-- DataInputStream
-
-BufferedInputStream ..> InputStream : envolve
-DataInputStream ..> InputStream : le tipos primitivos
-ObjectInputStream ..> InputStream : desserializa objetos
-SequenceInputStream ..> InputStream : concatena streams
 
 @enduml
