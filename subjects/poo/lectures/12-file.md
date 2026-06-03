@@ -441,6 +441,20 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.io: InputStream e OutputStream
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44r7ndarr?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
 # Charset: detalhe que muda tudo
 
 Texto em arquivo é armazenado como bytes.
