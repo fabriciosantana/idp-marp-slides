@@ -409,13 +409,35 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 # java.io: OutputStream
 
+<div class="columns">
+<div>
+
+`OutputStream` é a base para escrever bytes em Java: suas subclasses gravam dados binários em arquivos, adicionam buffer, escrevem tipos primitivos ou serializam objetos.
+
+</div>
+<div>
+
 <img src="../images/12-file-classes-java.io-outputstream.png">
+
+</div>
+</div>
 
 ---
 
 # java.io: InputStream
 
+<div class="columns">
+<div>
+
+`InputStream` é a base para ler bytes em Java: suas subclasses leem dados binários de arquivos, adicionam buffer, interpretam tipos primitivos ou desserializam objetos.
+
+</div>
+<div>
+
 <img src="../images/12-file-classes-java.io-InputStream.png">
+
+</div>
+</div>
 
 ---
 
