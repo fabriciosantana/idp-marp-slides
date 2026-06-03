@@ -407,12 +407,21 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 ---
 
+<!-- _class: compact -->
+
 # java.io: OutputStream
 
 <div class="columns">
 <div>
 
-`OutputStream` é a base para escrever bytes em Java: suas subclasses gravam dados binários em arquivos, adicionam buffer, escrevem tipos primitivos ou serializam objetos.
+> `OutputStream` é a base para escrever bytes em Java.
+
+Principais subclasses para saída de dados:
+
+- em arquivos: `FileOutputStream`
+- com buffer: `BufferedOutputStream`
+- com tipos primitivos: `DataOutputStream`
+- com objetos serializados: `ObjectOutputStream`
 
 </div>
 <div>
@@ -424,12 +433,21 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 ---
 
+<!-- _class: compact -->
+
 # java.io: InputStream
 
 <div class="columns">
 <div>
 
-`InputStream` é a base para ler bytes em Java: suas subclasses leem dados binários de arquivos, adicionam buffer, interpretam tipos primitivos ou desserializam objetos.
+> `InputStream` é a base para ler bytes em Java.
+
+Principais subclasses para entrada de dados:
+
+- de arquivos: `FileInputStream`
+- com buffer: `BufferedInputStream`
+- com tipos primitivos: `DataInputStream`
+- com objetos serializados: `ObjectInputStream`
 
 </div>
 <div>
@@ -449,6 +467,33 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 <iframe
   class="compiler-frame"
   src="https://onecompiler.com/embed/java/44r7ndarr?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+# Serialização de objetos: visão geral
+
+> Serializar é gravar o estado de um objeto em um fluxo de dados (**stream**).
+
+- A serialização transforma um objeto Java em uma sequência de bytes.
+- A desserialização reconstrói o objeto a partir desses bytes.
+- A classe do objeto precisa implementar `Serializable`.
+- A escrita usa `ObjectOutputStream`; a leitura usa `ObjectInputStream`.
+- É adequada para cenários internos e controlados, não para troca pública entre sistemas.
+- Para integração entre sistemas, prefira formatos abertos e interoperáveis como CSV, JSON, XML ou banco de dados.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# Serialização de objetos: demonstração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44r7r2emj?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java"
   allow="clipboard-read; clipboard-write"
 ></iframe>
@@ -987,60 +1032,6 @@ try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
 ```
 
 Útil quando precisamos de controle fino sobre buffers e canais.
-
----
-
-<!-- _class: compact -->
-
-# Serialização de objetos
-
-Serializar é gravar o estado de um objeto em um fluxo.
-
-```java
-public class Aluno implements Serializable {
-    private String nome;
-    private double nota;
-
-    public Aluno(String nome, double nota) {
-        this.nome = nome;
-        this.nota = nota;
-    }
-}
-```
-
-```java
-try (ObjectOutputStream out =
-         new ObjectOutputStream(
-             Files.newOutputStream(Path.of("aluno.ser")))) {
-    out.writeObject(new Aluno("Ana", 9.5));
-}
-```
-
----
-
-<!-- _class: compact -->
-
-# Desserialização de objetos
-
-```java
-try (ObjectInputStream in =
-         new ObjectInputStream(
-             Files.newInputStream(Path.of("aluno.ser")))) {
-
-    Aluno aluno = (Aluno) in.readObject();
-    System.out.println(aluno);
-} catch (IOException e) {
-    System.err.println("Erro de I/O: " + e.getMessage());
-} catch (ClassNotFoundException e) {
-    System.err.println("Classe nao encontrada: " + e.getMessage());
-}
-```
-
-<div class="callout">
-
-Serialização Java é útil em exemplos e cenários internos controlados. Para integração entre sistemas, prefira formatos como CSV, JSON, XML ou banco de dados.
-
-</div>
 
 ---
 
