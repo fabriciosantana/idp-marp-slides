@@ -1,0 +1,22 @@
+@startuml
+' PlantUML class diagram for java.nio.file.Files (utility class)
+skinparam classAttributeIconSize 0
+
+class Files {
+  +static boolean exists(Path path, LinkOption... options)
+  +static boolean isRegularFile(Path path, LinkOption... options)
+  +static Path createDirectories(Path dir, FileAttribute<?>... attrs)
+  +static String readString(Path path, Charset... charset)
+  +static List<String> readAllLines(Path path, Charset... charset)
+  +static byte[] readAllBytes(Path path)
+  +static Path writeString(Path path, CharSequence csq, OpenOption... options)
+  +static Path copy(Path src, Path dest, CopyOption... options)
+  +static Path move(Path src, Path dest, CopyOption... options)
+  +static boolean deleteIfExists(Path path)
+  +static Stream<Path> list(Path dir)
+  +static Stream<Path> walk(Path start)
+  +static InputStream newInputStream(Path path, OpenOption... options)
+  +static OutputStream newOutputStream(Path path, OpenOption... options)
+}
+
+@enduml

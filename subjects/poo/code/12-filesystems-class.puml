@@ -1,0 +1,12 @@
+@startuml
+' PlantUML class diagram for java.nio.file.FileSystems
+skinparam classAttributeIconSize 0
+
+class FileSystems {
+  +static FileSystem getDefault()
+  +static FileSystem getFileSystem(URI uri)
+  +static FileSystem newFileSystem(URI uri, Map<String, ?> env)
+  +static FileSystem newFileSystem(Path path, Map<String, ?> env)
+}
+
+@enduml

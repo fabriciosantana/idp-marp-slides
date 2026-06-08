@@ -292,6 +292,82 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 
 <!-- _class: compact -->
 
+# java.nio.file: Path
+
+<div class="columns">
+<div>
+
+> `Path` representa o caminho de um arquivo ou diretório no sistema de arquivos.
+
+<img src="../images/12-path-interface.png" />
+
+</div>
+<div>
+
+- **`resolve(...)`:** combina caminhos (ex.: `pasta.resolve("a.txt")`).
+- **`relativize(...)`:** obtém caminho relativo entre dois `Path`.
+- **`normalize()`:** remove `.` e `..` do caminho.
+- **`toAbsolutePath()` / `toRealPath(...)`:** converte para caminho absoluto (e resolve links/normaliza).
+- **`getFileName()` / `getParent()`:** navegação por partes do caminho.
+- **`isAbsolute()` / `startsWith()` / `endsWith()`:** consultas sobre o formato do caminho.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Paths
+
+<div class="columns">
+<div>
+
+> `Paths` fornece métodos utilitários para criar objetos `Path` a partir de strings ou URIs.
+
+<img src="../images/12-paths-class.png" />
+
+</div>
+<div>
+
+- **`get(String..., String...)`:** cria um `Path` a partir de partes de caminho.
+- **`get(URI)`:** converte um `URI` em um `Path`.
+- **`Path.of(...)`:** alternativa moderna preferida para criar caminhos em código novo.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Files
+
+<div class="columns">
+<div>
+
+> `Files` concentra operações de alto nível sobre arquivos e diretórios usando `Path`.
+
+<img src="../images/12-files-class.png" />
+
+</div>
+<div>
+
+- **`exists(...)`:** verifica se o caminho existe.
+- **`createDirectories(...)`:** cria diretórios, inclusive pais necessários.
+- **`readString(...)`:** lê todo o conteúdo de um arquivo como `String`.
+- **`writeString(...)`:** escreve texto em um arquivo.
+- **`copy(...)` / `move(...)`:** copia ou move arquivos entre caminhos.
+- **`deleteIfExists(...)`:** apaga o arquivo se ele existir.
+- **`list(...)` / `walk(...)`:** percorre o conteúdo de diretórios.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.nio.file: Path, Paths e Files
 
 > Em `java.nio.file`, caminho, criação de caminhos e operações de arquivo são responsabilidades separadas.
@@ -325,19 +401,6 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 
 - `Path` não lê nem escreve o arquivo sozinho.
 - Ele representa a localização; as operações geralmente ficam em `Files`.
-
----
-
-# java.nio.file: Path
-
-```java
-Path relativo = Path.of("data", "entrada.txt");
-Path absoluto = relativo.toAbsolutePath();
-
-System.out.println(relativo.getFileName());
-System.out.println(relativo.getParent());
-System.out.println(absoluto.normalize());
-```
 
 ---
 
@@ -392,7 +455,147 @@ try {
 
 <!-- _class: compact -->
 
-# java.nio.file: métodos principais
+# java.nio.file: StandardOpenOption
+
+<div class="columns">
+<div>
+
+> `StandardOpenOption` é um enum que diz como um arquivo deve ser aberto ou criado.
+
+- `CREATE`: cria o arquivo se não existir
+- `APPEND`: adiciona ao final do arquivo existente
+- `TRUNCATE_EXISTING`: substitui o conteúdo ao abrir
+- `READ` / `WRITE`: define o modo de acesso
+
+</div>
+<div>
+
+```java
+Path arquivo = Path.of("dados/mensagem.txt");
+try {
+    Files.writeString(
+        arquivo,
+        "Olá, arquivo!\n",
+        StandardOpenOption.CREATE,
+        StandardOpenOption.APPEND
+    );
+} catch (IOException e) {
+    System.err.println(e.getMessage());
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: StandardCopyOption
+
+<div class="columns">
+<div>
+
+> `StandardCopyOption` é um enum que controla o comportamento de cópia e movimentação de arquivos.
+
+- `REPLACE_EXISTING`: substitui o destino se já existir
+- `COPY_ATTRIBUTES`: preserva atributos do arquivo
+- `ATOMIC_MOVE`: tenta mover de forma atômica
+
+</div>
+<div>
+
+```java
+Path origem = Path.of("dados/mensagem.txt");
+Path destino = Path.of("backup/mensagem.txt");
+
+Files.copy(
+    origem,
+    destino,
+    StandardCopyOption.REPLACE_EXISTING
+);
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: FileSystems
+
+<div class="columns">
+<div>
+
+> `FileSystems` fornece acesso ao sistema de arquivos padrão e permite criar ou carregar outros sistemas de arquivos.
+
+<img src="../images/12-filesystems-class.png" />
+
+</div>
+<div>
+
+- **`getDefault()`:** retorna o `FileSystem` padrão do JRE.
+- **`getFileSystem(URI)`:** obtém um `FileSystem` a partir de um URI.
+- **`newFileSystem(URI, Map<String,?>)`:** cria um sistema de arquivos especial, como ZIP.
+- **`newFileSystem(Path, Map<String,?>)`:** abre um sistema de arquivos para um arquivo de contêiner.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: FileSystem
+
+<div class="columns">
+<div>
+
+> `FileSystem` representa um sistema de arquivos e expõe caminhos, raízes e o provedor subjacente.
+
+<img src="../images/12-filesystem-class.png" />
+
+</div>
+<div>
+
+- **`getPath(String, String...)`:** cria um `Path` dentro deste sistema de arquivos.
+- **`getSeparator()`:** retorna o separador de caminhos usado pelo sistema.
+- **`getRootDirectories()`:** lista as raízes disponíveis.
+- **`isReadOnly()`:** indica se o sistema é somente leitura.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: DirectoryStream
+
+<div class="columns">
+<div>
+
+> `DirectoryStream` permite percorrer o conteúdo de um diretório de forma eficiente e com baixo uso de memória.
+
+<img src="../images/12-directorystream-class.png" />
+
+</div>
+<div>
+
+- **`Files.newDirectoryStream(Path)`:** abre um stream para listar entradas de diretório.
+- **`iterator()`:** percorre os caminhos retornados.
+- **`close()`:** fecha o stream e libera recursos.
+- **`Files.newDirectoryStream(Path, String)`:** filtra nomes usando padrões simples.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: resumo
 
 Esta tabela resume quais operações procurar em cada classe: criação de caminhos, leitura e escrita, navegação por diretórios, opções de abertura e comportamento em cópias ou links simbólicos.
 
@@ -445,23 +648,31 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 ---
 
-<!-- _class: compact -->
+# java.nio.file: fluxo de trabalho
 
-# java.nio.file: antes dos exemplos
-
-Antes de entrar nos exemplos, guarde a ideia central da API:
-
-- o caminho fica em `Path`;
-- as operações ficam em `Files`;
-- as opções dizem como abrir, copiar, mover ou consultar;
-- diretórios podem ser percorridos por `DirectoryStream`, `Files.list` ou `Files.walk`;
-- quase toda operação real de arquivo pode lançar `IOException`.
-
-> Em código Java atual, normalmente começamos por um `Path` e executamos operações por meio da classe utilitária `Files`.
+<img src="../images/12-nio-workflow.png">
 
 ---
 
-<!-- _class: compact -->
+# java.nio.charset: StandardCharsets
+
+`StandardCharsets` define encodings de caracteres padrão seguros e convenientemente acessíveis.
+
+Usar um `Charset` explícito garante que os bytes lidos ou escritos sejam traduzidos corretamente para caracteres.
+
+- `UTF_8`: codificação UTF-8, recomendada para leitura e escrita de texto.
+- `US_ASCII`: codificação ASCII de 7 bits.
+- `ISO_8859_1`: codificação Latin-1 para texto ocidental.
+
+```java
+Path path = Path.of("dados.txt");
+String texto = Files.readString(path, StandardCharsets.UTF_8);
+Files.writeString(path, texto, StandardCharsets.UTF_8);
+```
+
+> Em código novo, prefira informar explicitamente o `Charset`, especialmente quando o arquivo vem de outro sistema.
+
+---
 
 # java.util.Scanner: do console para o arquivo
 
@@ -532,6 +743,8 @@ try (Scanner scanner = new Scanner(path, StandardCharsets.UTF_8)) {
 ---
 
 # java.util.Formatter: escrita formatada
+
+`Formatter` formata texto com especificadores de formato antes de gravar em um arquivo.
 
 ```java
 Path path = Path.of("data", "boletim.txt");
@@ -976,29 +1189,6 @@ Para arquivos grandes, prefira copiar com `Files.copy` ou processar por streams/
 
 ---
 
-# Charset: detalhe que muda tudo
-
-Texto em arquivo é armazenado como bytes.
-
-Para transformar bytes em caracteres, o Java precisa saber a codificação:
-
-- `UTF-8`
-- `ISO-8859-1`
-- `US-ASCII`
-- outras
-
-<div class="callout">
-
-Em código novo, prefira informar explicitamente o `Charset`, especialmente quando o arquivo vem de outro sistema.
-
-</div>
-
-```java
-Charset utf8 = StandardCharsets.UTF_8;
-```
-
----
-
 # try-with-resources
 
 Recursos de I/O precisam ser fechados.
@@ -1040,12 +1230,6 @@ System.out.println(Files.getLastModifiedTime(path));
 - ler e escrever conteúdo
 - copiar, mover e apagar
 - percorrer diretórios
-
----
-
-# java.nio.file: fluxo de trabalho
-
-<img src="../images/12-nio-workflow.png">
 
 ---
 

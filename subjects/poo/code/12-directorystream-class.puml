@@ -1,0 +1,10 @@
+@startuml
+' PlantUML class diagram for java.nio.file.DirectoryStream
+skinparam classAttributeIconSize 0
+
+class DirectoryStream<T> {
+  +Iterator<T> iterator()
+  +void close()
+}
+
+@enduml

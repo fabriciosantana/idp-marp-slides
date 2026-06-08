@@ -1,0 +1,10 @@
+@startuml
+' PlantUML class diagram for java.nio.file.Paths (utility class)
+skinparam classAttributeIconSize 0
+
+class Paths {
+  +static Path get(String first, String... more)
+  +static Path get(URI uri)
+}
+
+@enduml

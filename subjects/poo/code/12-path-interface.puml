@@ -1,0 +1,27 @@
+@startuml
+' PlantUML class diagram for java.nio.file.Path (interface)
+skinparam classAttributeIconSize 0
+
+interface Path {
+  +Path resolve(String other)
+  +Path resolve(Path other)
+  +Path resolveSibling(String other)
+  +Path relativize(Path other)
+  +Path normalize()
+  +Path toAbsolutePath()
+  +Path toRealPath(LinkOption... options)
+  +File toFile()
+  +boolean startsWith(String other)
+  +boolean endsWith(String other)
+  +boolean isAbsolute()
+  +boolean equals(Object other)
+  +int compareTo(Path other)
+  +String getFileName()
+  +Path getParent()
+  +int getNameCount()
+  +Path getName(int index)
+  +URI toUri()
+  +String toString()
+}
+
+@enduml

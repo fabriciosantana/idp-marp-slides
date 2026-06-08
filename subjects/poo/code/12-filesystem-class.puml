@@ -1,0 +1,13 @@
+@startuml
+' PlantUML class diagram for java.nio.file.FileSystem
+skinparam classAttributeIconSize 0
+
+class FileSystem {
+  +Path getPath(String first, String... more)
+  +String getSeparator()
+  +Iterable<Path> getRootDirectories()
+  +boolean isReadOnly()
+  +PathMatcher getPathMatcher(String syntaxAndPattern)
+}
+
+@enduml
