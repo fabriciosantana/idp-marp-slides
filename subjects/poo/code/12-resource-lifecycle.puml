@@ -1,25 +1,49 @@
 @startuml
-title Ciclo de vida de um recurso de I/O
-
-skinparam linetype ortho
 skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam activity {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+  RoundCorner 10
+  DiamondBackgroundColor #EAF4FA
+  DiamondBorderColor #154E75
+}
+skinparam note {
+  BackgroundColor #FFF7D6
+  BorderColor #C8A23A
+  FontSize 16
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontSize 16
+skinparam ArrowFontColor #111827
 
-[*] --> Fechado
-Fechado --> Aberto : criar stream/reader/writer
-Aberto --> Lendo : read()
-Aberto --> Escrevendo : write()
-Lendo --> Aberto : proxima operacao
-Escrevendo --> Aberto : flush() opcional
-Aberto --> Fechado : close()
-Lendo --> Erro : IOException
-Escrevendo --> Erro : IOException
-Erro --> Fechado : try-with-resources chama close()
-Fechado --> [*]
+start
 
-note right of Aberto
-  O recurso deve ser fechado
-  para liberar descritores
-  do sistema operacional.
+:Declarar recurso no try (...);
+:Abrir stream / reader / writer;
+:Executar o bloco try;
+
+if (Operacao de I/O?) then (read/write)
+  :Ler ou escrever dados;
+endif
+
+if (Ocorreu IOException?) then (sim)
+  :Tratar erro no catch;
+else (nao)
+  :Seguir fluxo normal;
+endif
+
+:Fechar recurso automaticamente;
+
+note right
+  O try-with-resources chama close()
+  automaticamente, mesmo quando
+  ocorre uma excecao no bloco try.
 end note
+
+stop
 
 @enduml

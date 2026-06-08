@@ -292,6 +292,110 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 
 <!-- _class: compact -->
 
+# java.nio.file: Path, Paths e Files
+
+`Path` aponta para onde está o recurso; `Files` faz algo com esse recurso; `Paths` é uma forma clássica de criar um `Path`.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Elemento</th>
+      <th>Papel</th>
+      <th>Ideia principal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Path</code></td>
+      <td>Interface</td>
+      <td>Representa o caminho de um arquivo ou diretório. Guarda a localização, mas não executa leitura ou escrita sozinho.</td>
+    </tr>
+    <tr>
+      <td><code>Paths</code></td>
+      <td>Classe utilitária</td>
+      <td>Cria objetos <code>Path</code> com <code>Paths.get(...)</code>. É comum em código escrito antes de <code>Path.of(...)</code>.</td>
+    </tr>
+    <tr>
+      <td><code>Files</code></td>
+      <td>Classe utilitária</td>
+      <td>Executa operações sobre arquivos e diretórios: criar, ler, escrever, copiar, mover, apagar e consultar metadados.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+# java.nio.file: Path
+
+> A interface `Path` representa um caminho para arquivo ou diretório.
+
+```java
+Path relativo = Path.of("data", "entrada.txt");
+Path absoluto = relativo.toAbsolutePath();
+
+System.out.println(relativo.getFileName());
+System.out.println(relativo.getParent());
+System.out.println(absoluto.normalize());
+```
+
+`Path` não lê nem escreve o arquivo sozinho.
+
+Ele representa a localização; as operações geralmente ficam em `Files`.
+
+`Paths.get(...)` também existe e aparece bastante em código escrito antes de `Path.of(...)`.
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Path, Paths e Files (exemplo)
+
+<div class="columns">
+<div>
+
+```java
+Path pasta = Path.of("dados");
+Path arquivo = pasta.resolve("mensagem.txt");
+
+Path legado = Paths.get(
+    "dados",
+    "mensagem.txt"
+);
+```
+
+- `Path.of(...)` cria um caminho
+- `resolve(...)` combina caminhos
+- `Paths.get(...)` cria o mesmo tipo de objeto
+
+</div>
+<div>
+
+```java
+try {
+    Files.createDirectories(pasta);
+
+    Files.writeString(
+        arquivo,
+        "Ola, arquivo!\n"
+    );
+
+    String texto = Files.readString(legado);
+    System.out.println(texto);
+} catch (IOException e) {
+    System.err.println(e.getMessage());
+}
+```
+
+- `Files` executa as operações reais
+- `arquivo` e `legado` apontam para o mesmo local
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # java.nio.file: métodos principais
 
 Esta tabela resume quais operações procurar em cada classe: criação de caminhos, leitura e escrita, navegação por diretórios, opções de abertura e comportamento em cópias ou links simbólicos.
@@ -345,6 +449,112 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 
 ---
 
+<!-- _class: compact -->
+
+# java.nio.file: antes dos exemplos
+
+Antes de entrar nos exemplos, guarde a ideia central da API:
+
+- o caminho fica em `Path`;
+- as operações ficam em `Files`;
+- as opções dizem como abrir, copiar, mover ou consultar;
+- diretórios podem ser percorridos por `DirectoryStream`, `Files.list` ou `Files.walk`;
+- quase toda operação real de arquivo pode lançar `IOException`.
+
+> Em código Java atual, normalmente começamos por um `Path` e executamos operações por meio da classe utilitária `Files`.
+
+---
+
+<!-- _class: compact -->
+
+# java.util.Scanner: do console para o arquivo
+
+Em aulas anteriores, usamos `Scanner` para ler dados do console com `System.in`. A mesma classe também pode ler dados de um arquivo, quando recebe um `Path` como fonte de entrada.
+
+<div class="columns">
+<div>
+
+```java
+Scanner teclado = new Scanner(System.in);
+
+System.out.print("Nome: ");
+String nome = teclado.nextLine();
+```
+
+- Entrada vem do console
+- Usuário digita os dados
+
+</div>
+<div>
+
+```java
+Path path = Path.of("alunos.txt");
+
+try (Scanner scanner = new Scanner(path)) {
+    while (scanner.hasNextLine()) {
+        String linha = scanner.nextLine();
+        System.out.println(linha);
+    }
+} catch (IOException e) {
+    System.err.println(e.getMessage());
+}
+```
+
+- Entrada vem do arquivo
+- Programa percorre o conteúdo salvo
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.util.Scanner: leitura orientada a tokens
+
+Depois de abrir um arquivo com `Scanner`, podemos ler o conteúdo por tokens, mudando o delimitador conforme o formato dos dados.
+
+```java
+Path path = Path.of("data", "notas.csv");
+
+try (Scanner scanner = new Scanner(path, StandardCharsets.UTF_8)) {
+    scanner.useDelimiter("[,\\n]");
+
+    while (scanner.hasNext()) {
+        String nome = scanner.next();
+        double nota = scanner.nextDouble();
+
+        System.out.printf("%s -> %.1f%n", nome, nota);
+    }
+} catch (IOException e) {
+    System.err.println("Erro ao abrir arquivo: " + e.getMessage());
+} catch (InputMismatchException e) {
+    System.err.println("Arquivo com dado em formato inesperado.");
+}
+```
+
+---
+
+# java.util.Formatter: escrita formatada
+
+```java
+Path path = Path.of("data", "boletim.txt");
+
+try (Formatter out =
+         new Formatter(path, StandardCharsets.UTF_8)) {
+
+    out.format("%-20s %5s%n", "Aluno", "Nota");
+    out.format("%-20s %5.1f%n", "Ana", 9.5);
+    out.format("%-20s %5.1f%n", "Bruno", 7.8);
+} catch (IOException e) {
+    System.err.println("Erro ao escrever boletim: " + e.getMessage());
+}
+```
+
+`Formatter` usa a mesma ideia de formatação de `System.out.printf`.
+
+---
+
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
@@ -374,6 +584,57 @@ Esta tabela resume quais operações procurar em cada classe: criação de camin
 - `InputStream` / `OutputStream`: leitura e escrita de bytes
 - `ObjectInputStream` / `ObjectOutputStream`: serialização binária de objetos
 - `IOException`: erro comum em operações de entrada e saída
+
+---
+
+# java.io: famílias de streams
+
+<img src="../images/12-io-hierarchy.png">
+
+---
+
+<!-- _class: compact -->
+
+# java.io: File
+
+<div class="columns">
+<div>
+
+> `File` representa um caminho abstrato para arquivo ou diretório.
+
+Principais métodos:
+
+- `exists()`: verifica se existe
+- `isFile()`: verifica se é arquivo
+- `isDirectory()`: verifica se é diretório
+- `getName()`: retorna o nome
+- `getAbsolutePath()`: retorna caminho absoluto
+- `length()`: retorna tamanho em bytes
+- `toPath()`: converte para `Path`
+
+</div>
+<div>
+
+```java
+File file = new File("dados.txt");
+
+System.out.println(file.exists());
+System.out.println(file.isFile());
+System.out.println(file.getName());
+System.out.println(file.getAbsolutePath());
+System.out.println(file.length());
+
+Path path = file.toPath();
+```
+
+<div class="callout">
+
+Em código novo, prefira `Path` e `Files`; use `File` principalmente para entender ou manter código legado.
+
+</div>
+
+</div>
+</div>
 
 ---
 
@@ -672,6 +933,26 @@ Principais subclasses para entrada de dados:
 
 ---
 
+# Arquivos binários
+
+```java
+Path origem = Path.of("imagens", "foto.png");
+Path destino = Path.of("backup", "foto.png");
+
+try {
+    Files.createDirectories(destino.getParent());
+
+    byte[] bytes = Files.readAllBytes(origem);
+    Files.write(destino, bytes);
+} catch (IOException e) {
+    System.err.println("Erro ao copiar bytes: " + e.getMessage());
+}
+```
+
+Para arquivos grandes, prefira copiar com `Files.copy` ou processar por streams/buffers.
+
+---
+
 # Serialização de objetos: visão geral
 
 > Serializar é gravar o estado de um objeto em um fluxo de dados (**stream**).
@@ -739,44 +1020,9 @@ O `try-with-resources` fecha automaticamente objetos que implementam `AutoClosea
 
 ---
 
-# Ciclo de vida de um recurso
+# try-with-resources: ciclo de vida de um recurso
 
-<img src="../images/12-resource-lifecycle.png">
-
----
-
-<!-- _class: compact -->
-
-# java.nio.file: antes dos exemplos
-
-Antes de entrar nos exemplos, guarde a ideia central da API:
-
-- o caminho fica em `Path`;
-- as operações ficam em `Files`;
-- as opções dizem como abrir, copiar, mover ou consultar;
-- diretórios podem ser percorridos por `DirectoryStream`, `Files.list` ou `Files.walk`;
-- quase toda operação real de arquivo pode lançar `IOException`.
-
-> Em código Java atual, normalmente começamos por um `Path` e executamos operações por meio da classe utilitária `Files`.
-
----
-
-# Path: caminho para arquivo ou diretório
-
-```java
-Path relativo = Path.of("data", "entrada.txt");
-Path absoluto = relativo.toAbsolutePath();
-
-System.out.println(relativo.getFileName());
-System.out.println(relativo.getParent());
-System.out.println(absoluto.normalize());
-```
-
-`Path` não lê nem escreve o arquivo sozinho.
-
-Ele representa a localização; as operações geralmente ficam em `Files`.
-
-`Paths.get(...)` também existe e aparece bastante em código escrito antes de `Path.of(...)`.
+<img src="../images/12-resource-lifecycle.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
 
 ---
 
@@ -1060,51 +1306,6 @@ try (DirectoryStream<Path> stream =
 
 <!-- _class: compact -->
 
-# Scanner: leitura orientada a tokens
-
-```java
-Path path = Path.of("data", "notas.csv");
-
-try (Scanner scanner = new Scanner(path, StandardCharsets.UTF_8)) {
-    scanner.useDelimiter("[,\\n]");
-
-    while (scanner.hasNext()) {
-        String nome = scanner.next();
-        double nota = scanner.nextDouble();
-
-        System.out.printf("%s -> %.1f%n", nome, nota);
-    }
-} catch (IOException e) {
-    System.err.println("Erro ao abrir arquivo: " + e.getMessage());
-} catch (InputMismatchException e) {
-    System.err.println("Arquivo com dado em formato inesperado.");
-}
-```
-
----
-
-# Formatter: escrita formatada
-
-```java
-Path path = Path.of("data", "boletim.txt");
-
-try (Formatter out =
-         new Formatter(path, StandardCharsets.UTF_8)) {
-
-    out.format("%-20s %5s%n", "Aluno", "Nota");
-    out.format("%-20s %5.1f%n", "Ana", 9.5);
-    out.format("%-20s %5.1f%n", "Bruno", 7.8);
-} catch (IOException e) {
-    System.err.println("Erro ao escrever boletim: " + e.getMessage());
-}
-```
-
-`Formatter` usa a mesma ideia de formatação de `System.out.printf`.
-
----
-
-<!-- _class: compact -->
-
 # BufferedReader e BufferedWriter
 
 ```java
@@ -1190,26 +1391,6 @@ Em código novo, prefira `Path` e `Files`. Quando encontrar `File` em código le
 
 ---
 
-# Arquivos binários
-
-```java
-Path origem = Path.of("imagens", "foto.png");
-Path destino = Path.of("backup", "foto.png");
-
-try {
-    Files.createDirectories(destino.getParent());
-
-    byte[] bytes = Files.readAllBytes(origem);
-    Files.write(destino, bytes);
-} catch (IOException e) {
-    System.err.println("Erro ao copiar bytes: " + e.getMessage());
-}
-```
-
-Para arquivos grandes, prefira copiar com `Files.copy` ou processar por streams/buffers.
-
----
-
 # Canais e buffers
 
 `java.nio.channels.FileChannel` permite I/O com `ByteBuffer`.
@@ -1235,6 +1416,8 @@ try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
 ---
 
 # Exceções comuns em I/O
+
+> Em I/O, erros fazem parte do fluxo: arquivos podem não existir, estar protegidos ou ter conteúdo inesperado.
 
 <table class="tiny">
   <thead>
@@ -1504,12 +1687,6 @@ Antes de escrever código de arquivo, pergunte:
 
 ---
 
-# java.io: famílias de streams
-
-<img src="../images/12-io-hierarchy.png">
-
----
-
 # Manipulação de arquivos: mapa da aula
 
 <img src="../images/12-file-mindmap.png">
@@ -1528,16 +1705,3 @@ Antes de escrever código de arquivo, pergunte:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/package-summary.html
 - Java SE API: `java.nio.file`
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/package-summary.html
-
----
-
-<!-- _class: title -->
-<!-- _paginate: false -->
-
-# Perguntas?
-
-<div class="contact">
-Prof. Fabricio Santana<br>
-fabricio.santana@idp.edu.br<br>
-www.linkedin.com/in/fabriciofsantana/
-</div>
