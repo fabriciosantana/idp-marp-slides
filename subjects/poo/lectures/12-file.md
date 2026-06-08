@@ -294,7 +294,7 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 
 # java.nio.file: Path, Paths e Files
 
-`Path` aponta para onde está o recurso; `Files` faz algo com esse recurso; `Paths` é uma forma clássica de criar um `Path`.
+> Em `java.nio.file`, caminho, criação de caminhos e operações de arquivo são responsabilidades separadas.
 
 <table class="tiny">
   <thead>
@@ -308,26 +308,27 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
     <tr>
       <td><code>Path</code></td>
       <td>Interface</td>
-      <td>Representa o caminho de um arquivo ou diretório. Guarda a localização, mas não executa leitura ou escrita sozinho.</td>
+      <td>Modela a localização de um recurso e permite combinar, normalizar e consultar partes do caminho.</td>
     </tr>
     <tr>
       <td><code>Paths</code></td>
       <td>Classe utilitária</td>
-      <td>Cria objetos <code>Path</code> com <code>Paths.get(...)</code>. É comum em código escrito antes de <code>Path.of(...)</code>.</td>
+      <td>Oferece <code>get(...)</code> para criar <code>Path</code>; aparece bastante em código escrito antes de <code>Path.of(...)</code>.</td>
     </tr>
     <tr>
       <td><code>Files</code></td>
       <td>Classe utilitária</td>
-      <td>Executa operações sobre arquivos e diretórios: criar, ler, escrever, copiar, mover, apagar e consultar metadados.</td>
+      <td>Concentra métodos estáticos que recebem <code>Path</code> e interagem com o sistema de arquivos.</td>
     </tr>
   </tbody>
 </table>
 
+- `Path` não lê nem escreve o arquivo sozinho.
+- Ele representa a localização; as operações geralmente ficam em `Files`.
+
 ---
 
 # java.nio.file: Path
-
-> A interface `Path` representa um caminho para arquivo ou diretório.
 
 ```java
 Path relativo = Path.of("data", "entrada.txt");
@@ -338,12 +339,6 @@ System.out.println(relativo.getParent());
 System.out.println(absoluto.normalize());
 ```
 
-`Path` não lê nem escreve o arquivo sozinho.
-
-Ele representa a localização; as operações geralmente ficam em `Files`.
-
-`Paths.get(...)` também existe e aparece bastante em código escrito antes de `Path.of(...)`.
-
 ---
 
 <!-- _class: compact -->
@@ -352,6 +347,8 @@ Ele representa a localização; as operações geralmente ficam em `Files`.
 
 <div class="columns">
 <div>
+
+> A interface `Path` representa um caminho para arquivo ou diretório.
 
 ```java
 Path pasta = Path.of("dados");
@@ -370,6 +367,8 @@ Path legado = Paths.get(
 </div>
 <div>
 
+> A classe `Files` executa operações sobre arquivos e diretórios a partir de um `Path`.
+
 ```java
 try {
     Files.createDirectories(pasta);
@@ -385,9 +384,6 @@ try {
     System.err.println(e.getMessage());
 }
 ```
-
-- `Files` executa as operações reais
-- `arquivo` e `legado` apontam para o mesmo local
 
 </div>
 </div>
