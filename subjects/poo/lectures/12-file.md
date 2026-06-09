@@ -741,7 +741,7 @@ try (Formatter out =
 
 <!-- _class: compact -->
 
-# FileSystems e FileSystem
+# java.nio.file: FileSystems e FileSystem
 
 > `FileSystems` dá acesso ao sistema de arquivos atual; `FileSystem` expõe características dele e ajuda a criar caminhos.
 
@@ -764,7 +764,7 @@ Path pasta = fs.getPath("docs");
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# FileSystems e FileSystemDemo: demostração
+# FileSystems e FileSystem: demostração
 
 <iframe
   class="compiler-frame"
@@ -801,7 +801,7 @@ Path pasta = fs.getPath("docs");
 
 <!-- _class: compact -->
 
-# DirectoryStream
+# java.nio.file: DirectoryStream (exemplo)
 
 > `DirectoryStream` percorre as entradas de um diretório com uso controlado de recursos.
 
