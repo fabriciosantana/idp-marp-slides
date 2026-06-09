@@ -454,7 +454,7 @@ try {
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.nio.file: demonstração A
+# java.nio.file: demostração Path e Files
 
 <iframe
   class="compiler-frame"
@@ -566,6 +566,20 @@ Files.copy(
 
 ---
 
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# StandardOpenOption, StandardCopyOption: demo
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44rsxc4bk?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
 <!-- _class: compact -->
 
 # java.nio.charset: StandardCharsets
@@ -583,6 +597,20 @@ Files.writeString(path, texto, StandardCharsets.UTF_8);
 ```
 
 > Em código novo, prefira informar explicitamente o `Charset`, especialmente quando o arquivo vem de outro sistema.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.nio.charset.StandardCharsets: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44rsycyf7?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
 
 ---
 
@@ -627,33 +655,6 @@ try (Scanner scanner = new Scanner(path)) {
 
 ---
 
-<!-- _class: compact -->
-
-# java.util.Scanner: leitura orientada a tokens
-
-Depois de abrir um arquivo com `Scanner`, podemos ler o conteúdo por tokens, mudando o delimitador conforme o formato dos dados.
-
-```java
-Path path = Path.of("data", "notas.csv");
-
-try (Scanner scanner = new Scanner(path, StandardCharsets.UTF_8)) {
-    scanner.useDelimiter("[,\\n]");
-
-    while (scanner.hasNext()) {
-        String nome = scanner.next();
-        double nota = scanner.nextDouble();
-
-        System.out.printf("%s -> %.1f%n", nome, nota);
-    }
-} catch (IOException e) {
-    System.err.println("Erro ao abrir arquivo: " + e.getMessage());
-} catch (InputMismatchException e) {
-    System.err.println("Arquivo com dado em formato inesperado.");
-}
-```
-
----
-
 # java.util.Formatter: escrita formatada
 
 `Formatter` formata texto com especificadores de formato antes de gravar em um arquivo.
@@ -673,6 +674,20 @@ try (Formatter out =
 ```
 
 `Formatter` usa a mesma ideia de formatação de `System.out.printf`.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.util.Scanner e java.util.Formatter: demo
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44rsywg3w?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
 
 ---
 
@@ -726,6 +741,42 @@ try (Formatter out =
 
 <!-- _class: compact -->
 
+# FileSystems e FileSystem
+
+> `FileSystems` dá acesso ao sistema de arquivos atual; `FileSystem` expõe características dele e ajuda a criar caminhos.
+
+```java
+FileSystem fs = FileSystems.getDefault();
+
+System.out.println(
+    "Separador: " + fs.getSeparator()
+);
+
+for (Path raiz : fs.getRootDirectories()) {
+    System.out.println("Raiz: " + raiz);
+}
+
+Path pasta = fs.getPath("docs");
+```
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# FileSystems e FileSystemDemo: demostração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44rt338pv?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: compact -->
+
 # java.nio.file: DirectoryStream
 
 <div class="columns">
@@ -750,29 +801,7 @@ try (Formatter out =
 
 <!-- _class: compact -->
 
-# FileSystems, FileSystem e DirectoryStream
-
-<div class="columns">
-<div>
-
-> `FileSystems` dá acesso ao sistema de arquivos atual; `FileSystem` expõe características dele e ajuda a criar caminhos.
-
-```java
-FileSystem fs = FileSystems.getDefault();
-
-System.out.println(
-    "Separador: " + fs.getSeparator()
-);
-
-for (Path raiz : fs.getRootDirectories()) {
-    System.out.println("Raiz: " + raiz);
-}
-
-Path pasta = fs.getPath("docs");
-```
-
-</div>
-<div>
+# DirectoryStream
 
 > `DirectoryStream` percorre as entradas de um diretório com uso controlado de recursos.
 
@@ -791,16 +820,11 @@ try (
 
 - O `try-with-resources` garante o fechamento do stream.
 
-</div>
-</div>
-
 ---
 
 <!-- _class: compact -->
 
 # java.nio.file: resumo
-
-Esta tabela resume o papel de cada classe e destaca os principais métodos para criar caminhos, ler, escrever e percorrer diretórios.
 
 <table class="tiny">
   <thead>
@@ -833,6 +857,14 @@ Esta tabela resume o papel de cada classe e destaca os principais métodos para 
     <tr>
       <td><code>StandardCharsets</code></td>
       <td><code>UTF_8</code>, <code>US_ASCII</code>, <code>ISO_8859_1</code>. Define codificações padrão para converter bytes e caracteres.</td>
+    </tr>
+    <tr>
+      <td><code>Scanner</code></td>
+      <td><code>nextLine</code>, <code>next</code>, <code>nextDouble</code>, <code>hasNext</code>, <code>useDelimiter</code>. Leitura de dados do console ou de arquivos.</td>
+    </tr>
+    <tr>
+      <td><code>Formatter</code></td>
+      <td><code>format</code>. Escrita formatada de texto em arquivo usando especificadores semelhantes ao <code>printf</code>.</td>
     </tr>
     <tr>
       <td><code>FileSystems</code></td>
