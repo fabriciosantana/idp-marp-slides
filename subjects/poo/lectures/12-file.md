@@ -567,7 +567,7 @@ try {
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.nio.file: demostração Path e Files
+# java.nio.file: demonstração Path e Files
 
 <iframe
   class="compiler-frame"
@@ -716,7 +716,7 @@ Files.writeString(path, texto, StandardCharsets.UTF_8);
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# java.nio.charset.StandardCharsets: demostração
+# java.nio.charset.StandardCharsets: demonstração
 
 <iframe
   class="compiler-frame"
@@ -877,7 +877,7 @@ Path pasta = fs.getPath("docs");
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
-# FileSystems e FileSystem: demostração
+# FileSystems e FileSystem: demonstração
 
 <iframe
   class="compiler-frame"
