@@ -208,24 +208,20 @@ A manipulação de arquivos em Java envolve mais de um pacote: alguns representa
   </thead>
   <tbody>
     <tr>
-      <td><code>java.io</code></td>
-      <td>API clássica de entrada e saída por streams, readers, writers, arquivos e serialização.</td>
-    </tr>
-    <tr>
-      <td><code>java.nio</code></td>
-      <td>Buffers e tipos usados por canais e operações de I/O mais próximas do sistema.</td>
-    </tr>
-    <tr>
       <td><code>java.nio.file</code></td>
       <td>API moderna para caminhos, arquivos, diretórios, atributos, cópia, movimentação e remoção.</td>
     </tr>
     <tr>
-      <td><code>java.nio.channels</code></td>
-      <td>Canais como <code>FileChannel</code>, usados em I/O com buffers e arquivos grandes.</td>
-    </tr>
-    <tr>
       <td><code>java.util</code></td>
       <td><code>Scanner</code>, <code>Formatter</code> e coleções úteis no processamento dos dados lidos.</td>
+    </tr>
+    <tr>
+      <td><code>java.nio.charset</code></td>
+      <td>Codificação de texto: faz a ponte entre bytes e caracteres com classes como <code>Charset</code> e <code>StandardCharsets</code>.</td>
+    </tr>
+    <tr>
+      <td><code>java.io</code></td>
+      <td>API clássica de entrada e saída por streams, readers, writers, arquivos e serialização.</td>
     </tr>
   </tbody>
 </table>
@@ -234,9 +230,9 @@ A manipulação de arquivos em Java envolve mais de um pacote: alguns representa
 
 <!-- _class: compact -->
 
-# Pacotes auxiliares importantes
+# Pacotes complementares
 
-Além dos pacotes centrais, algumas tarefas exigem apoio de APIs especializadas para tratar codificação de texto, metadados do sistema de arquivos, compactação e integração com URIs.
+Além dos pacotes fundamentais, existem outros pacotes que complementam a manipulação de arquivos em Java.
 
 <table class="tiny">
   <thead>
@@ -247,8 +243,12 @@ Além dos pacotes centrais, algumas tarefas exigem apoio de APIs especializadas 
   </thead>
   <tbody>
     <tr>
-      <td><code>java.nio.charset</code></td>
-      <td>Conversão entre bytes e caracteres; inclui <code>Charset</code> e <code>StandardCharsets</code>.</td>
+      <td><code>java.nio</code></td>
+      <td>Buffers e tipos de apoio para operações de I/O mais próximas do sistema, como <code>ByteBuffer</code>.</td>
+    </tr>
+    <tr>
+      <td><code>java.nio.channels</code></td>
+      <td>Canais como <code>FileChannel</code>, úteis em arquivos grandes, buffers e I/O de nível mais baixo.</td>
     </tr>
     <tr>
       <td><code>java.nio.file.attribute</code></td>
@@ -268,6 +268,8 @@ Além dos pacotes centrais, algumas tarefas exigem apoio de APIs especializadas 
     </tr>
   </tbody>
 </table>
+
+> Esses pacotes estão fora do escopo desta aula
 
 ---
 
@@ -292,6 +294,41 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 
 <!-- _class: compact -->
 
+# java.nio.file: Path, Paths e Files
+
+> Em `java.nio.file`, caminho, criação de caminhos e operações de arquivo são responsabilidades separadas.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Elemento</th>
+      <th>Papel</th>
+      <th>Ideia principal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Path</code></td>
+      <td>Interface</td>
+      <td>Representa a localização de um recurso, permite combinar, normalizar e consultar partes do caminho; não lê nem escreve sozinho, pois as operações ficam em <code>Files</code>, que recebe um <code>Path</code>.</td>
+    </tr>
+    <tr>
+      <td><code>Paths</code></td>
+      <td>Classe utilitária</td>
+      <td>Oferece <code>get(...)</code> para criar <code>Path</code>; aparece bastante em código escrito antes de <code>Path.of(...)</code>.</td>
+    </tr>
+    <tr>
+      <td><code>Files</code></td>
+      <td>Classe utilitária</td>
+      <td>Concentra métodos estáticos que recebem <code>Path</code> e interagem com o sistema de arquivos.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
 # java.nio.file: Path
 
 <div class="columns">
@@ -305,7 +342,7 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 <div>
 
 - **`resolve(...)`:** combina caminhos (ex.: `pasta.resolve("a.txt")`).
-- **`relativize(...)`:** obtém caminho relativo entre dois `Path`.
+- **`of(...)`:** cria um `Path` a partir de uma ou mais partes de caminho.
 - **`normalize()`:** remove `.` e `..` do caminho.
 - **`toAbsolutePath()` / `toRealPath(...)`:** converte para caminho absoluto (e resolve links/normaliza).
 - **`getFileName()` / `getParent()`:** navegação por partes do caminho.
@@ -368,45 +405,7 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 
 <!-- _class: compact -->
 
-# java.nio.file: Path, Paths e Files
-
-> Em `java.nio.file`, caminho, criação de caminhos e operações de arquivo são responsabilidades separadas.
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Elemento</th>
-      <th>Papel</th>
-      <th>Ideia principal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Path</code></td>
-      <td>Interface</td>
-      <td>Modela a localização de um recurso e permite combinar, normalizar e consultar partes do caminho.</td>
-    </tr>
-    <tr>
-      <td><code>Paths</code></td>
-      <td>Classe utilitária</td>
-      <td>Oferece <code>get(...)</code> para criar <code>Path</code>; aparece bastante em código escrito antes de <code>Path.of(...)</code>.</td>
-    </tr>
-    <tr>
-      <td><code>Files</code></td>
-      <td>Classe utilitária</td>
-      <td>Concentra métodos estáticos que recebem <code>Path</code> e interagem com o sistema de arquivos.</td>
-    </tr>
-  </tbody>
-</table>
-
-- `Path` não lê nem escreve o arquivo sozinho.
-- Ele representa a localização; as operações geralmente ficam em `Files`.
-
----
-
-<!-- _class: compact -->
-
-# java.nio.file: Path, Paths e Files (exemplo)
+# java.nio.file: exemplo
 
 <div class="columns">
 <div>
@@ -423,9 +422,8 @@ Path legado = Paths.get(
 );
 ```
 
-- `Path.of(...)` cria um caminho
-- `resolve(...)` combina caminhos
-- `Paths.get(...)` cria o mesmo tipo de objeto
+- Em código novo, prefira `Path.of(...)`.
+- `Paths.get(...)` pode ser mantido em código legado.
 
 </div>
 <div>
@@ -449,6 +447,53 @@ try {
 ```
 
 </div>
+</div>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.nio.file: demonstração A
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/44rsv3zhn?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  title="OneCompiler Java"
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# java.nio.file: atividade prática
+
+<div
+  data-onecompiler-challenge
+  data-challenge-id="44rsv5qmr"
+  data-challenge-slug="manipula-o-de-arquivos-java-nio-file-path-e-java-nio-file-files"
+>
+  <div class="challenge-login">
+    <input data-onecompiler-user-token type="password" placeholder="Token do usuário">
+    <button data-onecompiler-load type="button">Carregar challenge</button>
+  </div>
+
+  <iframe
+    data-onecompiler-frame
+    class="compiler-frame challenge-frame"
+    frameborder="0"
+    allowfullscreen
+    allowFullScreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    title="OneCompiler Challenge"
+  ></iframe>
+
+  <div class="source">
+    Desafio: <a data-onecompiler-source href=""></a>
+  </div>
 </div>
 
 ---
@@ -523,146 +568,13 @@ Files.copy(
 
 <!-- _class: compact -->
 
-# java.nio.file: FileSystems
-
-<div class="columns">
-<div>
-
-> `FileSystems` fornece acesso ao sistema de arquivos padrão e permite criar ou carregar outros sistemas de arquivos.
-
-<img src="../images/12-filesystems-class.png" />
-
-</div>
-<div>
-
-- **`getDefault()`:** retorna o `FileSystem` padrão do JRE.
-- **`getFileSystem(URI)`:** obtém um `FileSystem` a partir de um URI.
-- **`newFileSystem(URI, Map<String,?>)`:** cria um sistema de arquivos especial, como ZIP.
-- **`newFileSystem(Path, Map<String,?>)`:** abre um sistema de arquivos para um arquivo de contêiner.
-
-</div>
-</div>
-
----
-
-<!-- _class: compact -->
-
-# java.nio.file: FileSystem
-
-<div class="columns">
-<div>
-
-> `FileSystem` representa um sistema de arquivos e expõe caminhos, raízes e o provedor subjacente.
-
-<img src="../images/12-filesystem-class.png" />
-
-</div>
-<div>
-
-- **`getPath(String, String...)`:** cria um `Path` dentro deste sistema de arquivos.
-- **`getSeparator()`:** retorna o separador de caminhos usado pelo sistema.
-- **`getRootDirectories()`:** lista as raízes disponíveis.
-- **`isReadOnly()`:** indica se o sistema é somente leitura.
-
-</div>
-</div>
-
----
-
-<!-- _class: compact -->
-
-# java.nio.file: DirectoryStream
-
-<div class="columns">
-<div>
-
-> `DirectoryStream` permite percorrer o conteúdo de um diretório de forma eficiente e com baixo uso de memória.
-
-<img src="../images/12-directorystream-class.png" />
-
-</div>
-<div>
-
-- **`Files.newDirectoryStream(Path)`:** abre um stream para listar entradas de diretório.
-- **`iterator()`:** percorre os caminhos retornados.
-- **`close()`:** fecha o stream e libera recursos.
-- **`Files.newDirectoryStream(Path, String)`:** filtra nomes usando padrões simples.
-
-</div>
-</div>
-
----
-
-<!-- _class: compact -->
-
-# java.nio.file: resumo
-
-Esta tabela resume quais operações procurar em cada classe: criação de caminhos, leitura e escrita, navegação por diretórios, opções de abertura e comportamento em cópias ou links simbólicos.
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Classe/interface</th>
-      <th>Métodos e usos principais</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Path</code></td>
-      <td><code>of</code>, <code>resolve</code>, <code>normalize</code>, <code>toAbsolutePath</code>, <code>getFileName</code>, <code>getParent</code>.</td>
-    </tr>
-    <tr>
-      <td><code>Paths</code></td>
-      <td><code>get</code>. Fábrica legada/conveniente para criar <code>Path</code>; aparece muito em código anterior a <code>Path.of</code>.</td>
-    </tr>
-    <tr>
-      <td><code>Files</code></td>
-      <td><code>exists</code>, <code>isRegularFile</code>, <code>createDirectories</code>, <code>readString</code>, <code>readAllLines</code>, <code>writeString</code>, <code>copy</code>, <code>move</code>, <code>deleteIfExists</code>, <code>list</code>, <code>walk</code>.</td>
-    </tr>
-    <tr>
-      <td><code>FileSystems</code></td>
-      <td><code>getDefault</code>, <code>getFileSystem</code>, <code>newFileSystem</code>. Acesso a sistemas de arquivos locais ou especiais.</td>
-    </tr>
-    <tr>
-      <td><code>FileSystem</code></td>
-      <td><code>getPath</code>, <code>getSeparator</code>, <code>getRootDirectories</code>, <code>isReadOnly</code>, <code>provider</code>.</td>
-    </tr>
-    <tr>
-      <td><code>DirectoryStream</code></td>
-      <td><code>iterator</code>, <code>close</code>. Usado com <code>Files.newDirectoryStream</code> para percorrer diretórios.</td>
-    </tr>
-    <tr>
-      <td><code>StandardOpenOption</code></td>
-      <td><code>CREATE</code>, <code>CREATE_NEW</code>, <code>APPEND</code>, <code>TRUNCATE_EXISTING</code>, <code>READ</code>, <code>WRITE</code>.</td>
-    </tr>
-    <tr>
-      <td><code>StandardCopyOption</code></td>
-      <td><code>REPLACE_EXISTING</code>, <code>COPY_ATTRIBUTES</code>, <code>ATOMIC_MOVE</code>.</td>
-    </tr>
-    <tr>
-      <td><code>LinkOption</code></td>
-      <td><code>NOFOLLOW_LINKS</code>. Evita seguir links simbólicos em consultas de metadados.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-# java.nio.file: fluxo de trabalho
-
-<img src="../images/12-nio-workflow.png">
-
----
-
 # java.nio.charset: StandardCharsets
 
-`StandardCharsets` define encodings de caracteres padrão seguros e convenientemente acessíveis.
-
-Usar um `Charset` explícito garante que os bytes lidos ou escritos sejam traduzidos corretamente para caracteres.
-
-- `UTF_8`: codificação UTF-8, recomendada para leitura e escrita de texto.
-- `US_ASCII`: codificação ASCII de 7 bits.
-- `ISO_8859_1`: codificação Latin-1 para texto ocidental.
+- `StandardCharsets` define encodings de caracteres padrão seguros e convenientemente acessíveis.
+- Usar um `Charset` explícito garante que os bytes lidos ou escritos sejam traduzidos corretamente para caracteres.
+  - `UTF_8`: codificação UTF-8, recomendada para leitura e escrita de texto.
+  - `US_ASCII`: codificação ASCII de 7 bits.
+  - `ISO_8859_1`: codificação Latin-1 para texto ocidental.
 
 ```java
 Path path = Path.of("dados.txt");
@@ -761,6 +673,187 @@ try (Formatter out =
 ```
 
 `Formatter` usa a mesma ideia de formatação de `System.out.printf`.
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: FileSystems
+
+<div class="columns">
+<div>
+
+> `FileSystems` fornece acesso ao sistema de arquivos padrão e permite criar ou carregar outros sistemas de arquivos.
+
+<img src="../images/12-filesystems-class.png" />
+
+</div>
+<div>
+
+- **`getDefault()`:** retorna o `FileSystem` padrão do JRE.
+- **`getFileSystem(URI)`:** obtém um `FileSystem` a partir de um URI.
+- **`newFileSystem(URI, Map<String,?>)`:** cria um sistema de arquivos especial, como ZIP.
+- **`newFileSystem(Path, Map<String,?>)`:** abre um sistema de arquivos para um arquivo de contêiner.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: FileSystem
+
+<div class="columns">
+<div>
+
+> `FileSystem` representa um sistema de arquivos e expõe caminhos, raízes e o provedor subjacente.
+
+<img src="../images/12-filesystem-class.png" />
+
+</div>
+<div>
+
+- **`getPath(String, String...)`:** cria um `Path` dentro deste sistema de arquivos.
+- **`getSeparator()`:** retorna o separador de caminhos usado pelo sistema.
+- **`getRootDirectories()`:** lista as raízes disponíveis.
+- **`isReadOnly()`:** indica se o sistema é somente leitura.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: DirectoryStream
+
+<div class="columns">
+<div>
+
+> `DirectoryStream` permite percorrer o conteúdo de um diretório de forma eficiente e com baixo uso de memória.
+
+<img src="../images/12-directorystream-class.png" />
+
+</div>
+<div>
+
+- **`Files.newDirectoryStream(Path)`:** abre um stream para listar entradas de diretório.
+- **`iterator()`:** percorre os caminhos retornados.
+- **`close()`:** fecha o stream e libera recursos.
+- **`Files.newDirectoryStream(Path, String)`:** filtra nomes usando padrões simples.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# FileSystems, FileSystem e DirectoryStream
+
+<div class="columns">
+<div>
+
+> `FileSystems` dá acesso ao sistema de arquivos atual; `FileSystem` expõe características dele e ajuda a criar caminhos.
+
+```java
+FileSystem fs = FileSystems.getDefault();
+
+System.out.println(
+    "Separador: " + fs.getSeparator()
+);
+
+for (Path raiz : fs.getRootDirectories()) {
+    System.out.println("Raiz: " + raiz);
+}
+
+Path pasta = fs.getPath("docs");
+```
+
+</div>
+<div>
+
+> `DirectoryStream` percorre as entradas de um diretório com uso controlado de recursos.
+
+```java
+try (
+    DirectoryStream<Path> stream =
+        Files.newDirectoryStream(pasta)
+) {
+    for (Path item : stream) {
+        System.out.println(
+            item.getFileName()
+        );
+    }
+}
+```
+
+- O `try-with-resources` garante o fechamento do stream.
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: resumo
+
+Esta tabela resume o papel de cada classe e destaca os principais métodos para criar caminhos, ler, escrever e percorrer diretórios.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Classe/interface</th>
+      <th>Métodos e usos principais</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Path</code></td>
+      <td><code>of</code>, <code>resolve</code>, <code>normalize</code>, <code>toAbsolutePath</code>, <code>getFileName</code>, <code>getParent</code>.</td>
+    </tr>
+    <tr>
+      <td><code>Paths</code></td>
+      <td><code>get</code>. Fábrica legada/conveniente para criar <code>Path</code>; aparece muito em código anterior a <code>Path.of</code>.</td>
+    </tr>
+    <tr>
+      <td><code>Files</code></td>
+      <td><code>exists</code>, <code>isRegularFile</code>, <code>createDirectories</code>, <code>readString</code>, <code>readAllLines</code>, <code>writeString</code>, <code>copy</code>, <code>move</code>, <code>deleteIfExists</code>, <code>list</code>, <code>walk</code>.</td>
+    </tr>
+    <tr>
+      <td><code>StandardOpenOption</code></td>
+      <td><code>CREATE</code>, <code>CREATE_NEW</code>, <code>APPEND</code>, <code>TRUNCATE_EXISTING</code>, <code>READ</code>, <code>WRITE</code>.</td>
+    </tr>
+    <tr>
+      <td><code>StandardCopyOption</code></td>
+      <td><code>REPLACE_EXISTING</code>, <code>COPY_ATTRIBUTES</code>, <code>ATOMIC_MOVE</code>.</td>
+    </tr>
+    <tr>
+      <td><code>StandardCharsets</code></td>
+      <td><code>UTF_8</code>, <code>US_ASCII</code>, <code>ISO_8859_1</code>. Define codificações padrão para converter bytes e caracteres.</td>
+    </tr>
+    <tr>
+      <td><code>FileSystems</code></td>
+      <td><code>getDefault</code>, <code>getFileSystem</code>, <code>newFileSystem</code>. Acesso a sistemas de arquivos locais ou especiais.</td>
+    </tr>
+    <tr>
+      <td><code>FileSystem</code></td>
+      <td><code>getPath</code>, <code>getSeparator</code>, <code>getRootDirectories</code>, <code>isReadOnly</code>, <code>provider</code>.</td>
+    </tr>
+    <tr>
+      <td><code>DirectoryStream</code></td>
+      <td><code>iterator</code>, <code>close</code>. Usado com <code>Files.newDirectoryStream</code> para percorrer diretórios.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+# java.nio.file: fluxo de trabalho
+
+<img src="../images/12-nio-workflow.png">
 
 ---
 
@@ -1885,3 +1978,5 @@ Antes de escrever código de arquivo, pergunte:
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/package-summary.html
 - Java SE API: `java.nio.file`
   - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/package-summary.html
+
+<script src="../scripts/onecompiler-challenge.js"></script>

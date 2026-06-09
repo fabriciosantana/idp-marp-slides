@@ -3,10 +3,10 @@
 skinparam classAttributeIconSize 0
 
 interface Path {
+  +{static} Path of(String first, String... more)
   +Path resolve(String other)
   +Path resolve(Path other)
   +Path resolveSibling(String other)
-  +Path relativize(Path other)
   +Path normalize()
   +Path toAbsolutePath()
   +Path toRealPath(LinkOption... options)
