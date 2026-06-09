@@ -1,0 +1,86 @@
+@startuml
+title JDBC API - principais interfaces
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam interface {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+class DriverManager {
+  +getConnection(url, user, password)
+}
+
+interface DataSource {
+  +getConnection()
+}
+
+interface Connection {
+  +createStatement()
+  +prepareStatement(sql)
+  +prepareCall(sql)
+  +setAutoCommit(boolean)
+  +commit()
+  +rollback()
+}
+
+interface Statement {
+  +executeQuery(sql)
+  +executeUpdate(sql)
+  +execute(sql)
+  +setFetchSize(rows)
+}
+
+interface PreparedStatement {
+  +setString(index, value)
+  +setInt(index, value)
+  +setObject(index, value)
+  +executeQuery()
+  +executeUpdate()
+}
+
+interface CallableStatement {
+  +registerOutParameter(index, type)
+  +execute()
+}
+
+interface ResultSet {
+  +next()
+  +getString(column)
+  +getInt(column)
+  +getObject(column)
+  +close()
+}
+
+class SQLException {
+  +getSQLState()
+  +getErrorCode()
+  +getNextException()
+}
+
+DriverManager ..> Connection : cria
+DataSource ..> Connection : fornece
+Connection ..> Statement : cria
+Connection ..> PreparedStatement : prepara
+Connection ..> CallableStatement : prepara
+Statement <|-- PreparedStatement
+PreparedStatement <|-- CallableStatement
+Statement ..> ResultSet : retorna
+PreparedStatement ..> ResultSet : retorna
+Connection ..> SQLException : pode lancar
+Statement ..> SQLException : pode lancar
+ResultSet ..> SQLException : pode lancar
+
+@enduml

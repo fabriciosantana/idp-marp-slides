@@ -1,0 +1,47 @@
+@startuml
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam activity {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+  RoundCorner 10
+  DiamondBackgroundColor #EAF4FA
+  DiamondBorderColor #154E75
+}
+skinparam note {
+  BackgroundColor #FFF7D6
+  BorderColor #C8A23A
+  FontSize 16
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontSize 16
+skinparam ArrowFontColor #111827
+
+start
+
+:Abrir Connection;
+:setAutoCommit(false);
+:Executar operacao 1;
+:Executar operacao 2;
+
+if (Todas as operacoes deram certo?) then (sim)
+  :commit();
+  :Alteracoes ficam permanentes;
+else (nao)
+  :rollback();
+  :Alteracoes sao desfeitas;
+endif
+
+:Fechar Connection;
+
+note right
+  Com autoCommit=true, cada comando
+  vira uma transacao propria.
+end note
+
+stop
+
+@enduml

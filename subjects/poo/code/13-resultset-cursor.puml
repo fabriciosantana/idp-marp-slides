@@ -1,0 +1,38 @@
+@startuml
+title ResultSet - cursor
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam classAttributeIconSize 0
+skinparam object {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam note {
+  BackgroundColor #FFF7D6
+  BorderColor #C8A23A
+  FontSize 16
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontSize 16
+skinparam ArrowFontColor #111827
+
+object "antes da primeira linha" as before
+object "linha 1\nid=1\nnome=Ana" as row1
+object "linha 2\nid=2\nnome=Bruno" as row2
+object "linha 3\nid=3\nnome=Carla" as row3
+object "depois da ultima linha" as after
+
+before -right-> row1 : next()
+row1 -right-> row2 : next()
+row2 -right-> row3 : next()
+row3 -right-> after : next() == false
+
+note bottom of row2
+  O cursor aponta para uma linha por vez.
+  Os getters leem colunas da linha atual.
+end note
+
+@enduml

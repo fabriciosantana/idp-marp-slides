@@ -1,0 +1,51 @@
+@startuml
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam activity {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+  RoundCorner 10
+  DiamondBackgroundColor #EAF4FA
+  DiamondBorderColor #154E75
+}
+skinparam note {
+  BackgroundColor #FFF7D6
+  BorderColor #C8A23A
+  FontSize 16
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontSize 16
+skinparam ArrowFontColor #111827
+
+start
+
+:Carregar driver no classpath;
+:Obter Connection;
+:Criar Statement ou PreparedStatement;
+:Executar SQL;
+
+if (SQL retorna linhas?) then (SELECT)
+  :Percorrer ResultSet;
+  :Converter cada linha em valores ou objetos;
+else (INSERT/UPDATE/DELETE)
+  :Ler quantidade de linhas afetadas;
+endif
+
+if (Transacao manual?) then (sim)
+  :commit ou rollback;
+endif
+
+:Fechar ResultSet, Statement e Connection;
+
+note right
+  Em codigo Java, prefira
+  try-with-resources para
+  fechar recursos JDBC.
+end note
+
+stop
+
+@enduml
