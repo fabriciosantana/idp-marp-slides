@@ -154,7 +154,7 @@ Antes de escolher uma classe de I/O, precisamos entender como o conteúdo do arq
 
 ---
 
-# Bytes vs. caracteres
+# Tipo de processamento: bytes vs caracteres
 
 Todo arquivo é armazenado como bytes; a diferença é se o programa trata esses bytes diretamente ou se os converte para caracteres usando uma codificação de texto.
 
@@ -400,6 +400,119 @@ O pacote `java.nio.file` organiza a manipulação moderna de arquivos em torno d
 
 </div>
 </div>
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Files.readAllLines
+
+```java
+Path path = Path.of("data", "alunos.csv");
+
+try {
+    List<String> linhas = Files.readAllLines(path, StandardCharsets.UTF_8);
+
+    for (String linha : linhas) {
+        System.out.println(linha);
+    }
+} catch (IOException e) {
+    System.err.println("Erro de leitura: " + e.getMessage());
+}
+```
+
+`Files.readAllLines` carrega todas as linhas em memória.
+
+Use quando o arquivo for pequeno e você precisar acessar as linhas como uma lista.
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Files.lines
+
+```java
+Path path = Path.of("data", "acessos.log");
+
+try (Stream<String> linhas = Files.lines(path, StandardCharsets.UTF_8)) {
+    long erros = linhas
+        .filter(linha -> linha.contains("ERROR"))
+        .count();
+
+    System.out.println("Erros: " + erros);
+} catch (IOException e) {
+    System.err.println("Erro ao processar log: " + e.getMessage());
+}
+```
+
+`Files.lines` devolve um `Stream<String>`, processa o conteúdo de forma mais gradual e precisa ser fechado.
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Files.list
+
+```java
+Path dir = Path.of("data");
+
+try {
+    Files.createDirectories(dir);
+
+    try (Stream<Path> arquivos = Files.list(dir)) {
+        arquivos
+            .filter(Files::isRegularFile)
+            .forEach(System.out::println);
+    }
+} catch (IOException e) {
+    System.err.println("Erro no diretorio: " + e.getMessage());
+}
+```
+
+`Files.list` lista apenas o nível atual do diretório.
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Files.walk
+
+```java
+Path raiz = Path.of("data");
+
+try (Stream<Path> caminhos = Files.walk(raiz)) {
+    caminhos
+        .filter(Files::isRegularFile)
+        .filter(path -> path.toString().endsWith(".csv"))
+        .forEach(System.out::println);
+} catch (IOException e) {
+    System.err.println("Erro ao percorrer: " + e.getMessage());
+}
+```
+
+`Files.walk` percorre recursivamente a árvore de diretórios.
+
+---
+
+<!-- _class: compact -->
+
+# java.nio.file: Files.readAllBytes e Files.write
+
+```java
+Path origem = Path.of("imagens", "foto.png");
+Path destino = Path.of("backup", "foto.png");
+
+try {
+    Files.createDirectories(destino.getParent());
+
+    byte[] bytes = Files.readAllBytes(origem);
+    Files.write(destino, bytes);
+} catch (IOException e) {
+    System.err.println("Erro ao copiar bytes: " + e.getMessage());
+}
+```
+
+Para arquivos grandes, prefira copiar com `Files.copy` ou processar por streams e buffers.
 
 ---
 
@@ -950,7 +1063,7 @@ Principais métodos:
 <div>
 
 ```java
-File file = new File("dados.txt");
+File file = new File("data/entrada.txt");
 
 System.out.println(file.exists());
 System.out.println(file.isFile());
@@ -969,6 +1082,46 @@ Em código novo, prefira `Path` e `Files`; use `File` principalmente para entend
 
 </div>
 </div>
+
+---
+
+<!-- _class: compact -->
+
+# java.io.File vs. java.nio.file.Path
+
+> Essa comparação ajuda a entender por que `Path` e `Files` são a escolha preferida em código novo, enquanto `File` aparece principalmente em código legado.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Critério</th>
+      <th>java.io.File</th>
+      <th>java.nio.file.Path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>API</td>
+      <td>Clássica, anterior ao NIO.2.</td>
+      <td>Moderna, integrada a <code>Files</code>.</td>
+    </tr>
+    <tr>
+      <td>Operações</td>
+      <td>Métodos no próprio objeto.</td>
+      <td>Caminho separado das operações.</td>
+    </tr>
+    <tr>
+      <td>Erro</td>
+      <td>Muitos métodos retornam <code>false</code>.</td>
+      <td>Operações costumam lançar exceções mais informativas.</td>
+    </tr>
+    <tr>
+      <td>Uso recomendado</td>
+      <td>Manutenção de código legado.</td>
+      <td>Código novo.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -1187,6 +1340,34 @@ try (BufferedReader reader =
 
 ---
 
+<!-- _class: compact -->
+
+# java.io: BufferedReader e BufferedWriter
+
+> Exemplo de leitura linha a linha com escrita do resultado em outro arquivo.
+
+```java
+try (
+    BufferedReader reader =
+        Files.newBufferedReader(Path.of("data", "entrada.txt"), StandardCharsets.UTF_8);
+    BufferedWriter writer =
+        Files.newBufferedWriter(Path.of("data", "saida.txt"), StandardCharsets.UTF_8)
+) {
+    String linha;
+
+    while ((linha = reader.readLine()) != null) {
+        writer.write(linha.toUpperCase());
+        writer.newLine();
+    }
+} catch (IOException e) {
+    System.err.println("Erro: " + e.getMessage());
+}
+```
+
+Boa escolha para processamento linha a linha.
+
+---
+
 <!-- _class: practice -->
 <!-- _paginate: false -->
 
@@ -1267,26 +1448,6 @@ Principais subclasses para entrada de dados:
 
 ---
 
-# Arquivos binários
-
-```java
-Path origem = Path.of("imagens", "foto.png");
-Path destino = Path.of("backup", "foto.png");
-
-try {
-    Files.createDirectories(destino.getParent());
-
-    byte[] bytes = Files.readAllBytes(origem);
-    Files.write(destino, bytes);
-} catch (IOException e) {
-    System.err.println("Erro ao copiar bytes: " + e.getMessage());
-}
-```
-
-Para arquivos grandes, prefira copiar com `Files.copy` ou processar por streams/buffers.
-
----
-
 # Serialização de objetos: visão geral
 
 > Serializar é gravar o estado de um objeto em um fluxo de dados (**stream**).
@@ -1311,229 +1472,6 @@ Para arquivos grandes, prefira copiar com `Files.copy` ou processar por streams/
   title="OneCompiler Java"
   allow="clipboard-read; clipboard-write"
 ></iframe>
-
----
-
-# try-with-resources
-
-Recursos de I/O precisam ser fechados.
-
-```java
-try (BufferedReader reader = Files.newBufferedReader(path)) {
-    String linha = reader.readLine();
-    System.out.println(linha);
-} catch (IOException e) {
-    System.err.println("Erro ao ler arquivo: " + e.getMessage());
-}
-```
-
-O `try-with-resources` fecha automaticamente objetos que implementam `AutoCloseable`, incluindo muitos objetos de `java.io` e `java.nio`.
-
----
-
-# try-with-resources: ciclo de vida de um recurso
-
-<img src="../images/12-resource-lifecycle.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
-
----
-
-# Ler linhas com Files.readAllLines
-
-```java
-Path path = Path.of("data", "alunos.csv");
-
-try {
-    List<String> linhas = Files.readAllLines(path, StandardCharsets.UTF_8);
-
-    for (String linha : linhas) {
-        System.out.println(linha);
-    }
-} catch (IOException e) {
-    System.err.println("Erro de leitura: " + e.getMessage());
-}
-```
-
-`readAllLines` carrega todas as linhas em memória.
-
-Use quando o arquivo cabe confortavelmente na memória.
-
----
-
-<!-- _class: compact -->
-
-# Processar arquivo grande com Files.lines
-
-```java
-Path path = Path.of("data", "acessos.log");
-
-try (Stream<String> linhas = Files.lines(path, StandardCharsets.UTF_8)) {
-    long erros = linhas
-        .filter(linha -> linha.contains("ERROR"))
-        .count();
-
-    System.out.println("Erros: " + erros);
-} catch (IOException e) {
-    System.err.println("Erro ao processar log: " + e.getMessage());
-}
-```
-
-`Files.lines` devolve um `Stream<String>` e precisa ser fechado.
-
----
-
-<!-- _class: compact -->
-
-# Diretórios com Files
-
-```java
-Path dir = Path.of("data");
-
-try {
-    Files.createDirectories(dir);
-
-    try (Stream<Path> arquivos = Files.list(dir)) {
-        arquivos
-            .filter(Files::isRegularFile)
-            .forEach(System.out::println);
-    }
-} catch (IOException e) {
-    System.err.println("Erro no diretorio: " + e.getMessage());
-}
-```
-
-`Files.list` lista apenas o nível atual do diretório.
-
----
-
-<!-- _class: compact -->
-
-# Percorrer árvore com Files.walk
-
-```java
-Path raiz = Path.of("data");
-
-try (Stream<Path> caminhos = Files.walk(raiz)) {
-    caminhos
-        .filter(Files::isRegularFile)
-        .filter(path -> path.toString().endsWith(".csv"))
-        .forEach(System.out::println);
-} catch (IOException e) {
-    System.err.println("Erro ao percorrer: " + e.getMessage());
-}
-```
-
-`Files.walk` percorre recursivamente a árvore de diretórios.
-
----
-
-<!-- _class: compact -->
-
-# BufferedReader e BufferedWriter
-
-```java
-Path entrada = Path.of("data", "entrada.txt");
-Path saida = Path.of("data", "saida.txt");
-
-try (
-    BufferedReader reader =
-        Files.newBufferedReader(entrada, StandardCharsets.UTF_8);
-    BufferedWriter writer =
-        Files.newBufferedWriter(saida, StandardCharsets.UTF_8)
-) {
-    String linha;
-
-    while ((linha = reader.readLine()) != null) {
-        writer.write(linha.toUpperCase());
-        writer.newLine();
-    }
-} catch (IOException e) {
-    System.err.println("Erro no processamento: " + e.getMessage());
-}
-```
-
-Boa escolha para processamento linha a linha.
-
----
-
-# File: API legada
-
-`java.io.File` representa um caminho abstrato.
-
-```java
-File file = new File("data/entrada.txt");
-
-System.out.println(file.exists());
-System.out.println(file.isFile());
-System.out.println(file.getAbsolutePath());
-
-Path path = file.toPath();
-```
-
-<div class="callout">
-
-Em código novo, prefira `Path` e `Files`. Quando encontrar `File` em código legado, use `toPath()` para migrar gradualmente.
-
-</div>
-
----
-
-# Path vs. File
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Critério</th>
-      <th><code>java.io.File</code></th>
-      <th><code>java.nio.file.Path</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>API</td>
-      <td>Clássica, anterior ao NIO.2.</td>
-      <td>Moderna, integrada a <code>Files</code>.</td>
-    </tr>
-    <tr>
-      <td>Operações</td>
-      <td>Métodos no próprio objeto.</td>
-      <td>Caminho separado das operações.</td>
-    </tr>
-    <tr>
-      <td>Erro</td>
-      <td>Muitos métodos retornam <code>false</code>.</td>
-      <td>Operações costumam lançar exceções mais informativas.</td>
-    </tr>
-    <tr>
-      <td>Uso recomendado</td>
-      <td>Manutenção de código legado.</td>
-      <td>Código novo.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-# Canais e buffers
-
-`java.nio.channels.FileChannel` permite I/O com `ByteBuffer`.
-
-```java
-Path path = Path.of("data", "binario.dat");
-
-try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
-    ByteBuffer buffer = ByteBuffer.allocate(1024);
-
-    while (channel.read(buffer) != -1) {
-        buffer.flip();
-        System.out.println("Bytes lidos: " + buffer.remaining());
-        buffer.clear();
-    }
-} catch (IOException e) {
-    System.err.println("Erro no canal: " + e.getMessage());
-}
-```
-
-Útil quando precisamos de controle fino sobre buffers e canais.
 
 ---
 
@@ -1578,6 +1516,29 @@ try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
 
 ---
 
+# try-with-resources
+
+Recursos de I/O precisam ser fechados.
+
+```java
+try (BufferedReader reader = Files.newBufferedReader(path)) {
+    String linha = reader.readLine();
+    System.out.println(linha);
+} catch (IOException e) {
+    System.err.println("Erro ao ler arquivo: " + e.getMessage());
+}
+```
+
+O `try-with-resources` fecha automaticamente objetos que implementam `AutoCloseable`, incluindo muitos objetos de `java.io` e `java.nio`.
+
+---
+
+# try-with-resources: ciclo de vida de um recurso
+
+<img src="../images/12-resource-lifecycle.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
 # Boas práticas
 
 - Prefira `Path` e `Files` em código novo
@@ -1592,46 +1553,46 @@ try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
 
 ---
 
-# Critérios de escolha
+# Critérios de escolha: caminhos e leitura
 
 <table class="tiny">
   <thead>
     <tr>
-      <th>Necessidade</th>
-      <th>Escolha comum</th>
-      <th>Motivo</th>
+      <th>Situação</th>
+      <th>Escolha recomendada</th>
+      <th>Quando faz sentido</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Ler arquivo de texto pequeno</td>
+      <td>Representar caminho de arquivo ou diretório</td>
+      <td><code>Path.of</code></td>
+      <td>Criação moderna e direta de caminhos em código novo.</td>
+    </tr>
+    <tr>
+      <td>Criar, ler, escrever, copiar ou apagar arquivo</td>
+      <td><code>Files</code></td>
+      <td>API principal para operações de alto nível com <code>Path</code>.</td>
+    </tr>
+    <tr>
+      <td>Ler texto pequeno inteiro</td>
       <td><code>Files.readString</code></td>
-      <td>Simples e direto.</td>
+      <td>Quando o conteúdo cabe em memória e você quer simplicidade.</td>
     </tr>
     <tr>
-      <td>Ler linhas de arquivo pequeno</td>
+      <td>Ler arquivo pequeno linha a linha como lista</td>
       <td><code>Files.readAllLines</code></td>
-      <td>Retorna <code>List&lt;String&gt;</code>.</td>
+      <td>Quando você precisa de uma <code>List&lt;String&gt;</code>.</td>
     </tr>
     <tr>
-      <td>Processar arquivo grande</td>
-      <td><code>BufferedReader</code> ou <code>Files.lines</code></td>
-      <td>Processamento incremental.</td>
+      <td>Processar arquivo textual grande</td>
+      <td><code>Files.lines</code> ou <code>BufferedReader</code></td>
+      <td>Processamento incremental, sem carregar tudo em memória.</td>
     </tr>
     <tr>
-      <td>Escrever relatório textual</td>
-      <td><code>BufferedWriter</code>, <code>PrintWriter</code> ou <code>Formatter</code></td>
-      <td>Controle de linhas e formatação.</td>
-    </tr>
-    <tr>
-      <td>Copiar arquivo</td>
-      <td><code>Files.copy</code></td>
-      <td>Operação pronta da API.</td>
-    </tr>
-    <tr>
-      <td>Dados binários</td>
-      <td><code>InputStream</code>, <code>OutputStream</code>, <code>Files.copy</code></td>
-      <td>Preserva bytes sem interpretar texto.</td>
+      <td>Ler tokens ou dados simples de texto</td>
+      <td><code>Scanner</code></td>
+      <td>Útil para console, arquivos simples e parsing básico.</td>
     </tr>
   </tbody>
 </table>
@@ -1640,182 +1601,129 @@ try (FileChannel channel = FileChannel.open(path, StandardOpenOption.READ)) {
 
 <!-- _class: compact -->
 
-# Demonstração: criar e ler arquivo
+# Critérios de escolha: escrita e formatação
 
-```java
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-public class DemoArquivo {
-    public static void main(String[] args) throws IOException {
-        Path path = Path.of("data", "mensagem.txt");
-
-        Files.createDirectories(path.getParent());
-        Files.writeString(path, "POO com arquivos\n", StandardCharsets.UTF_8);
-
-        String conteudo = Files.readString(path, StandardCharsets.UTF_8);
-        System.out.println(conteudo);
-    }
-}
-```
-
-<!-- TODO: substituir por iframe OneCompiler quando o link da demo for enviado. -->
-
----
-
-<!-- _class: compact -->
-
-# Demonstração: processar CSV
-
-```java
-record Aluno(String nome, double nota) {}
-
-Path path = Path.of("data", "notas.csv");
-
-try (Stream<String> linhas = Files.lines(path, StandardCharsets.UTF_8)) {
-    List<Aluno> aprovados = linhas
-        .skip(1)
-        .map(linha -> linha.split(","))
-        .map(colunas -> new Aluno(
-            colunas[0],
-            Double.parseDouble(colunas[1])
-        ))
-        .filter(aluno -> aluno.nota() >= 7.0)
-        .toList();
-
-    aprovados.forEach(System.out::println);
-}
-```
-
-<!-- TODO: substituir por iframe OneCompiler quando o link da demo for enviado. -->
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Situação</th>
+      <th>Escolha recomendada</th>
+      <th>Quando faz sentido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Escrever texto simples rapidamente</td>
+      <td><code>Files.writeString</code> ou <code>FileWriter</code></td>
+      <td>Boa escolha para saídas pequenas e diretas.</td>
+    </tr>
+    <tr>
+      <td>Escrever texto linha a linha</td>
+      <td><code>BufferedWriter</code></td>
+      <td>Mais adequado para muitas escritas pequenas ou em loop.</td>
+    </tr>
+    <tr>
+      <td>Gerar saída formatada</td>
+      <td><code>Formatter</code></td>
+      <td>Quando o arquivo segue colunas, alinhamento ou máscaras de formato.</td>
+    </tr>
+    <tr>
+      <td>Acrescentar conteúdo ao final de um arquivo</td>
+      <td><code>Files.writeString</code> com <code>StandardOpenOption.APPEND</code></td>
+      <td>Quando você quer preservar o conteúdo existente e adicionar novas linhas.</td>
+    </tr>
+    <tr>
+      <td>Copiar ou mover arquivos</td>
+      <td><code>Files.copy</code> / <code>Files.move</code></td>
+      <td>Operações prontas e mais claras que ler e gravar manualmente.</td>
+    </tr>
+    <tr>
+      <td>Controlar codificação de texto</td>
+      <td><code>StandardCharsets.UTF_8</code></td>
+      <td>Evita ambiguidade na conversão entre bytes e caracteres.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 <!-- _class: compact -->
 
-# Demonstração: relatório de frequência
+# Critérios de escolha: objetos, opções e recursos
 
-```java
-Path path = Path.of("data", "acessos.log");
-
-try (Stream<String> linhas = Files.lines(path, StandardCharsets.UTF_8)) {
-    Map<String, Long> frequencia = linhas
-        .map(linha -> linha.split(" ")[0])
-        .collect(Collectors.groupingBy(
-            ip -> ip,
-            Collectors.counting()
-        ));
-
-    frequencia.entrySet().stream()
-        .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
-        .limit(5)
-        .forEach(System.out::println);
-}
-```
-
-<!-- TODO: substituir por iframe OneCompiler quando o link da demo for enviado. -->
-
----
-
-<!-- _class: practice -->
-<!-- _paginate: false -->
-
-# Exercício: agenda em arquivo
-
-Construa um programa que mantenha contatos em `data/contatos.csv`.
-
-Cada contato deve ter:
-
-- nome
-- e-mail
-- telefone
-
-O programa deve:
-
-- criar o arquivo se ele não existir
-- adicionar novos contatos sem apagar os anteriores
-- listar os contatos cadastrados
-- ignorar linhas vazias
-
-<!-- TODO: substituir por challenge OneCompiler quando o link for enviado. -->
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Situação</th>
+      <th>Escolha recomendada</th>
+      <th>Quando faz sentido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Serializar objetos Java</td>
+      <td><code>ObjectOutputStream</code> / <code>ObjectInputStream</code></td>
+      <td>Quando você precisa gravar e reconstruir o estado de objetos em formato binário.</td>
+    </tr>
+    <tr>
+      <td>Escolher como abrir um arquivo</td>
+      <td><code>StandardOpenOption</code></td>
+      <td>Quando a operação depende de criar, truncar, acrescentar ou abrir para leitura/escrita.</td>
+    </tr>
+    <tr>
+      <td>Controlar comportamento de cópia ou movimentação</td>
+      <td><code>StandardCopyOption</code></td>
+      <td>Quando você precisa substituir destino, preservar atributos ou tentar movimento atômico.</td>
+    </tr>
+    <tr>
+      <td>Fechar recursos automaticamente</td>
+      <td><code>try-with-resources</code></td>
+      <td>Use sempre que trabalhar com streams, readers, writers, scanners e outros recursos de I/O.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
-<!-- _class: practice -->
-<!-- _paginate: false -->
+<!-- _class: compact -->
 
-# Exercício: analisador de notas
+# Critérios de escolha: diretórios, binários e legado
 
-Leia um arquivo `data/notas.csv` no formato:
-
-```text
-nome,nota
-Ana,9.5
-Bruno,6.8
-Carla,8.1
-```
-
-O programa deve:
-
-- calcular a média da turma
-- listar estudantes aprovados
-- gravar `data/aprovados.txt`
-- tratar arquivo ausente e nota inválida
-
-<!-- TODO: substituir por challenge OneCompiler quando o link for enviado. -->
-
----
-
-<!-- _class: practice -->
-<!-- _paginate: false -->
-
-# Exercício: organizador de arquivos
-
-Crie um programa que leia todos os arquivos de uma pasta `entrada`.
-
-O programa deve:
-
-- criar uma pasta `saida`
-- copiar arquivos `.txt` para `saida/textos`
-- copiar arquivos `.csv` para `saida/planilhas`
-- ignorar subdiretórios
-- imprimir um resumo da quantidade copiada por tipo
-
-<!-- TODO: substituir por challenge OneCompiler quando o link for enviado. -->
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Situação</th>
+      <th>Escolha recomendada</th>
+      <th>Quando faz sentido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Percorrer diretório atual</td>
+      <td><code>Files.list</code> ou <code>DirectoryStream</code></td>
+      <td><code>list</code> integra com streams; <code>DirectoryStream</code> é simples e controlado.</td>
+    </tr>
+    <tr>
+      <td>Percorrer árvore de diretórios</td>
+      <td><code>Files.walk</code></td>
+      <td>Quando é preciso visitar subdiretórios recursivamente.</td>
+    </tr>
+    <tr>
+      <td>Trabalhar com dados binários</td>
+      <td><code>InputStream</code>, <code>OutputStream</code>, <code>Files.readAllBytes</code></td>
+      <td>Preserva bytes sem interpretar o conteúdo como texto.</td>
+    </tr>
+    <tr>
+      <td>Lidar com código legado</td>
+      <td><code>File</code>, <code>FileReader</code>, <code>FileWriter</code></td>
+      <td>Importante para manutenção, mas prefira <code>Path</code> e <code>Files</code> em código novo.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
-# Checklist mental
-
-Antes de escrever código de arquivo, pergunte:
-
-- O caminho é relativo ou absoluto?
-- O arquivo precisa existir antes da leitura?
-- O diretório de destino existe?
-- O conteúdo é texto ou binário?
-- Qual charset será usado?
-- O arquivo cabe em memória?
-- A escrita deve substituir ou acrescentar?
-- Qual exceção deve ser tratada de forma específica?
-- O recurso será fechado automaticamente?
-
----
-
-# Arquitetura geral de I/O
-
-<img src="../images/12-file-classes.png">
-
----
-
-# Manipulação de arquivos: mapa da aula
-
-<img src="../images/12-file-mindmap.png">
-
----
-
-# Referências oficiais
+# Referências
 
 - Oracle Java Tutorial: Basic I/O
   - https://docs.oracle.com/javase/tutorial/essential/io/
