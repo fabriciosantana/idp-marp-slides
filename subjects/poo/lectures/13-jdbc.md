@@ -17,13 +17,14 @@ footer: <span>Programação Orientada a Objetos</span><span>Acesso a banco de da
 
 **Objetivos da aula**
 
-- Revisar conceitos essenciais de bancos relacionais e SQL
+- Revisar conceitos de bancos relacionais e SQL
 - Compreender o papel da API JDBC em aplicações Java
-- Conectar uma aplicação Java a um banco usando `DriverManager`
+- Conectar uma aplicação Java a um banco usando `DriverManager` e `Connection`
 - Executar `SELECT`, `INSERT`, `UPDATE` e `DELETE`
-- Usar `PreparedStatement`, `ResultSet` e `SQLException`
+- Usar `Statement`, `PreparedStatement` e `ResultSet`
+- Tratar exceções com `SQLException`
 - Controlar transações com `commit` e `rollback`
-- Organizar acesso a dados com uma camada DAO simples
+- Organizar acesso a dados com uma camada DAO
 
 </div>
 
@@ -138,22 +139,22 @@ Ela permite descrever o que queremos consultar ou alterar no banco.
   </thead>
   <tbody>
     <tr>
-      <td>DQL / consulta</td>
+      <td>DQL<br><em>Data Query Language</em></td>
       <td><code>SELECT</code></td>
       <td>Recuperar dados.</td>
     </tr>
     <tr>
-      <td>DML</td>
+      <td>DML<br><em>Data Manipulation Language</em></td>
       <td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
       <td>Manipular registros.</td>
     </tr>
     <tr>
-      <td>DDL</td>
+      <td>DDL<br><em>Data Definition Language</em></td>
       <td><code>CREATE TABLE</code>, <code>ALTER TABLE</code>, <code>DROP</code></td>
       <td>Definir estrutura.</td>
     </tr>
     <tr>
-      <td>TCL</td>
+      <td>TCL<br><em>Transaction Control Language</em></td>
       <td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td>
       <td>Controlar transações.</td>
     </tr>
@@ -268,6 +269,8 @@ Funcionalidades complementares aparecem em `javax.sql`.
 
 ---
 
+<!-- _class: compact -->
+
 # Driver JDBC
 
 > Driver JDBC é uma biblioteca que implementa a comunicação entre a API JDBC e um banco específico.
@@ -278,7 +281,6 @@ Funcionalidades complementares aparecem em `javax.sql`.
 - MySQL: MySQL Connector/J
 - Oracle: Oracle JDBC Driver
 - SQL Server: Microsoft JDBC Driver
-- H2 ou SQLite: drivers úteis para estudo, testes e aplicações pequenas
 
 <div class="callout">
 
@@ -321,6 +323,8 @@ Além da URL, normalmente usamos usuário e senha.
 
 # JDBC API: resumo
 
+A tabela resume os principais elementos da API JDBC e mostra em que momento cada um aparece no fluxo de acesso ao banco.
+
 <table class="tiny">
   <thead>
     <tr>
@@ -362,6 +366,12 @@ Além da URL, normalmente usamos usuário e senha.
 
 ---
 
+# Arquitetura de conexão PostgreSQL
+
+<img src="../images/13-postgresql-architecture.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
 # Ciclo de vida JDBC
 
 <img src="../images/13-jdbc-workflow.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
@@ -371,6 +381,8 @@ Além da URL, normalmente usamos usuário e senha.
 <!-- _class: compact -->
 
 # Estrutura básica
+
+Estrutura típica para acessar banco de dados.
 
 ```java
 try {
@@ -385,7 +397,7 @@ try {
 }
 ```
 
-Essa estrutura explica o fluxo, mas em código moderno preferimos `try-with-resources`.
+Prefira usar `try-with-resources` para fechamento automático dos recursos.
 
 ---
 
@@ -393,15 +405,15 @@ Essa estrutura explica o fluxo, mas em código moderno preferimos `try-with-reso
 
 # try-with-resources
 
-Objetos JDBC importantes implementam `AutoCloseable`.
+Declare `Connection`, `Statement` e `ResultSet` no cabeçalho do `try`.
 
-Por isso, podem ser fechados automaticamente.
+Ao final do bloco, o Java chama `close()` em cada recurso automaticamente.
 
 ```java
 try (
     Connection conn = DriverManager.getConnection(url, user, password);
-    PreparedStatement ps = conn.prepareStatement(sql);
-    ResultSet rs = ps.executeQuery()
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(sql)
 ) {
     while (rs.next()) {
         System.out.println(rs.getString("nome"));
@@ -411,7 +423,7 @@ try (
 }
 ```
 
-> Fechar recursos evita vazamento de conexões e cursores no banco.
+> Se uma conexão não for fechada, ela pode continuar ocupada no banco, impedindo que outras operações usem esse recurso.
 
 ---
 
@@ -1295,4 +1307,3 @@ Nesta aula, JDBC apareceu como a ponte entre objetos Java e dados relacionais.
 **O ponto mais importante**
 
 > Use `PreparedStatement`, feche recursos corretamente e controle transações quando várias operações precisarem ser confirmadas juntas.
-

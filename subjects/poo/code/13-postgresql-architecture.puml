@@ -1,0 +1,75 @@
+@startuml
+title Arquitetura de Conexao PostgreSQL
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam componentStyle rectangle
+skinparam defaultFontSize 18
+skinparam nodesep 40
+skinparam ranksep 45
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+top to bottom direction
+
+actor "Usuarios" as users
+
+together {
+  package "Aplicacoes Cliente" as clientLayer {
+    [CLI Console] as cli
+    [Web UI] as web
+    [Mobile App] as mobile
+  }
+
+  package "Ferramentas Administrativas" as adminLayer {
+    component "psql (CLI)" as psql
+    component "pgAdmin (GUI)" as pgadmin
+    component "VS Code (plugin)" as vscode
+  }
+}
+
+node "Aplicacao Java" as javaApp {
+  file "db.properties\n(host, porta, usuario, senha)" as props
+  component "Classes Java\n====\nJDBC API\n====\nDriver PostgreSQL" as javaStack
+
+  note as javaCodeNote
+    Connection connection = DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
+    Statement statement = connection.createStatement();
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM ACTOR LIMIT 10");
+  end note
+
+  javaStack -down[hidden]- javaCodeNote
+  props -down[hidden]- javaCodeNote
+}
+
+rectangle "Servidor PostgreSQL\n(opcoes de conexao)" as pg {
+  database "Maquina\nLocal" as local
+  database "Maquina Local\ncom Docker" as docker
+  cloud "Supabase (Cloud)" as supabase
+  note bottom of local
+    endereco (host): localhost
+    porta: 5432
+    usuario: postgres
+    senha
+  end note
+}
+
+users --> cli
+users --> psql : terminal
+users --> pgadmin : http://localhost:8888/pgadmin4
+users --> vscode
+
+cli --> javaStack
+
+javaStack <--> props : carregar configuracoes
+javaStack --> pg : DriverManager\nConnection\nStatement\nResultSet
+
+psql --> pg : > psql -h HOST\n-p PORT\n-U USER\n-d DB
+pgadmin --> pg
+vscode --> pg
+
+pg --> local
+pg --> docker
+pg --> supabase
+
+@enduml

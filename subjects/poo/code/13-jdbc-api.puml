@@ -6,6 +6,8 @@ skinparam backgroundColor transparent
 skinparam classAttributeIconSize 0
 skinparam defaultFontSize 18
 skinparam linetype ortho
+skinparam nodesep 48
+skinparam ranksep 40
 skinparam class {
   BackgroundColor #F8FAFC
   BorderColor #154E75
@@ -70,17 +72,31 @@ class SQLException {
   +getNextException()
 }
 
-DriverManager ..> Connection : cria
-DataSource ..> Connection : fornece
-Connection ..> Statement : cria
-Connection ..> PreparedStatement : prepara
-Connection ..> CallableStatement : prepara
+' Layout em 4 colunas logicas:
+' 1) DriverManager / DataSource
+' 2) Connection
+' 3) Statement / PreparedStatement / CallableStatement
+' 4) ResultSet / SQLException
+
+' Pilhas verticais das colunas 1, 3 e 4.
+DriverManager -down[hidden]- DataSource
+Statement -down[hidden]- PreparedStatement
+PreparedStatement -down[hidden]- CallableStatement
+ResultSet -down[hidden]- SQLException
+
+' Cadeia horizontal que define as 4 colunas.
+DriverManager -right[hidden]- Connection
+Connection -right[hidden]- Statement
+Statement -right[hidden]- ResultSet
+
+DriverManager -[norank,dashed]-> Connection : cria
+DataSource -[norank,dashed]-> Connection : fornece
+Connection -[norank,dashed]-> Statement : cria
+Connection -[norank,dashed]-> PreparedStatement : prepara
+Connection -[norank,dashed]-> CallableStatement : prepara
 Statement <|-- PreparedStatement
 PreparedStatement <|-- CallableStatement
-Statement ..> ResultSet : retorna
-PreparedStatement ..> ResultSet : retorna
-Connection ..> SQLException : pode lancar
-Statement ..> SQLException : pode lancar
-ResultSet ..> SQLException : pode lancar
+Statement -[norank,dashed]-> ResultSet : retorna
+PreparedStatement -[norank,dashed]-> ResultSet : retorna
 
 @enduml
