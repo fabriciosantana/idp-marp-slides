@@ -480,6 +480,14 @@ Além da URL, normalmente usamos usuário e senha.
 
 ---
 
+# Arquitetura de conexão com banco de dados
+
+## Cenário típico de conexão com banco de dados
+
+<img src="../images/13-postgresql-architecture.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
 # JDBC API: onde fica?
 
 A API principal está no pacote `java.sql`.
@@ -515,7 +523,7 @@ Funcionalidades complementares aparecem em `javax.sql`.
 
 <!-- _class: compact -->
 
-# java.sql.DriverManager: principal finalidade
+# java.sql.DriverManager: obter conexão
 
 O `DriverManager` localiza um driver JDBC compatível e devolve uma conexão pronta para a aplicação conversar com o banco de dados.
 
@@ -563,7 +571,7 @@ O `DriverManager` localiza um driver JDBC compatível e devolve uma conexão pro
 
 <!-- _class: compact -->
 
-# java.sql.DriverManager: obtendo uma conexão
+# Conectar a um banco de dados PostgreSQL
 
 ```java
 import java.sql.Connection;
@@ -584,6 +592,193 @@ public class TestaConexao {
     }
 }
 ```
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.Statement: comando SQL fixo
+
+`Statement` é usado quando o programa precisa executar um comando SQL fixo, escrito diretamente como texto no código.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-statement-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `executeQuery(sql)`: executa consulta que retorna linhas, normalmente um `SELECT`, e devolve um `ResultSet`
+- `executeUpdate(sql)`: executa `INSERT`, `UPDATE`, `DELETE` e devolve a quantidade de linhas afetadas
+- `execute(sql)`: executa um comando genérico quando o retorno pode variar e devolve um `boolean`
+- `close()`: fecha o statement e libera o recurso
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.Statement: exemplo
+
+<div class="columns">
+<div>
+
+O programa cria um `Statement`, executa uma consulta SQL fixa e percorre o `ResultSet` para ler os dados retornados.
+
+</div>
+<div>
+
+```java
+String sql = """
+    SELECT id_conta, numero, saldo
+    FROM conta
+    ORDER BY numero
+    """;
+
+try (
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(sql)
+) {
+    while (rs.next()) {
+        System.out.println(rs.getString("numero"));
+    }
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.PreparedStatement: SQL parametrizado
+
+`PreparedStatement` é usado quando o comando SQL recebe valores externos, como texto digitado pelo usuário, filtros e identificadores.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-preparedstatement-class.png">
+
+</div>
+<div>
+
+- `setString(index, value)`: associa um texto a um parâmetro `?`
+- `setInt(index, value)`: associa um inteiro a um parâmetro `?`
+- `setObject(index, value)`: associa um valor genérico a um parâmetro `?`
+- `executeQuery()`: executa consulta parametrizada
+- `executeUpdate()`: executa alteração parametrizada
+- `close()`: fecha o prepared statement
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.PreparedStatement: exemplo
+
+<div class="columns">
+<div>
+
+O SQL é preparado com um placeholder `?`. Depois, o programa usa `setInt(1, 1)` para associar um valor ao primeiro parâmetro antes de executar a consulta.
+
+</div>
+<div>
+
+```java
+String sql = """
+    SELECT id_conta, numero, saldo
+    FROM conta
+    WHERE id_cliente = ?
+    """;
+
+try (PreparedStatement ps = conn.prepareStatement(sql)) {
+    ps.setInt(1, 1);
+
+    try (ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+            System.out.println(rs.getString("numero"));
+        }
+    }
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.CallableStatement: _stored procedures_
+
+`CallableStatement` é usado para chamar procedures e funções definidas no próprio banco de dados, inclusive com parâmetros de entrada e saída.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-callablestatement-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `registerOutParameter(index, type)`: registra um parâmetro de saída
+- `setObject(index, value)`: envia um valor de entrada para a procedure ou função
+- `execute()`: executa a chamada
+- `getObject(index)`: lê um valor retornado pelo banco
+- `close()`: fecha o callable statement
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.CallableStatement: exemplo
+
+> `CallableStatement` é a classe usada quando a aplicação Java precisa chamar uma rotina já definida dentro do banco de dados.
+
+<div class="columns">
+<div>
+
+- `call` indica que o banco deve executar uma rotina previamente definida.
+- Uma _stored procedure_ é um procedimento armazenado no próprio banco de dados, que pode receber parâmetros e executar operações SQL.
+- Depois, o programa informa o parâmetro necessário e executa a chamada com `prepareCall(...)`.
+
+</div>
+<div>
+
+**Stored Procedure**
+
+```sql
+CREATE PROCEDURE recalcular_saldo (IN p_id_conta INT)
+BEGIN
+    UPDATE conta
+    SET saldo = saldo + 100
+    WHERE id_conta = p_id_conta;
+END;
+```
+
+**CallableStatement**
+
+```java
+String sql = "{ call recalcular_saldo(?) }";
+
+try (CallableStatement cs = conn.prepareCall(sql)) {
+    cs.setInt(1, 10);
+    cs.execute();
+}
+```
+
+</div>
+</div>
 
 ---
 
@@ -631,12 +826,6 @@ A tabela resume os principais elementos da API JDBC e mostra em que momento cada
     </tr>
   </tbody>
 </table>
-
----
-
-# Arquitetura de conexão PostgreSQL
-
-<img src="../images/13-postgresql-architecture.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
 
 ---
 
@@ -723,71 +912,6 @@ String password = props.getProperty("password");
 ```
 
 Em aplicações reais, variáveis de ambiente e gerenciadores de segredo são escolhas melhores.
-
----
-
-<!-- _class: compact -->
-
-# java.sql.Statement: comando SQL estático
-
-`Statement` executa SQL como texto.
-
-```java
-String sql = """
-    SELECT id, nome, email
-    FROM aluno
-    ORDER BY nome
-    """;
-
-try (
-    Connection conn = DriverManager.getConnection(url, user, password);
-    Statement stmt = conn.createStatement();
-    ResultSet rs = stmt.executeQuery(sql)
-) {
-    while (rs.next()) {
-        System.out.printf(
-            "%d - %s%n",
-            rs.getInt("id"),
-            rs.getString("nome")
-        );
-    }
-}
-```
-
-Use `Statement` apenas para comandos fixos, sem dados vindos de usuário.
-
----
-
-<!-- _class: compact -->
-
-# java.sql.Statement: métodos de execução
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Método</th>
-      <th>Quando usar</th>
-      <th>Retorno</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>executeQuery</code></td>
-      <td>Consultas que retornam linhas, normalmente <code>SELECT</code>.</td>
-      <td><code>ResultSet</code></td>
-    </tr>
-    <tr>
-      <td><code>executeUpdate</code></td>
-      <td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> e alguns DDL.</td>
-      <td>Número de linhas afetadas.</td>
-    </tr>
-    <tr>
-      <td><code>execute</code></td>
-      <td>Comando genérico quando o tipo de retorno pode variar.</td>
-      <td><code>boolean</code>: indica se houve <code>ResultSet</code>.</td>
-    </tr>
-  </tbody>
-</table>
 
 ---
 
