@@ -1,0 +1,35 @@
+@startuml
+title DriverManager e Connection
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam nodesep 40
+skinparam ranksep 35
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam interface {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+class DriverManager {
+  +getConnection(url, user, password)
+  +getConnection(url)
+  +getDriver(url)
+}
+
+interface Connection
+
+DriverManager -[dashed]-> Connection : obtém
+
+@enduml

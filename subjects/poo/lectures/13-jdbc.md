@@ -515,6 +515,80 @@ Funcionalidades complementares aparecem em `javax.sql`.
 
 <!-- _class: compact -->
 
+# java.sql.DriverManager: principal finalidade
+
+O `DriverManager` localiza um driver JDBC compatível e devolve uma conexão pronta para a aplicação conversar com o banco de dados.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-drivermanager-connection.png" style="display:block; max-width:100%; max-height:360px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `getConnection(url, user, password)`: abre conexão informando URL, usuário e senha
+- `getConnection(url)`: abre conexão quando a URL já carrega as demais informações
+- `getDriver(url)`: identifica qual driver atende a URL informada
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.Connection: sessão com banco de dados
+
+`Connection` representa a sessão aberta entre a aplicação Java e o banco de dados; a partir dela, o programa cria comandos SQL e controla transações.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-connection-class.png">
+
+</div>
+<div>
+
+- `createStatement()`: cria um `Statement` para executar SQL estático
+- `prepareStatement(sql)`: cria um `PreparedStatement` para SQL parametrizado
+- `setAutoCommit(boolean)`: define se cada comando será confirmado automaticamente
+- `commit()` / `rollback()`: confirma ou desfaz uma transação
+- `close()`: fecha a conexão e libera o recurso
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.DriverManager: obtendo uma conexão
+
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class TestaConexao {
+    public static void main(String[] args) {
+        String url = "jdbc:postgresql://localhost:5432/escola";
+        String user = "postgres";
+        String password = "postgres";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Conectado!");
+        } catch (SQLException e) {
+            System.err.println("Falha: " + e.getMessage());
+        }
+    }
+}
+```
+
+---
+
+<!-- _class: compact -->
+
 # JDBC API: resumo
 
 A tabela resume os principais elementos da API JDBC e mostra em que momento cada um aparece no fluxo de acesso ao banco.
@@ -622,34 +696,6 @@ try (
 ```
 
 > Se uma conexão não for fechada, ela pode continuar ocupada no banco, impedindo que outras operações usem esse recurso.
-
----
-
-<!-- _class: compact -->
-
-# java.sql.DriverManager: obtendo uma conexão
-
-```java
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class TestaConexao {
-    public static void main(String[] args) {
-        String url = "jdbc:postgresql://localhost:5432/escola";
-        String user = "postgres";
-        String password = "postgres";
-
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Conectado!");
-        } catch (SQLException e) {
-            System.err.println("Falha: " + e.getMessage());
-        }
-    }
-}
-```
-
----
 
 <!-- _class: compact -->
 
