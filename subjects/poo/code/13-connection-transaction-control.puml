@@ -1,0 +1,41 @@
+@startuml
+title java.sql.Connection: controle de transação
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam nodesep 35
+skinparam ranksep 30
+skinparam class {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam interface {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+interface Connection {
+  + setAutoCommit(boolean)
+  + getAutoCommit()
+  + commit()
+  + rollback()
+  + setSavepoint()
+  + rollback(Savepoint)
+  + setTransactionIsolation(int)
+  + close()
+}
+
+interface Savepoint
+
+Connection --> Savepoint : cria
+
+@enduml

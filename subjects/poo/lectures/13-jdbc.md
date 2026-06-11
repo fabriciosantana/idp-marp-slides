@@ -1105,7 +1105,121 @@ Aqui, JDBC e Collections trabalham juntos.
 
 ---
 
-# JDBC API: ciclo de vida da conexão
+# Transação: conceito
+
+> Transação é uma sequência de operações de banco tratada como uma única unidade lógica de trabalho.
+
+Exemplo:
+
+- debitar valor de uma conta
+- creditar valor em outra conta
+- registrar histórico da transferência
+
+Essas operações devem ser confirmadas juntas ou desfeitas juntas.
+
+---
+
+<!-- _class: compact -->
+
+# Transação: propriedades ACID
+
+As propriedades ACID definem como uma transação deve se comportar para garantir integridade, isolamento e confiança nos dados.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Ideia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Atomicidade</td>
+      <td>Ou todas as operações da transação acontecem, ou nenhuma fica permanente.</td>
+    </tr>
+    <tr>
+      <td>Consistência</td>
+      <td>As regras de integridade do banco continuam válidas.</td>
+    </tr>
+    <tr>
+      <td>Isolamento</td>
+      <td>Transações concorrentes não devem interferir indevidamente umas nas outras.</td>
+    </tr>
+    <tr>
+      <td>Durabilidade</td>
+      <td>Depois do <code>commit</code>, o resultado confirmado deve sobreviver a falhas previstas.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+# Transação: ciclo de vida
+
+<img src="../images/13-transaction-lifecycle.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.Connection: controle de transação
+
+A classe `Connection` pode ser utilizada para controlar transações, incluindo commit, rollback, savepoints e isolamento.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-connection-transaction-control.png" style="display:block; max-width:100%; max-height:420px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `setAutoCommit(false)`: desliga o modo de confirmação automática.
+- `getAutoCommit()`: verifica se a conexão confirma comandos automaticamente.
+- `commit()`: confirma todas as operações da transação.
+- `rollback()`: desfaz todas as operações desde o último commit.
+- `setSavepoint()`: cria um ponto intermediário para rollback parcial.
+- `rollback(Savepoint)`: desfaz até o savepoint especificado.
+- `setTransactionIsolation(int)`: define o nível de isolamento da transação.
+- `close()`: finaliza a conexão e libera recursos.
+
+</div>
+</div>
+
+<div class="callout">
+
+**Nota**: `Connection` concentra tanto o controle básico de transação quanto recursos avançados como savepoints e níveis de isolamento.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.Connection: exemplo de transação
+
+```java
+try (Connection conn =
+         DriverManager.getConnection(url, user, password)) {
+    conn.setAutoCommit(false);
+
+    try {
+        atualizarEstoque(conn, produtoId, quantidade);
+        registrarVenda(conn, produtoId, quantidade);
+
+        conn.commit();
+    } catch (SQLException e) {
+        conn.rollback();
+        throw e;
+    }
+}
+```
+
+Por padrão, `autoCommit` costuma vir como `true`: cada comando é confirmado automaticamente.
+
+---
+
+# java.sql.Connection: ciclo de vida da conexão
 
 <img src="../images/13-jdbc-workflow.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
 
@@ -1359,121 +1473,6 @@ Um pool mantém conexões prontas para reuso.
 Mesmo com pool, continue usando `try-with-resources`. O `close()` devolve a conexão ao pool.
 
 </div>
-
----
-
-# Transação
-
-> Transação é uma sequência de operações de banco tratada como uma única unidade lógica de trabalho.
-
-Exemplo:
-
-- debitar valor de uma conta
-- creditar valor em outra conta
-- registrar histórico da transferência
-
-Essas operações devem ser confirmadas juntas ou desfeitas juntas.
-
----
-
-<!-- _class: compact -->
-
-# ACID
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Propriedade</th>
-      <th>Ideia</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Atomicidade</td>
-      <td>Ou todas as operações da transação acontecem, ou nenhuma fica permanente.</td>
-    </tr>
-    <tr>
-      <td>Consistência</td>
-      <td>As regras de integridade do banco continuam válidas.</td>
-    </tr>
-    <tr>
-      <td>Isolamento</td>
-      <td>Transações concorrentes não devem interferir indevidamente umas nas outras.</td>
-    </tr>
-    <tr>
-      <td>Durabilidade</td>
-      <td>Depois do <code>commit</code>, o resultado confirmado deve sobreviver a falhas previstas.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-# Transação: ciclo de vida
-
-<img src="../images/13-transaction-lifecycle.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
-
----
-
-<!-- _class: compact -->
-
-# Transação em JDBC
-
-```java
-try (Connection conn =
-         DriverManager.getConnection(url, user, password)) {
-    conn.setAutoCommit(false);
-
-    try {
-        atualizarEstoque(conn, produtoId, quantidade);
-        registrarVenda(conn, produtoId, quantidade);
-
-        conn.commit();
-    } catch (SQLException e) {
-        conn.rollback();
-        throw e;
-    }
-}
-```
-
-Por padrão, `autoCommit` costuma vir como `true`: cada comando é confirmado automaticamente.
-
----
-
-<!-- _class: compact -->
-
-# Savepoint e isolamento
-
-Além de `commit` e `rollback`, `Connection` oferece recursos avançados.
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Método</th>
-      <th>Papel</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>setSavepoint</code></td>
-      <td>Cria um ponto intermediário para rollback parcial.</td>
-    </tr>
-    <tr>
-      <td><code>rollback(savepoint)</code></td>
-      <td>Desfaz até um ponto específico da transação.</td>
-    </tr>
-    <tr>
-      <td><code>setTransactionIsolation</code></td>
-      <td>Define o nível de isolamento da transação.</td>
-    </tr>
-    <tr>
-      <td><code>getAutoCommit</code></td>
-      <td>Consulta se a conexão confirma comandos automaticamente.</td>
-    </tr>
-  </tbody>
-</table>
-
-Use esses recursos quando houver uma necessidade clara de controle transacional.
 
 ---
 
