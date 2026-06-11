@@ -451,7 +451,7 @@ Para que essa comunicação aconteça, a aplicação precisa de um driver JDBC c
 
 <div class="callout">
 
-**Regra prática**
+**Regra**
 
 O código usa as interfaces do JDBC; o driver traduz essas chamadas para o protocolo do banco.
 
@@ -485,6 +485,29 @@ Além da URL, normalmente usamos usuário e senha.
 ## Cenário típico de conexão com banco de dados
 
 <img src="../images/13-postgresql-architecture.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
+<!-- _class: compact -->
+
+# Estrutura básica de um programa
+
+Estrutura básica de um programa java para acessar banco de dados.
+
+```java
+try {
+    // 1. estabelecer conexão com o banco
+    // 2. criar Statement ou PreparedStatement
+    // 3. executar SQL
+    // 4. processar ResultSet ou linhas afetadas
+} catch (SQLException e) {
+    // tratar erro de banco
+} finally {
+    // fechar ResultSet, Statement e Connection
+}
+```
+
+Prefira usar `try-with-resources` para fechamento automático dos recursos.
 
 ---
 
@@ -623,6 +646,8 @@ public class TestaConexao {
 
 # java.sql.Statement: exemplo
 
+> Um `Statement` serve bem para SQL fixo que não depende de valores externos e é fácil de ler quando a consulta está toda no código.
+
 <div class="columns">
 <div>
 
@@ -655,26 +680,26 @@ try (
 
 <!-- _class: compact -->
 
-# java.sql.PreparedStatement: SQL parametrizado
+# java.sql.Statement: risco de _SQL injection_
 
-`PreparedStatement` é usado quando o comando SQL recebe valores externos, como texto digitado pelo usuário, filtros e identificadores.
+> _SQL injection_ é um ataque em que dados maliciosos inseridos em um texto SQL fazem o comando executar algo diferente do esperado.
 
-<div class="columns">
-<div>
+Evite montar SQL concatenando dados externos.
 
-<img src="../images/13-preparedstatement-class.png">
+```java
+String email = entradaDoUsuario;
 
-</div>
-<div>
+String sql = "SELECT * FROM aluno WHERE email = '" + email + "'";
+```
 
-- `setString(index, value)`: associa um texto a um parâmetro `?`
-- `setInt(index, value)`: associa um inteiro a um parâmetro `?`
-- `setObject(index, value)`: associa um valor genérico a um parâmetro `?`
-- `executeQuery()`: executa consulta parametrizada
-- `executeUpdate()`: executa alteração parametrizada
-- `close()`: fecha o prepared statement
+Se a entrada contiver trechos de SQL, o comando final pode fazer algo diferente do esperado.
 
-</div>
+<div class="callout">
+
+**Recomendação**
+
+Quando houver parâmetro externo, use `PreparedStatement`.
+
 </div>
 
 ---
@@ -683,10 +708,15 @@ try (
 
 # java.sql.PreparedStatement: exemplo
 
+> Um `PreparedStatement` é ideal quando o SQL depende de parâmetros, porque separa o texto do comando dos parâmetros e ajuda a evitar SQL injection.
+
 <div class="columns">
 <div>
 
-O SQL é preparado com um placeholder `?`. Depois, o programa usa `setInt(1, 1)` para associar um valor ao primeiro parâmetro antes de executar a consulta.
+- o SQL é preparado com um placeholder `?`
+- parâmetros são associados com métodos como `setString`, `setInt` e `setObject`
+- `executeQuery()` roda consultas e `executeUpdate()` roda alterações
+- `close()` libera o recurso ao final do uso
 
 </div>
 <div>
@@ -711,278 +741,6 @@ try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
 </div>
 </div>
-
----
-
-<!-- _class: compact -->
-
-# java.sql.CallableStatement: _stored procedures_
-
-`CallableStatement` é usado para chamar procedures e funções definidas no próprio banco de dados, inclusive com parâmetros de entrada e saída.
-
-<div class="columns">
-<div>
-
-<img src="../images/13-callablestatement-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
-
-</div>
-<div>
-
-- `registerOutParameter(index, type)`: registra um parâmetro de saída
-- `setObject(index, value)`: envia um valor de entrada para a procedure ou função
-- `execute()`: executa a chamada
-- `getObject(index)`: lê um valor retornado pelo banco
-- `close()`: fecha o callable statement
-
-</div>
-</div>
-
----
-
-<!-- _class: compact -->
-
-# java.sql.CallableStatement: exemplo
-
-> `CallableStatement` é a classe usada quando a aplicação Java precisa chamar uma rotina já definida dentro do banco de dados.
-
-<div class="columns">
-<div>
-
-- `call` indica que o banco deve executar uma rotina previamente definida.
-- Uma _stored procedure_ é um procedimento armazenado no próprio banco de dados, que pode receber parâmetros e executar operações SQL.
-- Depois, o programa informa o parâmetro necessário e executa a chamada com `prepareCall(...)`.
-
-</div>
-<div>
-
-**Stored Procedure**
-
-```sql
-CREATE PROCEDURE recalcular_saldo (IN p_id_conta INT)
-BEGIN
-    UPDATE conta
-    SET saldo = saldo + 100
-    WHERE id_conta = p_id_conta;
-END;
-```
-
-**CallableStatement**
-
-```java
-String sql = "{ call recalcular_saldo(?) }";
-
-try (CallableStatement cs = conn.prepareCall(sql)) {
-    cs.setInt(1, 10);
-    cs.execute();
-}
-```
-
-</div>
-</div>
-
----
-
-<!-- _class: compact -->
-
-# JDBC API: resumo
-
-A tabela resume os principais elementos da API JDBC e mostra em que momento cada um aparece no fluxo de acesso ao banco.
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Elemento</th>
-      <th>Papel</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>DriverManager</code></td>
-      <td>Obtém uma conexão a partir da URL JDBC, usuário e senha.</td>
-    </tr>
-    <tr>
-      <td><code>DataSource</code></td>
-      <td>Alternativa mais flexível para obter conexões, comum com pool.</td>
-    </tr>
-    <tr>
-      <td><code>Connection</code></td>
-      <td>Representa a sessão aberta com o banco.</td>
-    </tr>
-    <tr>
-      <td><code>Statement</code></td>
-      <td>Executa SQL estático, sem parâmetros externos.</td>
-    </tr>
-    <tr>
-      <td><code>PreparedStatement</code></td>
-      <td>Executa SQL parametrizado com placeholders <code>?</code>.</td>
-    </tr>
-    <tr>
-      <td><code>ResultSet</code></td>
-      <td>Cursor usado para percorrer linhas retornadas por uma consulta.</td>
-    </tr>
-    <tr>
-      <td><code>SQLException</code></td>
-      <td>Exceção base para erros de acesso ao banco.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-# Fluxo de consulta JDBC
-
-<img src="../images/13-jdbc-query-sequence.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
-
----
-
-# Ciclo de vida JDBC
-
-<img src="../images/13-jdbc-workflow.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
-
----
-
-<!-- _class: compact -->
-
-# Estrutura básica de um programa
-
-Estrutura básica de um programa java para acessar banco de dados.
-
-```java
-try {
-    // 1. estabelecer conexão com o banco
-    // 2. criar Statement ou PreparedStatement
-    // 3. executar SQL
-    // 4. processar ResultSet ou linhas afetadas
-} catch (SQLException e) {
-    // tratar erro de banco
-} finally {
-    // fechar ResultSet, Statement e Connection
-}
-```
-
-Prefira usar `try-with-resources` para fechamento automático dos recursos.
-
----
-
-<!-- _class: compact -->
-
-# try-with-resources
-
-Declare `Connection`, `Statement` e `ResultSet` no cabeçalho do `try` para que o Java chame `close()` em cada recurso automaticamente.
-
-```java
-try (
-    Connection conn = DriverManager.getConnection(url, user, password);
-    Statement stmt = conn.createStatement();
-    ResultSet rs = stmt.executeQuery(sql)
-) {
-    while (rs.next()) {
-        System.out.println(rs.getString("nome"));
-    }
-} catch (SQLException e) {
-    System.err.println("Erro JDBC: " + e.getMessage());
-}
-```
-
-> Se uma conexão não for fechada, ela pode continuar ocupada no banco, impedindo que outras operações usem esse recurso.
-
-<!-- _class: compact -->
-
-# Configuração com Properties
-
-Evite espalhar dados de conexão pelo código.
-
-```properties
-# db.properties
-url=jdbc:postgresql://localhost:5432/escola
-user=postgres
-password=postgres
-```
-
-```java
-Properties props = new Properties();
-
-try (InputStream in = Files.newInputStream(Path.of("db.properties"))) {
-    props.load(in);
-}
-
-String url = props.getProperty("url");
-String user = props.getProperty("user");
-String password = props.getProperty("password");
-```
-
-Em aplicações reais, variáveis de ambiente e gerenciadores de segredo são escolhas melhores.
-
----
-
-# java.sql.Statement: risco de SQL injection
-
-Nunca monte SQL concatenando dados externos.
-
-```java
-String email = entradaDoUsuario;
-
-String sql = "SELECT * FROM aluno WHERE email = '" + email + "'";
-```
-
-Se a entrada contiver trechos de SQL, o comando final pode fazer algo diferente do esperado.
-
-<div class="callout">
-
-**Regra prática**
-
-Quando houver parâmetro externo, use `PreparedStatement`.
-
-</div>
-
----
-
-<!-- _class: compact -->
-
-# java.sql.PreparedStatement: SQL parametrizado
-
-`PreparedStatement` usa placeholders `?` e parâmetros tipados.
-
-```java
-String sql = """
-    SELECT id, nome, email
-    FROM aluno
-    WHERE email = ?
-    """;
-
-try (
-    Connection conn = DriverManager.getConnection(url, user, password);
-    PreparedStatement ps = conn.prepareStatement(sql)
-) {
-    ps.setString(1, "ana@email.com");
-
-    try (ResultSet rs = ps.executeQuery()) {
-        while (rs.next()) {
-            System.out.println(rs.getString("nome"));
-        }
-    }
-}
-```
-
-O índice do parâmetro começa em `1`.
-
----
-
-<!-- _class: compact -->
-
-# java.sql.PreparedStatement: benefícios
-
-- **Segurança:** reduz risco de SQL injection
-- **Clareza:** SQL e parâmetros ficam separados
-- **Tipos:** `setString`, `setInt`, `setBigDecimal`, `setObject`
-- **Reuso:** o mesmo comando pode ser executado várias vezes com valores diferentes
-- **Performance:** o banco pode reaproveitar o plano de execução em alguns cenários
-
-```java
-ps.setString(1, aluno.getNome());
-ps.setString(2, aluno.getEmail());
-ps.setBigDecimal(3, aluno.getNota());
-```
 
 ---
 
@@ -1062,13 +820,136 @@ try (PreparedStatement ps =
 
 ---
 
-# java.sql.ResultSet: manipulação dos registros
+<!-- _class: compact -->
+
+# java.sql.PreparedStatement: benefícios
+
+- **Segurança:** reduz risco de SQL injection
+- **Clareza:** SQL e parâmetros ficam separados
+- **Tipos:** `setString`, `setInt`, `setBigDecimal`, `setObject`
+- **Reuso:** o mesmo comando pode ser executado várias vezes com valores diferentes
+- **Performance:** o banco pode reaproveitar o plano de execução em alguns cenários
+
+```java
+ps.setString(1, aluno.getNome());
+ps.setString(2, aluno.getEmail());
+ps.setBigDecimal(3, aluno.getNota());
+```
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.CallableStatement: _stored procedures_
+
+`CallableStatement` é usado para chamar procedures e funções definidas no próprio banco de dados, inclusive com parâmetros de entrada e saída.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-callablestatement-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `registerOutParameter(index, type)`: registra um parâmetro de saída
+- `setObject(index, value)`: envia um valor de entrada para a procedure ou função
+- `execute()`: executa a chamada
+- `getObject(index)`: lê um valor retornado pelo banco
+- `close()`: fecha o callable statement
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.CallableStatement: exemplo
+
+> `CallableStatement` é a classe usada quando a aplicação Java precisa chamar uma rotina já definida dentro do banco de dados.
+
+<div class="columns">
+<div>
+
+- `CallableStatement` executa stored procedures e funções armazenadas no banco.
+- Use `prepareCall("{ call nome(?, ?) }")` para criar a chamada.
+- `setXxx(index, value)` define parâmetros de entrada.
+- `registerOutParameter(index, type)` define parâmetros de saída.
+- `execute()` roda a rotina e `getXxx(index)` lê o valor de saída.
+- Esse mecanismo permite encapsular lógica no banco e integrá-la ao fluxo Java.
+
+</div>
+<div>
+
+**Stored Procedure**
+
+```sql
+CREATE PROCEDURE recalcular_saldo (IN p_id_conta INT)
+BEGIN
+    UPDATE conta
+    SET saldo = saldo + 100
+    WHERE id_conta = p_id_conta;
+END;
+```
+
+**CallableStatement**
+
+```java
+String sql = "{ call recalcular_saldo(?) }";
+
+try (CallableStatement cs = conn.prepareCall(sql)) {
+    cs.setInt(1, 10);
+    cs.execute();
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.ResultSet: exemplo
+
+`ResultSet` encapsula o resultado de uma consulta SQL e fornece métodos para navegar e ler cada linha retornada.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-resultset-overview.png" style="display:block; max-width:100%; max-height:420px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `next()`: avança o cursor para a próxima linha do resultado.
+- `getXxx(...)`: lê o valor de uma coluna na linha atual usando nome ou índice.
+- `wasNull()`: confirma se o valor lido era `NULL`.
+- `getMetaData()`: obtém informações sobre as colunas do resultado.
+- `close()`: libera recursos associados ao `ResultSet`.
+- `first()`, `last()`, `previous()`: navegação opcional em conjuntos roláveis.
+
+</div>
+</div>
+
+---
+
+# java.sql.ResultSet: exemplo
 
 > `ResultSet` representa o resultado de uma consulta como um cursor que aponta para uma linha por vez.
 
-Por padrão, o cursor começa antes da primeira linha.
+<div class="columns">
+<div>
 
-Para acessar a primeira linha, chamamos `next()`.
+- Por padrão, o cursor começa antes da primeira linha.
+
+- Para acessar a primeira linha, chamamos `next()`.
+
+- Quando `next()` retorna `false`, não há mais linhas.
+
+</div>
+<div>
 
 ```java
 while (rs.next()) {
@@ -1078,7 +959,8 @@ while (rs.next()) {
 }
 ```
 
-Quando `next()` retorna `false`, não há mais linhas.
+</div>
+</div>
 
 ---
 
@@ -1091,6 +973,8 @@ Quando `next()` retorna `false`, não há mais linhas.
 <!-- _class: compact -->
 
 # java.sql.ResultSet: leitura de colunas
+
+Antes de ler valores do `ResultSet`, o cursor deve estar posicionado em uma linha válida e a aplicação deve usar o tipo correto para cada coluna.
 
 <table class="tiny">
   <thead>
@@ -1135,7 +1019,7 @@ Prefira nomes de coluna a índices para deixar o código mais legível.
 
 <!-- _class: compact -->
 
-# Mapeando linha para objeto
+# java.sql.ResultSet: mapeando linha para objeto
 
 Mapear dados relacionais para objetos significa transformar cada linha retornada pelo banco em uma instância da classe usada pela aplicação.
 
@@ -1183,7 +1067,7 @@ O banco devolve linhas; a aplicação costuma trabalhar com objetos.
 
 <!-- _class: compact -->
 
-# Listando objetos
+# java.sql.ResultSet: trabalhando com coleções
 
 ```java
 List<Aluno> alunos = new ArrayList<>();
@@ -1210,6 +1094,118 @@ try (
 ```
 
 Aqui, JDBC e Collections trabalham juntos.
+
+---
+
+<!-- _class: compact -->
+
+# JDBC API: fluxo de consulta
+
+<img src="../images/13-jdbc-query-sequence.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
+# JDBC API: ciclo de vida da conexão
+
+<img src="../images/13-jdbc-workflow.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
+# JDBC API: resumo
+
+A tabela resume os principais elementos da API JDBC e mostra em que momento cada um aparece no fluxo de acesso ao banco.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Elemento</th>
+      <th>Papel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DriverManager</code></td>
+      <td>Obtém uma conexão a partir da URL JDBC, usuário e senha.</td>
+    </tr>
+    <tr>
+      <td><code>DataSource</code></td>
+      <td>Alternativa mais flexível para obter conexões, comum com pool.</td>
+    </tr>
+    <tr>
+      <td><code>Connection</code></td>
+      <td>Representa a sessão aberta com o banco.</td>
+    </tr>
+    <tr>
+      <td><code>Statement</code></td>
+      <td>Executa SQL estático, sem parâmetros externos.</td>
+    </tr>
+    <tr>
+      <td><code>PreparedStatement</code></td>
+      <td>Executa SQL parametrizado com placeholders <code>?</code>.</td>
+    </tr>
+    <tr>
+      <td><code>ResultSet</code></td>
+      <td>Cursor usado para percorrer linhas retornadas por uma consulta.</td>
+    </tr>
+    <tr>
+      <td><code>SQLException</code></td>
+      <td>Exceção base para erros de acesso ao banco.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# try-with-resources
+
+Declare `Connection`, `Statement` e `ResultSet` no cabeçalho do `try` para que o Java chame `close()` em cada recurso automaticamente.
+
+```java
+try (
+    Connection conn = DriverManager.getConnection(url, user, password);
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(sql)
+) {
+    while (rs.next()) {
+        System.out.println(rs.getString("nome"));
+    }
+} catch (SQLException e) {
+    System.err.println("Erro JDBC: " + e.getMessage());
+}
+```
+
+> Se uma conexão não for fechada, ela pode continuar ocupada no banco, impedindo que outras operações usem esse recurso.
+
+---
+
+<!-- _class: compact -->
+
+# Configuração com Properties
+
+Evite espalhar dados de conexão pelo código.
+
+```properties
+# db.properties
+url=jdbc:postgresql://localhost:5432/escola
+user=postgres
+password=postgres
+```
+
+```java
+Properties props = new Properties();
+
+try (InputStream in = Files.newInputStream(Path.of("db.properties"))) {
+    props.load(in);
+}
+
+String url = props.getProperty("url");
+String user = props.getProperty("user");
+String password = props.getProperty("password");
+```
+
+Em aplicações reais, variáveis de ambiente e gerenciadores de segredo são escolhas melhores.
 
 ---
 
@@ -1478,29 +1474,6 @@ Além de `commit` e `rollback`, `Connection` oferece recursos avançados.
 </table>
 
 Use esses recursos quando houver uma necessidade clara de controle transacional.
-
----
-
-# CallableStatement
-
-`CallableStatement` executa _stored procedures_ e funções definidas no banco.
-
-```java
-String sql = "{ call recalcular_media(?) }";
-
-try (CallableStatement cs = conn.prepareCall(sql)) {
-    cs.setInt(1, turmaId);
-    cs.execute();
-}
-```
-
-Também é possível registrar parâmetros de saída:
-
-```java
-cs.registerOutParameter(2, Types.NUMERIC);
-```
-
-Em POO introdutória, o foco principal costuma ficar em `PreparedStatement`.
 
 ---
 

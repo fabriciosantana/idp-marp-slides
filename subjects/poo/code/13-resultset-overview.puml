@@ -1,0 +1,29 @@
+@startuml
+title java.sql.ResultSet
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+class "java.sql.ResultSet" as ResultSet {
+  + boolean next()
+  + boolean previous()
+  + boolean first()
+  + boolean last()
+  + int getInt(String columnLabel)
+  + String getString(String columnLabel)
+  + Object getObject(String columnLabel)
+  + boolean wasNull()
+  + ResultSetMetaData getMetaData()
+  + void close()
+}
+
+@enduml
