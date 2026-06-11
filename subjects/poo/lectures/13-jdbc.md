@@ -1225,51 +1225,6 @@ Por padrão, `autoCommit` costuma vir como `true`: cada comando é confirmado au
 
 ---
 
-# JDBC API: resumo
-
-A tabela resume os principais elementos da API JDBC e mostra em que momento cada um aparece no fluxo de acesso ao banco.
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Elemento</th>
-      <th>Papel</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>DriverManager</code></td>
-      <td>Obtém uma conexão a partir da URL JDBC, usuário e senha.</td>
-    </tr>
-    <tr>
-      <td><code>DataSource</code></td>
-      <td>Alternativa mais flexível para obter conexões, comum com pool.</td>
-    </tr>
-    <tr>
-      <td><code>Connection</code></td>
-      <td>Representa a sessão aberta com o banco.</td>
-    </tr>
-    <tr>
-      <td><code>Statement</code></td>
-      <td>Executa SQL estático, sem parâmetros externos.</td>
-    </tr>
-    <tr>
-      <td><code>PreparedStatement</code></td>
-      <td>Executa SQL parametrizado com placeholders <code>?</code>.</td>
-    </tr>
-    <tr>
-      <td><code>ResultSet</code></td>
-      <td>Cursor usado para percorrer linhas retornadas por uma consulta.</td>
-    </tr>
-    <tr>
-      <td><code>SQLException</code></td>
-      <td>Exceção base para erros de acesso ao banco.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
 <!-- _class: compact -->
 
 # try-with-resources
@@ -1291,35 +1246,6 @@ try (
 ```
 
 > Se uma conexão não for fechada, ela pode continuar ocupada no banco, impedindo que outras operações usem esse recurso.
-
----
-
-<!-- _class: compact -->
-
-# Configuração com Properties
-
-Evite espalhar dados de conexão pelo código.
-
-```properties
-# db.properties
-url=jdbc:postgresql://localhost:5432/escola
-user=postgres
-password=postgres
-```
-
-```java
-Properties props = new Properties();
-
-try (InputStream in = Files.newInputStream(Path.of("db.properties"))) {
-    props.load(in);
-}
-
-String url = props.getProperty("url");
-String user = props.getProperty("user");
-String password = props.getProperty("password");
-```
-
-Em aplicações reais, variáveis de ambiente e gerenciadores de segredo são escolhas melhores.
 
 ---
 
@@ -1366,6 +1292,51 @@ try {
 Use as mensagens para entender o erro. Em produção, registre logs e evite expor detalhes sensíveis ao usuário final.
 
 </div>
+
+---
+
+# JDBC API: resumo
+
+A tabela resume os principais elementos da API JDBC e mostra em que momento cada um aparece no fluxo de acesso ao banco.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Elemento</th>
+      <th>Papel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DriverManager</code></td>
+      <td>Obtém uma conexão a partir da URL JDBC, usuário e senha.</td>
+    </tr>
+    <tr>
+      <td><code>DataSource</code></td>
+      <td>Alternativa mais flexível para obter conexões, comum com pool.</td>
+    </tr>
+    <tr>
+      <td><code>Connection</code></td>
+      <td>Representa a sessão aberta com o banco.</td>
+    </tr>
+    <tr>
+      <td><code>Statement</code></td>
+      <td>Executa SQL estático, sem parâmetros externos.</td>
+    </tr>
+    <tr>
+      <td><code>PreparedStatement</code></td>
+      <td>Executa SQL parametrizado com placeholders <code>?</code>.</td>
+    </tr>
+    <tr>
+      <td><code>ResultSet</code></td>
+      <td>Cursor usado para percorrer linhas retornadas por uma consulta.</td>
+    </tr>
+    <tr>
+      <td><code>SQLException</code></td>
+      <td>Exceção base para erros de acesso ao banco.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
