@@ -1,0 +1,36 @@
+@startuml
+title javax.sql.RowSetMetaData
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam interface {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+class RowSetMetaDataImpl {
+  +setColumnCount(count)
+  +setColumnName(index, name)
+  +setColumnType(index, type)
+  +setNullable(index, flag)
+  +setTableName(index, name)
+}
+
+interface RowSetMetaData {
+  +setColumnCount(count)
+  +setColumnName(index, name)
+  +setColumnType(index, type)
+  +setNullable(index, flag)
+  +setTableName(index, name)
+}
+
+RowSetMetaDataImpl ..|> RowSetMetaData
+
+@enduml

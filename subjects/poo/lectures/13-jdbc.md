@@ -1249,9 +1249,9 @@ try (
 
 ---
 
-# SQLException
+# java.sql.SQLException
 
-`SQLException` é a exceção base de erros JDBC.
+> `SQLException` é a exceção base de erros JDBC.
 
 Ela pode indicar:
 
@@ -1267,7 +1267,7 @@ Ela pode indicar:
 
 <!-- _class: compact -->
 
-# SQLException: informações úteis
+# java.sql.SQLException: informações úteis
 
 ```java
 try {
@@ -1287,10 +1287,280 @@ try {
 
 <div class="callout">
 
-**Em aula**
+**Recomendação**
 
 Use as mensagens para entender o erro. Em produção, registre logs e evite expor detalhes sensíveis ao usuário final.
 
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# JDBC API: metadados
+
+> JDBC também permite consultar informações sobre resultados e sobre o banco.
+
+No contexto da JDBC API, metadado é um conjunto de informações que descreve os próprios dados ou o ambiente de banco, como nomes de colunas, tipos SQL, parâmetros, tabelas e recursos suportados.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Interface</th>
+      <th>O que descreve</th>
+      <th>Uso comum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ResultSetMetaData</code></td>
+      <td>Colunas retornadas por uma consulta.</td>
+      <td>Tabelas dinâmicas, exportação e logs.</td>
+    </tr>
+    <tr>
+      <td><code>DatabaseMetaData</code></td>
+      <td>Banco, driver, tabelas, chaves e recursos suportados.</td>
+      <td>Ferramentas, diagnóstico e introspecção.</td>
+    </tr>
+    <tr>
+      <td><code>ParameterMetaData</code></td>
+      <td>Parâmetros de um comando preparado.</td>
+      <td>SQL dinâmico e validações avançadas.</td>
+    </tr>
+    <tr>
+      <td><code>RowSetMetaData</code></td>
+      <td>Estrutura de colunas em objetos do tipo <code>RowSet</code>.</td>
+      <td>Aplicações com <code>RowSet</code>, dados desconectados e configuração programática de colunas.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.ResultSetMetaData
+
+`ResultSetMetaData` descreve as colunas devolvidas por uma consulta, permitindo descobrir nomes, tipos e propriedades sem depender de conhecimento prévio da estrutura.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-resultsetmetadata-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- É obtido a partir de `ResultSet` por meio do método `getMetaData()`
+- `getColumnCount()`: informa quantas colunas existem no resultado
+- `getColumnName(index)`: devolve o nome de uma coluna
+- `getColumnTypeName(index)`: devolve o tipo SQL da coluna
+- `isNullable(index)`: informa se a coluna aceita `NULL`
+- `isAutoIncrement(index)`: indica se a coluna é autoincremento
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.ResultSetMetaData: exemplo
+
+> `ResultSetMetaData` pode ser usando para inspecionar o resultado de uma consulta e montar saídas dinâmicas sem fixar os nomes das colunas no código.
+
+<div class="columns">
+<div>
+
+O código executa um `SELECT`, obtém o metadado do `ResultSet` e percorre cada coluna para descobrir seu nome e tipo SQL.
+
+</div>
+<div>
+
+```java
+String sql = "SELECT id, nome, email FROM aluno";
+
+try (
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(sql)
+) {
+    ResultSetMetaData meta = rs.getMetaData();
+    int colunas = meta.getColumnCount();
+
+    for (int i = 1; i <= colunas; i++) {
+        System.out.printf(
+            "%s (%s)%n",
+            meta.getColumnName(i),
+            meta.getColumnTypeName(i)
+        );
+    }
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.DatabaseMetaData
+
+> `DatabaseMetaData` descreve o ambiente do banco e do driver, incluindo produto, recursos suportados e objetos disponíveis no SGBD.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-databasemetadata-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+É obtido a partir de `Connection` por meio do método `getMetaData()`
+
+</div>
+<div>
+
+- `getDatabaseProductName()`: informa o nome do banco
+- `getDriverName()`: informa o driver JDBC em uso
+- `getURL()`: devolve a URL da conexão atual
+- `getTables(...)`: lista tabelas visíveis para a conexão
+- `supportsTransactions()`: informa se o banco suporta transações
+
+</div>
+</div>
+
+---
+
+# java.sql.DatabaseMetaData: exemplo
+
+> `DatabaseMetaData` é útil quando o programa precisa diagnosticar o ambiente, listar objetos do banco ou adaptar o comportamento ao SGBD conectado.
+
+<div class="columns">
+<div>
+
+O código pergunta ao banco qual produto está em uso, qual driver foi carregado e se transações são suportadas pela conexão atual.
+
+</div>
+<div>
+
+```java
+DatabaseMetaData meta = conn.getMetaData();
+
+System.out.println(meta.getDatabaseProductName());
+System.out.println(meta.getDriverName());
+System.out.println(meta.supportsTransactions());
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.ParameterMetaData
+
+> `ParameterMetaData` descreve os parâmetros de um `PreparedStatement`, ajudando a saber quantos existem e quais tipos ou modos o banco espera.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-parametermetadata-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+É obtido a partir de `PreparedStatement` por meio do método `getParameterMetaData()`
+
+</div>
+<div>
+
+- `getParameterCount()`: informa quantos parâmetros `?` existem
+- `getParameterType(index)`: devolve o tipo SQL do parâmetro
+- `getParameterTypeName(index)`: devolve o nome do tipo SQL
+- `isNullable(index)`: informa se o parâmetro aceita `NULL`
+- `getParameterMode(index)`: informa se o parâmetro é `IN`, `OUT` ou `INOUT`
+
+</div>
+</div>
+
+---
+
+# java.sql.ParameterMetaData: exemplo
+
+> `ParameterMetaData` ajuda em cenários mais dinâmicos, quando o programa precisa inspecionar a assinatura do comando preparado antes de preencher os valores.
+
+<div class="columns">
+<div>
+
+O código cria um `PreparedStatement`, obtém o metadado dos parâmetros e verifica quantos placeholders existem e qual tipo SQL o banco espera.
+
+</div>
+<div>
+
+```java
+String sql = "SELECT * FROM conta WHERE id_cliente = ? AND tipo = ?";
+
+try (PreparedStatement ps = conn.prepareStatement(sql)) {
+    ParameterMetaData meta = ps.getParameterMetaData();
+
+    System.out.println(meta.getParameterCount());
+    System.out.println(meta.getParameterTypeName(1));
+    System.out.println(meta.getParameterTypeName(2));
+}
+```
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# javax.sql.RowSetMetaData
+
+`RowSetMetaData` descreve a estrutura de colunas de um `RowSet`, sendo útil quando trabalhamos com dados desconectados e precisamos configurar suas colunas programaticamente.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-rowsetmetadata-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- Costuma ser configurado por uma implementação concreta, como `RowSetMetaDataImpl`
+- `setColumnCount(count)`: define a quantidade de colunas
+- `setColumnName(index, name)`: define o nome de uma coluna
+- `setColumnType(index, type)`: define o tipo SQL da coluna
+- `setNullable(index, flag)`: define se a coluna aceita `NULL`
+- `setTableName(index, name)`: associa a coluna a uma tabela lógica
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# javax.sql.RowSetMetaData: exemplo de uso
+
+Esse metadado aparece com mais frequência em APIs de `RowSet`, quando a aplicação precisa descrever colunas de forma manual em estruturas desconectadas.
+
+<div class="columns">
+<div>
+
+O código usa uma implementação concreta de `RowSetMetaData` para definir duas colunas, seus nomes e seus tipos SQL.
+
+</div>
+<div>
+
+```java
+RowSetMetaDataImpl meta = new RowSetMetaDataImpl();
+
+meta.setColumnCount(2);
+meta.setColumnName(1, "id_conta");
+meta.setColumnType(1, Types.INTEGER);
+meta.setColumnName(2, "numero");
+meta.setColumnType(2, Types.VARCHAR);
+```
+
+</div>
 </div>
 
 ---
@@ -1340,69 +1610,6 @@ A tabela resume os principais elementos da API JDBC e mostra em que momento cada
 
 ---
 
-<!-- _class: compact -->
-
-# Metadados
-
-JDBC também permite consultar informações sobre resultados e sobre o banco.
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Interface</th>
-      <th>O que descreve</th>
-      <th>Uso comum</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>ResultSetMetaData</code></td>
-      <td>Colunas retornadas por uma consulta.</td>
-      <td>Tabelas dinâmicas, exportação e logs.</td>
-    </tr>
-    <tr>
-      <td><code>DatabaseMetaData</code></td>
-      <td>Banco, driver, tabelas, chaves e recursos suportados.</td>
-      <td>Ferramentas, diagnóstico e introspecção.</td>
-    </tr>
-    <tr>
-      <td><code>ParameterMetaData</code></td>
-      <td>Parâmetros de um comando preparado.</td>
-      <td>SQL dinâmico e validações avançadas.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-<!-- _class: compact -->
-
-# ResultSetMetaData
-
-```java
-String sql = "SELECT id, nome, email FROM aluno";
-
-try (
-    Statement stmt = conn.createStatement();
-    ResultSet rs = stmt.executeQuery(sql)
-) {
-    ResultSetMetaData meta = rs.getMetaData();
-    int colunas = meta.getColumnCount();
-
-    for (int i = 1; i <= colunas; i++) {
-        System.out.printf(
-            "%s (%s)%n",
-            meta.getColumnName(i),
-            meta.getColumnTypeName(i)
-        );
-    }
-}
-```
-
-Assim como parâmetros, colunas em metadados começam no índice `1`.
-
----
-
 # javax.sql.DataSource: alternativa
 
 `DataSource` é uma alternativa ao `DriverManager` para obter conexões.
@@ -1444,6 +1651,51 @@ Um pool mantém conexões prontas para reuso.
 Mesmo com pool, continue usando `try-with-resources`. O `close()` devolve a conexão ao pool.
 
 </div>
+
+---
+
+<!-- _class: compact -->
+
+# Problemas comuns
+
+Os erros abaixo aparecem com frequência em programas JDBC e ajudam a interpretar rapidamente a origem de uma falha de conexão ou execução SQL.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Erro</th>
+      <th>Sintoma</th>
+      <th>Correção</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Driver fora do classpath</td>
+      <td><code>No suitable driver</code></td>
+      <td>Adicionar dependência do driver JDBC.</td>
+    </tr>
+    <tr>
+      <td>URL errada</td>
+      <td>Falha de conexão</td>
+      <td>Conferir protocolo, host, porta e nome do banco.</td>
+    </tr>
+    <tr>
+      <td>Coluna inexistente</td>
+      <td>Erro ao executar consulta</td>
+      <td>Conferir SQL e estrutura da tabela.</td>
+    </tr>
+    <tr>
+      <td>Recurso não fechado</td>
+      <td>Conexões esgotadas</td>
+      <td>Usar <code>try-with-resources</code>.</td>
+    </tr>
+    <tr>
+      <td>Concatenar SQL com entrada externa</td>
+      <td>Risco de SQL injection</td>
+      <td>Usar <code>PreparedStatement</code>.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -1498,51 +1750,6 @@ public class AlunoDao {
 - Valide a quantidade de linhas afetadas em `UPDATE` e `DELETE`
 - Use transações quando múltiplas operações precisarem ser atômicas
 - Registre erros com contexto, mas não exponha credenciais em mensagens
-
----
-
-<!-- _class: compact -->
-
-# Erros comuns
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Erro</th>
-      <th>Sintoma</th>
-      <th>Correção</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Driver fora do classpath</td>
-      <td><code>No suitable driver</code></td>
-      <td>Adicionar dependência do driver JDBC.</td>
-    </tr>
-    <tr>
-      <td>URL errada</td>
-      <td>Falha de conexão</td>
-      <td>Conferir protocolo, host, porta e nome do banco.</td>
-    </tr>
-    <tr>
-      <td>Coluna inexistente</td>
-      <td>Erro ao executar consulta</td>
-      <td>Conferir SQL e estrutura da tabela.</td>
-    </tr>
-    <tr>
-      <td>Recurso não fechado</td>
-      <td>Conexões esgotadas</td>
-      <td>Usar <code>try-with-resources</code>.</td>
-    </tr>
-    <tr>
-      <td>Concatenar SQL com entrada externa</td>
-      <td>Risco de SQL injection</td>
-      <td>Usar <code>PreparedStatement</code>.</td>
-    </tr>
-  </tbody>
-</table>
-
----
 
 <!-- _class: compact -->
 

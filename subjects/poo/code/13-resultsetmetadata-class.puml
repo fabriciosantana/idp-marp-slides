@@ -1,0 +1,32 @@
+@startuml
+title java.sql.ResultSetMetaData
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam interface {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+interface ResultSet {
+  +getMetaData()
+}
+
+interface ResultSetMetaData {
+  +getColumnCount()
+  +getColumnName(index)
+  +getColumnTypeName(index)
+  +isNullable(index)
+  +isAutoIncrement(index)
+}
+
+ResultSet --> ResultSetMetaData : getMetaData()
+
+@enduml
