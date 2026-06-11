@@ -1,0 +1,59 @@
+@startuml
+title Exemplo de Diagrama Entidade-Relacionamento - Banco
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+hide methods
+
+entity "Cliente" as cliente {
+  * id_cliente : BIGINT <<PK>>
+  --
+  nome : VARCHAR
+  cpf : VARCHAR <<UNIQUE>>
+  email : VARCHAR
+}
+
+entity "Agencia" as agencia {
+  * id_agencia : BIGINT <<PK>>
+  --
+  numero : VARCHAR
+  nome : VARCHAR
+  cidade : VARCHAR
+}
+
+entity "Conta" as conta {
+  * id_conta : BIGINT <<PK>>
+  --
+  numero : VARCHAR <<UNIQUE>>
+  tipo : VARCHAR
+  saldo : NUMERIC
+  id_cliente : BIGINT <<FK>>
+  id_agencia : BIGINT <<FK>>
+}
+
+entity "Transacao" as transacao {
+  * id_transacao : BIGINT <<PK>>
+  --
+  data_hora : TIMESTAMP
+  valor : NUMERIC
+  tipo : VARCHAR
+  id_conta : BIGINT <<FK>>
+}
+
+cliente ||--o{ conta : possui
+agencia ||--o{ conta : mantem
+conta ||--o{ transacao : registra
+
+@enduml

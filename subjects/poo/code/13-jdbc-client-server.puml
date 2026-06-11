@@ -1,0 +1,54 @@
+@startuml
+title JDBC - arquitetura cliente-servidor
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam componentStyle rectangle
+skinparam nodesep 40
+skinparam ranksep 45
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+skinparam rectangle {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam node {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam database {
+  BackgroundColor #FFF7D6
+  BorderColor #C8A23A
+  FontColor #111827
+}
+
+left to right direction
+
+actor Usuario
+
+rectangle "Aplicacao cliente\n(Java)" as app {
+  component "Codigo da aplicacao" as code
+  component "API JDBC" as jdbc
+  component "Driver JDBC" as driver
+}
+
+cloud "Rede / protocolo\nde comunicacao" as network
+
+node "Servidor de banco" as server {
+  database "PostgreSQL\nMySQL\nOracle\nSQL Server" as db
+}
+
+Usuario --> code : usa
+code --> jdbc : chamadas JDBC
+jdbc --> driver : requisicoes
+driver --> network : protocolo do banco
+network --> db : conexao / SQL
+db --> network : resultados
+network --> driver
+driver --> jdbc
+jdbc --> code
+
+@enduml

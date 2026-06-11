@@ -1,0 +1,53 @@
+@startuml
+title Modelo de classes Java - Banco
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+class Cliente {
+  -id: Long
+  -nome: String
+  -cpf: String
+  -email: String
+}
+
+class Agencia {
+  -id: Long
+  -numero: String
+  -nome: String
+  -cidade: String
+}
+
+class Conta {
+  -id: Long
+  -numero: String
+  -tipo: String
+  -saldo: BigDecimal
+  -cliente: Cliente
+  -agencia: Agencia
+}
+
+class Transacao {
+  -id: Long
+  -dataHora: LocalDateTime
+  -valor: BigDecimal
+  -tipo: String
+  -conta: Conta
+}
+
+Cliente "1" -- "0..*" Conta : possui
+Agencia "1" -- "0..*" Conta : mantem
+Conta "1" -- "0..*" Transacao : registra
+
+@enduml

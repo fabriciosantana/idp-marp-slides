@@ -20,8 +20,8 @@ footer: <span>Programação Orientada a Objetos</span><span>Acesso a banco de da
 - Revisar conceitos de bancos relacionais e SQL
 - Compreender o papel da API JDBC em aplicações Java
 - Conectar uma aplicação Java a um banco usando `DriverManager` e `Connection`
-- Executar `SELECT`, `INSERT`, `UPDATE` e `DELETE`
 - Usar `Statement`, `PreparedStatement` e `ResultSet`
+- Executar `SELECT`, `INSERT`, `UPDATE` e `DELETE`
 - Tratar exceções com `SQLException`
 - Controlar transações com `commit` e `rollback`
 - Organizar acesso a dados com uma camada DAO
@@ -63,9 +63,66 @@ Em vez de salvar apenas bytes ou linhas de texto, a aplicação conversa com um 
 
 ---
 
+<!-- _class: compact -->
+
+# Tipos de banco de dados
+
+Existem diferentes tipos de banco de dados, cada um otimizado para uma forma de organizar, consultar e escalar os dados.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Características principais</th>
+      <th>Cenário recomendado</th>
+      <th>Exemplos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Relacional</td>
+      <td>Tabelas, SQL, chaves e restrições de integridade.</td>
+      <td>Sistemas transacionais, cadastros, financeiro e acadêmico.</td>
+      <td>PostgreSQL, MySQL, Oracle</td>
+    </tr>
+    <tr>
+      <td>Documento</td>
+      <td>Registros flexíveis em JSON/BSON.</td>
+      <td>Conteúdo semiestruturado, catálogos, perfis e APIs.</td>
+      <td>MongoDB, CouchDB</td>
+    </tr>
+    <tr>
+      <td>Chave-valor</td>
+      <td>Acesso simples por chave e baixa latência.</td>
+      <td>Cache, sessões, preferências e busca por identificador.</td>
+      <td>Redis, DynamoDB</td>
+    </tr>
+    <tr>
+      <td>Colunar</td>
+      <td>Dados organizados por colunas; bom para agregações.</td>
+      <td>Relatórios, BI, data warehouse e histórico.</td>
+      <td>BigQuery, Redshift, ClickHouse</td>
+    </tr>
+    <tr>
+      <td>Grafo</td>
+      <td>Nós e relacionamentos como centro do modelo.</td>
+      <td>Redes sociais, recomendações, fraude e rotas.</td>
+      <td>Neo4j, Amazon Neptune</td>
+    </tr>
+    <tr>
+      <td>Vetorial</td>
+      <td>Armazena vetores e busca por similaridade semântica.</td>
+      <td>Busca semântica, RAG, recomendação e IA generativa.</td>
+      <td>Pinecone, Weaviate, Milvus, pgvector</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
 # SGBD: o que é?
 
-**SGBD** significa Sistema de Gerenciamento de Banco de Dados.
+**SGBD** significa Sistema Gerenciador de Banco de Dados.
 
 Em inglês, aparece como **DBMS**: _Database Management System_.
 
@@ -80,9 +137,19 @@ Em inglês, aparece como **DBMS**: _Database Management System_.
 
 ---
 
-# Bancos relacionais
+<!-- _class: compact -->
 
-Em bancos relacionais, os dados são organizados em tabelas.
+# Banco de dados relacional: visão geral
+
+Bancos de dados relacionais organizam informações
+
+- em tabelas (**entidades**)
+- conectadas por chaves (**relacionamento**),
+- permitindo consultar (**_query_**) e
+- manipular dados (**_manipulation_**)
+- impondo restrições explícitas
+
+### Conceitos importantes
 
 <table class="tiny">
   <thead>
@@ -120,6 +187,25 @@ Em bancos relacionais, os dados são organizados em tabelas.
     </tr>
   </tbody>
 </table>
+
+---
+
+<!-- _class: compact -->
+
+# Modelo entidade-relacionamento
+
+<div class="columns">
+<div>
+
+O modelo entidade-relacionamento descreve os principais conceitos do domínio (**entidade**), seus atributos e como eles se relacionam (**relacionamento**).
+
+</div>
+<div>
+
+<img src="../images/13-bank-er-diagram.png" style="display:block; max-width:100%; max-height:420px; margin:0 auto; object-fit:contain;">
+
+</div>
+</div>
 
 ---
 
@@ -163,7 +249,100 @@ Ela permite descrever o que queremos consultar ou alterar no banco.
 
 ---
 
-# CRUD: do Java para o SQL
+<!-- _class: compact -->
+
+# SQL: exemplo de consulta
+
+```sql
+SELECT c.nome, ct.numero, ct.tipo, ct.saldo
+FROM cliente c
+JOIN conta ct ON ct.id_cliente = c.id_cliente
+JOIN agencia a ON a.id_agencia = ct.id_agencia
+WHERE a.cidade = 'Brasilia'
+ORDER BY c.nome, ct.numero;
+```
+
+**Leitura da consulta**
+
+- `SELECT`: quais colunas retornar
+- `FROM`: tabela principal da consulta
+- `JOIN`: relação entre tabelas por chaves
+- `WHERE`: filtro aplicado às linhas
+- `ORDER BY`: ordenação do resultado
+
+> A consulta lista contas de clientes em uma cidade.
+
+---
+
+<!-- _class: compact -->
+
+# SQL: exemplo de inserção
+
+```sql
+INSERT INTO conta (
+    numero,
+    tipo,
+    saldo,
+    id_cliente,
+    id_agencia
+) VALUES (
+    '000123-4',
+    'CORRENTE',
+    1500.00,
+    1,
+    2
+);
+```
+
+**Leitura do comando**
+
+- `INSERT INTO`: tabela que receberá o novo registro
+- lista de colunas: define quais campos serão preenchidos
+- `VALUES`: informa os valores a serem gravados
+
+> A inserção cria uma nova conta vinculada a um cliente e a uma agência.
+
+---
+
+<!-- _class: compact -->
+
+# SQL: exemplo de atualização
+
+```sql
+UPDATE conta
+SET saldo = 1750.00
+WHERE numero = '000123-4';
+```
+
+**Leitura do comando**
+
+- `UPDATE`: tabela que será alterada
+- `SET`: coluna e novo valor
+- `WHERE`: filtro que define qual registro será atualizado
+
+> A atualização altera o saldo da conta informada.
+
+---
+
+<!-- _class: compact -->
+
+# SQL: exemplo de deleção
+
+```sql
+DELETE FROM transacao
+WHERE id_transacao = 10;
+```
+
+**Leitura do comando**
+
+- `DELETE FROM`: tabela de onde o registro será removido
+- `WHERE`: filtro que define qual linha será excluída
+
+> A deleção remove uma transação específica.
+
+---
+
+# Do Java para o SQL: operações CRUD
 
 Operações comuns de uma aplicação aparecem como comandos SQL.
 
@@ -208,27 +387,30 @@ Operações comuns de uma aplicação aparecem como comandos SQL.
 
 <!-- _class: compact -->
 
-# SQL: exemplo de consulta
+# Do modelo relacional ao modelo de classes
 
-```sql
-SELECT a.id, a.nome, a.email, a.nota
-FROM aluno a
-WHERE a.nota >= 7.0
-ORDER BY a.nome;
-```
+Uma aplicação orientada a objetos costuma representar, em **classes**, os mesmos conceitos que o banco relacional organiza em **tabelas**.
 
-**Leitura da consulta**
+<div class="columns">
+<div>
 
-- `SELECT`: quais colunas retornar
-- `FROM`: de qual tabela os dados vêm
-- `WHERE`: filtro aplicado às linhas
-- `ORDER BY`: ordenação do resultado
+**Diagrama ER**
 
-> O JDBC não substitui SQL. Ele permite que uma aplicação Java envie SQL ao banco e processe a resposta.
+<img src="../images/13-bank-er-diagram.png" style="display:block; max-width:100%; max-height:390px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+**Diagrama de classes**
+
+<img src="../images/13-bank-class-diagram.png" style="display:block; max-width:100%; max-height:390px; margin:0 auto; object-fit:contain;">
+
+</div>
+</div>
 
 ---
 
-# JDBC: o que é?
+# JDBC API: o que é?
 
 **JDBC** significa _Java Database Connectivity_.
 
@@ -242,38 +424,23 @@ ORDER BY a.nome;
 
 ---
 
-# JDBC: onde fica?
+<!-- _class: compact -->
 
-A API principal está no pacote `java.sql`.
+# JDBC API: arquitetura cliente-servidor
 
-Funcionalidades complementares aparecem em `javax.sql`.
+Na arquitetura cliente-servidor, a aplicação cliente envia requisições ao servidor de banco de dados, que processa os comandos e devolve os resultados.
 
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Pacote</th>
-      <th>Papel</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>java.sql</code></td>
-      <td>Interfaces e classes centrais: <code>Connection</code>, <code>Statement</code>, <code>PreparedStatement</code>, <code>ResultSet</code>, <code>SQLException</code>.</td>
-    </tr>
-    <tr>
-      <td><code>javax.sql</code></td>
-      <td>Recursos mais avançados, como <code>DataSource</code>, pool de conexões e <code>RowSet</code>.</td>
-    </tr>
-  </tbody>
-</table>
+<img src="../images/13-jdbc-client-server.png" style="display:block; max-width:100%; max-height:380px; margin:12px auto; object-fit:contain;">
+
+Para que essa comunicação aconteça, a aplicação precisa de um driver JDBC compatível com o banco que será acessado.
 
 ---
 
 <!-- _class: compact -->
 
-# Driver JDBC
+# JDBC API: driver
 
-> Driver JDBC é uma biblioteca que implementa a comunicação entre a API JDBC e um banco específico.
+> Driver JDBC é uma biblioteca que oferece uma implementação concreta da API JDBC e gerencia a comunicação entre a aplicação Java e um banco de dados.
 
 **Exemplos**
 
@@ -292,7 +459,7 @@ O código usa as interfaces do JDBC; o driver traduz essas chamadas para o proto
 
 ---
 
-# URL JDBC
+# JDBC API: URL de conexão (_conection string_)
 
 Para conectar, a aplicação informa uma URL JDBC.
 
@@ -310,6 +477,33 @@ jdbc:sqlite:escola.db
 ```
 
 Além da URL, normalmente usamos usuário e senha.
+
+---
+
+# JDBC API: onde fica?
+
+A API principal está no pacote `java.sql`.
+
+Funcionalidades complementares aparecem em `javax.sql`.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Pacote</th>
+      <th>Papel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>java.sql</code></td>
+      <td>Interfaces e classes centrais: <code>DriverManager</code>, <code>Connection</code>, <code>Statement</code>, <code>PreparedStatement</code>, <code>ResultSet</code>, <code>SQLException</code>.</td>
+    </tr>
+    <tr>
+      <td><code>javax.sql</code></td>
+      <td>Recursos mais avançados, como <code>DataSource</code>, pool de conexões e <code>RowSet</code>.</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -372,6 +566,12 @@ A tabela resume os principais elementos da API JDBC e mostra em que momento cada
 
 ---
 
+# Fluxo de consulta JDBC
+
+<img src="../images/13-jdbc-query-sequence.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
+
+---
+
 # Ciclo de vida JDBC
 
 <img src="../images/13-jdbc-workflow.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
@@ -380,13 +580,13 @@ A tabela resume os principais elementos da API JDBC e mostra em que momento cada
 
 <!-- _class: compact -->
 
-# Estrutura básica
+# Estrutura básica de um programa
 
-Estrutura típica para acessar banco de dados.
+Estrutura básica de um programa java para acessar banco de dados.
 
 ```java
 try {
-    // 1. estabelecer conexao com o banco
+    // 1. estabelecer conexão com o banco
     // 2. criar Statement ou PreparedStatement
     // 3. executar SQL
     // 4. processar ResultSet ou linhas afetadas
@@ -405,9 +605,7 @@ Prefira usar `try-with-resources` para fechamento automático dos recursos.
 
 # try-with-resources
 
-Declare `Connection`, `Statement` e `ResultSet` no cabeçalho do `try`.
-
-Ao final do bloco, o Java chama `close()` em cada recurso automaticamente.
+Declare `Connection`, `Statement` e `ResultSet` no cabeçalho do `try` para que o Java chame `close()` em cada recurso automaticamente.
 
 ```java
 try (
@@ -429,7 +627,7 @@ try (
 
 <!-- _class: compact -->
 
-# Conexão com DriverManager
+# java.sql.DriverManager: obtendo uma conexão
 
 ```java
 import java.sql.Connection;
@@ -442,8 +640,7 @@ public class TestaConexao {
         String user = "postgres";
         String password = "postgres";
 
-        try (Connection conn =
-                 DriverManager.getConnection(url, user, password)) {
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
             System.out.println("Conectado!");
         } catch (SQLException e) {
             System.err.println("Falha: " + e.getMessage());
@@ -485,7 +682,7 @@ Em aplicações reais, variáveis de ambiente e gerenciadores de segredo são es
 
 <!-- _class: compact -->
 
-# Statement
+# java.sql.Statement: comando SQL estático
 
 `Statement` executa SQL como texto.
 
@@ -517,7 +714,7 @@ Use `Statement` apenas para comandos fixos, sem dados vindos de usuário.
 
 <!-- _class: compact -->
 
-# Métodos de execução
+# java.sql.Statement: métodos de execução
 
 <table class="tiny">
   <thead>
@@ -548,7 +745,7 @@ Use `Statement` apenas para comandos fixos, sem dados vindos de usuário.
 
 ---
 
-# Problema: SQL injection
+# java.sql.Statement: risco de SQL injection
 
 Nunca monte SQL concatenando dados externos.
 
@@ -572,7 +769,7 @@ Quando houver parâmetro externo, use `PreparedStatement`.
 
 <!-- _class: compact -->
 
-# PreparedStatement
+# java.sql.PreparedStatement: SQL parametrizado
 
 `PreparedStatement` usa placeholders `?` e parâmetros tipados.
 
@@ -603,7 +800,7 @@ O índice do parâmetro começa em `1`.
 
 <!-- _class: compact -->
 
-# PreparedStatement: benefícios
+# java.sql.PreparedStatement: benefícios
 
 - **Segurança:** reduz risco de SQL injection
 - **Clareza:** SQL e parâmetros ficam separados
@@ -621,7 +818,7 @@ ps.setBigDecimal(3, aluno.getNota());
 
 <!-- _class: compact -->
 
-# INSERT com PreparedStatement
+# java.sql.PreparedStatement: INSERT
 
 ```java
 String sql = """
@@ -648,7 +845,7 @@ try (
 
 <!-- _class: compact -->
 
-# UPDATE e DELETE
+# java.sql.PreparedStatement: UPDATE e DELETE
 
 <div class="columns">
 <div>
@@ -695,7 +892,7 @@ try (PreparedStatement ps =
 
 ---
 
-# ResultSet
+# java.sql.ResultSet: manipulação dos registros
 
 > `ResultSet` representa o resultado de uma consulta como um cursor que aponta para uma linha por vez.
 
@@ -715,7 +912,7 @@ Quando `next()` retorna `false`, não há mais linhas.
 
 ---
 
-# ResultSet: cursor
+# java.sql.ResultSet: cursor
 
 <img src="../images/13-resultset-cursor.png" style="display:block; max-width:100%; max-height:460px; margin:0 auto; object-fit:contain;">
 
@@ -723,7 +920,7 @@ Quando `next()` retorna `false`, não há mais linhas.
 
 <!-- _class: compact -->
 
-# ResultSet: leitura de colunas
+# java.sql.ResultSet: leitura de colunas
 
 <table class="tiny">
   <thead>
@@ -770,6 +967,13 @@ Prefira nomes de coluna a índices para deixar o código mais legível.
 
 # Mapeando linha para objeto
 
+Mapear dados relacionais para objetos significa transformar cada linha retornada pelo banco em uma instância da classe usada pela aplicação.
+
+<div class="columns small">
+<div>
+
+**Classe de domínio**
+
 ```java
 public class Aluno {
     private int id;
@@ -786,6 +990,11 @@ public class Aluno {
 }
 ```
 
+</div>
+<div>
+
+**Linha do banco para objeto**
+
 ```java
 Aluno aluno = new Aluno(
     rs.getInt("id"),
@@ -796,6 +1005,9 @@ Aluno aluno = new Aluno(
 ```
 
 O banco devolve linhas; a aplicação costuma trabalhar com objetos.
+
+</div>
+</div>
 
 ---
 
@@ -940,7 +1152,7 @@ Assim como parâmetros, colunas em metadados começam no índice `1`.
 
 ---
 
-# DataSource
+# javax.sql.DataSource: alternativa
 
 `DataSource` é uma alternativa ao `DriverManager` para obter conexões.
 
@@ -959,7 +1171,9 @@ try (Connection conn = dataSource.getConnection()) {
 
 ---
 
-# Pool de conexões
+<!-- _class: compact -->
+
+# javax.sql.DataSource: pool de conexões
 
 Abrir conexão com banco pode custar caro.
 

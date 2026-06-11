@@ -1,0 +1,50 @@
+@startuml
+title Fluxo de Consulta JDBC
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam sequence {
+  ActorBorderColor #154E75
+  ActorFontColor #111827
+  ParticipantBackgroundColor #F8FAFC
+  ParticipantBorderColor #154E75
+  ParticipantFontColor #111827
+  DatabaseBackgroundColor #FFF7D6
+  DatabaseBorderColor #C8A23A
+  ArrowColor #0F4C75
+  ArrowFontColor #111827
+  LifeLineBorderColor #154E75
+  LifeLineBackgroundColor #EAF4FA
+}
+
+actor Usuario
+participant "Aplicação Java" as App
+participant "DriverManager" as DM
+participant "Connection" as Conn
+participant "Statement" as Stmt
+database "PostgreSQL" as PG
+participant "ResultSet" as RS
+
+Usuario -> App : Solicita dados
+App -> App : Ler db.properties\n(URL, usuário, senha)
+App -> DM : getConnection(url, user, password)
+DM --> App : Connection (Conn)
+
+App -> Conn : createStatement()
+Conn --> App : Statement (Stmt)
+
+App -> Stmt : executeQuery(SQL)
+Stmt -> PG : Executa comando SQL
+PG --> Stmt : Registros
+Stmt --> App : ResultSet (RS)
+
+App -> RS : next()\ngetXXX(...)
+RS --> App : Dados processados
+
+App -> RS : close()
+App -> Stmt : close()
+App -> Conn : close()
+App -> Usuario : Exibe resultados
+
+@enduml
