@@ -253,6 +253,8 @@ Ela permite descrever o que queremos consultar ou alterar no banco.
 
 # SQL: exemplo de consulta
 
+**Listar contas de clientes em uma cidade**
+
 ```sql
 SELECT c.nome, ct.numero, ct.tipo, ct.saldo
 FROM cliente c
@@ -270,13 +272,13 @@ ORDER BY c.nome, ct.numero;
 - `WHERE`: filtro aplicado às linhas
 - `ORDER BY`: ordenação do resultado
 
-> A consulta lista contas de clientes em uma cidade.
-
 ---
 
 <!-- _class: compact -->
 
 # SQL: exemplo de inserção
+
+**Cadastrar conta**
 
 ```sql
 INSERT INTO conta (
@@ -286,12 +288,7 @@ INSERT INTO conta (
     id_cliente,
     id_agencia
 ) VALUES (
-    '000123-4',
-    'CORRENTE',
-    1500.00,
-    1,
-    2
-);
+    '000123-4', 'CORRENTE', 1500.00, 1, 2);
 ```
 
 **Leitura do comando**
@@ -307,6 +304,8 @@ INSERT INTO conta (
 <!-- _class: compact -->
 
 # SQL: exemplo de atualização
+
+**Atualizar saldo**
 
 ```sql
 UPDATE conta
@@ -327,6 +326,8 @@ WHERE numero = '000123-4';
 <!-- _class: compact -->
 
 # SQL: exemplo de deleção
+
+**Apagar uma transação**
 
 ```sql
 DELETE FROM transacao
@@ -1327,11 +1328,6 @@ No contexto da JDBC API, metadado é um conjunto de informações que descreve o
       <td>Parâmetros de um comando preparado.</td>
       <td>SQL dinâmico e validações avançadas.</td>
     </tr>
-    <tr>
-      <td><code>RowSetMetaData</code></td>
-      <td>Estrutura de colunas em objetos do tipo <code>RowSet</code>.</td>
-      <td>Aplicações com <code>RowSet</code>, dados desconectados e configuração programática de colunas.</td>
-    </tr>
   </tbody>
 </table>
 
@@ -1510,6 +1506,352 @@ try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
 ---
 
+# javax.sql.DataSource: alternativa
+
+> `DataSource` é uma alternativa ao `DriverManager` para obter conexões.
+
+Em aplicações profissionais, ele costuma ser preferido porque permite:
+
+- configuração centralizada
+- pool de conexões
+- integração com servidores, frameworks e containers
+- troca da implementação sem mudar o código de negócio
+
+```java
+try (Connection conn = dataSource.getConnection()) {
+    // usar a conexao
+}
+```
+
+---
+
+<!-- _class: compact -->
+
+# java.sql x javax.sql
+
+### Por que dois pacotes?
+
+- `java.sql` foi definido como o núcleo da JDBC API
+- `javax.sql` foi criado para agrupar extensões mais avançadas, como `DataSource`, pool de conexões e `RowSet`, sem sobrecarregar o pacote básico original.
+
+### Qual usar?
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Pacote</th>
+      <th>Foco principal</th>
+      <th>Exemplos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>java.sql</code></td>
+      <td>API básica para conexão, comandos SQL, resultados, transações e tratamento de erros.</td>
+      <td><code>Connection</code>, <code>Statement</code>, <code>PreparedStatement</code>, <code>ResultSet</code>, <code>DriverManager</code></td>
+    </tr>
+    <tr>
+      <td><code>javax.sql</code></td>
+      <td>Extensões da JDBC API para fontes de dados, pool de conexões, <code>RowSet</code> e integração com containers.</td>
+      <td><code>DataSource</code>, <code>RowSet</code>, <code>RowSetMetaData</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# java.sql.DriverManager x javax.sql.DataSource
+
+### Por que duas classes para obter conexão?
+
+`DriverManager` e `DataSource` têm a mesma finalidade básica, mas atendem cenários diferentes de uso na aplicação.
+
+### Qual usar?
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Aspecto</th>
+      <th>DriverManager</th>
+      <th>DataSource</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Uso típico</td>
+      <td>Exemplos simples, testes e programas pequenos.</td>
+      <td>Aplicações maiores e ambientes corporativos.</td>
+    </tr>
+    <tr>
+      <td>Configuração</td>
+      <td>URL, usuário e senha no próprio código.</td>
+      <td>Configuração centralizada em objeto ou container.</td>
+    </tr>
+    <tr>
+      <td>Pool de conexões</td>
+      <td>Não oferece por conta própria.</td>
+      <td>Costuma ser integrado a pool de conexões.</td>
+    </tr>
+    <tr>
+      <td>Flexibilidade</td>
+      <td>Mais direto, porém mais acoplado.</td>
+      <td>Mais flexível e fácil de trocar em produção.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# javax.sql.DataSource: pool de conexões
+
+> Um pool de conexões é um mecanismo que mantém conexões com o banco já abertas e prontas para reutilização pela aplicação.
+
+- Abrir e autenticar uma nova conexão a cada operação pode ser custoso
+- Adequado para aplicações com muitas requisições, múltiplos usuários ou acesso frequente ao banco
+- A aplicação pega uma conexão pronta do pool, usa essa conexão e depois a devolve ao pool ao chamar `close()`
+- Java oferece poll de conexões por meio de um `DataSource`
+
+<div class="callout">
+
+**Recomendação**
+
+Em aplicações pequenas e exemplos didáticos, `DriverManager` costuma ser suficiente. Em aplicações reais, o uso de pool é muito comum.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# javax.sql.DataSource: fluxo do pool de conexões
+
+> Abrir conexão com banco pode custar caro. Um pool mantém conexões prontas para reuso.
+
+**Fluxo simplificado**
+
+- a aplicação pede uma conexão
+- o pool entrega uma conexão disponível
+- o código usa a conexão
+- ao chamar `close()`, a conexão volta para o pool
+
+<div class="callout">
+
+**Importante**
+
+Mesmo com pool, continue usando `try-with-resources`. O `close()` devolve a conexão ao pool.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# javax.sql.DataSource: principais métodos
+
+> `DataSource` centraliza a obtenção de conexões e configurações associadas ao acesso ao banco, sendo a forma mais flexível de fornecer conexões à aplicação.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-datasource-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `getConnection()`: devolve uma conexão usando a configuração padrão do `DataSource`
+- `setLoginTimeout(seconds)`: define o tempo limite para tentar abrir a conexão
+- `getLoginTimeout()`: informa o tempo limite configurado
+- `setLogWriter(writer)`: define o destino de mensagens de log do `DataSource`
+- `getLogWriter()`: devolve o escritor de log configurado
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# DataSource precisa de implementação concreta
+
+> `DataSource` é uma interface. Por isso, para usá-la na prática, a aplicação precisa de uma implementação concreta fornecida pelo driver JDBC ou por alguma biblioteca de infraestrutura.
+
+- A interface define o contrato para obter conexões
+- A implementação contém o código real que sabe como se conectar a um banco
+- Cada banco fornece suas próprias implementações
+- Em PostgreSQL, um exemplo comum é `PGSimpleDataSource`
+
+<div class="callout">
+
+**Dica**
+
+Não instanciamos `DataSource` diretamente. Instanciamos uma classe concreta que implementa essa interface.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# DriverManager x DataSource
+
+> `DriverManager` e `DataSource` resolvem o mesmo problema básico de obter conexão, mas pertencem a estilos diferentes de uso da JDBC API.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Elemento</th>
+      <th>O que é</th>
+      <th>Finalidade</th>
+      <th>Quando aparece</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DriverManager</code></td>
+      <td>Classe utilitária de <code>java.sql</code>.</td>
+      <td>Obter conexão a partir de URL, usuário e senha.</td>
+      <td>Exemplos simples, testes e programas pequenos.</td>
+    </tr>
+    <tr>
+      <td><code>DataSource</code></td>
+      <td>Interface de <code>javax.sql</code>.</td>
+      <td>Definir um contrato mais flexível para fornecer conexões.</td>
+      <td>Aplicações maiores, integração com pool, frameworks e containers.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# Implementações do driver do PostgreSQL
+
+> O driver JDBC do PostgreSQL oferece implementações concretas de `DataSource`.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Tipo</th>
+      <th>Uso principal</th>
+      <th>Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>PGSimpleDataSource</code></td>
+      <td>Classe concreta do driver PostgreSQL.</td>
+      <td>Uso simples de <code>DataSource</code> com configuração orientada a objeto.</td>
+      <td>Opção mais direta para exemplos e aplicações sem container ou pool externo.</td>
+    </tr>
+    <tr>
+      <td><code>PGConnectionPoolDataSource</code></td>
+      <td><code>ConnectionPoolDataSource</code></td>
+      <td>Integração com servidores de aplicação e infraestrutura de pool.</td>
+      <td>Não costuma ser usado diretamente no código de negócio.</td>
+    </tr>
+    <tr>
+      <td><code>PGPoolingDataSource</code></td>
+      <td><code>DataSource</code> com pool</td>
+      <td>Pool de conexões fornecido pelo próprio driver.</td>
+      <td>Hoje é considerado legado e não costuma ser a opção recomendada.</td>
+    </tr>
+    <tr>
+      <td><code>PGXADataSource</code></td>
+      <td><code>XADataSource</code></td>
+      <td>Transações distribuídas em ambientes corporativos.</td>
+      <td>Voltado a cenários com JTA/XA, mais avançados.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
+# org.postgresql.ds.PGSimpleDataSource
+
+> `PGSimpleDataSource` permite configurar os dados da conexão em um objeto Java e depois reutilizar essa configuração para abrir conexões com PostgreSQL.
+
+<div class="columns">
+<div>
+
+<img src="../images/13-pgsimpledatasource-class.png" style="display:block; max-width:100%; max-height:320px; margin:0 auto; object-fit:contain;">
+
+</div>
+<div>
+
+- `setServerNames(names)`: define o host ou os hosts do servidor PostgreSQL
+- `setPortNumbers(ports)`: define a porta de conexão de cada host
+- `setDatabaseName(name)`: define o nome do banco de dados
+- `setUser(user)`: define o usuário da conexão
+- `setPassword(password)`: define a senha da conexão
+
+</div>
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# org.postgresql.ds.PGSimpleDataSource
+
+> `PGSimpleDataSource` é uma implementação concreta da interface `DataSource` fornecida pelo driver JDBC do PostgreSQL.
+
+- É um objeto Java que encapsula as configurações de conexão com PostgreSQL.
+- Permite obter conexões de forma mais organizada do que com `DriverManager`.
+- Informações como host, porta, nome do banco, usuário e senha.
+- Recomendado usar em aplicações e integrações em que queremos usar `DataSource` sem configurar um container ou pool externo.
+
+<div class="callout">
+
+**Resumo**
+
+`PGSimpleDataSource` é uma forma prática de usar `DataSource` quando o banco é PostgreSQL.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# javax.sql.DataSource: exemplo
+
+> `DataSource` permite centralizar a configuração de acesso ao banco e obter conexões sem depender diretamente de `DriverManager` no código de negócio.
+
+<div class="columns">
+<div>
+
+O código configura um `DataSource`, define host, porta, banco, usuário e senha, e depois obtém uma `Connection` com `getConnection()`.
+
+Essa abordagem facilita a troca da fonte de dados e se integra melhor com pool de conexões e frameworks.
+
+</div>
+<div>
+
+```java
+PGSimpleDataSource ds = new PGSimpleDataSource();
+ds.setServerNames(new String[] {"localhost"});
+ds.setPortNumbers(new int[] {5432});
+ds.setDatabaseName("banco");
+ds.setUser("postgres");
+ds.setPassword("123456");
+
+try (Connection conn = ds.getConnection()) {
+    System.out.println("Conectado com DataSource!");
+}
+```
+
+</div>
+</div>
+
+---
+
 <!-- _class: compact -->
 
 # javax.sql.RowSetMetaData
@@ -1538,7 +1880,7 @@ try (PreparedStatement ps = conn.prepareStatement(sql)) {
 
 <!-- _class: compact -->
 
-# javax.sql.RowSetMetaData: exemplo de uso
+# javax.sql.RowSetMetaData: exemplo
 
 Esse metadado aparece com mais frequência em APIs de `RowSet`, quando a aplicação precisa descrever colunas de forma manual em estruturas desconectadas.
 
@@ -1583,7 +1925,7 @@ A tabela resume os principais elementos da API JDBC e mostra em que momento cada
     </tr>
     <tr>
       <td><code>DataSource</code></td>
-      <td>Alternativa mais flexível para obter conexões, comum com pool.</td>
+      <td>Alternativa mais flexível para obter conexões, mas depende de uma implementação concreta do driver, como <code>PGSimpleDataSource</code>.</td>
     </tr>
     <tr>
       <td><code>Connection</code></td>
@@ -1605,94 +1947,9 @@ A tabela resume os principais elementos da API JDBC e mostra em que momento cada
       <td><code>SQLException</code></td>
       <td>Exceção base para erros de acesso ao banco.</td>
     </tr>
-  </tbody>
-</table>
-
----
-
-# javax.sql.DataSource: alternativa
-
-`DataSource` é uma alternativa ao `DriverManager` para obter conexões.
-
-Em aplicações profissionais, ele costuma ser preferido porque permite:
-
-- configuração centralizada
-- pool de conexões
-- integração com servidores, frameworks e containers
-- troca da implementação sem mudar o código de negócio
-
-```java
-try (Connection conn = dataSource.getConnection()) {
-    // usar a conexao
-}
-```
-
----
-
-<!-- _class: compact -->
-
-# javax.sql.DataSource: pool de conexões
-
-Abrir conexão com banco pode custar caro.
-
-Um pool mantém conexões prontas para reuso.
-
-**Fluxo simplificado**
-
-- a aplicação pede uma conexão
-- o pool entrega uma conexão disponível
-- o código usa a conexão
-- ao chamar `close()`, a conexão volta para o pool
-
-<div class="callout">
-
-**Importante**
-
-Mesmo com pool, continue usando `try-with-resources`. O `close()` devolve a conexão ao pool.
-
-</div>
-
----
-
-<!-- _class: compact -->
-
-# Problemas comuns
-
-Os erros abaixo aparecem com frequência em programas JDBC e ajudam a interpretar rapidamente a origem de uma falha de conexão ou execução SQL.
-
-<table class="tiny">
-  <thead>
     <tr>
-      <th>Erro</th>
-      <th>Sintoma</th>
-      <th>Correção</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Driver fora do classpath</td>
-      <td><code>No suitable driver</code></td>
-      <td>Adicionar dependência do driver JDBC.</td>
-    </tr>
-    <tr>
-      <td>URL errada</td>
-      <td>Falha de conexão</td>
-      <td>Conferir protocolo, host, porta e nome do banco.</td>
-    </tr>
-    <tr>
-      <td>Coluna inexistente</td>
-      <td>Erro ao executar consulta</td>
-      <td>Conferir SQL e estrutura da tabela.</td>
-    </tr>
-    <tr>
-      <td>Recurso não fechado</td>
-      <td>Conexões esgotadas</td>
-      <td>Usar <code>try-with-resources</code>.</td>
-    </tr>
-    <tr>
-      <td>Concatenar SQL com entrada externa</td>
-      <td>Risco de SQL injection</td>
-      <td>Usar <code>PreparedStatement</code>.</td>
+      <td><code>commit()</code> / <code>rollback()</code></td>
+      <td>Confirmam ou desfazem uma transação manual na conexão.</td>
     </tr>
   </tbody>
 </table>
@@ -1741,6 +1998,51 @@ public class AlunoDao {
 
 <!-- _class: compact -->
 
+# Problemas comuns
+
+Os erros abaixo aparecem com frequência em programas JDBC e ajudam a interpretar rapidamente a origem de uma falha de conexão ou execução SQL.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Erro</th>
+      <th>Sintoma</th>
+      <th>Correção</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Driver fora do classpath</td>
+      <td><code>No suitable driver</code></td>
+      <td>Adicionar dependência do driver JDBC.</td>
+    </tr>
+    <tr>
+      <td>URL errada</td>
+      <td>Falha de conexão</td>
+      <td>Conferir protocolo, host, porta e nome do banco.</td>
+    </tr>
+    <tr>
+      <td>Coluna inexistente</td>
+      <td>Erro ao executar consulta</td>
+      <td>Conferir SQL e estrutura da tabela.</td>
+    </tr>
+    <tr>
+      <td>Recurso não fechado</td>
+      <td>Conexões esgotadas</td>
+      <td>Usar <code>try-with-resources</code>.</td>
+    </tr>
+    <tr>
+      <td>Concatenar SQL com entrada externa</td>
+      <td>Risco de SQL injection</td>
+      <td>Usar <code>PreparedStatement</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<!-- _class: compact -->
+
 # Boas práticas
 
 - Use `PreparedStatement` para dados externos
@@ -1750,73 +2052,6 @@ public class AlunoDao {
 - Valide a quantidade de linhas afetadas em `UPDATE` e `DELETE`
 - Use transações quando múltiplas operações precisarem ser atômicas
 - Registre erros com contexto, mas não exponha credenciais em mensagens
-
-<!-- _class: compact -->
-
-# JDBC: resumo
-
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Elemento</th>
-      <th>Você deve lembrar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Connection</code></td>
-      <td>Representa a conexão aberta com o banco.</td>
-    </tr>
-    <tr>
-      <td><code>Statement</code></td>
-      <td>Executa SQL fixo.</td>
-    </tr>
-    <tr>
-      <td><code>PreparedStatement</code></td>
-      <td>Executa SQL com parâmetros; é a escolha padrão para CRUD.</td>
-    </tr>
-    <tr>
-      <td><code>ResultSet</code></td>
-      <td>Percorre linhas retornadas por <code>SELECT</code>.</td>
-    </tr>
-    <tr>
-      <td><code>SQLException</code></td>
-      <td>Representa falhas de banco, SQL, driver ou conexão.</td>
-    </tr>
-    <tr>
-      <td><code>commit</code> / <code>rollback</code></td>
-      <td>Confirmam ou desfazem uma transação manual.</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-# Atividade prática
-
-Crie uma aplicação Java que cadastre e consulte alunos em uma tabela relacional.
-
-**Requisitos**
-
-- criar a tabela `aluno`
-- inserir alunos com `PreparedStatement`
-- listar alunos ordenados por nome
-- buscar aluno por email
-- atualizar nota de um aluno
-- remover aluno por id
-- usar `try-with-resources`
-- tratar `SQLException` exibindo mensagem, `SQLState` e código
-
----
-
-# Atividade prática: roteiro
-
-1. Crie a classe `Aluno`
-2. Crie a classe `AlunoDao`
-3. Implemente `salvar`, `listar`, `buscarPorEmail`, `atualizarNota` e `remover`
-4. Crie uma classe `Main` para testar as operações
-5. Use transação quando o teste executar mais de uma alteração dependente
-6. Ao final, explique em quais pontos a aplicação usou CRUD
 
 ---
 
@@ -1831,13 +2066,3 @@ Crie uma aplicação Java que cadastre e consulte alunos em uma tabela relaciona
 - PostgreSQL JDBC Driver
   - https://jdbc.postgresql.org/
 - Deitel, Paul; Deitel, Harvey. _Java: How to Program, Early Objects_. 11. ed. Pearson, 2017.
-
----
-
-# Fechamento
-
-Nesta aula, JDBC apareceu como a ponte entre objetos Java e dados relacionais.
-
-**O ponto mais importante**
-
-> Use `PreparedStatement`, feche recursos corretamente e controle transações quando várias operações precisarem ser confirmadas juntas.

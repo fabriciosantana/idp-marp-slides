@@ -1,0 +1,31 @@
+@startuml
+title javax.sql.DataSource
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam interface {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+interface DataSource {
+  +getConnection()
+  +getConnection(username, password)
+  +setLoginTimeout(seconds)
+  +getLoginTimeout()
+  +setLogWriter(writer)
+  +getLogWriter()
+}
+
+interface Connection
+
+DataSource --> Connection : getConnection()
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+title org.postgresql.ds.PGSimpleDataSource
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam classAttributeIconSize 0
+skinparam defaultFontSize 18
+skinparam linetype ortho
+skinparam class {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+  FontSize 18
+}
+skinparam interface {
+  BackgroundColor #F4F7FB
+  BorderColor #6B7280
+  FontColor #111827
+  FontSize 18
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontColor #111827
+
+interface DataSource {
+  +getConnection()
+}
+
+class PGSimpleDataSource {
+  +setServerNames(names)
+  +setPortNumbers(ports)
+  +setDatabaseName(name)
+  +setUser(user)
+  +setPassword(password)
+  +getConnection()
+}
+
+interface Connection
+
+PGSimpleDataSource ..|> DataSource
+PGSimpleDataSource --> Connection : getConnection()
+
+@enduml
