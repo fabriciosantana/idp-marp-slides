@@ -50,6 +50,18 @@ junho/2026
 
 ---
 
+# Problemática: Pipeline RAG
+
+<img src="../images/chatbot-rag/rag-pipeline.png" style="display:block; max-width:100%; max-height:470px; margin:0 auto; object-fit:contain;">
+
+<div class="small">
+
+Componentes do pipeline condicionam recuperação, contexto, fidelidade ao acervo e verificabilidade das respostas.
+
+</div>
+
+---
+
 # Problema de pesquisa
 
 <div class="callout">

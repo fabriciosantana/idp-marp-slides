@@ -1,0 +1,74 @@
+@startuml
+title Pipeline RAG orientado a evidências
+
+left to right direction
+
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam defaultFontName "Helvetica"
+skinparam rectangle {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+  RoundCorner 10
+}
+skinparam database {
+  BackgroundColor #EAF4FA
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam note {
+  BackgroundColor #FFF7D6
+  BorderColor #C8A23A
+  FontSize 15
+}
+skinparam ArrowColor #0F4C75
+skinparam ArrowFontSize 15
+skinparam ArrowFontColor #111827
+
+rectangle "Preparação do acervo" as ingestao {
+  rectangle "Extração\ndocumental" as extracao
+  rectangle "Segmentação\nem chunks" as chunks
+  rectangle "Enriquecimento\npor metadados" as metadados
+  rectangle "Geração de\nembeddings" as embeddings
+  database "Índice\nvetorial" as indice
+}
+
+rectangle "Consulta e geração" as consulta {
+  rectangle "Pergunta\ndo usuário" as pergunta
+  rectangle "Embedding\nda consulta" as consulta_embedding
+  rectangle "Recuperação\nvetorial" as recuperacao
+  rectangle "Reranqueamento" as rerank
+  rectangle "Seleção de\ncontexto" as contexto
+  rectangle "Prompting orientado\na evidências" as prompt
+  rectangle "Resposta com\nfontes verificáveis" as resposta
+}
+
+extracao --> chunks
+chunks --> metadados
+metadados --> embeddings
+embeddings --> indice
+
+pergunta --> consulta_embedding
+consulta_embedding --> recuperacao
+indice --> recuperacao
+recuperacao --> rerank
+rerank --> contexto
+contexto --> prompt
+pergunta --> prompt
+prompt --> resposta
+
+note bottom of metadados
+  Autoria, data, legislatura,
+  tema e origem documental
+  condicionam a recuperação.
+end note
+
+note bottom of resposta
+  Qualidade depende da combinação
+  entre evidências recuperadas,
+  ordenação, contexto e prompt.
+end note
+
+@enduml

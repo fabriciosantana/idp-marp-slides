@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "assets": "mkdir -p dist/assets dist/images dist/scripts && cp assets/IDP.png dist/assets/IDP.png && cp subjects/poo/images/* dist/images/ && cp subjects/poo/scripts/* dist/scripts/",
+    "assets": "mkdir -p dist/assets dist/images dist/images/chatbot-rag dist/scripts && cp assets/IDP.png dist/assets/IDP.png && cp subjects/poo/images/* dist/images/ && cp subjects/chatbot-rag/images/* dist/images/chatbot-rag/ && cp subjects/poo/scripts/* dist/scripts/",
     "html": "npm run html:all",
     "html:all": "npm run html:poo && npm run html:poo:01 && npm run html:poo:11 && npm run html:poo:12 && npm run html:poo:13 && npm run html:chatbot-rag",
     "pdf": "npm run pdf:poo",
