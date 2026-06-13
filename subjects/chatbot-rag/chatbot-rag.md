@@ -60,25 +60,11 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 </div>
 
-<div class="small">
-
-A pesquisa busca oferecer critérios para avaliar chatbots generativos aplicados a acervos públicos antes de sua adoção institucional ampliada.
-
-</div>
-
 ---
 
 # Objetivo geral
 
 Sistematizar técnicas de avaliação de sistemas RAG e aplicá-las a um caso empírico de consulta a discursos da 56ª Legislatura do Senado Federal, com foco na recuperação documental, na geração de respostas e na verificabilidade das fontes.
-
-<div class="callout">
-
-**Caso empírico**
-
-Sistema RAG voltado à consulta de discursos parlamentares da 56ª Legislatura do Senado Federal.
-
-</div>
 
 ---
 
@@ -99,25 +85,35 @@ Sistema RAG voltado à consulta de discursos parlamentares da 56ª Legislatura d
 
 <!-- _class: compact -->
 
-<div class="columns">
+<div class="columns" style="--columns: 3;">
 
-<div>
+<div class="callout">
 
-**IA generativa, RAG e recuperação**
+**1. IA generativa, RAG e recuperação de informação**
 
-- LLMs, transformers e geração textual
-- RAG como integração entre recuperação e geração
-- Pipeline: extração, chunks, metadados, embeddings, busca, reranqueamento, prompt e pós-processamento
+- LLMs e transformers
+- Geração textual ancorada em documentos
+- Pipeline RAG: chunks, metadados, embeddings, busca e prompt
 
 </div>
 
-<div>
+<div class="callout">
 
-**Informação legislativa e governança**
+**2. Informação legislativa, transparência e acervos parlamentares**
 
-- Acervos parlamentares como recurso institucional
-- Transparência não garante acesso substantivo
-- Avaliação deve considerar rastreabilidade, fontes, supervisão humana e auditabilidade
+- Discursos como memória institucional
+- Acesso formal e acesso substantivo
+- Autoria, temporalidade e metadados
+
+</div>
+
+<div class="callout">
+
+**3. Avaliação de sistemas RAG e governança pública de IA**
+
+- Recuperação, geração e fontes
+- Avaliação humana e LLM como juiz
+- Supervisão, auditoria e usos aceitáveis
 
 </div>
 
@@ -129,14 +125,12 @@ Sistema RAG voltado à consulta de discursos parlamentares da 56ª Legislatura d
 
 <!-- _class: compact -->
 
-- **P1:** evidências pertinentes são condição necessária, mas não suficiente, para a verificabilidade das respostas.
-- **P2:** o desempenho tende a ser inferior em perguntas que exigem múltiplas evidências, raciocínio em etapas ou reconhecimento de informação ausente.
-- **P3:** LLM como juiz é útil para triagem e escala, mas insuficiente como critério único de qualidade.
-- **P4:** desempenho técnico isolado não sustenta juízo sobre uso institucional; esse juízo depende também de requisitos verificáveis de governança.
+- **P1:** evidências pertinentes ajudam a sustentar a verificabilidade; a geração ainda pode extrapolar ou citar mal as fontes.
+- **P2:** o desempenho tende a cair em perguntas com múltiplas evidências, raciocínio em etapas ou informação ausente.
+- **P3:** LLM como juiz ajuda na triagem e na escala; a validação humana segue necessária.
+- **P4:** o juízo sobre uso institucional depende da combinação entre desempenho técnico e requisitos verificáveis de governança.
 
 <div class="small">
-
-As proposições serão avaliadas por critérios observáveis: fontes citadas, aderência ao contexto, categorias de pergunta, divergências entre avaliadores e requisitos de governança.
 
 </div>
 
