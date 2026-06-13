@@ -34,19 +34,26 @@ junho/2026
 
 # Contextualização temática
 
-- Grandes modelos de linguagem produzem texto em linguagem natural, mas não são, por definição, mecanismos confiáveis de recuperação documental.
-- Sistemas **RAG** combinam geração textual com recuperação de documentos em base externa.
-- Essa arquitetura pode favorecer atualização, rastreabilidade, controle documental e respostas ancoradas em evidências.
-- Em acervos públicos, especialmente legislativos, respostas generativas precisam ser verificáveis, rastreáveis e compatíveis com transparência, responsabilização e governança.
+- **Grandes modelos de linguagem** (_Large Language Model - LLM_)
+  - capacidade de geração de texto em linguagem natural
+  - não são mecanismos confiáveis de recuperação documental
+- **Geração aumentada por recuperação** (_Retrieval Augumented Generation - RAG_)
+  - combina geração com recuperação de documentos em base externa.
+  - favorece atualização, rastreabilidade, controle documental e respostas ancoradas em evidências.
+- **Administração Pública** (contexto legislativo)
+  - respostas precisam ser verificáveis, rastreáveis e compatíveis com transparência, responsabilização e governança.
 
 ---
 
 # Problemática
 
-- A avaliação de sistemas RAG é multidimensional: envolve recuperação, geração, fidelidade ao contexto, fontes, julgamento humano e avaliação automatizada.
-- Uma resposta fluente pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
-- Órgãos públicos acumulam acervos de alto valor institucional, mas precisam de critérios explícitos para avaliar respostas generativas.
-- No Legislativo, discursos parlamentares têm volume elevado, diversidade temática, dispersão temporal, variação terminológica e forte dependência de metadados.
+- **A avaliação de sistemas RAG é multidimensional**
+  - envolve recuperação, geração, fidelidade ao contexto, fontes, julgamento humano e avaliação automatizada.
+- **Alucinação**
+  - resposta fluente pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
+- **Necessidade de avaliação**
+  - órgãos públicos acumulam acervos de alto valor institucional, mas precisam de critérios explícitos para avaliar respostas generativas.
+  - no Legislativo, discursos parlamentares têm volume elevado, diversidade temática, dispersão temporal, variação terminológica e forte dependência de metadados.
 
 ---
 
@@ -76,7 +83,7 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 # Objetivo geral
 
-Sistematizar técnicas de avaliação de sistemas RAG e aplicá-las a um caso empírico de consulta a discursos da 56ª Legislatura do Senado Federal, com foco na recuperação documental, na geração de respostas e na verificabilidade das fontes.
+**Sistematizar técnicas** de avaliação de sistemas RAG e **aplicá-las a um caso empírico** de consulta a discursos da 56ª Legislatura do Senado Federal, com foco na recuperação documental, na geração de respostas e na verificabilidade das fontes.
 
 ---
 
@@ -84,12 +91,12 @@ Sistematizar técnicas de avaliação de sistemas RAG e aplicá-las a um caso em
 
 <!-- _class: compact -->
 
-1. Sistematizar a literatura sobre avaliação de RAG: métricas de recuperação, avaliação de geração, benchmarks, rubricas, avaliação humana e LLM como juiz.
-2. Selecionar técnicas de avaliação aplicáveis ao caso empírico, contemplando recuperação, geração, verificabilidade, robustez e governança.
-3. Caracterizar o acervo de discursos parlamentares da 56ª Legislatura do Senado Federal.
-4. Construir bateria de perguntas de teste, com categorias, respostas esperadas e evidências documentais de referência.
-5. Aplicar métricas, rubrica humana e avaliação auxiliar por LLM como juiz.
-6. Analisar complementaridade, limites e condições de uso das técnicas avaliativas.
+1. **Sistematizar a literatura** sobre avaliação de RAG: métricas de recuperação, avaliação de geração, benchmarks, rubricas, avaliação humana e LLM como juiz.
+2. **Selecionar técnicas de avaliação** aplicáveis ao caso empírico, contemplando recuperação, geração, verificabilidade, robustez e governança.
+3. **Caracterizar o acervo** de discursos parlamentares da 56ª Legislatura do Senado Federal.
+4. **Construir bateria de perguntas** de teste, com categorias, respostas esperadas e evidências documentais de referência.
+5. **Aplicar métricas**, rubrica humana e avaliação auxiliar por LLM como juiz.
+6. **Analisar** complementaridade, limites e condições de uso das técnicas avaliativas.
 
 ---
 
