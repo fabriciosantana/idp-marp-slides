@@ -9,7 +9,7 @@ footer: <span>Projeto de Ciência de Dados e Inteligência Artificial</span><spa
 <!-- _class: title -->
 <!-- _paginate: false -->
 
-## Projeto de Pesquisa
+## Projeto de Ciência de Dados e Inteligência Artificial
 
 # Técnicas de Avaliação de Sistemas RAG: aplicação empírica a discursos legislativos do Senado Federal
 
@@ -22,7 +22,7 @@ footer: <span>Projeto de Ciência de Dados e Inteligência Artificial</span><spa
 
 <div class="contact">
 Fabricio Fernandes Santana<br>
-Projeto de Ciência de Dados e Inteligência Artificial<br>
+Pré-projeto de pesquisa<br>
 Profs. Drs. Hélio Bomfim de Macêdo Filho<br>
 e Marcelo Rodrigo de Souza Pita <br><br>
 junho/2026
