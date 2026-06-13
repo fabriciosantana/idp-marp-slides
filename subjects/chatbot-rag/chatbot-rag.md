@@ -3,7 +3,7 @@ marp: true
 theme: idp
 paginate: false
 html: true
-footer: <span>Projeto de Pesquisa</span><span>Pré-projeto de dissertação</span><span>Fabricio Fernandes Santana</span>
+footer: <span>Projeto de Ciência de Dados e Inteligência Artificial</span><span>Pré-projeto de pesquisa</span><span>Fabricio Fernandes Santana</span>
 ---
 
 <!-- _class: title -->
@@ -22,10 +22,9 @@ footer: <span>Projeto de Pesquisa</span><span>Pré-projeto de dissertação</spa
 
 <div class="contact">
 Fabricio Fernandes Santana<br>
-Disciplina: Projeto de Pesquisa<br>
+Projeto de Ciência de Dados e Inteligência Artificial<br>
 Profs. Drs. Hélio Bomfim de Macêdo Filho<br>
-e Marcelo Rodrigo de Souza Pita <br>
-
+e Marcelo Rodrigo de Souza Pita <br><br>
 junho/2026
 
 </div>
