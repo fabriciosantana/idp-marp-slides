@@ -36,7 +36,7 @@ junho/2026
 - **Grandes modelos de linguagem** (_Large Language Model - LLM_)
   - capacidade de geração de texto em linguagem natural
   - não são mecanismos confiáveis de recuperação documental
-- **Geração aumentada por recuperação** (_Retrieval Augumented Generation - RAG_)
+- **Geração aumentada por recuperação** (_Retrieval Augmented Generation - RAG_)
   - combina geração com recuperação de documentos em base externa.
   - favorece atualização, rastreabilidade, controle documental e respostas ancoradas em evidências.
 - **Administração Pública** (contexto legislativo)
