@@ -45,6 +45,8 @@ rectangle "Consulta e geração" as consulta {
   rectangle "Resposta com\nfontes verificáveis" as resposta
 }
 
+ingestao -[hidden]down- consulta
+
 extracao --> chunks
 chunks --> metadados
 metadados --> embeddings
@@ -52,7 +54,6 @@ embeddings --> indice
 
 pergunta --> consulta_embedding
 consulta_embedding --> recuperacao
-indice --> recuperacao
 recuperacao --> rerank
 rerank --> contexto
 contexto --> prompt
@@ -62,7 +63,7 @@ prompt --> resposta
 note bottom of metadados
   Autoria, data, legislatura,
   tema e origem documental
-  condicionam a recuperação.
+  condicionam a preparação.
 end note
 
 note bottom of resposta

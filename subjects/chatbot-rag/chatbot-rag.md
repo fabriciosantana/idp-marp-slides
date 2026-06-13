@@ -50,7 +50,7 @@ junho/2026
   - envolve recuperação, geração, fidelidade ao contexto, fontes, julgamento humano e avaliação automatizada.
 - **Alucinação**
   - resposta fluente pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
-- **Necessidade de avaliação**
+- **Necessidade de avaliação no contexto público**
   - órgãos públicos acumulam acervos de alto valor institucional, mas precisam de critérios explícitos para avaliar respostas generativas.
   - no Legislativo, discursos parlamentares têm volume elevado, diversidade temática, dispersão temporal, variação terminológica e forte dependência de metadados.
 
@@ -58,11 +58,11 @@ junho/2026
 
 # Problemática: Pipeline RAG
 
-<img src="../images/chatbot-rag/rag-pipeline.png" style="display:block; max-width:100%; max-height:470px; margin:0 auto; object-fit:contain;">
+<img src="../images/chatbot-rag/rag-pipeline.png">
 
 <div class="small">
 
-Componentes do pipeline condicionam recuperação, contexto, fidelidade ao acervo e verificabilidade das respostas.
+> Componentes do pipeline condicionam recuperação, contexto, fidelidade ao acervo e verificabilidade das respostas.
 
 </div>
 
