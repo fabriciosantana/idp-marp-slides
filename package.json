@@ -13,7 +13,9 @@
     "html:poo:12": "npm run assets && marp subjects/poo/lectures/12-file.md --html --output dist/html/poo-12-file.html",
     "pdf:poo:12": "marp subjects/poo/lectures/12-file.md --pdf --allow-local-files --output dist/pdf/poo-12-file.pdf",
     "html:poo:13": "npm run assets && marp subjects/poo/lectures/13-jdbc.md --html --output dist/html/poo-13-jdbc.html",
-    "pdf:poo:13": "marp subjects/poo/lectures/13-jdbc.md --pdf --allow-local-files --output dist/pdf/poo-13-jdbc.pdf"
+    "pdf:poo:13": "marp subjects/poo/lectures/13-jdbc.md --pdf --allow-local-files --output dist/pdf/poo-13-jdbc.pdf",
+    "html:chatbot-rag": "npm run assets && marp subjects/chatbot-rag/chatbot-rag.md --html --output dist/html/chatbot-rag.html",
+    "pdf:chatbot-rag": "marp subjects/chatbot-rag/chatbot-rag.md --pdf --allow-local-files --output dist/pdf/chatbot-rag.pdf"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.1.2"
