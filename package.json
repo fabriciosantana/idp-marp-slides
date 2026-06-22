@@ -2,7 +2,7 @@
   "scripts": {
     "assets": "mkdir -p dist/assets dist/images dist/images/chatbot-rag dist/scripts && cp assets/IDP.png dist/assets/IDP.png && cp subjects/poo/images/* dist/images/ && cp subjects/chatbot-rag/images/* dist/images/chatbot-rag/ && cp subjects/poo/scripts/* dist/scripts/",
     "html": "npm run html:all",
-    "html:all": "npm run html:poo && npm run html:poo:01 && npm run html:poo:11 && npm run html:poo:12 && npm run html:poo:13 && npm run html:chatbot-rag",
+    "html:all": "npm run html:poo && npm run html:poo:01 && npm run html:poo:11 && npm run html:poo:12 && npm run html:poo:13 && npm run html:chatbot-rag && npm run html:career",
     "pdf": "npm run pdf:poo",
     "html:poo": "npm run assets && marp subjects/poo/poo.md --html --output dist/html/poo.html",
     "pdf:poo": "marp subjects/poo/poo.md --pdf --allow-local-files --output dist/pdf/poo.pdf",
@@ -15,7 +15,9 @@
     "html:poo:13": "npm run assets && marp subjects/poo/lectures/13-jdbc.md --html --output dist/html/poo-13-jdbc.html",
     "pdf:poo:13": "marp subjects/poo/lectures/13-jdbc.md --pdf --allow-local-files --output dist/pdf/poo-13-jdbc.pdf",
     "html:chatbot-rag": "npm run assets && marp subjects/chatbot-rag/chatbot-rag.md --html --output dist/html/chatbot-rag.html",
-    "pdf:chatbot-rag": "marp subjects/chatbot-rag/chatbot-rag.md --pdf --allow-local-files --output dist/pdf/chatbot-rag.pdf"
+    "pdf:chatbot-rag": "marp subjects/chatbot-rag/chatbot-rag.md --pdf --allow-local-files --output dist/pdf/chatbot-rag.pdf",
+    "html:career": "npm run assets && marp subjects/career/career.md --html --output dist/html/career.html",
+    "pdf:career": "marp subjects/career/career.md --pdf --allow-local-files --output dist/pdf/career.pdf"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.1.2"
