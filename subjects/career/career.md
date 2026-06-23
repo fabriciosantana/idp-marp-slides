@@ -17,10 +17,10 @@ footer: <span>Planejamento de carreira em Tech</span><span>junho/2026</span><spa
 
 **Objetivos**
 
-- Refletir sobre o momento atual
-- Pensar sobre o futuro desejável
-- Usar GitHub como ferramenta de presença digital
-- Elaborar plano de ação rumo ao objetivo
+- Refletir sobre trajetória, interesses e objetivo de carreira
+- Traduzir objetivos em evidências profissionais verificáveis
+- Estruturar GitHub, README de perfil e README de projeto
+- Elaborar um plano 30-60-90 com próxima ação concreta
 
 </div>
 
