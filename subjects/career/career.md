@@ -3,7 +3,7 @@ marp: true
 theme: idp
 paginate: false
 html: true
-footer: <span>Carreira e presença digital</span><span>GitHub como currículo online</span><span>Prof. Fabricio Santana</span>
+footer: <span>Planejamento de carreira em Tech</span><span>junho/2026</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
@@ -11,47 +11,30 @@ footer: <span>Carreira e presença digital</span><span>GitHub como currículo on
 
 ## Workshop
 
-# Desenvolvimento de carreira e presença digital no GitHub
+# Planejamento de carreira em Tech
 
 <div class="objectives">
 
-**Entregas do encontro**
+**Objetivos**
 
-- diagnóstico de carreira e presença digital
-- narrativa profissional inicial
-- GitHub organizado para avaliação
-- README de perfil e README de projeto
-- plano de evolução para os próximos 90 dias
+- Refletir sobre o momento atual
+- Pensar sobre o futuro desejável
+- Usar GitHub como ferramenta de presença digital
+- Elaborar plano de ação rumo ao objetivo
 
 </div>
 
 <div class="contact">
-Graduação em Ciência da Computação<br>
-Workshop prático e colaborativo<br>
-GitHub, currículo online e plano de carreira
+Prof. Fabricio Santana<br>
+fabricio.santana@idp.edu.br<br>
+linkedin.com/in/fabriciofsantana
 </div>
 
 ---
 
-# Ideia central
+# Expectativas
 
-O GitHub não é só um repositório de código.
-
-Ele pode funcionar como um **currículo verificável**, onde avaliadores conseguem observar:
-
-- o que você constrói
-- como você pensa
-- como você documenta
-- como você colabora
-- como você evolui ao longo do tempo
-
-<div class="callout">
-
-**Pergunta do workshop**
-
-Quando alguém abre seu GitHub hoje, que evidências encontra sobre o profissional que você quer se tornar?
-
-</div>
+> O que vocês esperam deste workshop?
 
 ---
 
@@ -87,7 +70,7 @@ Quando alguém abre seu GitHub hoje, que evidências encontra sobre o profission
 
 <div class="callout">
 
-**Regra prática**
+**Regra**
 
 Cada bloco precisa terminar com uma decisão, uma edição ou uma publicação.
 
@@ -95,9 +78,9 @@ Cada bloco precisa terminar com uma decisão, uma edição ou uma publicação.
 
 ---
 
-# Público e pré-requisitos
+# Público-alvo e pré-requisitos
 
-**Público**
+**Público-alvo**
 
 - estudantes de graduação em Ciência da Computação
 - iniciantes ou intermediários em Git e GitHub
@@ -116,34 +99,12 @@ Cada bloco precisa terminar com uma decisão, uma edição ou uma publicação.
 
 Ao final, cada participante deverá ter:
 
-1. um **GitHub Profile README** com narrativa, foco e links
-2. pelo menos um **repositório apresentável** com README estruturado
-3. um **mapa de evidências** para recrutadores, professores ou avaliadores
-4. um **plano de 30, 60 e 90 dias** para fortalecer portfólio e carreira
-5. uma lista de ajustes pendentes priorizada
-
-<div class="small">
-
-O objetivo não é fingir maturidade. É tornar visível o estágio atual e criar um caminho concreto de evolução.
-
-</div>
-
----
-
-# Agenda de 4 horas
-
-<!-- _class: compact -->
-
-|       Tempo | Bloco                           | Entrega                       |
-| ----------: | ------------------------------- | ----------------------------- |
-| 00:00-00:20 | Abertura e diagnóstico          | mapa "onde estou hoje"        |
-| 00:20-00:50 | Avaliadores e evidências        | checklist de presença digital |
-| 00:50-01:25 | Narrativa profissional          | pitch curto e headline        |
-| 01:25-02:10 | Lab 1: GitHub Profile README    | perfil publicado              |
-| 02:10-02:20 | Intervalo                       |                               |
-| 02:20-03:05 | Lab 2: README de projeto        | projeto apresentável          |
-| 03:05-03:35 | Currículo online e consistência | links e currículo revisados   |
-| 03:35-04:00 | Plano 30-60-90 e fechamento     | plano de execução             |
+1. uma **direção de carreira para 12 meses**
+2. um **mapa de evidências**: CHA, artefatos e metas SMART
+3. uma **narrativa profissional inicial**: headline e pitch curto
+4. um **README de perfil do GitHub** com foco, evidências e links
+5. um **projeto apresentável** com README estruturado
+6. um **plano 30-60-90** com próxima ação prioritária
 
 ---
 
@@ -157,17 +118,123 @@ O objetivo não é fingir maturidade. É tornar visível o estágio atual e cria
 
 <div class="callout">
 
-**Feedback útil**
+**Princípio**
 
-"Eu entendi que você quer ser avaliado por X. Para isso, faltou evidência de Y. Uma melhoria concreta seria Z."
+O workshop funciona melhor quando cada pessoa trata sua carreira como um projeto em construção.
 
 </div>
 
 ---
 
-# Dinâmica 1: onde estou hoje?
+# Agenda
 
 <!-- _class: compact -->
+
+| Macrobloco    | Entrega                                                       |
+| ------------- | ------------------------------------------------------------- |
+| Alinhamento   | expectativas, combinados e resultado esperado                 |
+| Direção       | trajetória, destino desejável e objetivo de 12 meses          |
+| Evidências    | CHA, artefatos e metas SMART                                  |
+| GitHub/README | perfil, projeto, narrativa profissional e coerência dos links |
+| Plano final   | plano 30-60-90, compromisso público e próxima ação            |
+
+---
+
+# O que trouxe você até aqui?
+
+<!-- _class: compact -->
+
+Antes de projetar o futuro, vale reconhecer a trajetória que já existe.
+
+**Perguntas de suporte**
+
+- que experiências despertaram meu interesse por tecnologia?
+- que disciplina, projeto ou problema mais me marcou até agora?
+- que tipo de atividade me dá energia: construir, investigar, explicar, organizar, resolver urgências?
+- que feedbacks já recebi de colegas, professores ou clientes?
+
+<div class="callout">
+
+**Entrega**
+
+Uma frase sobre sua trajetória: "Cheguei até aqui porque..."
+
+</div>
+
+---
+
+# Destinos possíveis
+
+<!-- _class: compact -->
+
+Tecnologia abre mais de uma rota. A decisão não precisa ser definitiva, mas precisa orientar as próximas escolhas.
+
+**Perguntas de suporte**
+
+- Desenvolvimento, Infraestrutura, Segurança ou Consultoria?
+- Grande empresa, média empresa, pequena empresa ou startup?
+- Setor privado, público ou terceiro setor?
+- Big Tech, mercado financeiro, varejo ou indústria?
+- Nacional ou internacional?
+
+<div class="callout">
+
+**Entrega**
+
+Uma hipótese de destino: "Quero explorar **\_\_** em **\_\_**, porque **\_\_**."
+
+</div>
+
+---
+
+# Como identificar o seu destino desejável?
+
+<!-- _class: compact -->
+
+<div class="columns">
+
+<div>
+
+**Perguntas de direção**
+
+- que tipo de problema eu gostaria de ajudar a resolver?
+- que impacto eu quero que meu trabalho tenha?
+- que ambientes me fazem aprender melhor?
+- que compromissos eu não quero negociar?
+
+</div>
+
+<div>
+
+**Como demonstrar**
+
+- documentando decisões
+- revisando código
+- pedindo feedback
+- entregando versões pequenas
+- explicando limites e próximos passos
+
+</div>
+
+</div>
+
+<div class="callout">
+
+**Entrega**
+
+Uma frase: "Quero atuar com tecnologia para **\_\_**, demonstrando isso por meio de **\_\_**."
+
+</div>
+
+---
+
+# Onde você quer chegar?
+
+<!-- _class: compact -->
+
+<div class="columns">
+
+<div>
 
 **Individual - 8 minutos**
 
@@ -179,6 +246,10 @@ Preencha uma nota rápida:
 - que habilidade quero que as pessoas associem a mim?
 - que evidências públicas existem hoje?
 
+</div>
+
+<div>
+
 **Pares - 7 minutos**
 
 Explique sua resposta para alguém. A outra pessoa deve responder:
@@ -187,92 +258,187 @@ Explique sua resposta para alguém. A outra pessoa deve responder:
 - o que ainda ficou genérico?
 - que evidência faltou?
 
----
-
-# Onde quero chegar?
-
-Escolha um alvo principal para os próximos 12 meses:
-
-<div class="columns" style="--columns: 3;">
-
-<div class="callout">
-
-**Mercado**
-
-- estágio
-- emprego júnior
-- freelance
-- programa trainee
+</div>
 
 </div>
 
 <div class="callout">
 
-**Academia**
+**Entrega**
 
-- iniciação científica
-- monitoria
-- mestrado
-- publicação
-
-</div>
-
-<div class="callout">
-
-**Internacional**
-
-- intercâmbio
-- bolsa
-- vaga remota
-- projeto open source
-
-</div>
+Uma direção de 12 meses: "Quero me aproximar de **\_\_** e preciso evidenciar **\_\_**."
 
 </div>
 
 ---
 
-# Quem avalia você?
+# Transforme intenção em artefato
 
 <!-- _class: compact -->
+
+O objetivo de carreira ganha força quando vira produção verificável.
 
 <table class="tiny">
   <thead>
     <tr>
-      <th>Avaliador</th>
-      <th>O que procura</th>
-      <th>Evidência no GitHub</th>
+      <th>Intenção</th>
+      <th>Ação concreta</th>
+      <th>Evidência</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Recrutador</td>
-      <td>clareza, foco, comunicação, sinais de entrega</td>
-      <td>perfil claro, projetos fixados, links consistentes</td>
+      <td>aprender backend</td>
+      <td>construir API com autenticação</td>
+      <td>repositório, README, testes</td>
     </tr>
     <tr>
-      <td>Engenheiro avaliador</td>
-      <td>qualidade técnica, organização, decisões</td>
-      <td>README, estrutura, testes, commits, issues</td>
+      <td>entrar em dados</td>
+      <td>analisar base pública</td>
+      <td>notebook, visualizações, relatório</td>
     </tr>
     <tr>
-      <td>Professor ou pesquisador</td>
-      <td>rigor, método, escrita, reprodutibilidade</td>
-      <td>descrição do problema, dados, notebooks, referências</td>
-    </tr>
-    <tr>
-      <td>Avaliador internacional</td>
-      <td>legibilidade, inglês, autonomia, colaboração</td>
-      <td>README em inglês, licença, setup, contribuição</td>
+      <td>melhorar comunicação</td>
+      <td>explicar um projeto em artigo curto</td>
+      <td>post, apresentação ou README expandido</td>
     </tr>
   </tbody>
 </table>
+
+<div class="callout">
+
+**Entrega**
+
+Três artefatos que podem provar avanço no destino escolhido.
+
+</div>
+
+---
+
+# Cada escolha vai exigir ações diferentes
+
+<!-- _class: compact -->
+
+## CHA: competências, habilidades e atitudes
+
+<div class="columns">
+
+<div>
+
+**Já tenho**
+
+- uma competência em que sou bom
+- uma habilidade que já consigo aplicar
+- uma atitude que as pessoas reconhecem
+
+</div>
+
+<div>
+
+**Preciso evoluir**
+
+- uma competência a desenvolver
+- uma habilidade a praticar
+- uma atitude a fortalecer
+
+</div>
+
+</div>
+
+<div class="callout">
+
+**Entrega**
+
+Liste uma competência, uma habilidade e uma atitude em que você se considera bom e uma que precisa evoluir para seu objetivo de 12 meses.
+
+</div>
+
+---
+
+# Elabore um plano de evolução com metas
+
+<!-- _class: compact -->
+
+## Metas SMART
+
+Uma meta ajuda quando é específica, mensurável, alcançável, relevante e temporal.
+
+<table class="tiny">
+  <thead>
+    <tr>
+      <th>Dimensão</th>
+      <th>Pergunta</th>
+      <th>Exemplo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Específica</td>
+      <td>o que exatamente farei?</td>
+      <td>publicar README de projeto</td>
+    </tr>
+    <tr>
+      <td>Mensurável</td>
+      <td>como saberei que avancei?</td>
+      <td>1 projeto com setup e demo</td>
+    </tr>
+    <tr>
+      <td>Alcançável</td>
+      <td>isso cabe na minha rotina?</td>
+      <td>2 horas por semana</td>
+    </tr>
+    <tr>
+      <td>Relevante</td>
+      <td>isso aproxima meu objetivo?</td>
+      <td>evidência ligada à vaga-alvo</td>
+    </tr>
+    <tr>
+      <td>Temporal</td>
+      <td>até quando?</td>
+      <td>até 30 dias</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+
+**Entrega**
+
+Três metas SMART: uma para 30 dias, uma para 60 dias e uma para 90 dias.
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
+# GitHub
+
+GitHub pode funcionar como um **currículo verificável**, onde avaliadores conseguem observar:
+
+- o que você constrói
+- como você pensa
+- como você documenta
+- como você colabora
+- como você evolui ao longo do tempo
+
+<div class="callout">
+
+**Reflexão**
+
+Quando alguém abre seu GitHub hoje, que evidências encontra sobre o profissional que você quer se tornar?
+
+</div>
 
 ---
 
 # Critérios de uma presença forte
 
 <!-- _class: compact -->
+
+<div class="columns">
+
+<div>
 
 **Um perfil forte responde rapidamente:**
 
@@ -283,6 +449,10 @@ Escolha um alvo principal para os próximos 12 meses:
 - como entrar em contato?
 - o que ela está buscando agora?
 
+</div>
+
+<div>
+
 **Um perfil fraco costuma deixar dúvidas:**
 
 - projetos sem contexto
@@ -292,52 +462,36 @@ Escolha um alvo principal para os próximos 12 meses:
 - perfil sem foco
 - muitas promessas e poucas evidências
 
+</div>
+
+</div>
+
 ---
 
-# Mapa de evidências
+# Feedback inicial
 
 <!-- _class: compact -->
 
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Competência</th>
-      <th>Como demonstrar</th>
-      <th>Artefato</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Programação</td>
-      <td>código executável, estrutura, legibilidade</td>
-      <td>repositório de projeto</td>
-    </tr>
-    <tr>
-      <td>Engenharia</td>
-      <td>testes, setup, decisões, organização</td>
-      <td>README técnico, issues, CI</td>
-    </tr>
-    <tr>
-      <td>Dados e IA</td>
-      <td>pergunta, base, método, avaliação</td>
-      <td>notebook, relatório, modelo, dataset</td>
-    </tr>
-    <tr>
-      <td>Comunicação</td>
-      <td>explicação clara para público técnico e não técnico</td>
-      <td>README, artigo, apresentação</td>
-    </tr>
-    <tr>
-      <td>Colaboração</td>
-      <td>pull requests, revisão, contribuição externa</td>
-      <td>histórico público, CONTRIBUTING</td>
-    </tr>
-  </tbody>
-</table>
+Atividade em pares: cada pessoa revisa a direção, as evidências e o GitHub da outra.
+
+<div class="callout">
+
+**Modelo de feedback**
+
+"Eu entendi que você quer ser avaliado por X. Para isso, faltou evidência de Y. Uma melhoria concreta seria Z."
+
+</div>
+
+**Critérios**
+
+- a direção está clara?
+- as evidências sustentam essa direção?
+- o GitHub ajuda ou confunde a narrativa?
+- existe uma próxima ação pequena e executável?
 
 ---
 
-# Dinâmica 2: auditoria rápida
+# Dinâmica: auditoria rápida
 
 **Em duplas - 15 minutos**
 
@@ -370,7 +524,9 @@ Ela precisa conectar:
 3. **evidência**: o que já construí ou estudei
 4. **direção**: que oportunidade busco agora
 
-<div class="small">
+<div class="callout">
+
+**Dica**
 
 Evite frases genéricas como "apaixonado por tecnologia". Prefira uma formulação verificável: "estudante de Ciência da Computação com projetos em APIs, dados e automação".
 
@@ -386,15 +542,15 @@ Escreva três versões e escolha uma:
 
 **Modelo 1 - técnico**
 
-> Estudante de Ciência da Computação com foco em `área`, construindo projetos com `tecnologias`.
+Estudante de Ciência da Computação com foco em `área`, construindo projetos com `tecnologias`.
 
 **Modelo 2 - problema**
 
-> Desenvolvo projetos para `tipo de problema`, usando `tecnologias` e boas práticas de `prática`.
+Desenvolvo projetos para `tipo de problema`, usando `tecnologias` e boas práticas de `prática`.
 
 **Modelo 3 - oportunidade**
 
-> Busco `tipo de oportunidade` em `área`, com experiência acadêmica em `evidências`.
+Busco `tipo de oportunidade` em `área`, com experiência acadêmica em `evidências`.
 
 <div class="callout">
 
@@ -436,7 +592,7 @@ Meu próximo passo é ______.
 
 <div>
 
-### GitHub Profile README
+### README de perfil do GitHub
 
 Transformar o perfil em uma página inicial de avaliação.
 
@@ -446,7 +602,7 @@ Transformar o perfil em uma página inicial de avaliação.
 
 ---
 
-# O que é o Profile README?
+# O que é o README de perfil do GitHub?
 
 O GitHub mostra um README especial quando existe um repositório com o mesmo nome do usuário.
 
@@ -493,7 +649,7 @@ O perfil pode ser bilíngue, mas precisa ser consistente. Para oportunidades int
 
 ---
 
-# Template: Profile README
+# Template: README de perfil do GitHub
 
 <!-- _class: compact -->
 
@@ -546,7 +702,7 @@ Uma pessoa que não conhece você deve entender seu foco, suas evidências e seu
 
 ---
 
-# Checklist do Profile README
+# Checklist do README de perfil do GitHub
 
 <!-- _class: compact -->
 
@@ -606,10 +762,11 @@ Ele precisa entender:
 - como executar ou visualizar
 - que decisões técnicas foram tomadas
 - qual foi seu papel
-- que limitações existem
-- o que você faria a seguir
+- que limitações existem e o que você faria a seguir
 
-<div class="small">
+<div class="callout">
+
+**Atenção**
 
 Código sem contexto exige esforço do avaliador. README bom reduz esse atrito.
 
@@ -646,24 +803,6 @@ Principais escolhas e justificativas.
 
 O que foi aprendido, limites e melhorias.
 ```
-
----
-
-# Requisitos para avaliação internacional
-
-<!-- _class: compact -->
-
-Para um projeto que pode ser visto fora do Brasil, considere:
-
-- README em inglês ou bilíngue
-- instruções de execução sem depender de conhecimento local
-- licença definida quando fizer sentido
-- ambiente reproduzível: `requirements.txt`, `package.json`, `Dockerfile` ou similar
-- dados de exemplo ou indicação clara de como obtê-los
-- imagens, GIF ou link de demonstração
-- issues organizadas com próximos passos
-- commits com mensagens compreensíveis
-- explicação do seu papel em trabalhos em grupo
 
 ---
 
@@ -769,13 +908,17 @@ Um currículo online inicial deve conter:
 - cursos, eventos, pesquisa ou publicações relevantes
 - idiomas
 
+<div class="callout">
+
 **Critério**
 
 Cada item importante deve apontar para uma evidência ou resultado.
 
+</div>
+
 ---
 
-# Dinâmica 3: coerência dos links
+# Dinâmica: coerência dos links
 
 **Individual - 10 minutos**
 
@@ -910,7 +1053,7 @@ Plano bom tem ação pequena, prazo realista e evidência pública.
 
 ---
 
-# Dinâmica final: compromisso público
+# Dinâmica: compromisso público
 
 Cada participante compartilha:
 
@@ -929,121 +1072,19 @@ Carreira não é só intenção. É intenção convertida em evidências, relaç
 
 ---
 
-# Rubrica de avaliação
+# Conclusão
 
 <!-- _class: compact -->
 
-<table class="tiny">
-  <thead>
-    <tr>
-      <th>Critério</th>
-      <th>Inicial</th>
-      <th>Bom</th>
-      <th>Forte</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Clareza</td>
-      <td>perfil genérico</td>
-      <td>foco compreensível</td>
-      <td>foco, objetivo e público claros</td>
-    </tr>
-    <tr>
-      <td>Evidência</td>
-      <td>poucos projetos explicados</td>
-      <td>projetos com contexto</td>
-      <td>projetos demonstram habilidades-alvo</td>
-    </tr>
-    <tr>
-      <td>Reprodutibilidade</td>
-      <td>execução incerta</td>
-      <td>passos básicos</td>
-      <td>setup, demo, dados e limites claros</td>
-    </tr>
-    <tr>
-      <td>Comunicação</td>
-      <td>texto disperso</td>
-      <td>README organizado</td>
-      <td>narrativa consistente entre canais</td>
-    </tr>
-    <tr>
-      <td>Evolução</td>
-      <td>sem próximos passos</td>
-      <td>melhorias listadas</td>
-      <td>backlog priorizado e executável</td>
-    </tr>
-  </tbody>
-</table>
+Ao longo do workshop, cada participante construiu uma versão inicial e revisável da própria presença profissional.
 
----
+**O que foi feito**
 
-# Adaptações de formato
-
-<!-- _class: compact -->
-
-**Versão de 2 horas**
-
-- diagnóstico
-- Profile README
-- README de projeto
-- plano 30 dias
-
-**Versão de 4 horas**
-
-- roteiro completo
-- revisão em pares
-- plano 30-60-90
-
-**Versão de 8 horas**
-
-- inclui Git básico
-- currículo em PDF ou site pessoal
-- contribuição open source simulada
-- rodada final com banca avaliadora
-
----
-
-# Materiais de apoio
-
-**Antes**
-
-- criar conta GitHub
-- separar currículo atual
-- escolher um projeto para melhorar
-
-**Durante**
-
-- editor de texto
-- navegador
-- GitHub aberto
-- checklist do perfil
-- template de README
-
-**Depois**
-
-- revisão em 30 dias
-- publicação de novo projeto
-- pedido de feedback para professor, colega ou profissional da área
-
----
-
-# Fechamento
-
-Você não precisa esperar ter uma carreira pronta para construir presença digital.
-
-Você precisa tornar visível:
-
-- o que está aprendendo
-- o que consegue construir
-- como explica suas escolhas
-- como recebe feedback
-- como evolui com consistência
-
-<div class="callout">
-
-**Próxima ação**
-
-Abra seu plano 30-60-90 e marque a primeira tarefa que será feita ainda esta semana.
-
-</div>
+- definimos uma direção de carreira para os próximos 12 meses
+- conectamos trajetória, interesses, competências, habilidades e atitudes
+- traduzimos objetivos em evidências públicas e metas SMART
+- revisamos o GitHub como currículo verificável
+- publicamos ou estruturamos um README de perfil do GitHub
+- escolhemos um projeto e melhoramos seu README como evidência avaliável
+- alinhamos GitHub, currículo, LinkedIn e demais links profissionais
+- organizamos um plano 30-60-90 com próxima ação concreta
