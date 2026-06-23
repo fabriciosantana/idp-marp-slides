@@ -3,7 +3,7 @@ marp: true
 theme: idp
 paginate: false
 html: true
-footer: <span>Planejamento de carreira em Tech</span><span>junho/2026</span><span>Prof. Fabricio Santana</span>
+footer: <span>Planejamento de carreira em Tech e criação de perfil no GitHub</span><span>junho/2026</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
