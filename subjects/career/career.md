@@ -236,7 +236,7 @@ Quero atuar com tecnologia para **\_\_**, demonstrando isso por meio de **\_\_**
 
 <div>
 
-**Individual - 8 minutos**
+**Individual**
 
 Preencha uma nota rápida:
 
@@ -250,7 +250,7 @@ Preencha uma nota rápida:
 
 <div>
 
-**Pares - 7 minutos**
+**Em duplas**
 
 Explique sua resposta para alguém. A outra pessoa deve responder:
 
@@ -480,7 +480,7 @@ Você considera seu perfil forte ou fraco? O que fazer para melhorar?
 
 # Dinâmica: avaliação de perfil do GitHub
 
-**Em duplas - 10 minutos**
+**Em duplas**
 
 Abra o GitHub de uma pessoa da dupla e responda:
 
@@ -504,7 +504,7 @@ Cada pessoa anota três melhorias: uma de clareza, uma de evidência e uma de or
 
 <!-- _class: compact -->
 
-**Em duplas - 10 minutos**
+**Em duplas**
 
 Fornecer feedback ao colega da dupla
 
@@ -603,8 +603,6 @@ Meu próximo passo é ______.
 ### README de perfil do GitHub
 
 Transformar o perfil em uma página inicial de avaliação.
-
-**Tempo:** 45 minutos
 
 </div>
 
@@ -745,8 +743,6 @@ Marque o que já está atendido:
 ## README de projeto
 
 Transformar um trabalho acadêmico ou pessoal em evidência avaliável.
-
-**Tempo:** 45 minutos
 
 </div>
 
@@ -923,7 +919,7 @@ Cada item importante deve apontar para uma evidência ou resultado.
 
 # Dinâmica: coerência dos links
 
-**Individual - 10 minutos**
+**Individual**
 
 Abra GitHub, LinkedIn e currículo. Verifique:
 
@@ -933,7 +929,7 @@ Abra GitHub, LinkedIn e currículo. Verifique:
 - há links quebrados?
 - a ordem dos projetos reflete seu objetivo atual?
 
-**Pares - 10 minutos**
+**Em duplas**
 
 A dupla deve dizer qual oportunidade parece mais compatível com sua presença digital hoje.
 
