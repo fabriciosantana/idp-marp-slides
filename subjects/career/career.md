@@ -11,7 +11,7 @@ footer: <span>Planejamento de carreira em Tech e criação de perfil no GitHub</
 
 ## Workshop
 
-# Planejamento de carreira em Tech
+# Planejamento de carreira em Tech e criação de perfil no GitHub
 
 <div class="objectives">
 
