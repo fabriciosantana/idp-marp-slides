@@ -113,7 +113,7 @@ Ao final, cada participante deverá ter:
 - comparar trajetória, não pessoas
 - revisar com respeito e objetividade
 - publicar uma versão honesta, mesmo que inicial
-- trocar feedback acionável
+- trocar feedback
 - sair com próximos passos, não com perfeição
 
 <div class="callout">
