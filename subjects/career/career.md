@@ -82,7 +82,7 @@ Cada bloco precisa terminar com uma decisão, uma edição ou uma publicação.
 
 **Público-alvo**
 
-- estudantes de graduação em Ciência da Computação
+- estudantes de graduação em Tech
 - iniciantes ou intermediários em Git e GitHub
 - estudantes buscando estágio, iniciação científica, intercâmbio, freelas ou primeiro emprego
 
@@ -155,9 +155,9 @@ Antes de projetar o futuro, vale reconhecer a trajetória que já existe.
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
-Uma frase sobre sua trajetória: "Cheguei até aqui porque..."
+Cheguei até aqui porque...
 
 </div>
 
@@ -179,9 +179,9 @@ Tecnologia abre mais de uma rota. A decisão não precisa ser definitiva, mas pr
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
-Uma hipótese de destino: "Quero explorar **\_\_** em **\_\_**, porque **\_\_**."
+Quero explorar **\_\_** em **\_\_**, porque **\_\_**.
 
 </div>
 
@@ -197,10 +197,10 @@ Uma hipótese de destino: "Quero explorar **\_\_** em **\_\_**, porque **\_\_**.
 
 **Perguntas de direção**
 
-- que tipo de problema eu gostaria de ajudar a resolver?
-- que impacto eu quero que meu trabalho tenha?
-- que ambientes me fazem aprender melhor?
-- que compromissos eu não quero negociar?
+- que problema eu gostaria de resolver?
+- que impacto eu quero gerar?
+- que ambientes me fazem aprender?
+- que compromissos eu não negocio?
 
 </div>
 
@@ -220,9 +220,9 @@ Uma hipótese de destino: "Quero explorar **\_\_** em **\_\_**, porque **\_\_**.
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
-Uma frase: "Quero atuar com tecnologia para **\_\_**, demonstrando isso por meio de **\_\_**."
+Quero atuar com tecnologia para **\_\_**, demonstrando isso por meio de **\_\_**.
 
 </div>
 
@@ -241,7 +241,7 @@ Uma frase: "Quero atuar com tecnologia para **\_\_**, demonstrando isso por meio
 Preencha uma nota rápida:
 
 - que área me interessa hoje?
-- que tipo de oportunidade busco nos próximos 12 meses?
+- o que quero nos próximos 12 meses?
 - que projetos, disciplinas ou experiências já posso mostrar?
 - que habilidade quero que as pessoas associem a mim?
 - que evidências públicas existem hoje?
@@ -264,9 +264,9 @@ Explique sua resposta para alguém. A outra pessoa deve responder:
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
-Uma direção de 12 meses: "Quero me aproximar de **\_\_** e preciso evidenciar **\_\_**."
+Quero ser reconhecido por **\_\_** e preciso evidenciar **\_\_**.
 
 </div>
 
@@ -307,9 +307,9 @@ O objetivo de carreira ganha força quando vira produção verificável.
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
-Três artefatos que podem provar avanço no destino escolhido.
+Três artefatos que podem provar avanço em direção ao destino escolhido.
 
 </div>
 
@@ -347,7 +347,7 @@ Três artefatos que podem provar avanço no destino escolhido.
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
 Liste uma competência, uma habilidade e uma atitude em que você se considera bom e uma que precisa evoluir para seu objetivo de 12 meses.
 
@@ -402,7 +402,7 @@ Uma meta ajuda quando é específica, mensurável, alcançável, relevante e tem
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
 Três metas SMART: uma para 30 dias, uma para 60 dias e uma para 90 dias.
 
@@ -466,34 +466,21 @@ Quando alguém abre seu GitHub hoje, que evidências encontra sobre o profission
 
 </div>
 
----
+<div class="callout">
 
-# Feedback inicial
+**Reflexão**
+
+Você considera seu perfil forte ou fraco? O que fazer para melhorar?
+
+<div>
+
+---
 
 <!-- _class: compact -->
 
-Atividade em pares: cada pessoa revisa a direção, as evidências e o GitHub da outra.
+# Dinâmica: avaliação de perfil do GitHub
 
-<div class="callout">
-
-**Modelo de feedback**
-
-"Eu entendi que você quer ser avaliado por X. Para isso, faltou evidência de Y. Uma melhoria concreta seria Z."
-
-</div>
-
-**Critérios**
-
-- a direção está clara?
-- as evidências sustentam essa direção?
-- o GitHub ajuda ou confunde a narrativa?
-- existe uma próxima ação pequena e executável?
-
----
-
-# Dinâmica: auditoria rápida
-
-**Em duplas - 15 minutos**
+**Em duplas - 10 minutos**
 
 Abra o GitHub de uma pessoa da dupla e responda:
 
@@ -505,7 +492,7 @@ Abra o GitHub de uma pessoa da dupla e responda:
 
 <div class="callout">
 
-**Saída**
+**Atividade**
 
 Cada pessoa anota três melhorias: uma de clareza, uma de evidência e uma de organização.
 
@@ -513,32 +500,53 @@ Cada pessoa anota três melhorias: uma de clareza, uma de evidência e uma de or
 
 ---
 
+# Dinâmica: Feedback
+
+<!-- _class: compact -->
+
+**Em duplas - 10 minutos**
+
+Fornecer feedback ao colega da dupla
+
+**Critérios**
+
+- a direção está clara?
+- as evidências sustentam essa direção?
+- o GitHub ajuda ou confunde a narrativa?
+- existe uma próxima ação pequena e executável?
+
+<div class="callout">
+
+**Atividade**
+
+Eu entendi que você quer ser reconhecido por \_\_ em razão da evidência \_\_ que está organizado como \_\_. Penso que faltou clareza em \_\_, evidência de \_\_ e organização de \_\_. Como sugestão de melhoria você pode fazer \_\_.
+
+</div>
+
+---
+
+<!-- class: compact -->
+
 # Narrativa profissional
 
-Uma boa narrativa para estudante não precisa parecer definitiva.
-
-Ela precisa conectar:
+A narrativa não precisa parecer definitiva, mas deve demostrar:
 
 1. **origem**: onde estou na formação
 2. **interesse**: que problemas ou áreas me atraem
 3. **evidência**: o que já construí ou estudei
 4. **direção**: que oportunidade busco agora
 
-<div class="callout">
+#### Dica
 
-**Dica**
-
-Evite frases genéricas como "apaixonado por tecnologia". Prefira uma formulação verificável: "estudante de Ciência da Computação com projetos em APIs, dados e automação".
-
-</div>
+- Evite frases genéricas como "apaixonado por tecnologia"
+- Prefira uma formulação verificável
+  - "estudante de Ciência da Computação com projetos em APIs, dados e automação".
 
 ---
 
-# Exercício: headline
+# Headline: seu cartão de visita
 
 <!-- _class: compact -->
-
-Escreva três versões e escolha uma:
 
 **Modelo 1 - técnico**
 
@@ -554,15 +562,15 @@ Busco `tipo de oportunidade` em `área`, com experiência acadêmica em `evidên
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
-Uma headline para GitHub, LinkedIn e currículo.
+Escreva uma headline para GitHub, LinkedIn e currículo.
 
 </div>
 
 ---
 
-# Exercício: pitch de 45 segundos
+# Dinâmica: pitch de 45 segundos
 
 <!-- _class: compact -->
 
@@ -604,23 +612,17 @@ Transformar o perfil em uma página inicial de avaliação.
 
 # O que é o README de perfil do GitHub?
 
-O GitHub mostra um README especial quando existe um repositório com o mesmo nome do usuário.
-
-**Exemplo**
-
-```text
-github.com/aluna
-github.com/aluna/aluna
-README.md
-```
-
-Esse arquivo aparece na página principal do perfil.
+- O GitHub mostra um README especial quando existe um repositório com o mesmo nome do usuário.
+- Esse arquivo aparece na página principal do perfil.
+- Contextualiza seu perfil seja que seja necessário analisar interpretar seus repositórios.
 
 <div class="callout">
 
-**Função**
+**Exemplo**
 
-Dar contexto para quem está avaliando você antes que a pessoa precise interpretar seus repositórios sozinha.
+github.com/aluna
+github.com/aluna/aluna
+README.md
 
 </div>
 
@@ -640,12 +642,9 @@ Dar contexto para quem está avaliando você antes que a pessoa precise interpre
    - pesquisa, monitoria, eventos, artigos, cursos ou contribuições
 5. **Contato**
    - LinkedIn, e-mail institucional, site ou currículo
-
-<div class="small">
-
-O perfil pode ser bilíngue, mas precisa ser consistente. Para oportunidades internacionais, uma versão em inglês ajuda.
-
-</div>
+6. **Idiomas**
+   - O perfil pode ser bilíngue, mas precisa ser consistente
+   - Para oportunidades internacionais, uma versão em inglês ajuda
 
 ---
 
@@ -753,9 +752,9 @@ Transformar um trabalho acadêmico ou pessoal em evidência avaliável.
 
 ---
 
-# O avaliador abre um projeto
+# Organização de projeto no GitHub
 
-Ele precisa entender:
+Seu README deve responder
 
 - que problema o projeto resolve
 - por que o projeto existe
@@ -768,7 +767,7 @@ Ele precisa entender:
 
 **Atenção**
 
-Código sem contexto exige esforço do avaliador. README bom reduz esse atrito.
+Código sem contexto exige esforço. README bem estruturado reduz esse atrito.
 
 </div>
 
@@ -808,9 +807,15 @@ O que foi aprendido, limites e melhorias.
 
 # Lab 2: escolha do projeto
 
+<div class="callout">
+
+**Atividade**
+
 Escolha um projeto para melhorar hoje.
 
-Priorize um projeto que:
+</div>
+
+**Priorize um projeto que**:
 
 - represente a área em que você quer atuar
 - tenha código que você entende
@@ -818,13 +823,9 @@ Priorize um projeto que:
 - permita demonstrar uma habilidade específica
 - possa ser melhorado nos próximos 30 dias
 
-<div class="callout">
-
 **Evite**
 
-Usar como principal evidência um projeto que você não consegue explicar tecnicamente.
-
-</div>
+- Usar como principal evidência um projeto que você não consegue explicar tecnicamente.
 
 ---
 
@@ -841,9 +842,11 @@ Usar como principal evidência um projeto que você não consegue explicar tecni
 7. fixe o projeto no perfil
 8. peça revisão objetiva
 
-<div class="small">
+<div class="callout">
 
-Se o projeto ainda não executa bem, seja transparente. Avaliadores valorizam clareza sobre estado, limites e evolução.
+**Atenção**
+
+Se o projeto ainda não executa bem, seja transparente e sincero sobre estado, limites e evolução.
 
 </div>
 
@@ -864,7 +867,7 @@ Em duplas, responda:
 
 <div class="callout">
 
-**Entrega**
+**Atividade**
 
 Abrir uma issue no próprio repositório com as três melhorias prioritárias.
 
@@ -1013,7 +1016,7 @@ Quando isso precisa estar pronto?
 
 **Regra**
 
-Plano bom tem ação pequena, prazo realista e evidência pública.
+Plano bom tem ação pequena, prazo realista e evidência pública. Lembre-se das metas SMART (específica, mensurável, alcançável, relvante, e temporal)
 
 </div>
 
