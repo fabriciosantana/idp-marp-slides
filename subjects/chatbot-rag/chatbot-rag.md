@@ -70,35 +70,13 @@ junho/2026
 
 <!-- _class: compact -->
 
-# Contextualização temática
-
-- **Grandes modelos de linguagem** (_Large Language Model - LLM_)
-  - capacidade de geração de texto em linguagem natural
-  - não são mecanismos confiáveis de recuperação documental
-- **Geração aumentada por recuperação** (_Retrieval Augmented Generation - RAG_)
-  - combina geração com recuperação de documentos em base externa
-  - favorece atualização, rastreabilidade, controle documental e respostas ancoradas em evidências
-- **Desafio da avaliação de sistemas RAG**
-  - pipeline formado por diversos componentes
-  - fluência x qualidade/confiabilidade
-- **Administração Pública** (contexto legislativo)
-  - acervos digitais extensos
-  - respostas devem ser verificáveis, rastreáveis, aderentes às evidências
-  - transparência não garante acesso à informação
-
----
-
-<!-- _class: compact -->
-
 # Problemática
 
-- **Risco de alucinação das IA generativa**
-  - resposta fluente pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
-- **A avaliação de sistemas RAG é multidimensional**
-  - envolve recuperação, geração, fidelidade ao contexto, fontes, julgamento humano e avaliação automatizada.
-- **Necessidade de avaliação no contexto público**
-  - órgãos públicos acumulam acervos de alto valor institucional, mas precisam de critérios explícitos para avaliar respostas generativas.
-  - no Legislativo, discursos parlamentares têm volume elevado, diversidade temática, dispersão temporal, variação terminológica e forte dependência de metadados.
+- **Discursos parlamentares**: alto volume e extensos (~15.000 entre 2019-2023)
+- **Recuperação da Informação**: necessidade de conhecimento especializado
+- **Alucinação**: resposta fluente de IA generativa pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
+- **RAG**: envolve recuperação, geração das respostas, verificabilidade das fontes, fidelidade ao contexto, julgamento humano e avaliação automatizada.
+- **Avaliação no contexto público**: necessidade de critérios explícitos para avaliar respostas generativas.
 
 ---
 
@@ -120,7 +98,7 @@ junho/2026
 
 **Pergunta de pesquisa**
 
-Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas à análise de recuperação, geração e verificabilidade em discursos da 56ª Legislatura do Senado Federal?
+Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protocolo e aplicadas a um sistema RAG voltado à consulta de discursos da 56ª Legislatura do Senado Federal, com foco na análise da recuperação documental, da geração de respostas e da verificabilidade das fontes?
 
 </div>
 
@@ -128,7 +106,7 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 # Objetivo geral
 
-**Sistematizar técnicas** de avaliação de sistemas RAG e **aplicá-las a um caso empírico** de consulta a discursos da 56ª Legislatura do Senado Federal, com foco na recuperação documental, na geração de respostas e na verificabilidade das fontes.
+**Organizar técnicas** de avaliação de sistemas RAG **em um protocolo articulado** e **aplicá-lo a um caso empírico** de consulta a discursos da 56ª Legislatura do Senado Federal, com foco na recuperação documental, na geração de respostas e na verificabilidade das fontes.
 
 ---
 
@@ -136,12 +114,12 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 <!-- _class: compact -->
 
-1. **Sistematizar a literatura** sobre avaliação de RAG: métricas de recuperação, avaliação de geração, benchmarks, rubricas, avaliação humana e LLM como juiz.
-2. **Selecionar técnicas de avaliação** aplicáveis ao caso empírico, contemplando recuperação, geração, verificabilidade, robustez e governança.
-3. **Caracterizar o acervo** de discursos parlamentares da 56ª Legislatura do Senado Federal.
-4. **Construir bateria de perguntas** de teste, com categorias, respostas esperadas e evidências documentais de referência.
-5. **Aplicar métricas**, rubrica humana e avaliação auxiliar por LLM como juiz.
-6. **Analisar** complementaridade, limites e condições de uso das técnicas avaliativas.
+1. **Sistematizar a literatura sobre técnicas de avaliação de RAG**, incluindo métricas de recuperação, avaliação de geração, benchmarks, rubricas, avaliação humana e avaliações baseadas no paradigma LLM-as-a-judge;
+2. **Selecionar, a partir da sistematização da literatura, técnicas de avaliação de RAG** a serem aplicadas ao caso empírico, contemplando recuperação documental, geração de respostas e verificabilidade das fontes;
+3. **Caracterizar o acervo de discursos parlamentares** da 56ª Legislatura do Senado Federal como caso empírico da pesquisa;
+4. **Construir uma bateria de perguntas de teste**, com categorias, respostas esperadas e evidências documentais de referência;
+5. **Aplicar ao caso empírico o protocolo de avaliação** organizado a partir das técnicas selecionadas;
+6. **Analisar a complementaridade e os limites das técnicas avaliativas** quando aplicadas a um acervo legislativo real, com foco na recuperação documental, na geração de respostas e na verificabilidade das fontes.
 
 ---
 
@@ -149,7 +127,7 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 <!-- _class: compact -->
 
-<div class="columns" style="--columns: 3;">
+<div class="columns small" style="--columns: 3;">
 
 <div class="callout">
 
@@ -183,16 +161,19 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 </div>
 
+> Escassez de estudos empíricos que combinem acervo parlamentar real e um pipeline RAG reprodutível e um protocolo de avaliação para o contexto público.
+
 ---
 
 # Hipóteses de estudo
 
 <!-- _class: compact -->
 
-- **P1:** evidências pertinentes ajudam a sustentar a verificabilidade; a geração ainda pode extrapolar ou citar mal as fontes.
-- **P2:** o desempenho tende a cair em perguntas com múltiplas evidências, raciocínio em etapas ou informação ausente.
-- **P3:** LLM como juiz ajuda na triagem e na escala; a validação humana segue necessária.
-- **P4:** o juízo sobre uso institucional depende da combinação entre desempenho técnico e requisitos verificáveis de governança.
+> As hipóteses assumem a forma de hipóteses de trabalho vericáveis, ou seja, não serão tratadas como teste causal clássico entre uma variável independente e uma variável dependente única
+
+- **H1:** A pertinência das evidências recuperadas é condição necessária, mas não suficiente, para a verificabilidade das respostas.
+- **H2:** O desempenho do sistema tende a ser inferior em perguntas que exigem integração de múltiplas evidências, raciocínio em etapas ou reconhecimento de informação ausente, em comparação com perguntas factuais simples, delimitadas por autor e apoiadas em evidência documental direta.
+- **H3:** A avaliação baseada no paradigma LLM-as-a-judge apresentará concordância parcial com a avaliação humana, mas será insuficiente como critério único de qualidade.
 
 <div class="small">
 
@@ -204,31 +185,40 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 <!-- _class: compact -->
 
-<div class="columns">
+- **Natureza e abordagem da pesquisa**
+  - **Natureza**: aplicada, exploratória e descritiva
+  - **Método de abordagem**: hipotético-dedutiva, com componente indutivo
+  - **Abordagem**: multimétodos com estratégias quantitativas e qualitativas
+  - **Delineamento**: pesquisa bibliográfica, pesquisa documental, estudo de caso aplicado e aplicação controlada do protocolo avaliativo
+  - **Enquadramento**: _Design Science Research_
+- **Dados e técnicas de coleta**:
+  - **Corpus**: discursos da 56ª legislatura obtidos no portal de dados do Senado
+  - **Técnicas de coleta**: bibliográfica e técnico-normativa; documental; e, avaliativa
+- **Técnicas de análise de dados**
+  - **Recuperação documental**: Recall@k, Precision@k, MRR, nDCG, BEIR e Hit@k
+  - **Geração de respostas por rubrica**
+  - _LLM-as-a-judge_ e **Análise qualitativa de erros e casos críticos**
 
-<div>
+---
 
-**Delineamento**
+# Método de pesquisa
 
-- Pesquisa aplicada, exploratória e descritiva
-- Abordagem multimétodos
-- Orientação hipotético-dedutiva com componente indutivo na análise de erros
-- Design Science Research como enquadramento do artefato
+<img src="../images/chatbot-rag/matriz-metodologia.png">
 
-</div>
+---
 
-<div>
+# Recursos
 
-**Coleta e análise**
+- **Disponibilidade do corpus**
+- **Infraestrutura computacional**
+- **Disponibilidade de avaliadores humanos**
+- **Controle de custos e tempo de execução**
 
-- Corpus: discursos da 56ª Legislatura do Senado Federal
-- Bateria de perguntas e gold standard
-- Métricas: Hit@k, Recall@k, Precision@k, MRR e nDCG
-- Rubrica humana, LLM como juiz e análise qualitativa de casos críticos
+---
 
-</div>
+# Cronograma
 
-</div>
+<img src="../images/chatbot-rag/matriz-metodologia.png">
 
 ---
 
