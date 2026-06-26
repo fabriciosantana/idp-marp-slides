@@ -72,6 +72,8 @@ junho/2026
 
 # Problemática
 
+> O problema de pesquisa decorre da lacuna quanto a um protocolo organizado para avaliar sistemas RAG em domínios institucionais específicos, como os discursos parlamentares
+
 - **Discursos parlamentares**: alto volume e extensos (~15.000 entre 2019-2023)
 - **Recuperação da Informação**: necessidade de conhecimento especializado
 - **Alucinação**: resposta fluente de IA generativa pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
@@ -208,6 +210,8 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protoc
 ---
 
 # Recursos
+
+> A viabilidade da pesquisa depende de quatro condições principais
 
 - **Disponibilidade do corpus**
 - **Infraestrutura computacional**
