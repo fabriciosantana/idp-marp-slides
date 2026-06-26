@@ -31,25 +31,64 @@ junho/2026
 
 ---
 
+<!-- _class: compact -->
+
+# Contextualização temática
+
+> No Senado Federal são proferidos milhares de discursos todos os anos
+
+<div class="columns">
+
+<div>
+
+- **Necessidade de recuperar informação**
+- **Transparência não garante acesso à informação**
+- **Limitação dos mecanismos tradicionais de recuperação da informação**
+
+</div>
+
+<div>
+
+<img src="../images/chatbot-rag/pronunciamentos-por-ano.png">
+
+<div class="small">
+
+BLANCO, Pedro Duarte. Plenário, Palanque, Estúdio: Discursos no Plenário do Senado Federal entre 2007 e 2024. Brasília, dez. 2025. (Texto para Discussão, 355).
+
+</div>
+
+</div>
+
+---
+
+<!-- _class: compact -->
+
 # Contextualização temática
 
 - **Grandes modelos de linguagem** (_Large Language Model - LLM_)
   - capacidade de geração de texto em linguagem natural
   - não são mecanismos confiáveis de recuperação documental
 - **Geração aumentada por recuperação** (_Retrieval Augmented Generation - RAG_)
-  - combina geração com recuperação de documentos em base externa.
-  - favorece atualização, rastreabilidade, controle documental e respostas ancoradas em evidências.
+  - combina geração com recuperação de documentos em base externa
+  - favorece atualização, rastreabilidade, controle documental e respostas ancoradas em evidências
+- **Desafio da avaliação de sistemas RAG**
+  - pipeline formado por diversos componentes
+  - fluência x qualidade/confiabilidade
 - **Administração Pública** (contexto legislativo)
-  - respostas precisam ser verificáveis, rastreáveis e compatíveis com transparência, responsabilização e governança.
+  - acervos digitais extensos
+  - respostas devem ser verificáveis, rastreáveis, aderentes às evidências
+  - transparência não garante acesso à informação
 
 ---
 
+<!-- _class: compact -->
+
 # Problemática
 
+- **Risco de alucinação das IA generativa**
+  - resposta fluente pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
 - **A avaliação de sistemas RAG é multidimensional**
   - envolve recuperação, geração, fidelidade ao contexto, fontes, julgamento humano e avaliação automatizada.
-- **Alucinação**
-  - resposta fluente pode estar apoiada em evidências frágeis ou extrapolar o contexto recuperado.
 - **Necessidade de avaliação no contexto público**
   - órgãos públicos acumulam acervos de alto valor institucional, mas precisam de critérios explícitos para avaliar respostas generativas.
   - no Legislativo, discursos parlamentares têm volume elevado, diversidade temática, dispersão temporal, variação terminológica e forte dependência de metadados.
@@ -194,6 +233,7 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 
 - ALMEIDA, Patricia Gomes Rêgo de; SANTOS JÚNIOR, Carlos Denner dos. Artificial intelligence governance. _Government Information Quarterly_, 2025.
 - BANDEIRA, Cristina Leston; BERNARDES, Cristiane Brum. Information vs Engagement in Parliamentary Websites. _Revista de Sociologia e Política_, 2016.
+- BROWN, Tom B. et al. Language Models are Few-Shot Learners. _NeurIPS_, 2020.
 - ES, Shahul et al. Ragas: Automated Evaluation of Retrieval Augmented Generation. 2023.
 - GAO, Yunfan et al. Retrieval-Augmented Generation for Large Language Models: A Survey. 2023.
 - GUPTA, Shailja; RANJAN, Rajesh; SINGH, Surya Narayan. A Comprehensive Survey of RAG. 2024.
@@ -201,7 +241,9 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas e aplicadas 
 - INTER-PARLIAMENTARY UNION. _Use Cases for AI in Parliaments_. 2024.
 - LEWIS, Patrick et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks. _NeurIPS_, 2020.
 - LIU, Yang et al. G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment. 2023.
+- MINAEE, Shervin et al. Large Language Models: A Survey. 2024.
 - SAAD-FALCON, Jon et al. ARES: Automated Evaluation Framework for RAG Systems. 2024.
 - WESTMINSTER FOUNDATION FOR DEMOCRACY. _Guidelines for AI in Parliaments_. 2023.
+- ZHAO, Wayne Xin et al. A Survey of Large Language Models. 2023.
 
 </div>
