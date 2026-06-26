@@ -153,11 +153,10 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protoc
 
 <div class="callout">
 
-**3. Avaliação de sistemas RAG e governança pública de IA**
+**3. Avaliação de sistemas RAG em domínios institucionais**
 
-- Recuperação, geração e fontes
+- Recuperação, geração das respostas e verificabilidade
 - Avaliação humana e LLM como juiz
-- Supervisão, auditoria e usos aceitáveis
 
 </div>
 
@@ -171,7 +170,7 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protoc
 
 <!-- _class: compact -->
 
-> As hipóteses assumem a forma de hipóteses de trabalho vericáveis, ou seja, não serão tratadas como teste causal clássico entre uma variável independente e uma variável dependente única
+> As hipóteses assumem a forma de hipóteses de trabalho verificáveis, ou seja, não serão tratadas como teste causal clássico entre uma variável independente e uma variável dependente única
 
 - **H1:** A pertinência das evidências recuperadas é condição necessária, mas não suficiente, para a verificabilidade das respostas.
 - **H2:** O desempenho do sistema tende a ser inferior em perguntas que exigem integração de múltiplas evidências, raciocínio em etapas ou reconhecimento de informação ausente, em comparação com perguntas factuais simples, delimitadas por autor e apoiadas em evidência documental direta.
@@ -193,13 +192,19 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protoc
   - **Abordagem**: multimétodos com estratégias quantitativas e qualitativas
   - **Delineamento**: pesquisa bibliográfica, pesquisa documental, estudo de caso aplicado e aplicação controlada do protocolo avaliativo
   - **Enquadramento**: _Design Science Research_
+
+---
+
+# Método de pesquisa
+
 - **Dados e técnicas de coleta**:
   - **Corpus**: discursos da 56ª legislatura obtidos no portal de dados do Senado
   - **Técnicas de coleta**: bibliográfica e técnico-normativa; documental; e, avaliativa
 - **Técnicas de análise de dados**
   - **Recuperação documental**: Recall@k, Precision@k, MRR, nDCG, BEIR e Hit@k
   - **Geração de respostas por rubrica**
-  - _LLM-as-a-judge_ e **Análise qualitativa de erros e casos críticos**
+  - _LLM-as-a-judge_
+  - **Análise qualitativa de erros e casos críticos**
 
 ---
 
