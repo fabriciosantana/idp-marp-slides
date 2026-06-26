@@ -35,15 +35,22 @@ junho/2026
 
 # Contextualização temática
 
-> No Senado Federal são proferidos milhares de discursos todos os anos
+## No Senado Federal são proferidos milhares de discursos
 
 <div class="columns">
 
 <div>
 
-- **Necessidade de recuperar informação**
-- **Transparência não garante acesso à informação**
-- **Limitação dos mecanismos tradicionais de recuperação da informação**
+- Grande volume de dados textuais
+- Transparência não garante acesso
+- Necessidade de recuperar informação
+- Limitação na recuperação tradicional
+- Contexto público exige verificabilidade
+- IA generativa apresenta riscos
+- RAG oferece mitigação via pipeline
+- Métodos para avaliação de RAG
+
+> Ausência de um protocolo de avaliação de sistema RAG no contexto público
 
 </div>
 
@@ -53,7 +60,7 @@ junho/2026
 
 <div class="small">
 
-BLANCO, Pedro Duarte. Plenário, Palanque, Estúdio: Discursos no Plenário do Senado Federal entre 2007 e 2024. Brasília, dez. 2025. (Texto para Discussão, 355).
+(BLANCO, 2025).
 
 </div>
 
