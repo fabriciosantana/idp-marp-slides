@@ -11,7 +11,7 @@ footer: <span>Projeto de Ciência de Dados e Inteligência Artificial</span><spa
 
 ## Projeto de Ciência de Dados e Inteligência Artificial
 
-# Técnicas de Avaliação de Sistemas RAG: aplicação empírica a discursos legislativos do Senado Federal
+# Técnicas de Avaliação de Sistemas RAG: aplicação empírica a discursos parlamentares do Senado Federal
 
 <div class="objectives">
 
@@ -162,7 +162,68 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protoc
 
 </div>
 
-> Escassez de estudos empíricos que combinem acervo parlamentar real e um pipeline RAG reprodutível e um protocolo de avaliação para o contexto público.
+---
+
+<!-- _class: compact -->
+
+# Referencial Teórico
+
+## Informação legislativa, transparência e acervos parlamentares
+
+- **Transparência não garante acesso substantivo à informação**
+  (BANDEIRA; BERNARDES, 2016)
+- **Dificuldade de explorar por mecanismos convencionais de busca**
+  (BANDEIRA; BERNARDES, 2016; GEUNIS, 2023)
+- **Pronunciamentos em plenário formam um corpus extenso, dinâmico [...]**
+  (BLANCO, 2025, 2026)
+- **Discursos são fontes relevantes para reconstruir posicionamentos [...]**
+  (SKUBIC; FIER, 2024).
+- **Na administração pública há exigência de atender requisitos específicos**
+  (ALMEIDA; SANTOS JÚNIOR, 2025; WESTMINSTER FOUNDATION FOR DEMOCRACY, 2023; INTER-PARLIAMENTARY UNION, 2024)
+
+---
+
+<!-- _class: compact -->
+
+# Referencial Teórico
+
+## IA generativa, RAG e recuperação da informação
+
+- **Potencial dos grandes modelos de linguagem (LLMs)**
+  (BROWN et al., 2020; ZHAO et al., 2023; MINAEE et al., 2024)
+- **LLMs apresenta limitações e riscos; e não são mecanismos de recuperação**
+  (JI et al., 2023; ANH-HOANG et al., 2025; DAHL et al., 2024)
+- **RAG mitiga riscos ao aproximar recuperação e geração**
+  (LEWIS et al., 2020; GAO et al., 2023)
+- **Configurações do _pipeline_ RAG influencia a qualidade da resposta**
+  (GUPTA et al., 2024; NIE et al., 2024)
+- **RAG não garante qualidade, necessidade de avaliação**
+  (LIANG et al., 2023; SAAD-FALCON et al., 2024; ES et al., 2023; PIPITONE)
+
+---
+
+<!-- _class: compact -->
+
+# Referencial Teórico
+
+## Avaliação de sistemas RAG em domínios institucionais
+
+- **Avaliar RAG é um problema multidimensional: RAGAS, ARES e LegalBench-RAG**
+  (ES et al., 2023; SAAD-FALCON et al., 2024; PIPITONE; HOUIR ALAMI, 2024)
+- **Várias dimensões de avaliação e técnicas diversas propostas**
+  (SAAD-FALCON et al., 2024; ES et al., 2023; PIPITONE; HOUIR ALAMI, 2024)
+- **Possibilidade de usar LLM como juiz (_LLM-as-a-judge_)**
+  (LIU, Y. et al., 2023; LIU, S. et al., 2025)
+- **Necessidade de avaliar com diferentes categorias de perguntas**
+  (ZHU et al., 2025)
+- **Contexto público exige avaliação sistemática e humana**
+  (INTER-PARLIAMENTARY UNION, 2024; WESTMINSTER FOUNDATION FOR DEMOCRACY, 2023)
+
+---
+
+# Lacuna
+
+Escassez de estudos empíricos que combinem acervo parlamentar real, um pipeline RAG reprodutível e um protocolo de avaliação aplicável aos discursos parlamentares.
 
 ---
 
@@ -172,11 +233,14 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protoc
 
 > As hipóteses assumem a forma de hipóteses de trabalho verificáveis, ou seja, não serão tratadas como teste causal clássico entre uma variável independente e uma variável dependente única
 
-- **H1:** A pertinência das evidências recuperadas é condição necessária, mas não suficiente, para a verificabilidade das respostas.
-- **H2:** O desempenho do sistema tende a ser inferior em perguntas que exigem integração de múltiplas evidências, raciocínio em etapas ou reconhecimento de informação ausente, em comparação com perguntas factuais simples, delimitadas por autor e apoiadas em evidência documental direta.
-- **H3:** A avaliação baseada no paradigma LLM-as-a-judge apresentará concordância parcial com a avaliação humana, mas será insuficiente como critério único de qualidade.
-
 <div class="small">
+
+- **Pertinência das evidência recuperadas**
+  - **H1:** A pertinência das evidências recuperadas é condição necessária, mas não suficiente, para a verificabilidade das respostas.
+- **Complexidade das perguntas**
+  - **H2:** O desempenho do sistema tende a ser inferior em perguntas que exigem integração de múltiplas evidências, raciocínio em etapas ou reconhecimento de informação ausente, em comparação com perguntas factuais simples, delimitadas por autor e apoiadas em evidência documental direta.
+- **Avaliação humana x _LLM-as-a-judge_**
+  - **H3:** A avaliação baseada no paradigma LLM-as-a-judge apresentará concordância parcial com a avaliação humana, mas será insuficiente como critério único de qualidade.
 
 </div>
 
@@ -227,7 +291,7 @@ Como técnicas de avaliação de sistemas RAG podem ser organizadas em um protoc
 
 # Cronograma
 
-<img src="../images/chatbot-rag/matriz-metodologia.png">
+<img src="../images/chatbot-rag/cronograma.png">
 
 ---
 

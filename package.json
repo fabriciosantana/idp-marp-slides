@@ -15,7 +15,7 @@
     "html:poo:13": "npm run assets && marp subjects/poo/lectures/13-jdbc.md --html --output dist/html/poo-13-jdbc.html",
     "pdf:poo:13": "marp subjects/poo/lectures/13-jdbc.md --pdf --allow-local-files --output dist/pdf/poo-13-jdbc.pdf",
     "html:chatbot-rag": "npm run assets && marp subjects/chatbot-rag/chatbot-rag.md --html --output dist/html/chatbot-rag.html",
-    "pdf:chatbot-rag": "marp subjects/chatbot-rag/chatbot-rag.md --pdf --allow-local-files --output dist/pdf/chatbot-rag.pdf",
+    "pdf:chatbot-rag": "npm run assets && marp subjects/chatbot-rag/chatbot-rag.md --pdf --allow-local-files --base-url file://$PWD/dist/html/ --output dist/pdf/chatbot-rag.pdf",
     "html:career": "npm run assets && marp subjects/career/career.md --html --output dist/html/career.html",
     "pdf:career": "marp subjects/career/career.md --pdf --allow-local-files --output dist/pdf/career.pdf"
   },
