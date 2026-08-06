@@ -28,8 +28,14 @@
 │       │   └── referencias.bib
 │       └── poo.md
 └── dist/
-    ├── html/
-    └── pdf/
+    ├── assets/
+    ├── images/
+    ├── scripts/
+    ├── poo/
+    │   ├── 01-introduction.html
+    │   └── 01-introduction.pdf
+    ├── chatbot-rag/
+    └── career/
 ```
 
 ## Como usar
@@ -78,8 +84,14 @@ Com Node.js e npm instalados:
 
 ```bash
 npm install
-npm run html
-npm run pdf
+npm run build
+```
+
+O build padrão gera os arquivos HTML e não requer navegador. Para gerar também
+os arquivos PDF, instale Chrome, Edge ou Firefox e execute:
+
+```bash
+npm run build:all
 ```
 
 Para uma aula isolada:
@@ -87,6 +99,21 @@ Para uma aula isolada:
 ```bash
 npm run html:poo:01
 npm run pdf:poo:01
+```
+
+Ao servir a raiz do projeto localmente na porta 3000, a aula introdutória de
+POO ficará disponível em:
+
+```text
+http://localhost:3000/dist/poo/01-introduction.html
+http://localhost:3000/dist/poo/01-introduction.pdf
+```
+
+No GitHub Pages, os mesmos arquivos serão publicados em:
+
+```text
+https://fabriciosantana.github.io/slides/poo/01-introduction.html
+https://fabriciosantana.github.io/slides/poo/01-introduction.pdf
 ```
 
 Para gerar PDF, o Marp CLI precisa encontrar Chrome, Edge ou Firefox instalado

@@ -33,7 +33,7 @@ jobs:
 
       - name: Build slides
         run: |
-          npm run html:all
+          npm run build:all
           touch dist/.nojekyll
 
       - name: Configure GitHub Pages
