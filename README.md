@@ -1,7 +1,4 @@
-# Slides IDP com Marp
-
-Template Marp inspirado no tema Beamer IDP disponível em
-`/workspaces/idp-LateX-slides/common/theme`.
+# Slides com Marp
 
 ## Estrutura
 
