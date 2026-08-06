@@ -106,15 +106,53 @@ Aprender a construir softwares a partir dos **conceitos** do problema a ser reso
 
 # Por que aprender programação?
 
+<div class="columns" style="align-items: center;">
+
+<div>
+
+<iframe
+  style="display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;"
+  src="https://www.youtube.com/embed/BRTOlPdyPYU?start=74"
+  title="Entrevista com Steve Jobs"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+</div>
+
+<div>
+
 > Everybody in this country should learn how to program a computer, should learn a computer language, because it teaches you how to think.
 
 <div class="author-note">Steve Jobs, 1995</div>
 
-<div class="source">Fonte: <a href="https://www.youtube.com/watch?v=BRTOlPdyPYU&t=93s">Entrevista em vídeo disponível no YouTube</a></div>
+<div class="source">Fonte: <a href="https://www.youtube.com/watch?v=BRTOlPdyPYU&t=74s">Entrevista em vídeo disponível no YouTube</a></div>
+
+</div>
+
+</div>
 
 ---
 
 # O que muda com a IA?
+
+<div class="columns" style="align-items: center;">
+
+<div>
+
+<iframe
+  style="display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;"
+  src="https://www.youtube.com/embed/yj73GIEKmLI"
+  title="Entrevista com Jensen Huang"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+</div>
+
+<div>
 
 > Everybody in the world is now a programmer.
 
@@ -122,17 +160,15 @@ Aprender a construir softwares a partir dos **conceitos** do problema a ser reso
 
 <div class="source">Fonte: <a href="https://www.youtube.com/watch?v=yj73GIEKmLI">Entrevista em vídeo</a></div>
 
+</div>
+
+</div>
+
 ---
 
 # O que muda com a IA?
 
-<div class="callout">
-
-**Geração de código com IA**
-
-Ferramentas de IA passam a participar diretamente do processo de desenvolvimento, sugerindo, revisando e produzindo código.
-
-</div>
+<img class="figure" src="../images/01-google.png" alt="Uso de inteligência artificial na geração de código pelo Google">
 
 <div class="source">Fonte: <a href="https://fortune.com/2024/10/30/googles-code-ai-sundar-pichai/">Relato sobre IA e código no Google</a></div>
 
@@ -140,85 +176,88 @@ Ferramentas de IA passam a participar diretamente do processo de desenvolvimento
 
 # O que muda com a IA?
 
+<div class="columns" style="align-items: center;">
+
+<div>
+
+<iframe
+  style="display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;"
+  src="https://www.youtube.com/embed/uDL_6A6zB0w"
+  title="Entrevista com Mark Zuckerberg"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+</div>
+
+<div>
+
 > Probably in 2025 [...] we are going to have an AI that can effectively be a sort of mid-level engineer [...] that can write code.
 
 <div class="author-note">Mark Zuckerberg, 2025</div>
 
 <div class="source">Fonte: <a href="https://www.youtube.com/watch?v=uDL_6A6zB0w">Entrevista em vídeo</a></div>
 
+</div>
+
+</div>
+
 ---
 
 # O que muda com a IA?
 
-<div class="callout">
-
-**A linguagem de programação mais quente**
-
-Andrej Karpathy provocou a comunidade ao afirmar que a linguagem de programação mais quente é o inglês.
-
-</div>
+<img class="figure" src="../images/01-andrej.png" alt="Publicação de Andrej Karpathy sobre linguagem natural e programação">
 
 <div class="source">Fonte: <a href="https://x.com/karpathy/status/1617979122625712128">Publicação de Andrej Karpathy</a></div>
 
 ---
 
-# Por que aprender Java?
+# Qual linguagem de programação aprender?
 
 A disciplina adota a linguagem de programação **Java**.
 
-<div class="callout">
-
-**Por quê?**
-
-Java segue relevante em rankings, ecossistemas corporativos, plataformas educacionais, aplicações web, sistemas distribuídos e desenvolvimento Android.
-
+<div style="height: 410px; overflow: auto; overscroll-behavior: contain;">
+  <iframe
+    style="display: block; width: 100%; height: 650px; border: 0;"
+    src="https://flo.uri.sh/visualisation/24825595/embed?auto=1"
+    title="Gráfico sobre linguagens de programação"
+    scrolling="yes"
+    allowfullscreen
+  ></iframe>
 </div>
 
-<div class="source">Fonte: <a href="https://spectrum.ieee.org/top-programming-languages-2025">IEEE Spectrum - Top Programming Languages</a></div>
+<div class="source">Fonte: <a href="https://spectrum.ieee.org/top-programming-languages-2025">IEEE Spectrum — Top Programming Languages 2025</a></div>
 
 ---
 
-# Por que aprender Java?
+# Qual linguagem de programação aprender?
 
 A disciplina adota a linguagem de programação **Java**.
 
-<div class="callout">
 
-**Índices de popularidade**
 
-Rankings como TIOBE ajudam a observar tendências, ainda que não substituam critérios pedagógicos e profissionais.
-
-</div>
+<img class="figure" src="../images/01-tiobe.png" alt="Índice TIOBE de popularidade das linguagens de programação" style="max-height: 260px;">
 
 <div class="source">Fonte: <a href="https://www.tiobe.com/tiobe-index/">TIOBE Index</a></div>
 
 ---
 
-# Por que aprender Java?
+# Qual linguagem de programação aprender?
 
 A disciplina adota a linguagem de programação **Java**.
 
-<div class="callout">
+<img class="figure" src="../images/01-courses.png" alt="Linguagens de programação adotadas em outros cursos">
 
-**Continuidade curricular**
-
-Java também dialoga com outras disciplinas, frameworks e práticas de desenvolvimento presentes ao longo da formação.
-
-</div>
-
-<div class="source">Fonte: <a href="https://1drv.ms/x/c/187d9a0eb7d8e7f9/Efnn2LcOmn0ggBiTLwAAAAABYnkEvdSiCdc3X7JUZgqrpg?e=Ll4Gt6">Mapeamento de outros cursos</a></div>
+<div class="source">Fonte: <a href="https://onedrive.live.com/:x:/g/personal/187d9a0eb7d8e7f9/IQD559i3Dpp9IIAYky8AAAAAAWJ5BL3UognXN1-yVGYKq6Y?rtime=5Wb6y_Tz3kg&amp;redeem=aHR0cHM6Ly8xZHJ2Lm1zL3gvYy8xODdkOWEwZWI3ZDhlN2Y5L0Vmbm4yTGNPbW4wZ2dCaVRMd0FBQUFBQllua0V2ZFNpQ2RjM1g3SlVaZ3FycGc_ZT1MbDRHdDY">Mapeamento de linguagens em outros cursos</a></div>
 
 ---
 
 # Como aprender programação hoje?
 
-<div class="callout">
+As ferramentas usadas para aprender e resolver dúvidas de programação estão mudando rapidamente.
 
-**Mudança de hábitos**
-
-Ambientes de perguntas e respostas, documentação, buscadores, assistentes de IA e repositórios públicos reorganizaram a forma como aprendemos programação.
-
-</div>
+<img class="figure" src="../images/01-stack.png" alt="Declínio do uso do Stack Overflow">
 
 <div class="source">Fonte: <a href="https://blog.pragmaticengineer.com/stack-overflow-is-almost-dead/">Stack Overflow is almost dead</a></div>
 
@@ -228,6 +267,8 @@ Ambientes de perguntas e respostas, documentação, buscadores, assistentes de I
 
 # Como aprender programação hoje?
 
+<img class="figure" src="../images/01-cs.png" alt="Impacto da inteligência artificial no ensino de ciência da computação" style="max-height: 220px;">
+
 <div class="columns small" style="--columns: 3;">
 
 <div class="callout">
@@ -235,7 +276,7 @@ Ambientes de perguntas e respostas, documentação, buscadores, assistentes de I
 **ChatGPT**
 
 - Tarefas concluídas mais rapidamente.
-- Desempenho inferior em prova baseada apenas em memória.
+- Desempenho inferior em prova escrita sem consulta.
 
 </div>
 
@@ -244,7 +285,7 @@ Ambientes de perguntas e respostas, documentação, buscadores, assistentes de I
 **Code Llama**
 
 - Segundo grupo mais rápido.
-- Metade dos alunos aprovada na prova de memória.
+- Metade dos alunos aprovada na prova escrita sem consulta.
 
 </div>
 
@@ -253,7 +294,7 @@ Ambientes de perguntas e respostas, documentação, buscadores, assistentes de I
 **Google**
 
 - Maior tempo para completar as tarefas.
-- Todos aprovados na prova de memorização.
+- Todos aprovados na prova escrita sem consulta.
 
 </div>
 
@@ -284,11 +325,9 @@ Ambientes de perguntas e respostas, documentação, buscadores, assistentes de I
 
 </div>
 
-<div class="callout">
+<div>
 
-**Aprender fazendo**
-
-Programar se aprende como bicicleta: estudando fundamentos, mas principalmente praticando, errando, corrigindo e tentando de novo.
+<img class="figure" src="../images/01-bike.gif" alt="Pessoa aprendendo a andar de bicicleta">
 
 </div>
 
@@ -298,23 +337,17 @@ Programar se aprende como bicicleta: estudando fundamentos, mas principalmente p
 
 # Como você vai aprender?
 
-<div class="callout">
-
 **Pirâmide de aprendizagem**
 
-A disciplina combina momentos de exposição, discussão, prática, explicação entre pares e produção autoral.
-
-</div>
+<img class="figure" src="../images/01-glasser.png" alt="Pirâmide de aprendizagem de William Glasser">
 
 <div class="source">Fonte: <a href="https://keeps.com.br/piramide-de-aprendizagem-de-william-glasser-conceito-e-estrutura/">Pirâmide de aprendizagem de William Glasser</a></div>
 
 ---
 
-<!-- _class: compact -->
-
 # O que você vai aprender?
 
-<div class="small">
+<div>
 
 - Introdução à Plataforma Java.
 - Introdução à Programação em Java.
@@ -341,11 +374,9 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 
 ---
 
-<!-- _class: compact -->
-
 # Quais objetivos específicos?
 
-<div class="tiny">
+<div class="small">
 
 - Distinguir o paradigma de orientação a objeto em face do paradigma estruturado.
 - Implementar algoritmos e programas com classes, objetos, coleções e associações.
@@ -368,7 +399,7 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 
 # Como o aprendizado será avaliado?
 
-<div class="tiny">
+<div class="small">
 
 - 10 exercícios práticos de programação: 0,0 a 0,4 cada um (NE1-10).
 - 10 resumos de leituras: 0,0 a 0,2 cada um (NR1-10).
@@ -391,7 +422,7 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 
 # O que fazer para a próxima aula?
 
-<div class="columns tiny">
+<div class="columns">
 
 <div>
 
@@ -423,7 +454,7 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 
 # 1ª Leitura
 
-<div class="tiny">
+<div>
 
 - SCHILDT, Herbert. [The history and evolution of Java](https://1drv.ms/b/s!Avnn2LcOmn0Y3mnfmCUIsHXeIOq5?e=jeM4eh). In: _Java: the complete reference_. 12. ed. New York: McGraw Hill, 2021. Cap. 1.
 - Procedimento para entrega do resumo:
