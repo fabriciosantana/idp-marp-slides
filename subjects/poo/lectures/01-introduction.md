@@ -86,7 +86,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 # Qual a contribuição da disciplina?
 
-Aprender a construir softwares a partir dos **conceitos** do problema a ser resolvido, onde cada conceito encapsula **atributos e comportamentos**, tornando o software mais compreensível, reutilizável e fácil de evoluir.
+> Aprender a construir softwares a partir dos **conceitos** do problema a ser resolvido, onde cada conceito encapsula **atributos e comportamentos**, tornando o software mais compreensível, reutilizável e fácil de evoluir.
 
 <img class="figure" src="../images/01-cartoon.png" alt="Cartoon de classe e objeto">
 
@@ -426,23 +426,25 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 
 <div>
 
-- Revisar o repositório da disciplina no GitHub.
+- Revisar o [repositório da disciplina no GitHub](https://github.com/fabriciosantana/poo).
 - Preparar sua estação para desenvolvimento Java.
-- Sugestões de ambiente:
-  - Linux, WSL, GitHub Codespaces ou Dev Containers.
-  - VS Code e extensões Java.
-  - JDK 21, OpenJDK ou outra distribuição do JDK.
-  - GitHub, SDKMAN, JUnit 5 e Maven.
+- Sugestão: usar distribuição Linux para atividades prátivas
+  - Alternativas: [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install), [GitHub Codespaces](https://github.com/features/codespaces) ou [Dev Containers](https://containers.dev/).
+- [VS Code](https://code.visualstudio.com/) e extensões Java.
+- [JDK 21](https://docs.oracle.com/en/java/javase/21/)
+  - Sugestão: [OpenJDK](https://openjdk.org/) ou outra distribuição do JDK.
+- [GitHub](https://github.com/)
+- Opcionais: [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/).
 
 </div>
 
 <div>
 
 - Informações adicionais:
-  - Introduction to Linux.
-  - Getting started with Visual Studio Code.
-  - Intro to GitHub.
-  - GitHub Foundations.
+  - [Introduction to Linux](https://training.linuxfoundation.org/training/introduction-to-linux/)
+  - [Getting started with Visual Studio Code](https://code.visualstudio.com/docs/introvideos/basics)
+  - [Intro to GitHub](https://education.github.com/experiences/intro_to_github)
+  - [GitHub Foundations](https://education.github.com/experiences/foundations_certificate)
 
 </div>
 
@@ -460,7 +462,8 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 - Procedimento para entrega do resumo:
   - Escrever o resumo em folha A4 branca.
   - Fazer fork do repositório da disciplina.
-  - Digitalizar em PDF e gravar no diretório `poo/readings/01-history/seunome-seusobrenome.pdf`.
+  - Digitalizar em PDF e gravar no diretório 
+    - `poo/readings/01-history/seunome-seusobrenome.pdf`.
   - Enviar pull request para o repositório da disciplina.
   - Submeter o link do pull request no Ambiente Virtual.
 - **Prazo**: conforme Ambiente Virtual.
