@@ -422,7 +422,7 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 
 # O que fazer para a próxima aula?
 
-<div class="columns">
+<div class="small columns">
 
 <div>
 
