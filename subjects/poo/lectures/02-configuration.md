@@ -1,13 +1,11 @@
 ---
 marp: true
 theme: idp
-paginate: false
 html: true
 footer: <span>Programação Orientada a Objetos</span><span>Configuração do ambiente</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
-<!-- _paginate: false -->
 
 # Configuração do ambiente, visão geral do github e procedimento para submissão de tarefas
 
@@ -36,7 +34,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 <!-- _class: compact -->
 
-# Como configurar a estação de desenvolvimento?
+# Configuração do ambiente de desenvolvimento
 
 <div class="columns small">
 
@@ -124,15 +122,12 @@ $ git lfs --version
 git-lfs/3.4.1
 ```
 
-**✅ GitHub CLI**
+**✅ GitHub CLI**: opcional pois é possível realizar as operações em [github.com](https://github.com/).
 
 ```console
 $ gh --version
 gh version 2.97.0
 ```
-
-O GitHub CLI é opcional pois é possível realizar as operações em [github.com](https://github.com/).
-
 </div>
 
 ---
@@ -145,24 +140,19 @@ O GitHub CLI é opcional pois é possível realizar as operações em [github.co
 
 Revise o roteiro de instalação no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
 
-**✅ Fazer o fork do repositório da disciplina**
+**✅ Fazer o fork do repositório da disciplina**: pode ser criado em [github.com](https://github.com/)
 
 ```console
-$ gh repo fork \
-  fabriciosantana/poo
+$ gh repo fork fabriciosantana/poo
 ```
-
-O fork também pode ser criado em [github.com](https://github.com/).
 
 **✅ Clonar seu repositório criado no fork**
 
-```console
-$ git clone \
-  https://github.com/\
-  seu-usuario/poo.git
-```
-
 Substitua `seu-usuario` pelo seu login.
+
+```console
+$ git clone https://github.com/seu-usuario/poo.git
+```
 
 **✅ Verificar arquivos locais**
 
