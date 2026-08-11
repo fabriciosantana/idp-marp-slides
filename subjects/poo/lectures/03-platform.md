@@ -222,7 +222,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 # Quais são as ferramentas Java?
 
-O **Java Development Kit (JDK)** reúne as principais ferramentas:
+Ferramentas do **Java Development Kit (JDK)**:
 
 <div class="columns small">
 
@@ -231,6 +231,7 @@ O **Java Development Kit (JDK)** reúne as principais ferramentas:
 - `jshell`: ambiente REPL
 - `javac`: compila código Java em bytecode
 - `java`: executa uma aplicação Java
+- ...
 
 </div>
 
@@ -239,6 +240,7 @@ O **Java Development Kit (JDK)** reúne as principais ferramentas:
 - `jar`: empacota arquivos para distribuição
 - `javadoc`: gera documentação do código
 - `jpackage`: cria pacotes executáveis
+- ...
 
 </div>
 
@@ -267,7 +269,7 @@ OpenJDK 64-Bit Server VM (build 21.0.2+13-58, mixed mode, sharing)
 
 # O que é o JShell?
 
-<div class="small">
+<div class="tiny">
 
 - Ambiente para aprendizagem e execução rápida de código 
 - Conhecido pelo acrônimo **REPL** (*Read, Evaluate, Print, Loop*) .
@@ -287,11 +289,12 @@ jshell> "Hello, World!"
 $1 ==> "Hello, World!"
 ```
 
-**Sair**
+**Sair do jshell**
 
 ```console
 jshell> /exit
 | Goodbye
+$
 ```
 
 </div>
