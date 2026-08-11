@@ -9,9 +9,9 @@ footer: <span>Programação Orientada a Objetos</span><span>Plataforma Java</spa
 <!-- _class: title -->
 <!-- _paginate: false -->
 
-# Plataforma Java
+# Plataforma Java: ferramentas, jshell, java e javac
 
-## Ferramentas, JShell, java e javac
+## Programação Orientada a Objetos
 
 <div class="objectives">
 
@@ -34,13 +34,13 @@ www.linkedin.com/in/fabriciofsantana/
 
 # O que é programação?
 
-> “Programação é a arte de **dizer** ao computador **o que fazer**.”
+> Programação é a arte de **dizer** ao computador **o que fazer**.
 
-<div class="author-note">Donald Knuth, autor de <em>The Art of Computer Programming</em></div>
+<div class="small author-note">Donald Knuth, autor de <em>The Art of Computer Programming</em></div>
 
-> “Um **algoritmo** é um **conjunto de instruções** para concluir uma **tarefa**.”
+> Um **algoritmo** é um **conjunto de instruções** para concluir uma **tarefa**.
 
-<div class="source">Fonte: BHARGAVA, Aditya Y. <em>Grokking Algorithms</em>. 2. ed. Manning Publications, 2024.</div>
+<div class="small author-note">BHARGAVA, Aditya Y. <em>Grokking Algorithms</em>. 2. ed. Manning Publications, 2024.</div>
 
 ---
 
@@ -78,6 +78,8 @@ www.linkedin.com/in/fabriciofsantana/
 
 # Como o computador executa uma tarefa?
 
+**Arquitetura de Von Neumann**
+
 <img class="figure" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Von_Neumann_Architecture.svg/1280px-Von_Neumann_Architecture.svg.png" alt="Arquitetura de von Neumann" style="max-height: 430px;">
 
 <div class="source">Fonte: <a href="https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann architecture — Wikipedia</a></div>
@@ -86,7 +88,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 # Qual a função de um programa?
 
-**Manipular dados.**
+**Manipular dados**
 
 <img class="figure" src="../images/03-data.png" alt="Fluxo de entrada, processamento e saída de dados" style="max-height: 390px;">
 
@@ -96,7 +98,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 # Qual a função de um programa?
 
-**Manipular dados representados em bytes.**
+**Manipular dados representados em bytes**
 
 <img class="figure" src="../images/03-byte.png" alt="Unidades de medida de dados" style="max-height: 390px;">
 
@@ -137,7 +139,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 <div class="columns" style="align-items: center;">
 
-<div>
+<div class="small">
 
 **Progresso dos modelos da OpenAI em codificação**
 
@@ -178,13 +180,8 @@ www.linkedin.com/in/fabriciofsantana/
 
 # O que é a plataforma Java?
 
-<div class="callout">
+> Java é um conjunto de softwares e especificações que fornece uma plataforma para desenvolver aplicações e executá-las em diferentes ambientes computacionais.
 
-**Plataforma de software**
-
-Java é um conjunto de softwares e especificações que fornece uma plataforma para desenvolver aplicações e executá-las em diferentes ambientes computacionais.
-
-</div>
 
 <div class="source">Fonte: <a href="https://en.wikipedia.org/wiki/Java_(software_platform)">Java (software platform) — Wikipedia</a></div>
 
@@ -194,9 +191,9 @@ Java é um conjunto de softwares e especificações que fornece uma plataforma p
 
 **Plataformas Java**
 
-- **Java SE — Standard Edition**
-- Java EE — Enterprise Edition / Jakarta EE
-- Java ME — Micro Edition
+- **Java SE: Standard Edition**
+- Java EE: Enterprise Edition / Jakarta EE
+- Java ME: Micro Edition
 - Java Card
 
 <div class="source">Fonte: MUGHAL, Khalid; STRELNIKOV, Vasily. <em>OCP Oracle Certified Professional Java SE 17 Developer Programmer's Guide</em>. Oracle Press, 2023.</div>
@@ -211,7 +208,7 @@ Java é um conjunto de softwares e especificações que fornece uma plataforma p
   - Programação orientada a objetos
   - Programação procedural
   - Programação funcional
-- Bytecode interpretado pela Java Virtual Machine — JVM
+- Bytecode interpretado pela Java Virtual Machine(JVM)
 - Arquitetura neutra e portabilidade do bytecode: *Write once, run anywhere*
 - Simples, dinâmico e distribuído
 - Robusto e seguro
@@ -225,7 +222,7 @@ Java é um conjunto de softwares e especificações que fornece uma plataforma p
 
 # Quais são as ferramentas Java?
 
-O **Java Development Kit — JDK** reúne as principais ferramentas:
+O **Java Development Kit (JDK)** reúne as principais ferramentas:
 
 <div class="columns small">
 
@@ -255,9 +252,9 @@ O **Java Development Kit — JDK** reúne as principais ferramentas:
 
 # O que usar para programar Java?
 
-Instale o **Java Development Kit — JDK** conforme as orientações do [repositório da disciplina](https://github.com/fabriciosantana/poo) e confirme a instalação:
+Instale o **Java Development Kit(JDK)** conforme as orientações do [repositório da disciplina](https://github.com/fabriciosantana/poo) e confirme a instalação:
 
-```bash
+```console
 $ java --version
 openjdk 21.0.2 2024-01-16
 OpenJDK Runtime Environment (build 21.0.2+13-58)
@@ -270,43 +267,32 @@ OpenJDK 64-Bit Server VM (build 21.0.2+13-58, mixed mode, sharing)
 
 # O que é o JShell?
 
-Ambiente REPL — *Read, Evaluate, Print, Loop* — para aprendizagem e execução rápida de código.
+<div class="small">
 
-<div class="columns small" style="--columns: 3;">
+- Ambiente para aprendizagem e execução rápida de código 
+- Conhecido pelo acrônimo **REPL** (*Read, Evaluate, Print, Loop*) .
 
-<div>
+**Iniciar jshell**
 
-**Iniciar**
-
-```text
+```console
 $ jshell
 | Welcome to JShell
 jshell>
 ```
 
-</div>
+**Executar instruções Java e comandos jshell**
 
-<div>
-
-**Executar Java**
-
-```text
+```console
 jshell> "Hello, World!"
 $1 ==> "Hello, World!"
 ```
 
-</div>
-
-<div>
-
 **Sair**
 
-```text
+```console
 jshell> /exit
 | Goodbye
 ```
-
-</div>
 
 </div>
 
@@ -314,32 +300,34 @@ jshell> /exit
 
 <!-- _class: compact -->
 
-# Quais são os principais comandos do JShell?
+# Principais comandos do JShell
+
+Experimente executá-los no terminal
 
 <div class="columns small">
 
 <div>
 
-```text
-/list
-/edit [opção]
-/drop {nome|id|intervalo}
-/save [opções] arquivo
-/open arquivo
-/reload
+```console
+jshell> /list
+jshell> /edit [opção]
+jshell> /drop {nome|id|intervalo}
+jshell> /save [opções] arquivo
+jshell> /open arquivo
+jshell> /reload
 ```
 
 </div>
 
 <div>
 
-```text
-/reset
-/history
-/types [opção]
-/vars
-/help
-/exit
+```console
+jshell> /reset
+jshell> /history
+jshell> /types [opção]
+jshell> /vars
+jshell> /help
+jshell> /exit
 ```
 
 </div>
@@ -361,16 +349,4 @@ jshell> /exit
 
 ---
 
-<!-- _class: title -->
-<!-- _paginate: false -->
-
-# Até a próxima aula!
-
-## Plataforma Java
-
-<div class="contact">
-2026.2<br>
-Prof. Fabricio Santana<br>
-fabricio.santana@idp.edu.br<br>
-www.linkedin.com/in/fabriciofsantana/
-</div>
+# 1ª Atividade de implementação
