@@ -428,13 +428,16 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
 
 - Revisar o [repositório da disciplina no GitHub](https://github.com/fabriciosantana/poo).
 - Preparar sua estação para desenvolvimento Java.
-- Sugestão: usar distribuição Linux para atividades prátivas
-  - Alternativas: [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install), [GitHub Codespaces](https://github.com/features/codespaces) ou [Dev Containers](https://containers.dev/).
-- [VS Code](https://code.visualstudio.com/) e extensões Java.
-- [JDK 21](https://docs.oracle.com/en/java/javase/21/)
-  - Sugestão: [OpenJDK](https://openjdk.org/) ou outra distribuição do JDK.
-- [GitHub](https://github.com/)
-- Opcionais: [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/).
+  - Sugestão: usar distribuição Linux
+    - [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)
+    - [GitHub Codespaces](https://github.com/features/codespaces)
+    - [Dev Containers](https://containers.dev/)
+  - [VS Code](https://code.visualstudio.com/) e extensões Java
+  - [JDK 21](https://docs.oracle.com/en/java/javase/21/)
+    - Sugestão: [OpenJDK](https://openjdk.org/) ou outra distribuição
+  - [GitHub](https://github.com/): criar conta gratuita
+  - Opcionais:
+    - [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/).
 
 </div>
 
