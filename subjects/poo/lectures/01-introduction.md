@@ -9,9 +9,9 @@ footer: <span>Programação Orientada a Objetos</span><span>Introdução e conte
 <!-- _class: title -->
 <!-- _paginate: false -->
 
-# Programação Orientada a Objetos
+# Introdução e contextualização
 
-## Introdução e contextualização
+## Programação Orientada a Objetos
 
 <div class="objectives">
 
