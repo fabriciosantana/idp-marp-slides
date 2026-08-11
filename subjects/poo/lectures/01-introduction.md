@@ -3,7 +3,7 @@ marp: true
 theme: idp
 paginate: false
 html: true
-footer: <span>Programação Orientada a Objetos</span><span>Introdução e contextualização</span><span>Prof. Fabricio Santana</span>
+footer: <span>Programação Orientada a Objetos</span><span>Introdução e contextualização</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
@@ -26,6 +26,7 @@ footer: <span>Programação Orientada a Objetos</span><span>Introdução e conte
 </div>
 
 <div class="contact">
+2026.2<br>
 Prof. Fabricio Santana<br>
 fabricio.santana@idp.edu.br<br>
 www.linkedin.com/in/fabriciofsantana/
