@@ -180,7 +180,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# Como instruir um computador?
+# Como se comunicar com um computador?
 
 <div class="columns" style="align-items: center;">
 
@@ -204,51 +204,6 @@ www.linkedin.com/in/fabriciofsantana/
 </div>
 
 <div class="source">Fonte: <a href="http://www.btechsmartclass.com/c_programming/C-Computer-Languages.html">BTech Smart Class — Computer Languages</a></div>
-
----
-
-<!-- _class: compact -->
-
-# Qual o próximo passo?
-
-<div class="columns" style="align-items: center;">
-
-<div class="small">
-
-**Progresso dos modelos da OpenAI em codificação**
-
-- Primeiro modelo de raciocínio: top 1 milhão
-- o1, setembro de 2024: top 10 mil
-- o3, janeiro de 2025: top 175
-- Modelo interno, fevereiro de 2025: top 50
-- Projeção para o fim de 2025: top 1
-
-</div>
-
-<div>
-
-<iframe
-  style="display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;"
-  src="https://www.youtube.com/embed/8LmfkUb2uIY?start=1201"
-  title="Progresso dos modelos de inteligência artificial em programação"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allowfullscreen
-></iframe>
-
-</div>
-
-</div>
-
-<div class="source">Fonte: <a href="https://www.youtube.com/watch?v=8LmfkUb2uIY&t=1201s">Entrevista em vídeo disponível no YouTube</a></div>
-
----
-
-# Qual o próximo passo?
-
-<img class="figure" src="../images/03-icpc.png" alt="Resultado do Gemini no ICPC 2025" style="max-height: 430px;">
-
-<div class="source">Fonte: <a href="https://deepmind.google/blog/gemini-achieves-gold-medal-level-at-the-international-collegiate-programming-contest-world-finals/">Gemini achieves gold-medal level at the ICPC World Finals</a></div>
 
 ---
 
@@ -319,6 +274,51 @@ www.linkedin.com/in/fabriciofsantana/
 </div>
 
 </div>
+
+---
+
+<!-- _class: compact -->
+
+# O que muda com a IA?
+
+<div class="columns" style="align-items: center;">
+
+<div class="small">
+
+**Progresso dos modelos da OpenAI em codificação**
+
+- Primeiro modelo de raciocínio: top 1 milhão
+- o1, setembro de 2024: top 10 mil
+- o3, janeiro de 2025: top 175
+- Modelo interno, fevereiro de 2025: top 50
+- Projeção para o fim de 2025: top 1
+
+</div>
+
+<div>
+
+<iframe
+  style="display: block; width: 100%; aspect-ratio: 16 / 9; border: 0;"
+  src="https://www.youtube.com/embed/8LmfkUb2uIY?start=1201"
+  title="Progresso dos modelos de inteligência artificial em programação"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+</div>
+
+</div>
+
+<div class="source">Fonte: <a href="https://www.youtube.com/watch?v=8LmfkUb2uIY&t=1201s">Entrevista em vídeo disponível no YouTube</a></div>
+
+---
+
+# O que muda com a IA?
+
+<img class="figure" src="../images/03-icpc.png" alt="Resultado do Gemini no ICPC 2025" style="max-height: 430px;">
+
+<div class="source">Fonte: <a href="https://deepmind.google/blog/gemini-achieves-gold-medal-level-at-the-international-collegiate-programming-contest-world-finals/">Gemini achieves gold-medal level at the ICPC World Finals</a></div>
 
 ---
 
