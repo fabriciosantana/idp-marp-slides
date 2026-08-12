@@ -553,6 +553,7 @@ Ao final da disciplina, os estudantes serão capazes de aplicar os princípios, 
   - [JDK 21](https://docs.oracle.com/en/java/javase/21/)
     - Sugestão: [OpenJDK](https://openjdk.org/) ou outra distribuição
   - [GitHub](https://github.com/): criar conta gratuita
+    - [GitHub Client (gh)](https://cli.github.com/)
   - Opcionais:
     - [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/).
 

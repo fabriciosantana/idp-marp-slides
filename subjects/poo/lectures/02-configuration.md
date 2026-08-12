@@ -50,6 +50,7 @@ www.linkedin.com/in/fabriciofsantana/
   - [JDK 21](https://docs.oracle.com/en/java/javase/21/)
     - Sugestão: [OpenJDK](https://openjdk.org/) ou outra distribuição
   - [GitHub](https://github.com/): criar conta gratuita
+    - [GitHub Client (gh)](https://cli.github.com/)
   - Opcionais:
     - [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/).
 
@@ -225,7 +226,6 @@ Hello, World!
 # Submeter programa
 
 Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
-
 
 <div class="small">
 
