@@ -225,9 +225,9 @@ Hello, World!
 
 # Submeter programa
 
-Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
-
 <div class="small">
+
+Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
 
 **✅ Adicionar no repositório local**
 
