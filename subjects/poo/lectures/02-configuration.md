@@ -40,7 +40,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 <div>
 
-- Revisar o [repositório da disciplina no GitHub](https://github.com/fabriciosantana/poo).
+- Revisar o [repositório da disciplina no GitHub](https://github.com/fabriciosantana/poo)
 - Preparar sua estação para desenvolvimento Java.
   - Sugestão: usar distribuição Linux
     - [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)
@@ -52,7 +52,7 @@ www.linkedin.com/in/fabriciofsantana/
   - [GitHub](https://github.com/): criar conta gratuita
     - [GitHub Client (gh)](https://cli.github.com/)
   - Opcionais:
-    - [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/).
+    - [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/)
 
 </div>
 
@@ -76,7 +76,7 @@ www.linkedin.com/in/fabriciofsantana/
 
 <div class="small">
 
-Revise o roteiro de instalação no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+Revise o roteiro de instalação no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo)
 
 **✅ VS Code instalado**
 
@@ -108,7 +108,7 @@ OpenJDK 64-Bit Server VM
 
 <div class="small">
 
-Revise o roteiro de instalação no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+Revise o roteiro de instalação no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo)
 
 **✅ Git**
 
@@ -123,7 +123,7 @@ $ git lfs --version
 git-lfs/3.4.1
 ```
 
-**✅ GitHub CLI**: opcional pois é possível realizar as operações em [github.com](https://github.com/).
+**✅ GitHub CLI**: opcional pois é possível realizar as operações em [github.com](https://github.com/)
 
 ```console
 $ gh --version
@@ -139,7 +139,7 @@ gh version 2.97.0
 
 <div class="small">
 
-Revise o roteiro de instalação no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+Revise o roteiro de instalação no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo)
 
 **✅ Fazer o fork do repositório da disciplina**: pode ser criado em [github.com](https://github.com/)
 
@@ -168,7 +168,7 @@ $ ls
 
 # Fluxo para submissão de tarefas
 
-Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo)
 
 <img class="figure" src="../images/git.png" alt="Fluxo de trabalho com Git e GitHub para submissão de tarefas">
 
@@ -192,7 +192,7 @@ Revise procedimento para submissão de tarefas no diretório `howto` do [reposit
 
 <div class="small">
 
-Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo)
 
 **✅ Escrever programa `HelloWorld.java`**
 
@@ -227,7 +227,7 @@ Hello, World!
 
 <div class="small">
 
-Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo)
 
 **✅ Adicionar no repositório local**
 
