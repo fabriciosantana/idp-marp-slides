@@ -209,6 +209,14 @@ www.linkedin.com/in/fabriciofsantana/
 
 # O que muda com a IA?
 
+<img class="figure" src="../images/01-andrej.png" alt="Publicação de Andrej Karpathy sobre linguagem natural e programação">
+
+<div class="source">Fonte: <a href="https://x.com/karpathy/status/1617979122625712128">Publicação de Andrej Karpathy</a></div>
+
+---
+
+# O que muda com a IA?
+
 <div class="columns" style="align-items: center;">
 
 <div>
@@ -319,14 +327,6 @@ www.linkedin.com/in/fabriciofsantana/
 <img class="figure" src="../images/03-icpc.png" alt="Resultado do Gemini no ICPC 2025" style="max-height: 430px;">
 
 <div class="source">Fonte: <a href="https://deepmind.google/blog/gemini-achieves-gold-medal-level-at-the-international-collegiate-programming-contest-world-finals/">Gemini achieves gold-medal level at the ICPC World Finals</a></div>
-
----
-
-# O que muda com a IA?
-
-<img class="figure" src="../images/01-andrej.png" alt="Publicação de Andrej Karpathy sobre linguagem natural e programação">
-
-<div class="source">Fonte: <a href="https://x.com/karpathy/status/1617979122625712128">Publicação de Andrej Karpathy</a></div>
 
 ---
 
