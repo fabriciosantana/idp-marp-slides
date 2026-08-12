@@ -36,32 +36,32 @@ www.linkedin.com/in/fabriciofsantana/
 
 # Configuração do ambiente de desenvolvimento
 
-<div class="columns small">
+<div class="small columns">
 
 <div>
 
-**Preparação do ambiente**
-
-- Consulte o diretório `howto` no [repositório da disciplina](https://github.com/fabriciosantana/poo/)
-- Linux para as atividades práticas:
-  - [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)
-  - [GitHub Codespaces](https://github.com/features/codespaces)
-  - [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers)
-- [VS Code](https://code.visualstudio.com/) e extensões Java
-- [JDK 21](https://docs.oracle.com/en/java/javase/21/), preferencialmente [OpenJDK](https://openjdk.org/)
-- Conta no [GitHub](https://github.com/)
-- [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/junit5/) e [Maven](https://maven.apache.org/)
+- Revisar o [repositório da disciplina no GitHub](https://github.com/fabriciosantana/poo).
+- Preparar sua estação para desenvolvimento Java.
+  - Sugestão: usar distribuição Linux
+    - [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)
+    - [GitHub Codespaces](https://github.com/features/codespaces)
+    - [Dev Containers](https://containers.dev/)
+  - [VS Code](https://code.visualstudio.com/) e extensões Java
+  - [JDK 21](https://docs.oracle.com/en/java/javase/21/)
+    - Sugestão: [OpenJDK](https://openjdk.org/) ou outra distribuição
+  - [GitHub](https://github.com/): criar conta gratuita
+  - Opcionais:
+    - [SDKMAN](https://sdkman.io/), [JUnit 5](https://junit.org/) e [Maven](https://maven.apache.org/).
 
 </div>
 
 <div>
 
-**Materiais adicionais**
-
-- [Introduction to Linux](https://training.linuxfoundation.org/training/introduction-to-linux/)
-- [Getting started with Visual Studio Code](https://code.visualstudio.com/docs/introvideos/basics)
-- [Intro to GitHub](https://education.github.com/experiences/intro_to_github)
-- [GitHub Foundations](https://education.github.com/experiences/foundations_certificate)
+- Informações adicionais:
+  - [Introduction to Linux](https://training.linuxfoundation.org/training/introduction-to-linux/)
+  - [Getting started with Visual Studio Code](https://code.visualstudio.com/docs/introvideos/basics)
+  - [Intro to GitHub](https://education.github.com/experiences/intro_to_github)
+  - [GitHub Foundations](https://education.github.com/experiences/foundations_certificate)
 
 </div>
 
@@ -167,6 +167,8 @@ $ ls
 
 # Fluxo para submissão de tarefas
 
+Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+
 <img class="figure" src="../images/git.png" alt="Fluxo de trabalho com Git e GitHub para submissão de tarefas">
 
 <div class="source">Fonte: <a href="https://github.com/fabriciosantana">github.com/fabriciosantana</a></div>
@@ -188,6 +190,8 @@ $ ls
 # Primeiro programa Java
 
 <div class="small">
+
+Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
 
 **✅ Escrever programa `HelloWorld.java`**
 
@@ -219,6 +223,9 @@ Hello, World!
 <!-- _class: compact -->
 
 # Submeter programa
+
+Revise procedimento para submissão de tarefas no diretório `howto` do [repositório da disciplina](https://github.com/fabriciosantana/poo).
+
 
 <div class="small">
 
