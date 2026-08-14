@@ -31,7 +31,12 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# Quais são os elementos básicos da linguagem Java?
+# Elementos da linguagem Java
+
+<div class="columns">
+<div>
+
+**Elementos básicos**
 
 - *Identifiers* (identificadores)
 - *Keywords* (palavras-chave)
@@ -39,19 +44,33 @@ www.linkedin.com/in/fabriciofsantana/
 - *Separators* (separadores)
 - *Operators* (operadores)
 
+</div>
+<div></div>
+<div>
+
 ---
 
-# O que são *identifiers*?
+# Elementos da linguagem Java: _identifiers_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- **_Identifiers_** (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div>
+
 <div>
 
 - Nomes que identificam variáveis, classes, métodos etc.
 - Compostos por uma sequência de letras, números e outros caracteres permitidos
 - Não podem começar com um algarismo
 - Diferenciam maiúsculas de minúsculas (*case-sensitive*)
-
-</div><div>
 
 <img class="figure" src="../images/04-identifiers.png" alt="Identificadores Java">
 
@@ -61,16 +80,26 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# O que são *keywords*?
+# Elementos da linguagem Java: _keywords_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- **_Keywords_** (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div>
+
 <div>
 
 - Palavras reservadas da linguagem
 - Não podem ser usadas como identificadores
 - `true`, `false` e `null` são literais reservados
-
-</div><div>
 
 <img class="figure" src="../images/04-keywords.png" alt="Palavras-chave Java">
 
@@ -80,9 +109,21 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# O que são *literals*?
+# Elementos da linguagem Java: _literals_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div>
+
 <div>
 
 Representações de valores constantes:
@@ -93,8 +134,6 @@ Representações de valores constantes:
 - Strings: `"Abc"`
 - Referência nula: `null`
 
-</div><div>
-
 <img class="figure" src="../images/04-literals.png" alt="Literais Java">
 
 </div></div>
@@ -103,12 +142,41 @@ Representações de valores constantes:
 
 ---
 
-# Como representar literais inteiros?
+# Elementos da linguagem Java: _integer literals_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
 <div>
 
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div><div>
+
 <img class="figure" src="../images/04-literalsInteger.png" alt="Literais inteiros Java">
+
+</div></div>
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-IntegerLiteral">Java Language Specification — IntegerLiteral</a></div>
+
+---
+
+# Elementos da linguagem Java: _integer literals_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
 
 </div><div>
 
@@ -129,12 +197,41 @@ $4 ==> 2
 
 ---
 
-# Como representar literais de ponto flutuante?
+# Elementos da linguagem Java: _floating-point_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
 <div>
 
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div><div>
+
 <img class="figure" src="../images/04-literalsFloating.png" alt="Literais de ponto flutuante Java">
+
+</div></div>
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.10.2">Java Language Specification — §3.10.2</a></div>
+
+---
+
+# Elementos da linguagem Java: _floating-point literals_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
 
 </div><div>
 
@@ -157,12 +254,41 @@ $5 ==> 1000.0
 
 ---
 
-# Como representar literais booleanos?
+# Elementos da linguagem Java: _boolean literals_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
 <div>
 
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div><div>
+
 <img class="figure" src="../images/04-literalsBoolean.png" alt="Literais booleanos Java">
+
+</div></div>
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-BooleanLiteral">Java Language Specification — BooleanLiteral</a></div>
+
+---
+
+# Elementos da linguagem Java: _boolean literals_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
 
 </div><div>
 
@@ -180,12 +306,41 @@ $2 ==> false
 
 ---
 
-# Como representar literais de caractere?
+# Elementos da linguagem Java: _character literals_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
 <div>
 
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div><div>
+
 <img class="figure" src="../images/04-literalsCharacter.png" alt="Literais de caractere Java">
+
+</div></div>
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-CharacterLiteral">Java Language Specification — CharacterLiteral</a></div>
+
+---
+
+# Elementos da linguagem Java: _character literals_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
 
 </div><div>
 
@@ -206,12 +361,41 @@ $4 ==> '$'
 
 ---
 
-# Como representar literais `String`?
+# Elementos da linguagem Java: _string literals_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
 <div>
 
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
+
+</div><div>
+
 <img class="figure" src="../images/04-literalsString.png" alt="Literais String Java">
+
+</div></div>
+
+<div class="source">Fonte: <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-StringLiteral">Java Language Specification — StringLiteral</a></div>
+
+---
+
+# Elementos da linguagem Java: _string literals_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- **_Literals_** (literais)
+- *Separators* (separadores)
+- *Operators* (operadores)
 
 </div><div>
 
@@ -232,18 +416,27 @@ $3 ==> "Programação Orientada a Objetos"
 
 ---
 
-# O que são *separators*?
+# Elementos da linguagem Java: _separators_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- **_Separators_** (separadores)
+- *Operators* (operadores)
+
+</div>
+
 <div>
 
 - *Tokens* cujo significado depende do contexto
 - Exemplos: `(` `)` `{` `}` `[` `]` `;` `,` `.` `...` `@` `::`
 
 <img class="figure" src="../images/04-separators.png" alt="Separadores Java" style="max-height: 170px;">
-
-</div><div>
-
 <img class="figure" src="../images/04-separatorsDetails.png" alt="Detalhes dos separadores Java">
 
 </div></div>
@@ -252,17 +445,26 @@ $3 ==> "Programação Orientada a Objetos"
 
 ---
 
-# O que são *operators*?
+# Elementos da linguagem Java: _operators_
 
-<div class="columns" style="align-items: center;">
+<div class="columns small">
 <div>
 
-- Aritméticos
-- Relacionais
-- Lógicos
-- Bit a bit (*bitwise*)
+**Elementos básicos**
 
-</div><div>
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - Aritméticos
+   - Relacionais
+   - Lógicos
+   - Bit a bit (*bitwise*)
+
+</div>
+
+<div>
 
 <img class="figure" src="../images/04-operators.png" alt="Operadores Java">
 
@@ -274,11 +476,53 @@ $3 ==> "Programação Orientada a Objetos"
 
 <!-- _class: compact -->
 
-# Como usar operadores aritméticos?
+# Elementos da linguagem Java: _arith. operators_
 
-<div class="columns" style="align-items: center;"><div>
+<div class="columns small">
+
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - **Aritméticos**
+   - Relacionais
+   - Lógicos
+   - Bit a bit (*bitwise*)
+
+</div><div>
 
 <img class="figure" src="../images/04-operatorsArithmetic.png" alt="Operadores aritméticos Java">
+
+</div></div>
+
+<div class="source">Fonte: SCHILDT, Herbert. <em>Java: The Complete Reference</em>. 12. ed., 2021.</div>
+
+---
+
+<!-- _class: compact -->
+
+# Elementos da linguagem Java: _arith. operators_
+
+<div class="columns small">
+
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - **Aritméticos**
+   - Relacionais
+   - Lógicos
+   - Bit a bit (*bitwise*)
 
 </div><div>
 
@@ -305,11 +549,51 @@ $6 ==> 40
 
 <!-- _class: compact -->
 
-# Como usar operadores relacionais?
+# Elementos da linguagem Java: _relational operators_
 
-<div class="columns" style="align-items: center;"><div>
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - Aritméticos
+   - **Relacionais**
+   - Lógicos
+   - Bit a bit (*bitwise*)
+
+</div><div>
 
 <img class="figure" src="../images/04-operatorsRelational.png" alt="Operadores relacionais Java">
+
+</div></div>
+
+<div class="source">Fonte: SCHILDT, Herbert. <em>Java: The Complete Reference</em>. 12. ed., 2021.</div>
+
+---
+
+<!-- _class: compact -->
+
+# Elementos da linguagem Java: _relational operators_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - Aritméticos
+   - **Relacionais**
+   - Lógicos
+   - Bit a bit (*bitwise*)
 
 </div><div>
 
@@ -336,11 +620,51 @@ $6 ==> true
 
 <!-- _class: compact -->
 
-# Como usar operadores lógicos?
+# Elementos da linguagem Java: _logical operators_
 
-<div class="columns" style="align-items: center;"><div>
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - Aritméticos
+   - Relacionais
+   - **Lógicos**
+   - Bit a bit (*bitwise*)
+
+</div><div>
 
 <img class="figure" src="../images/04-operatorsBooleanLogical.png" alt="Operadores lógicos Java">
+
+</div></div>
+
+<div class="source">Fonte: SCHILDT, Herbert. <em>Java: The Complete Reference</em>. 12. ed., 2021.</div>
+
+---
+
+<!-- _class: compact -->
+
+# Elementos da linguagem Java: _logical operators_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - Aritméticos
+   - Relacionais
+   - **Lógicos**
+   - Bit a bit (*bitwise*)
 
 </div><div>
 
@@ -365,11 +689,51 @@ $5 ==> true
 
 <!-- _class: compact -->
 
-# Como usar operadores bit a bit?
+# Elementos da linguagem Java: _bitwise operators_
 
-<div class="columns" style="align-items: center;"><div>
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - Aritméticos
+   - Relacionais
+   - Lógicos
+   - **Bit a bit (*bitwise*)**
+
+</div><div>
 
 <img class="figure" src="../images/04-operatorsBitwise.png" alt="Operadores bit a bit Java">
+
+</div></div>
+
+<div class="source">Fonte: SCHILDT, Herbert. <em>Java: The Complete Reference</em>. 12. ed., 2021.</div>
+
+---
+
+<!-- _class: compact -->
+
+# Elementos da linguagem Java: _bitwise operators_
+
+<div class="columns small">
+<div>
+
+**Elementos básicos**
+
+- *Identifiers* (identificadores)
+- *Keywords* (palavras-chave)
+- *Literals* (literais)
+- *Separators* (separadores)
+- **_Operators_** (operadores)
+   - Aritméticos
+   - Relacionais
+   - Lógicos
+   - **Bit a bit (*bitwise*)**
 
 </div><div>
 
@@ -394,7 +758,7 @@ $6 ==> 10
 
 ---
 
-# Quais outros elementos formam a linguagem Java?
+# Outros elementos formam a linguagem Java
 
 - Tipos de dados (*data types*)
 - Variáveis (*variables*)
@@ -404,7 +768,9 @@ $6 ==> 10
 
 ---
 
-# Quais são os tipos primitivos?
+# Tipos primitivos?
+
+> Java possui oito tipos primitivos.
 
 <div class="columns small">
 <div>
@@ -433,13 +799,15 @@ $6 ==> 10
 
 </div></div>
 
-> Java possui oito tipos primitivos. Os demais são tipos por referência, sejam eles fornecidos pela plataforma ou criados pelo programador.
+> Os demais são tipos complexos ou por referência, sejam eles fornecidos pela plataforma (_built-in_) ou criados pelo programador (_custom_).
 
 ---
 
 <!-- _class: compact -->
 
-# Quais são as classes *wrapper*?
+# Classes *wrapper*
+
+> Classes *wrapper* são tipos por referência que encapsulam valores primitivos em objetos. Elas permitem usar esses valores onde objetos são exigidos e oferecem métodos e constantes úteis; a conversão pode ocorrer automaticamente por *autoboxing* e *unboxing*.
 
 <table class="small">
 <thead><tr><th>Tipo primitivo</th><th>Classe wrapper</th><th>Tipo primitivo</th><th>Classe wrapper</th></tr></thead>
@@ -455,19 +823,19 @@ $6 ==> 10
 
 <!-- _class: compact -->
 
-# Qual é o tamanho dos tipos primitivos?
+# Tamanho dos tipos primitivos
 
 <table class="tiny">
-<thead><tr><th>Tipo</th><th>Bits</th><th>Mínimo</th><th>Máximo</th></tr></thead>
+<thead><tr><th>Tipo</th><th>Tamanho em Bits</th><th>Quantidade de valores</th><th>Mínimo</th><th>Máximo</th></tr></thead>
 <tbody>
-<tr><td><code>byte</code></td><td>8</td><td>−128</td><td>127</td></tr>
-<tr><td><code>short</code></td><td>16</td><td>−32.768</td><td>32.767</td></tr>
-<tr><td><code>int</code></td><td>32</td><td>−2³¹</td><td>2³¹ − 1</td></tr>
-<tr><td><code>long</code></td><td>64</td><td>−2⁶³</td><td>2⁶³ − 1</td></tr>
-<tr><td><code>float</code></td><td>32</td><td colspan="2">IEEE 754, precisão simples</td></tr>
-<tr><td><code>double</code></td><td>64</td><td colspan="2">IEEE 754, precisão dupla</td></tr>
-<tr><td><code>char</code></td><td>16</td><td><code>\u0000</code></td><td><code>\uFFFF</code></td></tr>
-<tr><td><code>boolean</code></td><td>—</td><td colspan="2"><code>true</code> ou <code>false</code></td></tr>
+<tr><td><code>byte</code></td><td>8</td><td>2⁸ = 256</td><td>−128</td><td>127</td></tr>
+<tr><td><code>short</code></td><td>16</td><td>2¹⁶ = 65.536</td><td>−32.768</td><td>32.767</td></tr>
+<tr><td><code>int</code></td><td>32</td><td>2³² = 4.294.967.296</td><td>−2³¹</td><td>2³¹ − 1</td></tr>
+<tr><td><code>long</code></td><td>64</td><td>2⁶⁴ = 18.446.744.073.709.551.616</td><td>−2⁶³</td><td>2⁶³ − 1</td></tr>
+<tr><td><code>float</code></td><td>32</td><td>2³² representações</td><td>IEEE 754, precisão simples</td><td></td></tr>
+<tr><td><code>double</code></td><td>64</td><td>2⁶⁴ representações</td><td>IEEE 754, precisão dupla</td><td></td></tr>
+<tr><td><code>char</code></td><td>16</td><td>2¹⁶ = 65.536</td><td><code>\u0000</code></td><td><code>\uFFFF</code></td></tr>
+<tr><td><code>boolean</code></td><td>—</td><td>2</td><td colspan="2"><code>true</code> ou <code>false</code></td></tr>
 </tbody>
 </table>
 
@@ -488,7 +856,7 @@ Para obter a representação negativa, inverta os bits do valor positivo e some 
 
 ---
 
-# O que são variáveis?
+# Variáveis
 
 ```java
 tipo identificador [ = valor ] [, identificador [ = valor ] ...];
