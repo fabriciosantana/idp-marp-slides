@@ -1,49 +1,39 @@
 ---
 marp: true
 theme: idp
-paginate: true
+paginate: false
 html: true
-footer: <span>Programação Orientada a Objetos</span><span>Disciplina</span><span>Prof. Nome</span>
+footer: <span>Programação Orientada a Objetos</span><span>Índice das aulas</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
 ---
 
-<!-- _class: title -->
-<!-- _paginate: false -->
+# Programação Orientada a Objetos
 
-## Programação Orientada a Objetos
+## Fundamentos
 
-# Disciplina
+- Aula 01: [Introdução e contextualização](./01-introduction.html)
 
-<div class="objectives">
+- Aula 02: [Configuração do ambiente e submissão de tarefas](./02-configuration.html)
 
-**Aulas**
+- Aula 03: [Plataforma Java: ferramentas, `jshell`, `java` e `javac`](./03-platform.html)
 
-- Aula 01: Introdução e contextualização
-- Aula 11: Framework Collections
-- Aula 12: Manipulação de arquivos em Java
-- Aula 13: Acesso a banco de dados com JDBC
+- Aula 04: [Elementos da linguagem Java](./04-elements.html)
+
+- Aula 05: [Entrada e saída de dados em Java](./05-input-output.html)
+
+- Aula 06: [Controle de fluxo - estruturas de seleção](./05-input-output.html)
+
+- Aula 07: [Controle de fluxo - estruturas de iteração](./05-input-output.html)
+
+---
+
+**Aula 11**<br>
+[Java Collections Framework](./11-collections.html)
+
+**Aula 12**<br>
+[Manipulação de arquivos em Java](./12-file.html)
+
+**Aula 13**<br>
+[Acesso a banco de dados com JDBC](./13-jdbc.html)
 
 </div>
-
-<div class="contact">
-Prof. Nome<br>
-email@dominio.com<br>
-linkedin.com/in/seu-perfil
 </div>
-
----
-
-# Sumário
-
-- Aula 01: Introdução e contextualização
-- Aula 11: Framework Collections
-- Aula 12: Manipulação de arquivos em Java
-- Aula 13: Acesso a banco de dados com JDBC
-
----
-
-# Como organizar a disciplina
-
-Cada aula fica em `lectures/` e pode ser renderizada isoladamente.
-
-O arquivo principal da disciplina, `poo.md`, serve como ponto de entrada para
-uma versão consolidada ou para o sumário geral da disciplina.
