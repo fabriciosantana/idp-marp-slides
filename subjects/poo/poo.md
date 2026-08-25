@@ -20,9 +20,9 @@ footer: <span>Programação Orientada a Objetos</span><span>Índice das aulas</s
 
 - Aula 05: [Entrada e saída de dados em Java](./05-input-output.html)
 
-- Aula 06: [Controle de fluxo - estruturas de seleção](./05-input-output.html)
+- Aula 06: [Controle de fluxo - estruturas de seleção](./06-flow-selection.html)
 
-- Aula 07: [Controle de fluxo - estruturas de iteração](./05-input-output.html)
+- Aula 07: [Controle de fluxo - estruturas de iteração](./05-flow-iteration.html)
 
 ---
 
