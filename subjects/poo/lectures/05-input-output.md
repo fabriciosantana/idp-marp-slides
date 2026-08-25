@@ -149,11 +149,14 @@ System.err.println("Exemplo de diagnóstico");
 </div><div>
 
 ```java
+import java.util.Locale;
+
 String item = "Café";
 int quantidade = 2;
 double preco = 8.5;
 
 System.out.printf(
+    Locale.of("pt", "BR"),
     "%-12s %3d %8.2f%n",
     item, quantidade, preco
 );
@@ -217,7 +220,7 @@ System.out.printf("Idade: %d; altura: %.2f%n", idade, altura);
 
 <!-- _class: compact -->
 
-# Principais métodos da classe Scanner?
+# Quais são os principais métodos da classe Scanner?
 
 <table class="small">
 <thead><tr><th>Método</th><th>Resultado</th></tr></thead>
@@ -287,7 +290,7 @@ while (true) {
 
 Objetos que controlam recursos devem ser fechados quando não forem mais necessários.
 
-**try-with-reources**
+**try-with-resources**
 
 ```java
 try (Scanner input = new Scanner(arquivo)) {
@@ -314,12 +317,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-BufferedReader reader = new BufferedReader(
-    new InputStreamReader(System.in, StandardCharsets.UTF_8)
-);
+public class EntradaTexto {
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(
+        new InputStreamReader(System.in, StandardCharsets.UTF_8)
+    );
 
-System.out.print("Nome: ");
-String nome = reader.readLine();
+    System.out.print("Nome: ");
+    String nome = reader.readLine();
+  }
+}
 ```
 
 - `System.in` fornece bytes
@@ -328,6 +335,8 @@ String nome = reader.readLine();
 - As operações podem lançar `IOException`
 
 ---
+
+<!-- _class: compact -->
 
 # Como converter texto lido pelo BufferedReader?
 
@@ -350,6 +359,8 @@ Outras conversões comuns:
 - `Long.parseLong(texto)`
 - `Double.parseDouble(texto)`
 - `Boolean.parseBoolean(texto)`
+
+> `Boolean.parseBoolean()` não lança exceção: retorna `true` somente para o texto `"true"`, sem diferenciar maiúsculas de minúsculas; nos demais casos, retorna `false`.
 
 ---
 
@@ -375,7 +386,7 @@ Arrays.fill(senha, '\0');
 
 ---
 
-# Como usar Console?
+# Quais cuidados tomar ao usar Console?
 
 - `readPassword()` evita exibir a senha e retorna `char[]`
 - `System.console()` pode retornar `null` em IDEs e terminais integrados
@@ -408,10 +419,11 @@ Arrays.fill(senha, '\0');
 
 ```java
 import java.util.Locale;
+import java.util.Scanner;
 
 public class Imc {
   public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in).useLocale(Locale.US);
 
     System.out.print("Peso em kg: ");
     double peso = input.nextDouble();
@@ -424,7 +436,7 @@ public class Imc {
     }
 
     double imc = peso / (altura * altura);
-    System.out.printf("IMC: %.2f%n", imc);
+    System.out.printf(Locale.US, "IMC: %.2f%n", imc);
   }
 }
 ```
