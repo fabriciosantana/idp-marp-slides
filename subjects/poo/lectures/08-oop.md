@@ -3,13 +3,13 @@ marp: true
 theme: idp
 paginate: false
 html: true
-footer: <span>Programação Orientada a Objetos</span><span>Tipos personalizados</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
+footer: <span>Programação Orientada a Objetos</span><span>Introdução à Orientação a Objetos</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
 <!-- _paginate: false -->
 
-# Definição de tipos personalizados em Java
+# Introdução à Orientação a Objetos
 
 ## Programação Orientada a Objetos
 
@@ -17,9 +17,10 @@ footer: <span>Programação Orientada a Objetos</span><span>Tipos personalizados
 
 **Objetivos da aula**
 
-- Modelar conceitos do domínio por meio de classes e objetos
+- Conhecer os pilares da orientação a objetos
+- Compreender os conceitos de classes e objetos
 - Criar classes com atributos, construtores e métodos
-- Encapsular estado, validações e regras de negócio simples
+- Encapsular estado, validações e regras de negócio
 - Criar e utilizar objetos em aplicações console
 
 </div>
@@ -92,6 +93,27 @@ Account contaBia = new Account("Bia", 250.0);
 
 ---
 
+<!-- _class: compact -->
+
+# Pilares da orientação a objetos
+
+<table class="small">
+<thead><tr><th>Pilar</th><th>Ideia central</th><th>Exemplo</th></tr></thead>
+<tbody>
+<tr><td><strong>Abstração</strong></td><td>Representar somente características relevantes do conceito</td><td><code>Account</code> modela titular, saldo, depósito e saque</td></tr>
+<tr><td><strong>Encapsulamento</strong></td><td>Proteger o estado e controlar como ele pode mudar</td><td><code>balance</code> privado, alterado por <code>deposit</code></td></tr>
+<tr><td><strong>Herança</strong></td><td>Criar um tipo mais específico a partir de outro</td><td><code>SavingsAccount extends Account</code></td></tr>
+<tr><td><strong>Polimorfismo</strong></td><td>Tratar objetos diferentes por um tipo comum</td><td>Uma referência <code>Account</code> pode apontar para uma <code>SavingsAccount</code></td></tr>
+</tbody>
+</table>
+
+```java
+Account account = new SavingsAccount("Ana", 100.0);
+account.deposit(50.0);
+```
+
+---
+
 # Estrutura de uma classe
 
 <div class="columns">
@@ -126,9 +148,29 @@ A declaração da classe reúne os dados e as operações relacionadas ao mesmo 
 
 </div>
 
+---
 
+<!-- _class: compact -->
 
+# Organização dos arquivos Java
 
+Uma classe pública de nível superior deve estar em um arquivo com o mesmo nome.
+
+```text
+src/
+├── Account.java     → public class Account
+└── AccountApp.java  → public class AccountApp
+```
+
+```console
+$ javac -d bin src/Account.java src/AccountApp.java
+$ java -cp bin AccountApp
+```
+
+- Um arquivo pode declarar outros tipos não públicos
+- Classes do mesmo pacote podem ser referenciadas diretamente
+- Para utilizar uma classe de outro pacote, normalmente se declara um `import`
+- A declaração `package`, quando existir, identifica o pacote da classe
 
 ---
 
@@ -152,6 +194,28 @@ private double balance;
 <tr><td>Tipos por referência</td><td><code>null</code></td></tr>
 </tbody>
 </table>
+
+---
+
+<!-- _class: compact -->
+
+# Modificadores de acesso
+
+Modificadores de acesso determinam de onde um tipo ou membro pode ser utilizado.
+
+<table class="small">
+<thead><tr><th>Modificador</th><th>Acesso</th></tr></thead>
+<tbody>
+<tr><td><code>public</code></td><td>Disponível para outras classes</td></tr>
+<tr><td><code>private</code></td><td>Restrito à classe que declara o membro</td></tr>
+<tr><td>Sem modificador</td><td>Restrito às classes do mesmo pacote</td></tr>
+<tr><td><code>protected</code></td><td>Disponível no pacote e, sob regras específicas, para subclasses</td></tr>
+</tbody>
+</table>
+
+- Prefira atributos `private` para proteger o estado
+- Exponha como `public` somente o que fizer parte da API da classe
+- O uso de `protected` será aprofundado junto com herança
 
 ---
 
@@ -179,10 +243,63 @@ public Account(String name, double balance) {
 
 ---
 
+<!-- _class: compact -->
+
+# Argumentos inválidos
+
+A classe pode normalizar argumentos inválidos para preservar suas invariantes:
+
+<table class="small">
+<thead><tr><th>Argumento recebido</th><th>Estado adotado</th></tr></thead>
+<tbody>
+<tr><td>Nome <code>null</code> ou vazio</td><td><code>"Sem nome"</code></td></tr>
+<tr><td>Saldo negativo</td><td><code>0.0</code></td></tr>
+</tbody>
+</table>
+
+- O objeto sempre é construído em um estado válido
+- A correção silenciosa é uma decisão de implementação
+- Outra implementação poderia ignorar o argumento e manter o estado anterior
+- Também seria possível rejeitar o argumento com `IllegalArgumentException`
+- A escolha deve ser explícita, previsível e aplicada de forma consistente
+
+---
+
+<!-- _class: compact -->
+
+# Rejeição de argumentos inválidos
+
+Uma classe também pode rejeitar argumentos que violem seu contrato.
+
+```java
+public Time(int hour, int minute, int second) {
+  if (hour < 0 || hour >= 24
+      || minute < 0 || minute >= 60
+      || second < 0 || second >= 60) {
+    throw new IllegalArgumentException(
+        "Hora, minuto ou segundo fora do intervalo"
+    );
+  }
+
+  this.hour = hour;
+  //...
+}
+```
+
+- `throw` interrompe imediatamente a execução
+- A construção não é concluída e nenhuma referência válida é atribuída ao chamador
+- `IllegalArgumentException` informa que um argumento viola o contrato
+- O chamador pode capturar a exceção, mas não é obrigado a fazê-lo
+
+---
+
+<!-- _class: compact -->
+
 # Palavra-chave this
 
 ```java
 public Account(String name, double balance) {
+  // Exemplo simplificado: as validações foram omitidas.
   this.name = name;
   this.balance = balance;
 }
@@ -203,7 +320,36 @@ this.name = name;
 
 <!-- _class: compact -->
 
+# Escopo de atributos, parâmetros e variáveis locais
+
+```java
+public class Account {
+  private double balance; // atributo de instância
+
+  public void deposit(double amount) { // parâmetro
+    double previousBalance = balance;  // variável local
+
+    if (amount > 0.0) {
+      balance += amount;
+    }
+  }
+}
+```
+
+- Atributos existem enquanto o objeto existir
+- Parâmetros existem durante a execução da chamada
+- Variáveis locais existem somente no bloco em que foram declaradas
+- Atributos recebem valores padrão; variáveis locais precisam ser inicializadas antes do uso
+- Um parâmetro pode ocultar um atributo de mesmo nome; `this` seleciona o atributo
+
+---
+
+<!-- _class: compact -->
+
 # Sobrecarga de construtores
+
+<div class="columns">
+<div>
 
 Uma classe pode oferecer diferentes formas válidas de inicialização.
 
@@ -220,12 +366,22 @@ public Account(String name, double balance) {
 }
 ```
 
+</div>
+<div>
+
 - Os construtores possuem listas de parâmetros diferentes
 - `this(...)` delega para outro construtor da mesma classe
 - A delegação deve ser a primeira instrução do construtor
 - Centralizar a inicialização evita duplicação de regras
+- Métodos também podem ser sobrecarregados quando possuem assinaturas diferentes
+- Alterar somente o tipo de retorno não cria uma nova sobrecarga
+
+</div>
+</div>
 
 ---
+
+<!-- _class: compact -->
 
 # Métodos de instância
 
@@ -248,6 +404,27 @@ account.deposit(50.0);
 ```
 
 > A chamada envia ao objeto a mensagem para executar o comportamento `deposit`.
+
+---
+
+# Métodos de instância e métodos estáticos
+
+<table class="small">
+<thead><tr><th>Método de instância</th><th>Método estático</th></tr></thead>
+<tbody>
+<tr><td>Representa comportamento do objeto</td><td>Pertence à classe</td></tr>
+<tr><td>Chamado por uma referência</td><td>Chamado pelo nome da classe</td></tr>
+<tr><td>Acessa atributos diretamente</td><td>Não acessa atributos de instância diretamente</td></tr>
+<tr><td>Pode utilizar <code>this</code></td><td>Não possui <code>this</code></td></tr>
+</tbody>
+</table>
+
+```java
+account.deposit(50.0);          // método de instância
+double maior = Math.max(2, 5);  // método estático
+```
+
+> O método `main` é estático porque a JVM precisa executá-lo antes de existir um objeto da classe da aplicação.
 
 ---
 
@@ -301,6 +478,10 @@ public boolean withdraw(double amount) {
 
 # Métodos de acesso
 
+<div class="columns">
+
+<div>
+
 ```java
 public String getName() {
   return name;
@@ -316,11 +497,19 @@ public double getBalance() {
   return balance;
 }
 ```
+</div>
+
+<div>
 
 - *Getters* fornecem leitura controlada
 - *Setters* permitem alteração controlada
 - Nem todo atributo precisa de ambos
 - Não ofereça `setBalance`: depósitos e saques expressam melhor as regras do domínio
+
+</div>
+
+</div>
+
 
 ---
 
@@ -407,6 +596,32 @@ account.deposit(50.0); // NullPointerException
 
 <!-- _class: compact -->
 
+# Passagem de argumentos por valor
+
+Java sempre copia o valor fornecido como argumento.
+
+```java
+static void rename(Account account) {
+  account.setName("Novo nome");
+}
+
+Account original = new Account("Ana", 100.0);
+rename(original);
+System.out.println(original.getName()); // Novo nome
+```
+
+- Para um tipo primitivo, copia-se o valor primitivo
+- Para um objeto, copia-se o valor da referência
+- Parâmetro e argumento podem, portanto, alcançar o mesmo objeto
+- Alterar o objeto pelo parâmetro pode ser observado pelo chamador
+- Atribuir outra referência ao parâmetro não altera a variável do chamador
+
+> Java não passa objetos por referência; passa por valor uma referência ao objeto.
+
+---
+
+<!-- _class: compact -->
+
 # Objetos em uma aplicação console
 
 ```java
@@ -475,9 +690,11 @@ public class Student {
   private String course;
 
   public Student(String name, int age, String course) {
-    this.name = name;
-    this.age = age;
-    this.course = course;
+    this.name = name != null && !name.isBlank()
+        ? name : "Sem nome";
+    this.age = age >= 0 ? age : 0;
+    this.course = course != null && !course.isBlank()
+        ? course : "Não informado";
   }
 
   public String getName() { return name; }

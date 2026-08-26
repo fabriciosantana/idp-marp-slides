@@ -18,7 +18,7 @@ footer: <span>Programação Orientada a Objetos</span><span>Índice das aulas</s
 - [Entrada e saída de dados](./05-input-output.html)
 - [Estruturas de seleção](./06-flow-selection.html): `if`, `if-else`, `if-else if-else`, `switch`
 - [Estruturas de repetição](./07-flow-iteration.html): `for`, `while`, `do-while`
-- [Definição de tipos personalizados](./08-custom-types.html): `custom types` ou `reference types`
+- [Introdução à Orientação a Objetos](./08-oop.html)
 
 ---
 
