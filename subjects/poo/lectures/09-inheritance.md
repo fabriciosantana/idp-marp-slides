@@ -3,7 +3,7 @@ marp: true
 theme: idp
 paginate: false
 html: true
-footer: <span>Programação Orientada a Objetos</span><span>Relacionamentos entre classes</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
+footer: <span>Programação Orientada a Objetos</span><span>Introdução à Modelagem Orientada a Objetos</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
@@ -11,7 +11,7 @@ footer: <span>Programação Orientada a Objetos</span><span>Relacionamentos entr
 
 ## Programação Orientada a Objetos
 
-# Relacionamentos entre classes
+# Introdução à Modelagem Orientada a Objetos: relacionamentos entre classes
 
 <div class="objectives">
 
