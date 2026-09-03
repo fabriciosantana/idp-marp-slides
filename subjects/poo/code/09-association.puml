@@ -1,0 +1,25 @@
+@startuml
+title Associação — mantém uma referência
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 20
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam ArrowColor #0F4C75
+
+class Teacher {
+  -name: String
+  -course: Course
+  +assign(course: Course): void
+}
+
+class Course {
+  -title: String
+}
+
+Teacher "0..*" --> "0..1" Course : ministra
+@enduml

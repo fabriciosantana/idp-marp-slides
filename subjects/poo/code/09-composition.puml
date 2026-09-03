@@ -1,0 +1,30 @@
+@startuml
+title Composição — parte controlada pelo todo
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 20
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam ArrowColor #0F4C75
+
+class Order {
+  -number: String
+  -items: OrderItem[]
+  -itemCount: int
+  +addItem(product: String, price: double, quantity: int): void
+  +total(): double
+}
+
+class OrderItem {
+  -product: String
+  -price: double
+  -quantity: int
+  +subtotal(): double
+}
+
+Order "1" *-- "0..*" OrderItem : contém
+@enduml

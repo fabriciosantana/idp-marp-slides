@@ -1,0 +1,27 @@
+@startuml
+title Generalização — hierarquia de funcionários
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 18
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam ArrowColor #0F4C75
+
+abstract class Employee {
+  -name: String
+  +earnings(): double
+}
+class SalariedEmployee
+class HourlyEmployee
+class CommissionEmployee
+class BasePlusCommissionEmployee
+
+Employee <|-- SalariedEmployee
+Employee <|-- HourlyEmployee
+Employee <|-- CommissionEmployee
+CommissionEmployee <|-- BasePlusCommissionEmployee
+@enduml

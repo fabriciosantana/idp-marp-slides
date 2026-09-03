@@ -1,0 +1,23 @@
+@startuml
+title Dependência — usa temporariamente
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 20
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam ArrowColor #0F4C75
+
+class ReportService {
+  +generate(data: String, formatter: Formatter): String
+}
+
+class Formatter {
+  +format(data: String): String
+}
+
+ReportService ..> Formatter : usa como parâmetro
+@enduml

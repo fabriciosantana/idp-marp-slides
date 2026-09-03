@@ -1,0 +1,26 @@
+@startuml
+title Agregação — todo e partes independentes
+skinparam shadowing false
+skinparam backgroundColor transparent
+skinparam defaultFontSize 20
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F8FAFC
+  BorderColor #154E75
+  FontColor #111827
+}
+skinparam ArrowColor #0F4C75
+
+class Team {
+  -name: String
+  -players: Player[]
+  +averageAge(): double
+}
+
+class Player {
+  -name: String
+  -age: int
+}
+
+Team "0..*" o-- "0..*" Player : reúne
+@enduml

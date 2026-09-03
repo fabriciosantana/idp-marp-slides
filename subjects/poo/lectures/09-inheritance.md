@@ -3,7 +3,7 @@ marp: true
 theme: idp
 paginate: false
 html: true
-footer: <span>Programação Orientada a Objetos</span><span>Herança e polimorfismo</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
+footer: <span>Programação Orientada a Objetos</span><span>Relacionamentos entre classes</span><span>2026.2</span><span>Prof. Fabricio Santana</span>
 ---
 
 <!-- _class: title -->
@@ -11,18 +11,20 @@ footer: <span>Programação Orientada a Objetos</span><span>Herança e polimorfi
 
 ## Programação Orientada a Objetos
 
-# Herança e polimorfismo
+# Relacionamentos entre classes
+
+## Herança e polimorfismo
 
 <div class="objectives">
 
 **Objetivos da aula**
 
-- Criar hierarquias de classes com `extends`
-- Inicializar subclasses corretamente com `super`
-- Sobrescrever métodos e aplicar polimorfismo
-- Definir classes e métodos abstratos
-- Utilizar `instanceof` e conversões de referência com segurança
-- Avaliar quando usar herança, interfaces ou composição
+- Identificar dependência, associação, agregação, composição, generalização e realização
+- Interpretar relacionamentos e multiplicidades em diagramas de classes UML
+- Implementar colaborações entre objetos respeitando seus ciclos de vida
+- Criar hierarquias com `extends`, `super` e classes abstratas
+- Aplicar sobrescrita, polimorfismo e conversões de referência
+- Escolher o relacionamento mais adequado ao domínio
 
 </div>
 
@@ -35,34 +37,262 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# Continuidade da modelagem orientada a objetos
+# Objetos colaboram
 
 Na aula anterior, cada classe reuniu estado, invariantes e comportamentos de um conceito.
 
-Nesta aula, tipos relacionados passam a compartilhar uma **abstração comum**:
+Nesta aula, os objetos passam a colaborar e os tipos expressam diferentes **relacionamentos**:
 
 <div class="columns">
 <div>
 
-**Problema**
+**Perguntas de modelagem**
 
-- Tipos diferentes repetem estado e operações
-- O código cliente precisa conhecer cada tipo concreto
-- Novas variações exigem muitas condicionais
+- Uma classe apenas usa a outra?
+- Uma mantém referência para a outra?
+- Quem cria e controla o ciclo de vida?
+- Existe especialização ou contrato comum?
 
 </div>
 <div>
 
-**Possibilidade**
+**Efeitos no código**
 
-- Extrair características realmente comuns
-- Especializar somente o que varia
-- Tratar objetos diferentes por um tipo comum
+- Parâmetros e variáveis locais
+- Atributos que guardam referências
+- Criação e proteção das partes
+- `extends`, `implements` e polimorfismo
 
 </div>
 </div>
 
-> Herança organiza uma relação entre tipos; polimorfismo permite explorar essa relação no código.
+> O relacionamento escolhido comunica semântica e influencia acoplamento, propriedade e evolução do software.
+
+---
+
+<!-- _class: compact -->
+
+# Relacionamentos em diagramas de classes
+
+<table class="small">
+<thead><tr><th>Relacionamento</th><th>Ideia central</th><th>Notação UML</th></tr></thead>
+<tbody>
+<tr><td>Dependência</td><td>Usa temporariamente</td><td>Linha tracejada com seta</td></tr>
+<tr><td>Associação</td><td>Mantém uma ligação</td><td>Linha contínua</td></tr>
+<tr><td>Agregação</td><td>Todo reúne partes independentes</td><td>Losango vazio no todo</td></tr>
+<tr><td>Composição</td><td>Todo controla suas partes</td><td>Losango preenchido no todo</td></tr>
+<tr><td>Generalização</td><td>Subtipo é uma especialização</td><td>Triângulo vazio e linha contínua</td></tr>
+<tr><td>Realização</td><td>Classe cumpre uma interface</td><td>Triângulo vazio e linha tracejada</td></tr>
+</tbody>
+</table>
+
+> UML registra uma decisão de modelagem. O diagrama deve permanecer coerente com as referências, construções e contratos implementados no código.
+
+---
+
+<!-- _class: compact -->
+
+# Multiplicidade e navegabilidade
+
+<div class="columns">
+<div>
+
+**Multiplicidade**
+
+- `1`: exatamente um
+- `0..1`: nenhum ou um
+- `*` ou `0..*`: qualquer quantidade
+- `1..*`: ao menos um
+
+</div>
+<div>
+
+**Navegabilidade**
+
+- A seta indica quem conhece quem
+- Normalmente corresponde a uma referência
+- Associação bidirecional exige referências nos dois lados
+- Mais navegação costuma significar mais acoplamento
+
+</div>
+</div>
+
+> Multiplicidade descreve quantos objetos podem participar da relação, não quantos existem no sistema inteiro.
+
+---
+
+<!-- _class: compact -->
+
+# Dependência
+
+<div class="columns">
+<div>
+
+> Uma classe depende de outra quando a utiliza temporariamente para realizar uma operação.
+
+- Surge em parâmetros, variáveis locais, retornos ou chamadas estáticas
+- O objeto usado não precisa permanecer armazenado
+- É o relacionamento estrutural mais fraco apresentado nesta aula
+- Alterações no contrato usado ainda podem afetar o cliente
+
+</div>
+<div>
+
+<img src="../images/09-dependency.png" alt="Diagrama UML de dependência entre ReportService e Formatter">
+
+</div>
+</div>
+
+`ReportService` recebe um `Formatter` apenas durante `generate`; depois da chamada, não conserva a referência.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# Dependência: demonstração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/4526svvwy?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
+  title="OneCompiler Java — dependência"
+  allow="clipboard-read; clipboard-write"></iframe>
+
+---
+
+<!-- _class: compact -->
+
+# Associação
+
+<div class="columns">
+<div>
+
+> Associação representa uma ligação relativamente duradoura entre objetos com identidade própria.
+
+- Uma classe mantém referência para a outra em um atributo
+- Pode ser unidirecional ou bidirecional
+- Pode apresentar diferentes multiplicidades
+- Um objeto não controla necessariamente a existência do outro
+
+</div>
+<div>
+
+<img src="../images/09-association.png" alt="Diagrama UML de associação entre Teacher e Course">
+
+</div>
+</div>
+
+`Teacher` conhece a disciplina que ministra, mas `Course` é criado e pode existir independentemente do professor.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# Associação: demonstração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/4526ssc6t?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
+  title="OneCompiler Java — associação"
+  allow="clipboard-read; clipboard-write"></iframe>
+
+---
+
+<!-- _class: compact -->
+
+# Agregação
+
+<div class="columns">
+<div>
+
+> Agregação é uma associação todo–parte em que as partes possuem ciclo de vida independente.
+
+- O todo normalmente recebe objetos já existentes
+- A parte pode existir sem o todo
+- A parte pode ser transferida ou compartilhada conforme o domínio
+- UML representa o todo com um losango vazio
+
+</div>
+<div>
+
+<img src="../images/09-aggregation.png" alt="Diagrama UML de agregação entre Team e Player">
+
+</div>
+</div>
+
+`Team` reúne jogadores recebidos pelo construtor; destruir a equipe não destrói conceitualmente os jogadores.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# Agregação: demonstração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/4526sf9xf?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
+  title="OneCompiler Java — agregação"
+  allow="clipboard-read; clipboard-write"></iframe>
+
+---
+
+<!-- _class: compact -->
+
+# Composição
+
+<div class="columns">
+<div>
+
+> Composição é uma associação todo–parte em que o todo controla a criação e o ciclo de vida das partes.
+
+- A parte pertence a um único todo por vez
+- A parte não possui significado independente naquele modelo
+- O todo protege as invariantes do conjunto
+- UML representa o todo com um losango preenchido
+
+</div>
+<div>
+
+<img src="../images/09-composition.png" alt="Diagrama UML de composição entre Order e OrderItem">
+
+</div>
+</div>
+
+`Order` cria seus itens e não permite construí-los externamente; o item existe como parte daquele pedido.
+
+---
+
+<!-- _class: practice -->
+<!-- _paginate: false -->
+
+# Composição: demonstração
+
+<iframe
+  class="compiler-frame"
+  src="https://onecompiler.com/embed/java/4526sj5vr?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
+  title="OneCompiler Java — composição"
+  allow="clipboard-read; clipboard-write"></iframe>
+
+---
+
+<!-- _class: compact -->
+
+# Associação, agregação e composição
+
+<table class="small">
+<thead><tr><th>Critério</th><th>Associação</th><th>Agregação</th><th>Composição</th></tr></thead>
+<tbody>
+<tr><td>Semântica</td><td>Conhece ou colabora</td><td>Todo reúne partes</td><td>Todo possui partes</td></tr>
+<tr><td>Ciclo de vida</td><td>Independente</td><td>Parte independente</td><td>Parte controlada pelo todo</td></tr>
+<tr><td>Compartilhamento</td><td>Possível</td><td>Possível</td><td>Não simultaneamente</td></tr>
+<tr><td>Criação típica</td><td>Fora da classe</td><td>Fora do todo</td><td>Dentro do todo</td></tr>
+<tr><td>UML</td><td>Linha</td><td>Losango vazio</td><td>Losango preenchido</td></tr>
+</tbody>
+</table>
+
+> Em Java, todas podem envolver atributos por referência. A diferença principal está na semântica e em quem controla o ciclo de vida.
 
 ---
 
@@ -92,6 +322,14 @@ Nesta aula, tipos relacionados passam a compartilhar uma **abstração comum**:
 </div>
 
 Uma superclasse pode ser direta ou indireta. O conjunto dessas relações forma uma **hierarquia de classes**.
+
+---
+
+# Generalização na hierarquia `Employee`
+
+<img src="../images/09-inheritance.png" alt="Diagrama UML da hierarquia de Employee">
+
+O triângulo aponta para o tipo mais geral. `BasePlusCommissionEmployee` possui uma superclasse direta e também uma superclasse indireta.
 
 ---
 
@@ -481,7 +719,7 @@ Esse critério é conhecido como **Princípio da Substituição de Liskov**.
 
 ---
 
-# Herança e composição
+# Escolha entre herança e composição
 
 <table class="small">
 <thead><tr><th>Critério</th><th>Herança</th><th>Composição</th></tr></thead>
@@ -517,6 +755,28 @@ Interfaces permitem que classes não relacionadas compartilhem um contrato.
 
 Classe abstrata compartilha base, estado e implementação. Interface expressa uma capacidade que diferentes hierarquias podem oferecer.
 
+</div>
+
+---
+
+# Realização de uma interface
+
+<div class="columns">
+<div>
+
+Na UML, realização usa linha tracejada e triângulo vazio apontando para a interface.
+
+- `Employee` assume o contrato `Payable`
+- `SalariedEmployee` recebe esse contrato por herança
+- `Invoice` realiza o mesmo contrato sem pertencer à hierarquia de funcionários
+- Todos podem ser processados por uma referência `Payable`
+
+</div>
+<div>
+
+<img src="../images/09-realization.png" alt="Diagrama UML de realização da interface Payable">
+
+</div>
 </div>
 
 ---
@@ -622,6 +882,10 @@ Uma classe pública de nível superior permanece em um arquivo com o mesmo nome.
 
 # Síntese da aula
 
+- Dependência usa outro tipo temporariamente
+- Associação mantém uma ligação entre objetos independentes
+- Agregação reúne partes independentes; composição controla suas partes
+- Diagramas UML comunicam relacionamento, navegabilidade e multiplicidade
 - `extends` cria uma especialização e Java oferece herança simples de classes
 - `super` inicializa a parte herdada e acessa implementações da superclasse
 - Sobrescrita redefine comportamento; sobrecarga oferece assinaturas diferentes
@@ -629,7 +893,7 @@ Uma classe pública de nível superior permanece em um arquivo com o mesmo nome.
 - Classes abstratas representam bases incompletas para subclasses concretas
 - `instanceof` torna o downcast seguro, mas seu uso repetido merece revisão
 - `Object` é a raiz de todas as hierarquias de classes
-- Interfaces compartilham capacidades entre tipos não necessariamente relacionados
+- Realização compartilha contratos por meio de interfaces
 - Substituição correta e invariantes determinam se a herança é adequada
 
 <div class="source">Referências: <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html">JLS 8 — Classes</a>; <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-9.html">JLS 9 — Interfaces</a>; DEITEL, Paul; DEITEL, Harvey. <em>Java: How to Program, Early Objects</em>. 11. ed.</div>
