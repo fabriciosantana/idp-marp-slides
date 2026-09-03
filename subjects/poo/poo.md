@@ -19,6 +19,7 @@ footer: <span>Programação Orientada a Objetos</span><span>Índice das aulas</s
 - [Estruturas de seleção](./06-flow-selection.html): `if`, `if-else`, `if-else if-else`, `switch`
 - [Estruturas de repetição](./07-flow-iteration.html): `for`, `while`, `do-while`
 - [Introdução à Orientação a Objetos](./08-oop.html)
+- [Herança e polimorfismo](./09-inheritance.html): `extends`, `super`, `abstract`, sobrescrita e despacho dinâmico
 
 ---
 
