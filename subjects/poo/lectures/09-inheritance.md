@@ -154,15 +154,11 @@ O objeto da subclasse contém o estado da parte herdada e da parte especializada
 
 # `extends`: primeira demonstração
 
-<iframe data-onecompiler-example data-onecompiler-source="basic-code"
+<iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?listenToEvents=true&hideLanguageSelection=true&hideNew=true&hideStdin=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qdcsv?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java — herança básica"
   allow="clipboard-read; clipboard-write"></iframe>
-
-<script id="basic-code" type="application/json">
-{"files":[{"name":"Main.java","content":"class Person {\n    private final String name;\n\n    public Person(String name) {\n        if (name == null || name.isBlank())\n            throw new IllegalArgumentException(\"Nome obrigatório\");\n        this.name = name;\n    }\n\n    public String getName() { return name; }\n\n    public String description() { return name; }\n}\n\nclass Student extends Person {\n    private final String course;\n\n    public Student(String name, String course) {\n        super(name);\n        this.course = course;\n    }\n\n    @Override\n    public String description() {\n        return getName() + \" estuda \" + course;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Student student = new Student(\"Ana\", \"Direito\");\n        System.out.println(student.description());\n    }\n}\n"}]}
-</script>
 
 ---
 
@@ -234,15 +230,11 @@ Essa ordem garante que a base do objeto esteja válida antes da especialização
 
 # `super`: cadeia de construção
 
-<iframe data-onecompiler-example data-onecompiler-source="constructors-code"
+<iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?listenToEvents=true&hideLanguageSelection=true&hideNew=true&hideStdin=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qhvsv?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java — construtores e super"
   allow="clipboard-read; clipboard-write"></iframe>
-
-<script id="constructors-code" type="application/json">
-{"files":[{"name":"Main.java","content":"class Employee {\n    private final String name;\n\n    protected Employee(String name) {\n        System.out.println(\"1. Employee: estado comum\");\n        if (name == null || name.isBlank())\n            throw new IllegalArgumentException(\"Nome obrigatório\");\n        this.name = name;\n    }\n\n    public String getName() { return name; }\n}\n\nclass SalariedEmployee extends Employee {\n    private final double weeklySalary;\n\n    public SalariedEmployee(String name, double salary) {\n        super(name);\n        System.out.println(\"2. SalariedEmployee: especialização\");\n        if (salary < 0.0)\n            throw new IllegalArgumentException(\"Salário inválido\");\n        weeklySalary = salary;\n    }\n\n    public double earnings() { return weeklySalary; }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        var employee = new SalariedEmployee(\"Bia\", 1800.0);\n        System.out.printf(\"%s: R$ %.2f%n\",\n            employee.getName(), employee.earnings());\n    }\n}\n"}]}
-</script>
 
 ---
 
@@ -303,15 +295,11 @@ O cliente depende do contrato comum. Novas subclasses podem fornecer comportamen
 
 # Polimorfismo: folha de pagamento
 
-<iframe data-onecompiler-example data-onecompiler-source="payroll-code"
+<iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?listenToEvents=true&hideLanguageSelection=true&hideNew=true&hideStdin=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qnvyj?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java — folha de pagamento polimórfica"
   allow="clipboard-read; clipboard-write"></iframe>
-
-<script id="payroll-code" type="application/json">
-{"files":[{"name":"Main.java","content":"abstract class Employee {\n    private final String name;\n    protected Employee(String name) { this.name = name; }\n    public String getName() { return name; }\n    public abstract double earnings();\n}\n\nclass SalariedEmployee extends Employee {\n    private final double salary;\n    SalariedEmployee(String name, double salary) {\n        super(name);\n        this.salary = salary;\n    }\n    @Override public double earnings() { return salary; }\n}\n\nclass HourlyEmployee extends Employee {\n    private final double wage;\n    private final double hours;\n    HourlyEmployee(String name, double wage, double hours) {\n        super(name);\n        this.wage = wage;\n        this.hours = hours;\n    }\n    @Override public double earnings() {\n        if (hours <= 40.0) return wage * hours;\n        return 40.0 * wage + (hours - 40.0) * wage * 1.5;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Employee[] employees = {\n            new SalariedEmployee(\"Ana\", 1800.0),\n            new HourlyEmployee(\"Caio\", 50.0, 44.0)\n        };\n        for (Employee employee : employees) {\n            System.out.printf(\"%-5s | R$ %,.2f | %s%n\",\n                employee.getName(), employee.earnings(),\n                employee.getClass().getSimpleName());\n        }\n    }\n}\n"}]}
-</script>
 
 ---
 
@@ -378,15 +366,11 @@ Muitos testes `instanceof` podem indicar que um comportamento deveria estar no c
 
 # `instanceof`: especialização segura
 
-<iframe data-onecompiler-example data-onecompiler-source="instanceof-code"
+<iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?listenToEvents=true&hideLanguageSelection=true&hideNew=true&hideStdin=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qsjzy?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java — instanceof e pattern matching"
   allow="clipboard-read; clipboard-write"></iframe>
-
-<script id="instanceof-code" type="application/json">
-{"files":[{"name":"Main.java","content":"abstract class Employee {\n    public abstract double earnings();\n}\n\nclass SalariedEmployee extends Employee {\n    private final double salary;\n    SalariedEmployee(double salary) { this.salary = salary; }\n    @Override public double earnings() { return salary; }\n}\n\nclass CommissionEmployee extends Employee {\n    private final double sales;\n    private final double rate;\n    CommissionEmployee(double sales, double rate) {\n        this.sales = sales;\n        this.rate = rate;\n    }\n    @Override public double earnings() { return sales * rate; }\n    public double getSales() { return sales; }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Employee employee = new CommissionEmployee(20_000.0, 0.08);\n        System.out.printf(\"Ganhos: R$ %,.2f%n\", employee.earnings());\n\n        if (employee instanceof CommissionEmployee commissioned) {\n            System.out.printf(\"Vendas: R$ %,.2f%n\",\n                commissioned.getSales());\n        }\n    }\n}\n"}]}
-</script>
 
 ---
 
@@ -561,15 +545,11 @@ As duas permitem referências polimórficas. A escolha depende da relação de d
 
 # Interface: objetos pagáveis
 
-<iframe data-onecompiler-example data-onecompiler-source="payable-code"
+<iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java?listenToEvents=true&hideLanguageSelection=true&hideNew=true&hideStdin=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qxmtk?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
   title="OneCompiler Java — interface e polimorfismo"
   allow="clipboard-read; clipboard-write"></iframe>
-
-<script id="payable-code" type="application/json">
-{"files":[{"name":"Main.java","content":"interface Payable {\n    double paymentAmount();\n}\n\nabstract class Employee implements Payable {\n    private final String name;\n    protected Employee(String name) { this.name = name; }\n    public String getName() { return name; }\n}\n\nclass SalariedEmployee extends Employee {\n    private final double salary;\n    SalariedEmployee(String name, double salary) {\n        super(name);\n        this.salary = salary;\n    }\n    @Override public double paymentAmount() { return salary; }\n}\n\nclass Invoice implements Payable {\n    private final double total;\n    Invoice(double total) { this.total = total; }\n    @Override public double paymentAmount() { return total; }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Payable[] payments = {\n            new SalariedEmployee(\"Davi\", 2200.0),\n            new Invoice(730.0)\n        };\n        double total = 0.0;\n        for (Payable payment : payments) {\n            total += payment.paymentAmount();\n            System.out.printf(\"%s: R$ %,.2f%n\",\n                payment.getClass().getSimpleName(),\n                payment.paymentAmount());\n        }\n        System.out.printf(\"Total: R$ %,.2f%n\", total);\n    }\n}\n"}]}
-</script>
 
 ---
 
@@ -653,5 +633,3 @@ Uma classe pública de nível superior permanece em um arquivo com o mesmo nome.
 - Substituição correta e invariantes determinam se a herança é adequada
 
 <div class="source">Referências: <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html">JLS 8 — Classes</a>; <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-9.html">JLS 9 — Interfaces</a>; DEITEL, Paul; DEITEL, Harvey. <em>Java: How to Program, Early Objects</em>. 11. ed.</div>
-
-<script src="../scripts/onecompiler-example.js"></script>
