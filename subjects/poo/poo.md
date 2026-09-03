@@ -21,6 +21,8 @@ footer: <span>Programação Orientada a Objetos</span><span>Índice das aulas</s
 
 ---
 
+<!-- _class: compact -->
+
 # Programação Orientada a Objetos
 
 ## Orientação a Objetos
@@ -31,17 +33,11 @@ footer: <span>Programação Orientada a Objetos</span><span>Índice das aulas</s
     - abstração e encapsulamento: _getters_ e _setters_
     - modificadores de acesso: `public`, `private`, `protected`
     - membro de instância e membro de classe: `static`
-    - herança e interface: `extends`, `implements`
-    - polimorfismo, sobrecarga e sobrescrita: _overloading_ e `@Override`
-
----
-
-# Programação Orientada a Objetos
-
-## Orientação a Objetos
-
 - [Introdução à Modelagem Orientada a Objetos: relacionamentos entre classes](./09-inheritance.html)
-    - `dependência`, `associação`, `agregação`, `composição`, `generalização` e `realização`
+    - dependência, associação, agregação, composição
+    - generalização, herança: `extends`, `super`, `abstract class`, `final`
+    - realização, interface: `interface`, `implements`
+    - polimorfismo, sobrecarga e sobrescrita: _overloading_ e `@Override`
 
 ---
 
