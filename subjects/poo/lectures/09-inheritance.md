@@ -156,7 +156,7 @@ O objeto da subclasse contém o estado da parte herdada e da parte especializada
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java/4526qdcsv?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qdcsv?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
   title="OneCompiler Java — herança básica"
   allow="clipboard-read; clipboard-write"></iframe>
 
@@ -232,7 +232,7 @@ Essa ordem garante que a base do objeto esteja válida antes da especialização
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java/4526qhvsv?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qhvsv?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
   title="OneCompiler Java — construtores e super"
   allow="clipboard-read; clipboard-write"></iframe>
 
@@ -297,7 +297,7 @@ O cliente depende do contrato comum. Novas subclasses podem fornecer comportamen
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java/4526qnvyj?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qnvyj?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
   title="OneCompiler Java — folha de pagamento polimórfica"
   allow="clipboard-read; clipboard-write"></iframe>
 
@@ -368,7 +368,7 @@ Muitos testes `instanceof` podem indicar que um comportamento deveria estar no c
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java/4526qsjzy?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qsjzy?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
   title="OneCompiler Java — instanceof e pattern matching"
   allow="clipboard-read; clipboard-write"></iframe>
 
@@ -547,7 +547,7 @@ As duas permitem referências polimórficas. A escolha depende da relação de d
 
 <iframe
   class="compiler-frame"
-  src="https://onecompiler.com/embed/java/4526qxmtk?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=20"
+  src="https://onecompiler.com/embed/java/4526qxmtk?hideTitle=false&hideLanguageSelection=false&hideNew=false&hideNewFileOption=false&hideStdin=false&hideResult=false&hideEditorOptions=false&availableLanguages=true&disableAutoComplete=true&theme=light&fontSize=14"
   title="OneCompiler Java — interface e polimorfismo"
   allow="clipboard-read; clipboard-write"></iframe>
 
