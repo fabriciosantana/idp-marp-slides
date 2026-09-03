@@ -13,18 +13,18 @@ footer: <span>Programação Orientada a Objetos</span><span>Relacionamentos entr
 
 # Relacionamentos entre classes
 
-## Herança e polimorfismo
-
 <div class="objectives">
 
 **Objetivos da aula**
 
-- Identificar dependência, associação, agregação, composição, generalização e realização
-- Interpretar relacionamentos e multiplicidades em diagramas de classes UML
-- Implementar colaborações entre objetos respeitando seus ciclos de vida
-- Criar hierarquias com `extends`, `super` e classes abstratas
-- Aplicar sobrescrita, polimorfismo e conversões de referência
-- Escolher o relacionamento mais adequado ao domínio
+- Identificar os tipos de relacionamentos entre classes
+  - `dependência`, `associação`, `agregação`, `composição`, `generalização` e `realização`
+- Interpretar relacionamentos em diagramas UML
+- Implementar colaborações entre objetos
+- Criar hierarquias de classes
+  - `extends`, `super` e `abstract class`
+- Aplicar sobrescrita, polimorfismo e conversões
+  - `@Override`, `instanceof`
 
 </div>
 
@@ -37,11 +37,23 @@ www.linkedin.com/in/fabriciofsantana/
 
 ---
 
-# Objetos colaboram
+# Relacionamento entre classes
 
-Na aula anterior, cada classe reuniu estado, invariantes e comportamentos de um conceito.
+- **Classe**: modela dados e comportamentos de um conceito
 
-Nesta aula, os objetos passam a colaborar e os tipos expressam diferentes **relacionamentos**:
+- **Objeto** é uma instância concreta de uma classe
+
+- **Relacionamentos**: os **objetos** podem colaborar entre si
+
+<div style="text-align: center;">
+
+<img src="../images/09-classes-objects.png" alt="Classes e objetos" style="width: 90%; height: auto;">
+
+</div>
+
+---
+
+# Relacionamento entre classes
 
 <div class="columns">
 <div>
